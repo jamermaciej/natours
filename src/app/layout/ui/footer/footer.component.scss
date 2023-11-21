@@ -1,5 +1,7 @@
+@import 'variables';
+
 .footer {
-    background-color: #f7f7f7;
+    background-color: $light-gray;
     padding: 6rem 4rem 3rem 4rem;
     font-size: 1.4rem;
     display: grid;
@@ -45,13 +47,13 @@
             }
 
             a {
-                color: #777;
+                color: $secondary-color;
                 text-decoration: none !important;
                 transition: all 0.2s;
                 
                 &:hover,
-                &::active {
-                  color: #55c57a;
+                &:active {
+                  color: $primary-color;
                 }
             }
         }
@@ -59,6 +61,6 @@
 
     &__copyright {
         justify-self: end;
-        color: #999;
+        color: $medium-gray;
     }
 }

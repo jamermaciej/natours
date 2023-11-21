@@ -1,17 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import 'variables';
+
 :root {
     --section-rotate: 9vw;
   }
   
   ::-moz-selection {
-    background-color: #55c57a;
-    color: #fff;
+    background-color: $primary-color;
+    color: $white-color;
   }
   
   ::selection {
-    background-color: #55c57a;
-    color: #fff;
+    background-color: $primary-color;
+    color: $white-color;
   }
   
 *,
@@ -33,6 +35,6 @@ body {
     line-height: 1.6;
     font-weight: 300;
     font-family: 'Lato', sans-serif;
-    color: #777;
-    padding: 3rem; 
+    color: $secondary-color;
+    padding: 3rem;
 }

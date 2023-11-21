@@ -1,5 +1,7 @@
+@import 'variables';
+
 .header {
-    background-color: #444;
+    background-color: $dark-gray;
     padding: 2rem 5rem;
     min-height: 8rem;
     position: relative;
@@ -33,7 +35,7 @@
     }
 
     &__el {
-        color: #f7f7f7;
+        color: $light-gray;
         text-transform: uppercase;
         font-size: 1.6rem;
         text-decoration: none;
@@ -58,7 +60,7 @@
         &:hover,
         &:active {
             transform: translateY(-2px);
-            text-shadow: 0 0.7rem 1rem black;
+            text-shadow: 0 0.7rem 1rem $black-color;
         }
 
         // &:link,
@@ -71,10 +73,10 @@
             transition: all 0.3s;
 
             &:hover {
-                background-color: #f7f7f7;
-                color: #777;
+                background-color: $light-gray;
+                color: $secondary-color;
                 text-shadow: none;
-                border-color: #f7f7f7;
+                border-color: $light-gray;
             }
         }
     }
