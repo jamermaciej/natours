@@ -6,3 +6,10 @@ $light-gray: #f7f7f7;
 $medium-gray: #999999;
 $dark-gray: #444444;
 
+$breakpoints: (
+  small: 576px,
+  medium: 768px,
+  large: 992px,
+  xlarge: 1200px,
+  xxlarge: 1400px
+);
