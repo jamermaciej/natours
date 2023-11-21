@@ -9,14 +9,32 @@ import { FooterComponent } from './ui/footer/footer.component';
   standalone: true,
   imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent],
   template: `
-    <!-- HEADER -->
-    <app-header></app-header>
+    <div class="layout">
+      <!-- HEADER -->
+      <app-header></app-header>
 
-    <!-- CONTENT-->
-    <router-outlet></router-outlet>
+      <!-- CONTENT-->
+      <main class="main">
+        <router-outlet></router-outlet>
+      </main>
 
-    <!-- FOOTER-->
-    <app-footer></app-footer>
+      <!-- FOOTER-->
+      <app-footer></app-footer>
+    </div>
+  `,
+  styles: `
+    .layout {
+      display: flex;
+      flex-direction: column;
+      min-height: calc(100vh - 6rem);
+    }
+
+    .main {
+      background-color: #f7f7f7;
+      padding: 8rem 6rem;
+      flex: 1;
+      position: relative;
+    }
   `
 })
 export class LayoutComponent {
