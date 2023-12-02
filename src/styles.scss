@@ -1,8 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '../node_modules/bootstrap/scss/bootstrap-utilities.scss';
+@import '../node_modules/bootstrap/scss/bootstrap-utilities';
 
 @import 'variables';
+@import 'typography';
 
 :root {
     --section-rotate: 9vw;

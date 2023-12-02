@@ -13,3 +13,19 @@ $breakpoints: (
   xlarge: 1200px,
   xxlarge: 1400px
 );
+
+$typographyBp: (
+  small: 576px,
+  medium: 768px,
+  large: 992px,
+  xxlarge: 1400px
+);
+
+$p-font-sizes: (
+  null: (13px, 1.2),
+  small: 14px,
+  medium: (15px, 1.4),
+  large: (16px, 1.45),
+  xxlarge: 18px,
+  1920px: 20px
+);
