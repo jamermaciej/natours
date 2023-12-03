@@ -1,10 +1,52 @@
-$primary-color: #55c57a;
-$secondary-color: #777777;
-$white-color: #FFFFFF;
-$black-color: #000000;
-$light-gray: #f7f7f7;
-$medium-gray: #999999;
-$dark-gray: #444444;
+:root {
+  --section-rotate: 9vw;
+
+  --root-font-size-px: 10;
+  --root-font-size-fluid-factor: 0.2;
+  --root-font-size-fixed: calc(var(--root-font-size-px) / 16 * 100%);
+  --root-font-size-fixed-factor: calc(1 - var(--root-font-size-fluid-factor));
+  
+  --font-family: 'Lato', sans-serif;
+  --font-size-regular-base: 1.6rem;
+  --font-size-enlarged-base: 1.8rem;
+  --font-size-small-base: 1.4rem;
+  --font-size-tiny-base: 1.2rem;
+  --font-size-h1-base: 4rem;
+  --font-size-h2-base: 3.6rem;
+  --font-size-h3-base: 3rem;
+  --font-size-h4-base: 2.1rem;
+  --font-size-h5-base: 1.8rem;
+  --font-size-regular: max(var(--font-size-regular-base), 14px);
+  --font-size-enlarged: max(var(--font-size-enlarged-base), 16px);
+  --font-size-small: max(var(--font-size-small-base), 13px);
+  --font-size-tiny: max(var(--font-size-tiny-base), 12px);
+  --font-size-h1: max(var(--font-size-h1-base), 36px);
+  --font-size-h2: max(var(--font-size-h2-base), 32px);
+  --font-size-h3: max(var(--font-size-h3-base), 27px);
+  --font-size-h4: max(var(--font-size-h4-base), 19px);
+  --font-size-h5: max(var(--font-size-h5-base), 16px);
+  --line-height-default: 1.75;
+  --line-height-dense: 1.5;
+  --line-height-h1: 1.2;
+  --line-height-h2: 1.3;
+  --line-height-h3: 1.3;
+  --line-height-h4: 1.5;
+  --line-height-h5: 1.5;
+  --font-weight-default: 300;
+
+  --color-gray-70: #444444;
+  --color-gray-50: #777777;
+  --color-gray-40: #999999;
+  --color-gray-1: #f7f7f7;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-green: #55c57a;
+  --color-green-light: #9feec4;
+  --color-primary: var(--color-gray-70);
+  --color-secondary: var(--color-gray-50);
+  --color-brand: var(--color-green);
+  --color-brand-light: var(--color-green-light);
+}
 
 $breakpoints: (
   small: 576px,

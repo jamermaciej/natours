@@ -1,9 +1,8 @@
-@import 'variables';
 @import 'mixins';
 @import 'functions';
 
 .footer {
-    background-color: $light-gray;
+    background-color: var(--color-gray-1);
     padding: toRem(60) toRem(40) toRem(30) toRem(40);
     font-size: toRem(14);
     display: grid;
@@ -49,13 +48,13 @@
             }
 
             a {
-                color: $secondary-color;
+                color: var(--color-secondary);
                 text-decoration: none !important;
                 transition: all 0.2s;
                 
                 &:hover,
                 &:active {
-                  color: $primary-color;
+                  color: var(--color-brand);
                 }
             }
         }
@@ -64,6 +63,6 @@
     &__copyright {
         font-size: toRem(14);
         justify-self: end;
-        color: $medium-gray;
+        color: var(--color-gray-40);
     }
 }

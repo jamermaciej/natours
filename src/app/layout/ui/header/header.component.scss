@@ -1,9 +1,8 @@
-@import 'variables';
 @import 'mixins';
 @import 'functions';
 
 .header {
-    background-color: $dark-gray;
+    background-color: var(--color-gray-70);
     padding: toRem(20) toRem(50);
     min-height: toRem(80);
     position: relative;
@@ -37,7 +36,7 @@
     }
 
     &__el {
-        color: $light-gray;
+        color: var(--color-gray-1);
         text-transform: uppercase;
         font-size: toRem(16);
         text-decoration: none;
@@ -62,7 +61,7 @@
         &:hover,
         &:active {
             transform: translateY(-2px);
-            text-shadow: 0 toRem(7) toRem(10) $black-color;
+            text-shadow: 0 toRem(7) toRem(10) var(--color-black);
         }
 
         // &:link,
@@ -75,10 +74,10 @@
             transition: all 0.3s;
 
             &:hover {
-                background-color: $light-gray;
-                color: $secondary-color;
+                background-color: var(--color-gray-1);
+                color: var(--color-secondary);
                 text-shadow: none;
-                border-color: $light-gray;
+                border-color: var(--color-gray-1);
             }
         }
     }

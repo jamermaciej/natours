@@ -27,10 +27,11 @@ import { FooterComponent } from './ui/footer/footer.component';
       display: flex;
       flex-direction: column;
       min-height: calc(100vh - 6rem);
+      padding: 3rem;
     }
 
     .main {
-      background-color: #f7f7f7;
+      background-color: var(--color-gray-1);
       padding: 8rem 6rem;
       flex: 1;
       position: relative;

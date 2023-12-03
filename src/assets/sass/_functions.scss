@@ -1,4 +1,3 @@
 @function toRem($value) {
-    $remValue: ($value / 16) + rem; 
-    @return $remValue;
+    @return ($value / 10) + rem;
 }
