@@ -1,10 +1,11 @@
 @import 'variables';
 @import 'mixins';
+@import 'functions';
 
 .header {
     background-color: $dark-gray;
-    padding: 2rem 5rem;
-    min-height: 8rem;
+    padding: toRem(20) toRem(50);
+    min-height: toRem(80);
     position: relative;
     z-index: 100;
     display: flex;
@@ -18,11 +19,11 @@
     &__logo {
         @include breakpoint(large) {
             order: -1;
-            margin-bottom: 1.5rem;
+            margin-bottom: toRem(15);
         }
 
         img {
-            height: 3.5rem;
+            height: toRem(35);
         }
     }
 }
@@ -38,7 +39,7 @@
     &__el {
         color: $light-gray;
         text-transform: uppercase;
-        font-size: 1.6rem;
+        font-size: toRem(16);
         text-decoration: none;
         display: inline-flex;
         align-items: center;
@@ -50,26 +51,26 @@
         font-family: inherit;
 
         &:not(:last-child) {
-            margin-right: 3rem;
+            margin-right: toRem(30);
 
             @include breakpoint(small) {
                 margin-right: 0;
-                margin-bottom: 1.2rem;  
+                margin-bottom: toRem(12);  
             }
         }
 
         &:hover,
         &:active {
             transform: translateY(-2px);
-            text-shadow: 0 0.7rem 1rem $black-color;
+            text-shadow: 0 toRem(7) toRem(10) $black-color;
         }
 
         // &:link,
         // &:visited {}
 
         &--cta {
-            padding: 1rem 3rem;
-            border-radius: 10rem;
+            padding: toRem(10) toRem(30);
+            border-radius: toRem(100);
             border: 1px solid currentColor !important;
             transition: all 0.3s;
 
@@ -84,10 +85,10 @@
 
     &__user {
         &-img {
-            height: 3.5rem;
-            width: 3.5rem;
+            height: toRem(35);
+            width: toRem(35);
             border-radius: 50%;
-            margin-right: 1rem;
+            margin-right: toRem(10);
         }
     }
 
@@ -95,7 +96,7 @@
         flex: 0 1 40%;
 
         @include breakpoint(large) {
-            margin-bottom: 1.5rem;
+            margin-bottom: toRem(15);
         }
 
         @include breakpoint(small) {

@@ -1,19 +1,20 @@
 @import 'variables';
 @import 'mixins';
+@import 'functions';
 
 .footer {
     background-color: $light-gray;
-    padding: 6rem 4rem 3rem 4rem;
-    font-size: 1.4rem;
+    padding: toRem(60) toRem(40) toRem(30) toRem(40);
+    font-size: toRem(14);
     display: grid;
     grid-template-columns: auto auto;
-    grid-row-gap: 0.75rem;
-    grid-column-gap: 4rem;
+    grid-row-gap: toRem(7.5);
+    grid-column-gap: toRem(4);
     justify-content: space-between;
 
     @include breakpoint(medium) {
         grid-template-columns: 1fr;
-        grid-row-gap: 1.25rem;
+        grid-row-gap: toRem(12.5);
         justify-items: center;
     }
 
@@ -26,7 +27,7 @@
         }
 
         img {
-            height: 3rem;
+            height: toRem(30);
         }
     }
 
@@ -41,7 +42,7 @@
         }
 
          li {
-            margin-left: 1.5rem;
+            margin-left: toRem(15);
 
             &:first-child {
                 margin-left: 0;
@@ -61,6 +62,7 @@
     }
 
     &__copyright {
+        font-size: toRem(14);
         justify-self: end;
         color: $medium-gray;
     }

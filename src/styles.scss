@@ -4,6 +4,7 @@
 
 @import 'variables';
 @import 'typography';
+@import 'functions';
 
 :root {
     --section-rotate: 9vw;
@@ -29,7 +30,6 @@
 }
 
 html {
-  font-size: 62.5%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
@@ -39,5 +39,5 @@ body {
     font-weight: 300;
     font-family: 'Lato', sans-serif;
     color: $secondary-color;
-    padding: 3rem;
+    padding: toRem(30);
 }
