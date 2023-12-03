@@ -26,13 +26,12 @@ import { FooterComponent } from './ui/footer/footer.component';
     .layout {
       display: flex;
       flex-direction: column;
-      min-height: calc(100vh - 6rem);
+      min-height: 100vh;
       padding: 3rem;
     }
 
     .main {
       background-color: var(--color-gray-1);
-      padding: 8rem 6rem;
       flex: 1;
       position: relative;
     }
