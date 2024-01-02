@@ -7,7 +7,7 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
-import { CustomSerializer } from './shared/data-access/store/custom-route-serializer';
+import * as routerEffects from './shared/data-access/store/router.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,10 +16,8 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       router: routerReducer
     }),
-    provideEffects(),
+    provideEffects(routerEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideRouterStore({
-      serializer: CustomSerializer
-    })
+    provideRouterStore()
 ]
 };
