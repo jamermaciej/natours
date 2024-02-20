@@ -12,19 +12,19 @@
         <h6 class="card__sub-heading">{{ tour.difficulty }} {{ tour.duration }}-day tour</h6>
         <p class="card__text">{{ tour.summary }}</p>
         <div class="card__data">
-            <svg class="card__icon"><use xlink:href="/assets/images/icons.svg#icon-map-pin"></use></svg>
+            <svg class="card__icon"><use href="/assets/images/icons.svg#icon-map-pin"></use></svg>
         <span>{{ tour.startLocation.description }}</span>
         </div>
         <div class="card__data">
-            <svg class="card__icon"><use xlink:href="/assets/images/icons.svg#icon-calendar"></use></svg>
+            <svg class="card__icon"><use href="/assets/images/icons.svg#icon-calendar"></use></svg>
             <span>{{ tour.startDates[0] | date: 'MMMM YYYY' }}</span>
         </div>
         <div class="card__data">
-            <svg class="card__icon"><use xlink:href="/assets/images/icons.svg#icon-flag"></use></svg>
+            <svg class="card__icon"><use href="/assets/images/icons.svg#icon-flag"></use></svg>
             <span>{{ tour.locations.length }} stops</span>
         </div>
         <div class="card__data">
-            <svg class="card__icon"><use xlink:href="/assets/images/icons.svg#icon-user"></use></svg>
+            <svg class="card__icon"><use href="/assets/images/icons.svg#icon-user"></use></svg>
             <span>{{ tour.maxGroupSize }} people</span>
         </div>
     </div>

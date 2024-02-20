@@ -6,11 +6,12 @@ import { TourService } from '../../data-access/tour.service';
 import { Store } from '@ngrx/store';
 import { TourListComponent } from '../../ui/tour-list/tour-list.component';
 import { FooterComponent } from '../../../layout/ui/footer/footer.component';
+import { LoaderComponent } from '../../../layout/ui/loader/loader.component';
 
 @Component({
   selector: 'app-tours',
   standalone: true,
-  imports: [CommonModule, TourListComponent, FooterComponent],
+  imports: [CommonModule, TourListComponent, FooterComponent, LoaderComponent],
   templateUrl: './tours.component.html',
   styleUrl: './tours.component.scss'
 })
