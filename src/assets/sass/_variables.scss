@@ -25,6 +25,7 @@
   --font-size-h3: max(var(--font-size-h3-base), 27px);
   --font-size-h4: max(var(--font-size-h4-base), 19px);
   --font-size-h5: max(var(--font-size-h5-base), 16px);
+  --font-size-h6: max(var(--font-size-tiny-base), 12px);
   --line-height-default: 1.75;
   --line-height-dense: 1.5;
   --line-height-h1: 1.2;
@@ -32,6 +33,7 @@
   --line-height-h3: 1.3;
   --line-height-h4: 1.5;
   --line-height-h5: 1.5;
+  --line-height-h6: 1.5;
   --font-weight-default: 300;
 
   --color-gray-70: #444444;

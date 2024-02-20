@@ -1,0 +1,7 @@
+<section class="tour-list">
+    @for (tour of tours; track tour.id) {
+        <app-tour-card [tour]="tour"></app-tour-card>
+    } @empty {
+        Empty list of tours
+    }
+</section>

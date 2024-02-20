@@ -1,0 +1,7 @@
+@if (isLoading$ | async; as isLoading) {
+    <div id="loading"></div>
+} @else {
+    @if (tours$ | async; as tours) {
+        <app-tour-list [tours]="tours" />
+    }
+}

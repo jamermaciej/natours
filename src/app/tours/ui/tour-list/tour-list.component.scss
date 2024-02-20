@@ -1,0 +1,18 @@
+@import 'mixins';
+
+.tour-list {
+    max-width: 120rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 7rem;
+
+    
+    @include breakpoint(xlarge) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include breakpoint(medium) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
