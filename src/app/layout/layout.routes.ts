@@ -12,6 +12,10 @@ export const routes: Routes = [
         title: 'Home'
     },
     {
+        path: 'tour',
+        loadChildren: () => import('../tours/tours-routes').then(m => m.routes),
+    },
+    {
         path: '**',
         loadComponent: () => import('./ui/page-not-found/page-not-found.component').then(m => m.PageNotFoundComponent),
         title: 'Page Not Found'

@@ -1,6 +1,7 @@
 import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { toursActions } from './tours.actions';
 import { Tour } from '../../interfaces/tour';
+import { selectRouteParams } from '../../../shared/data-access/store/router.selectors';
 
 export interface State {
     tours: Tour[];
@@ -32,5 +33,12 @@ const reducer = createReducer(
 
 export const toursFeature = createFeature({
   name: 'tours',
-  reducer
+  reducer,
+  extraSelectors: ({ selectTours }) => ({
+    selectTour: createSelector(
+      selectTours,
+      selectRouteParams,
+      (tours, { slug }) => tours.find(t => t.slug === slug)
+    )
+  })
 });
