@@ -6,6 +6,8 @@ import { toursActions } from '../../data-access/store/tours.actions';
 import { TourDetailsComponent } from '../../ui/tour-details/tour-details.component';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
 import { RouterOutlet } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-tour',
@@ -16,8 +18,11 @@ import { RouterOutlet } from '@angular/router';
 })
 export class TourComponent implements OnInit {
   #store = inject(Store);
+  #titleService = inject(Title);
   @Input() slug!: string;
-  tour$ = this.#store.select(toursFeature.selectTour);
+  tour$ = this.#store.select(toursFeature.selectTour).pipe(
+    tap(tour => this.#titleService.setTitle(`Tour | ${tour?.name}`))
+  );
   isLoading$ = this.#store.select(toursFeature.selectIsLoading);
 
   ngOnInit(): void {
