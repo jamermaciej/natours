@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { tourTitleResolver } from './resolvers/tour-title.resolver';
 
 export const routes: Routes = [
     {
@@ -13,6 +14,7 @@ export const routes: Routes = [
       {
         path: ':slug',
         loadComponent: () => import('./feature/tour/tour.component').then(m => m.TourComponent),
+        title: tourTitleResolver
       }
     ]
   }
