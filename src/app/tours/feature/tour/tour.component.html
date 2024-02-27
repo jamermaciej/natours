@@ -1,7 +1,3 @@
-@if (isLoading$ | async; as isLoading) {
-    <app-loader></app-loader>
-} @else {
-    @if (tour$ | async; as tour) {
-        <app-tour-details [tour]="tour" />
-    }
+@if (tour$ | async; as tour) {
+    <app-tour-details [tour]="tour" />
 }

@@ -8,7 +8,7 @@ export const tourTitleResolver: ResolveFn<string> = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot,
   store: Store = inject(Store)
-): Observable<string> | string => (
+): Observable<string> => (
   inject(Store).select(toursFeature.selectTour).pipe(
     map(tour => tour?.name ? `Tour | ${tour?.name}` : `Tour`
     )

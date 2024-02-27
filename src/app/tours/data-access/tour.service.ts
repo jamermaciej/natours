@@ -14,6 +14,6 @@ export class TourService {
   #tourUrl = '/tours';
 
   getTours(): Observable<ApiResponse<Tour[]>> {
-    return this.#http.get<ApiResponse<Tour[]>>(`${this.#apiUrl}${this.#tourUrl}`).pipe(delay(2000));
+    return this.#http.get<ApiResponse<Tour[]>>(`${this.#apiUrl}${this.#tourUrl}`);
   }
 }

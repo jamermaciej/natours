@@ -1,12 +1,27 @@
 import { inject } from '@angular/core';
 import { toursActions } from './tours.actions';
 import { catchError, exhaustMap, filter, map, tap } from 'rxjs/operators';
-import { createEffect, Actions } from '@ngrx/effects';
+import { createEffect, Actions, concatLatestFrom } from '@ngrx/effects';
 import { ofType } from '@ngrx/effects';
 import { TourService } from '../tour.service';
-import { EMPTY, of } from 'rxjs';
+import { of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { toursFeature } from './tours.state';
+import { LoadStatus } from '../../enums/load-status';
 
-export const navigate = createEffect(
+export const getTours = createEffect(
+    (actions$ = inject(Actions), store = inject(Store)) => {
+        return actions$.pipe(
+            ofType(toursActions.getTours),
+            concatLatestFrom(() => store.select(toursFeature.selectLoadStatus)),
+            filter(([ ,loadStatus ]) => loadStatus === LoadStatus.NOT_LOADED),
+            map(() => toursActions.loadTours())
+        );
+    },
+    { functional: true }
+);
+
+export const loadTours = createEffect(
     (actions$ = inject(Actions), tourService = inject(TourService)) => {
         return actions$.pipe(
             ofType(toursActions.loadTours),
