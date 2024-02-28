@@ -2,7 +2,11 @@
     <div class="card__header">
         <div class="card__picture">
             <div class="card__picture-overlay">&nbsp;</div>
-                <img class="card__picture-img" [src]="'http://localhost:3000/img/tours/' + tour.imageCover" [alt]="tour.name">
+                <img class="card__picture-img"
+                    [ngSrc]="tour.imageCover"
+                    [alt]="tour.name"
+                    priority
+                    fill>
             </div>
             <h3 class="heading-tertirary">
                 <span>{{ tour.name }}</span>

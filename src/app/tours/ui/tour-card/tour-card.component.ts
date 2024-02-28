@@ -1,12 +1,16 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage, provideImgixLoader } from '@angular/common';
 import { Tour } from '../../interfaces/tour';
 import { RouterModule } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-tour-card',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NgOptimizedImage],
+  providers: [
+    provideImgixLoader(`${environment.apiHostUrl}img/tours/`)
+  ],
   templateUrl: './tour-card.component.html',
   styleUrl: './tour-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
