@@ -15,6 +15,9 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 @import 'typography';
 @import 'buttons';
 
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
 *,
 *::before,
 *::after {
@@ -53,4 +56,11 @@ body {
   font-weight: var(--font-weight-default);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
+
+.reviews-carousel {
+  .owl-stage {
+    display: flex;
+    padding: toRem(50) 0;
+  }
 }

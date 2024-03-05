@@ -8,7 +8,7 @@
     display: grid;
     grid-template-columns: auto auto;
     grid-row-gap: toRem(7.5);
-    grid-column-gap: toRem(4);
+    grid-column-gap: toRem(15);
     justify-content: space-between;
 
     @include breakpoint(medium) {

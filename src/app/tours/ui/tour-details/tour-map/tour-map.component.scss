@@ -1,0 +1,35 @@
+@import 'mixins';
+@import 'functions';
+
+.section-map {
+    position: relative;
+    height: toRem(650);
+    margin-top: calc(0px - var(--section-rotate));
+
+    ::ng-deep {
+        .gm-style iframe + div {
+            border: none !important;
+        }
+
+        .marker-label {
+            background: var(--color-white);
+            max-width: 240px;
+            position: relative;
+            border-radius: toRem(3);
+            padding: toRem(15) toRem(10) toRem(15);
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
+            text-wrap: wrap;
+            top: -70px;
+
+            &:after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: -20px;
+                transform: translateX(-50%);
+                border: 10px solid transparent;
+                border-top-color: var(--color-white);
+            }
+        }
+    }
+}

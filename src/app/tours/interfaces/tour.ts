@@ -1,6 +1,7 @@
 import { Difficulty } from "../enums/difficulty";
 import { Guide } from "./guide"
 import { Location, StartLocation } from "./location";
+import { Review } from "./review";
 
 export interface Tour {
     _id: string;
@@ -24,4 +25,5 @@ export interface Tour {
     startLocation: StartLocation;
     locations: Location[];
     guides: Guide[];
+    reviews: Review[];
 }

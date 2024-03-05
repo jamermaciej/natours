@@ -1,1 +1,97 @@
-{{ tour | json }}
+<section class="section-header">
+    <div class="header__hero">
+        <div class="header__hero-overlay"></div>
+        <img class="header__hero-img" [src]="apiHostUrl + 'img/tours/' + tour.imageCover" [alt]="tour.name">
+    </div>
+    <div class="heading-box">
+        <h1 class="heading-primary">
+            <span>{{ tour.name }} Tour</span>
+        </h1>
+        <div class="heading-box__group">
+            <div class="heading-box__detail">
+                <svg class="heading-box__icon"><use href="/assets/images/icons.svg#icon-clock"></use></svg>
+                <span class="heading-box__text">{{ tour.duration }} days</span>
+            </div>
+            <div class="heading-box__detail">
+                <svg class="heading-box__icon"><use href="/assets/images/icons.svg#icon-map-pin"></use></svg>
+                <span class="heading-box__text">{{ tour.startLocation.description }}</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-description">
+    <div class="overview-box">
+        <div><div class="overview-box__group">
+            <h2 class="heading-secondary ma-bt-lg">Quick facts</h2>
+            <div class="overview-box__detail">
+                <svg class="overview-box__icon"><use href="/assets/images/icons.svg#icon-calendar"></use></svg>
+                <span class="overview-box__label">Next date</span>
+                <span class="overview-box__text">{{ tour.startDates[0] | date: 'MMMM YYYY' }}</span>
+            </div>
+            <div class="overview-box__detail">
+                <svg class="overview-box__icon"><use href="/assets/images/icons.svg#icon-trending-up"></use></svg>
+                <span class="overview-box__label">Difficulty</span>
+                <span class="overview-box__text">{{ tour.difficulty }}</span>
+            </div>
+            <div class="overview-box__detail">
+                <svg class="overview-box__icon"><use href="/assets/images/icons.svg#icon-user"></use></svg>
+                <span class="overview-box__label">Participants</span>
+                <span class="overview-box__text">{{ tour.maxGroupSize }} people</span>
+            </div>
+            <div class="overview-box__detail">
+                <svg class="overview-box__icon"><use href="/assets/images/icons.svg#icon-star"></use></svg>
+                <span class="overview-box__label">Rating</span>
+                <span class="overview-box__text">{{ tour.ratingsAverage }} / 5</span>
+            </div>
+        </div>
+        <div class="overview-box__group">
+            <h2 class="heading-secondary ma-bt-lg">Your tour guides</h2>
+            @for (guide of tour.guides; track guide._id) {
+                <div class="overview-box__detail">
+                    <img class="overview-box__img" [src]="apiHostUrl + '/img/users/' + guide.photo" [alt]="guide.name">
+                    <span class="overview-box__label">{{ guide.role | role }}</span>
+                    <span class="overview-box__text">{{ guide.name }}</span>
+                </div>
+            } @empty {
+                Empty list of guides
+            }
+        </div>
+    </div>
+    </div>
+    <div class="description-box">
+        <h2 class="heading-secondary ma-bt-lg">About {{ tour.name }} tour</h2>
+        @for (p of tour.description | splitParagraph; track tour.id) {
+            <p class="description__text">{{ p }}</p>
+        }
+    </div>
+</section>
+
+<section class="section-pictures">
+    @for (image of tour.images; track tour.id; let i = $index) {
+        <div class="picture-box">
+            <img [class]="'picture-box__img picture-box__img--' + (i + 1)"
+                [src]="apiHostUrl + '/img/tours/' + image"
+                [alt]="'The Park Camper Tour ' + (i + 1)">
+        </div>
+    }
+</section>
+
+<app-tour-map [locations]="tour.locations" />
+
+<app-tour-reviews [reviews]="tour.reviews" />
+
+<section class="section-cta">
+    <div class="cta">
+        <div class="cta__img cta__img--logo">
+            <img src="/assets/images/logo-white.png" alt="Natours logo">
+        </div>
+        <img class="cta__img cta__img--1" [src]="apiHostUrl + '/img/tours/' + tour.images[1]" alt="Tour picture">
+        <img class="cta__img cta__img--2" [src]="apiHostUrl + '/img/tours/' + tour.images[2]" alt="Tour picture">
+        <div class="cta__content">
+            <h2 class="heading-secondary">What are you waiting for?</h2>
+            <p class="cta__text">4 days. 1 adventure. Infinite memories. Make it yours today!</p>
+            <a class="btn btn--green span-all-rows" [routerLink]="['/login']">Log in to book tour</a>
+        </div>
+    </div>
+</section>
