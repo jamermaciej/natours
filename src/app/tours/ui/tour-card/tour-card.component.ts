@@ -9,7 +9,7 @@ import { environment } from '../../../../environments/environment';
   standalone: true,
   imports: [CommonModule, RouterModule, NgOptimizedImage],
   providers: [
-    provideImgixLoader(`${environment.apiHostUrl}img/tours/`)
+    provideImgixLoader(environment.imgixUrl)
   ],
   templateUrl: './tour-card.component.html',
   styleUrl: './tour-card.component.scss',
