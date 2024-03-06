@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://localhost:3000/api/v1',
-    apiHostUrl: 'http://localhost:3000/'
+    apiUrl: 'https://natours-app-1cf734474c20.herokuapp.com/api/v1',
+    apiHostUrl: 'https://natours-app-1cf734474c20.herokuapp.com/'
 };
