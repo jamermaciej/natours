@@ -11,8 +11,14 @@ import { CommonModule } from '@angular/common';
     </div>
   `,
   styles: `
+    @import 'mixins';
+
     .page-wrapper {
       padding: 8rem 6rem;
+
+      @include breakpoint(small) {
+        padding: 4rem 2rem;
+      }
     }
   `
 })

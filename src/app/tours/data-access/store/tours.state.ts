@@ -1,7 +1,7 @@
 import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { toursActions } from './tours.actions';
 import { Tour } from '../../interfaces/tour';
-import { selectRouteParams } from '../../../shared/data-access/store/router.selectors';
+import { selectRouteParams } from '../../../shared/data-access/router/store/router.selectors';
 import { LoadStatus } from '../../enums/load-status';
 
 export interface State {

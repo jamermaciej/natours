@@ -1,0 +1,3 @@
+<app-page-wrapper>
+    <app-login-form [isLoading]="(isLoading$ | async)!" [errorMessage]="(errorMessage$ | async)!" (onLogin)="login($event)" />
+</app-page-wrapper>

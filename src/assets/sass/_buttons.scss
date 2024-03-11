@@ -10,6 +10,9 @@
     transition: all 0.4s;
     font-weight: 400;
     backface-visibility: hidden;
+    min-width: toRem(110);
+    border: none;
+    cursor: pointer;
 
     &--green {
         background-color: var(--color-green);

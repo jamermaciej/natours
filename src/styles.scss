@@ -10,10 +10,12 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 }
 
 @import '../node_modules/bootstrap/scss/bootstrap-utilities';
+@import '../node_modules/bootstrap/scss/spinners';
 
 @import 'variables';
 @import 'typography';
 @import 'buttons';
+@import 'forms';
 
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
@@ -56,6 +58,17 @@ body {
   font-weight: var(--font-weight-default);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .reviews-carousel {

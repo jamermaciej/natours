@@ -1,0 +1,49 @@
+.form {
+    &__group {
+        &:not(:last-child) {
+            margin-bottom: toRem(25);
+        }
+    }
+
+    &__label {
+        display: block;
+        font-size: toRem(16);
+        font-weight: 700;
+        margin-bottom: toRem(7.5);
+    }
+
+    &__input {
+        display: block;
+        font-family: inherit;
+        font-size: toRem(15);
+        color: inherit;
+        padding: toRem(12.5) toRem(17.5);
+        border: none;
+        width: 100%;
+        background-color: #f2f2f2;
+        border-top: toRem(3) solid transparent;
+        border-bottom: toRem(3) solid transparent;
+        transition: all 0.3s;
+        border-radius: toRem(4);
+        box-sizing: border-box;
+
+        &:focus {
+            outline: none;
+            border-bottom: toRem(3) solid var(--color-brand);
+        }
+
+        &::-webkit-input-placeholder {
+            color: #bbb;
+        }
+
+        &.invalid,
+        &.ng-touched.ng-invalid {
+            border-bottom: toRem(3) solid #ff7730; 
+        }
+    }
+}
+
+.error-message {
+    font-weight: 700;
+    color: #ff7730;
+}

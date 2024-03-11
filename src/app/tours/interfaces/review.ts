@@ -1,13 +1,11 @@
+import { ReviewUser } from "../../shared/interfaces/user";
+
 export interface Review {
     id: string;
     _id: string;
     review: string;
     rating: number;
-    user: {
-        _id: string;
-        name: string;
-        photo: string;
-    };
+    user: ReviewUser;
     tour: string;
     cratedAt: string;
 }
