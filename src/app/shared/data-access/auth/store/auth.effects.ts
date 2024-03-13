@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { routerActions } from '../../router/store/router.actions';
 import { FlowRoutes } from '../../../enums/flow-routes';
+import { SnackbarService } from '../../../services/snackbar.service';
 
 export const login = createEffect(
     (actions$ = inject(Actions), authService = inject(AuthService)) => {
@@ -24,23 +25,29 @@ export const login = createEffect(
 );
 
 export const loginSuccess = createEffect(
-    (actions$ = inject(Actions)) => {
+    (actions$ = inject(Actions), snackbarService = inject(SnackbarService)) => {
         return actions$.pipe(
             ofType(authActions.loginSuccess),
             tap(({ user }) => localStorage.setItem('user', JSON.stringify(user))),
-            map(() => routerActions.go({ path: [FlowRoutes.TOURS] }))
+            map(() => {
+                snackbarService.success('Logged in successfully!');
+                return routerActions.go({ path: [FlowRoutes.TOURS] });
+            })
         );
     },
     { functional: true }
 );
 
 export const logout = createEffect(
-    (actions$ = inject(Actions), authService = inject(AuthService)) => {
+    (actions$ = inject(Actions), authService = inject(AuthService), snackbarService = inject(SnackbarService)) => {
         return actions$.pipe(
             ofType(authActions.logout),
             exhaustMap(() => authService.logout()
             .pipe(
-                map(() => (authActions.logoutSuccess())),
+                map(() => {
+                    snackbarService.success('Logged out successfully!');
+                    return authActions.logoutSuccess();
+                }),
                 catchError(() => of(authActions.logoutFailure()))
             )
           )

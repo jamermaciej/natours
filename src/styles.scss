@@ -20,6 +20,8 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
 *,
 *::before,
 *::after {
@@ -75,5 +77,34 @@ body {
   .owl-stage {
     display: flex;
     padding: toRem(50) 0;
+  }
+}
+
+.mdc-snackbar.mdc-snackbar--open {
+  text-align: center;
+  margin: 0;
+
+  .mdc-snackbar__surface {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 0;
+  }
+
+  &.snackbar-success {
+    .mdc-snackbar__surface {
+      background-color: var(--color-brand);
+    }
+  }
+
+  &.snackbar-error {
+    .mdc-snackbar__surface {
+      background-color: #dc3545;
+    }
+  }
+
+  &.snackbar-info {
+    .mdc-snackbar__surface {
+      background-color: #0d6efd;
+    }
   }
 }
