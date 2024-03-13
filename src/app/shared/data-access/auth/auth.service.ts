@@ -12,6 +12,10 @@ export class AuthService {
   #userUrl = '/users/';
 
   login(email: string, password: string): Observable<ApiResponse<User>> {
-    return this.#http.post<ApiResponse<User>>(`${this.#userUrl}login`, { email, password });
+    return this.#http.post<ApiResponse<User>>(`${this.#userUrl}login`, { email, password }, { withCredentials: true });
+  }
+
+  logout() {
+    return this.#http.get(`${this.#userUrl}logout`, { withCredentials: true });
   }
 }

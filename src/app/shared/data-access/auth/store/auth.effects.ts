@@ -5,7 +5,6 @@ import { createEffect, Actions } from '@ngrx/effects';
 import { ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { AuthService } from '../auth.service';
-import { Store } from '@ngrx/store';
 import { routerActions } from '../../router/store/router.actions';
 
 export const login = createEffect(
@@ -24,10 +23,36 @@ export const login = createEffect(
 );
 
 export const loginSuccess = createEffect(
-    (actions$ = inject(Actions), store = inject(Store)) => {
+    (actions$ = inject(Actions)) => {
         return actions$.pipe(
             ofType(authActions.loginSuccess),
             tap(({ user }) => localStorage.setItem('user', JSON.stringify(user))),
+            map(() => routerActions.go({ path: ['/tours'] }))
+        );
+    },
+    { functional: true }
+);
+
+export const logout = createEffect(
+    (actions$ = inject(Actions), authService = inject(AuthService)) => {
+        return actions$.pipe(
+            ofType(authActions.logout),
+            exhaustMap(() => authService.logout()
+            .pipe(
+                map(() => (authActions.logoutSuccess())),
+                catchError(() => of(authActions.logoutFailure()))
+            )
+          )
+        );
+    },
+    { functional: true }
+);
+
+export const logoutSuccess = createEffect(
+    (actions$ = inject(Actions)) => {
+        return actions$.pipe(
+            ofType(authActions.logoutSuccess),
+            tap(() => localStorage.removeItem('user')),
             map(() => routerActions.go({ path: ['/tours'] }))
         );
     },

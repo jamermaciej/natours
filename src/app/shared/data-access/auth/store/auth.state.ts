@@ -12,7 +12,7 @@ export interface State {
 
 export const initialState: State = {
     isLoggedIn: !!JSON.parse(localStorage.getItem('user')!) || false,
-    user: null,
+    user: JSON.parse(localStorage.getItem('user')!) || null,
     loadStatus: LoadStatus.NOT_LOADED,
     error: null,
 };
@@ -36,7 +36,13 @@ const reducer = createReducer(
         isLoggedIn: false,
         error,
         loadStatus: LoadStatus.NOT_LOADED,
-    }))
+    })),
+    on(authActions.logoutSuccess, (state) => ({
+        ...state,
+        isLoggedIn: false,
+        user: null,
+        error: null
+    })),
 );
 
 export const authFeature = createFeature({

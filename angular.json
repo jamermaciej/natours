@@ -72,6 +72,14 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "natours:build:development",
+            "host": "localhost",
+            "port": 4202,
+            "ssl": true,
+            "sslCert": "./localhost.crt",
+            "sslKey": "./localhost.key" 
+          },
           "configurations": {
             "production": {
               "buildTarget": "natours:build:production"
