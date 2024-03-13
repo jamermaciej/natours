@@ -3,6 +3,7 @@ import { CommonModule, NgOptimizedImage, provideImgixLoader } from '@angular/com
 import { Tour } from '../../interfaces/tour';
 import { RouterModule } from '@angular/router';
 import { environment } from '../../../../environments/environment';
+import { FlowRoutes } from '../../../shared/enums/flow-routes';
 
 @Component({
   selector: 'app-tour-card',
@@ -18,4 +19,6 @@ import { environment } from '../../../../environments/environment';
 export class TourCardComponent {
   @Input({ required: true })
   tour!: Tour;
+
+  readonly flowRoutes = FlowRoutes;
 }

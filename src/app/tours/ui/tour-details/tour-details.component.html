@@ -1,7 +1,7 @@
 <section class="section-header">
     <div class="header__hero">
         <div class="header__hero-overlay"></div>
-        <img class="header__hero-img" [src]="apiHostUrl + 'img/tours/' + tour.imageCover" [alt]="tour.name">
+        <img class="header__hero-img" [src]="toursImgUrl + tour.imageCover" [alt]="tour.name">
     </div>
     <div class="heading-box">
         <h1 class="heading-primary">
@@ -49,7 +49,7 @@
             <h2 class="heading-secondary ma-bt-lg">Your tour guides</h2>
             @for (guide of tour.guides; track guide._id) {
                 <div class="overview-box__detail">
-                    <img class="overview-box__img" [src]="apiHostUrl + '/img/users/' + guide.photo" [alt]="guide.name">
+                    <img class="overview-box__img" [src]="toursImgUrl + guide.photo" [alt]="guide.name">
                     <span class="overview-box__label">{{ guide.role | role }}</span>
                     <span class="overview-box__text">{{ guide.name }}</span>
                 </div>
@@ -71,7 +71,7 @@
     @for (image of tour.images; track tour.id; let i = $index) {
         <div class="picture-box">
             <img [class]="'picture-box__img picture-box__img--' + (i + 1)"
-                [src]="apiHostUrl + '/img/tours/' + image"
+                [src]="toursImgUrl + image"
                 [alt]="'The Park Camper Tour ' + (i + 1)">
         </div>
     }
@@ -86,12 +86,12 @@
         <div class="cta__img cta__img--logo">
             <img src="/assets/images/logo-white.png" alt="Natours logo">
         </div>
-        <img class="cta__img cta__img--1" [src]="apiHostUrl + '/img/tours/' + tour.images[1]" alt="Tour picture">
-        <img class="cta__img cta__img--2" [src]="apiHostUrl + '/img/tours/' + tour.images[2]" alt="Tour picture">
+        <img class="cta__img cta__img--1" [src]="toursImgUrl + tour.images[1]" alt="Tour picture">
+        <img class="cta__img cta__img--2" [src]="toursImgUrl + tour.images[2]" alt="Tour picture">
         <div class="cta__content">
             <h2 class="heading-secondary">What are you waiting for?</h2>
             <p class="cta__text">4 days. 1 adventure. Infinite memories. Make it yours today!</p>
-            <a class="btn btn--green span-all-rows" [routerLink]="['/login']">Log in to book tour</a>
+            <a class="btn btn--green span-all-rows" [routerLink]="flowRoutes.LOGIN">Log in to book tour</a>
         </div>
     </div>
 </section>

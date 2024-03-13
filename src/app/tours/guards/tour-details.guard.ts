@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, Url
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { toursFeature } from '../data-access/store/tours.state';
+import { FlowRoutes } from '../../shared/enums/flow-routes';
 
 export const tourDetailsGuard: CanActivateFn = (
     route: ActivatedRouteSnapshot,
@@ -12,6 +13,6 @@ export const tourDetailsGuard: CanActivateFn = (
   const router = inject(Router);
     
   return store.select(toursFeature.selectTour).pipe(
-    map(tour => tour ? true : router.createUrlTree(['/tours']))
+    map(tour => tour ? true : router.createUrlTree([FlowRoutes.TOURS]))
   )
 };

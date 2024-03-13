@@ -7,6 +7,7 @@ import { TourReviewsComponent } from './tour-reviews/tour-reviews.component';
 import { TourMapComponent } from './tour-map/tour-map.component';
 import { Tour } from '../../interfaces/tour';
 import { RouterLink } from '@angular/router';
+import { FlowRoutes } from '../../../shared/enums/flow-routes';
 
 @Component({
   selector: 'app-tour-details',
@@ -20,5 +21,6 @@ export class TourDetailsComponent {
   @Input({ required: true })
   tour!: Tour;
 
-  readonly apiHostUrl = environment.apiHostUrl;
+  readonly toursImgUrl = `${environment.apiHostUrl}/img/tours/`;
+  readonly flowRoutes = FlowRoutes;
 }

@@ -6,6 +6,7 @@ import { ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { routerActions } from '../../router/store/router.actions';
+import { FlowRoutes } from '../../../enums/flow-routes';
 
 export const login = createEffect(
     (actions$ = inject(Actions), authService = inject(AuthService)) => {
@@ -27,7 +28,7 @@ export const loginSuccess = createEffect(
         return actions$.pipe(
             ofType(authActions.loginSuccess),
             tap(({ user }) => localStorage.setItem('user', JSON.stringify(user))),
-            map(() => routerActions.go({ path: ['/tours'] }))
+            map(() => routerActions.go({ path: [FlowRoutes.TOURS] }))
         );
     },
     { functional: true }
@@ -53,7 +54,7 @@ export const logoutSuccess = createEffect(
         return actions$.pipe(
             ofType(authActions.logoutSuccess),
             tap(() => localStorage.removeItem('user')),
-            map(() => routerActions.go({ path: ['/tours'] }))
+            map(() => routerActions.go({ path: [FlowRoutes.TOURS] }))
         );
     },
     { functional: true }

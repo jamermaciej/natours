@@ -7,6 +7,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { User } from '../../../shared/interfaces/user';
 import { environment } from '../../../../environments/environment';
 import { authActions } from '../../../shared/data-access/auth/store/auth.actions';
+import { FlowRoutes } from '../../../shared/enums/flow-routes';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class HeaderComponent {
   #store = inject(Store);
   user: Signal<User | null> = toSignal(this.#store.select(authFeature.selectUser), { initialValue: null});
   readonly apiHostUrl = environment.apiHostUrl;
+  readonly flowRoutes = FlowRoutes;
 
   logout() {
     this.#store.dispatch(authActions.logout());
