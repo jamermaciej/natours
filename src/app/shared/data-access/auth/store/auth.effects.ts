@@ -8,6 +8,7 @@ import { AuthService } from '../auth.service';
 import { routerActions } from '../../router/store/router.actions';
 import { FlowRoutes } from '../../../enums/flow-routes';
 import { SnackbarService } from '../../../services/snackbar.service';
+import { constants } from '../../../constants/constants';
 
 export const login = createEffect(
     (actions$ = inject(Actions), authService = inject(AuthService)) => {
@@ -28,7 +29,7 @@ export const loginSuccess = createEffect(
     (actions$ = inject(Actions), snackbarService = inject(SnackbarService)) => {
         return actions$.pipe(
             ofType(authActions.loginSuccess),
-            tap(({ user }) => localStorage.setItem('user', JSON.stringify(user))),
+            tap(({ user }) => localStorage.setItem(constants.CURRENT_USER, JSON.stringify(user))),
             map(() => {
                 snackbarService.success('Logged in successfully!');
                 return routerActions.go({ path: [FlowRoutes.TOURS] });
@@ -60,7 +61,7 @@ export const logoutSuccess = createEffect(
     (actions$ = inject(Actions)) => {
         return actions$.pipe(
             ofType(authActions.logoutSuccess),
-            tap(() => localStorage.removeItem('user')),
+            tap(() => localStorage.removeItem(constants.CURRENT_USER)),
             map(() => routerActions.go({ path: [FlowRoutes.TOURS] }))
         );
     },
