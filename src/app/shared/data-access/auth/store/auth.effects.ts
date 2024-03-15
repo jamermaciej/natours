@@ -40,15 +40,12 @@ export const loginSuccess = createEffect(
 );
 
 export const logout = createEffect(
-    (actions$ = inject(Actions), authService = inject(AuthService), snackbarService = inject(SnackbarService)) => {
+    (actions$ = inject(Actions), authService = inject(AuthService)) => {
         return actions$.pipe(
             ofType(authActions.logout),
-            exhaustMap(() => authService.logout()
+            exhaustMap(message => authService.logout()
             .pipe(
-                map(() => {
-                    snackbarService.success('Logged out successfully!');
-                    return authActions.logoutSuccess();
-                }),
+                map(() => authActions.logoutSuccess(message)),
                 catchError(() => of(authActions.logoutFailure()))
             )
           )
@@ -58,11 +55,14 @@ export const logout = createEffect(
 );
 
 export const logoutSuccess = createEffect(
-    (actions$ = inject(Actions)) => {
+    (actions$ = inject(Actions), snackbarService = inject(SnackbarService)) => {
         return actions$.pipe(
             ofType(authActions.logoutSuccess),
             tap(() => localStorage.removeItem(constants.CURRENT_USER)),
-            map(() => routerActions.go({ path: [FlowRoutes.TOURS] }))
+            map(( {  message }) => {
+                snackbarService.success(message);
+                return routerActions.go({ path: [FlowRoutes.TOURS] });
+            })
         );
     },
     { functional: true }

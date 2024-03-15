@@ -11,13 +11,13 @@ import * as routerEffects from './shared/data-access/router/store/router.effects
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { authFeature } from './shared/data-access/auth/store/auth.state';
 import * as authEffects from './shared/data-access/auth/store/auth.effects';
-import { apiUrlInterceptor } from './shared/interceptors/api-url.interceptor';
+import { errorInterceptor } from './shared/interceptors/error.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(
-      withInterceptors([apiUrlInterceptor])
+      withInterceptors([errorInterceptor])
     ),
     provideStore({
       router: routerReducer

@@ -2,6 +2,7 @@ import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { LoadStatus } from '../../../../tours/enums/load-status';
 import { User } from '../../../interfaces/user';
 import { authActions } from './auth.actions';
+import { constants } from '../../../constants/constants';
 
 export interface State {
     isLoggedIn: boolean;
@@ -11,8 +12,8 @@ export interface State {
 }
 
 export const initialState: State = {
-    isLoggedIn: !!JSON.parse(localStorage.getItem('user')!) || false,
-    user: JSON.parse(localStorage.getItem('user')!) || null,
+    isLoggedIn: !!JSON.parse(localStorage.getItem(constants.CURRENT_USER)!) || false,
+    user: JSON.parse(localStorage.getItem(constants.CURRENT_USER)!) || null,
     loadStatus: LoadStatus.NOT_LOADED,
     error: null,
 };

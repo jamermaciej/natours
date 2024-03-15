@@ -18,4 +18,8 @@ export class AuthService {
   logout() {
     return this.#http.get(apiEndpoint.AuthEndpoint.logout, { withCredentials: true });
   }
+
+  getMe() {
+    return this.#http.get(apiEndpoint.AuthEndpoint.me, { withCredentials: true });
+  }
 }

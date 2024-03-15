@@ -24,6 +24,6 @@ export class HeaderComponent {
   readonly flowRoutes = FlowRoutes;
 
   logout() {
-    this.#store.dispatch(authActions.logout());
+    this.#store.dispatch(authActions.logout({ message: 'Logged out successfully!'}));
   }
 }
