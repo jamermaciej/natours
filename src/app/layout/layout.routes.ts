@@ -20,6 +20,10 @@ export const routes: Routes = [
         loadChildren: () => import('../login/login-routes').then(m => m.routes),
     },
     {
+        path: 'profile',
+        loadChildren: () => import('../profile/profile-routes').then(m => m.routes),
+    },
+    {
         path: '**',
         loadComponent: () => import('./ui/page-not-found/page-not-found.component').then(m => m.PageNotFoundComponent),
         title: 'Page Not Found'
