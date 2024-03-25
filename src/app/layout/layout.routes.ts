@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { guestGuard } from '../shared/guards/guest.guard';
 
 export const routes: Routes = [
     {
@@ -17,7 +18,8 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        loadChildren: () => import('../login/login-routes').then(m => m.routes),
+        canActivate: [guestGuard],
+        loadChildren: () => import('../login/login-routes').then(m => m.routes)
     },
     {
         path: 'profile',

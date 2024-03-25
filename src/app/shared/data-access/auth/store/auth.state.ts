@@ -20,19 +20,19 @@ export const initialState: State = {
 
 const reducer = createReducer(
   initialState,
-    on(authActions.login, (state) => ({
+    on(authActions.login, authActions.getMe, (state) => ({
         ...state,
         loadStatus: LoadStatus.LOADING,
         error: null
     })),
-    on(authActions.loginSuccess, (state, { user }) => ({
+    on(authActions.loginSuccess, authActions.getMeSuccess, (state, { user }) => ({
         ...state,
         isLoggedIn: true,
         user,
         loadStatus: LoadStatus.LOADED,
         error: null
     })),
-    on(authActions.loginFailure, (state, { error }) => ({
+    on(authActions.loginFailure,(state, { error }) => ({
         ...state,
         isLoggedIn: false,
         error,
@@ -43,6 +43,12 @@ const reducer = createReducer(
         isLoggedIn: false,
         user: null,
         error: null
+    })),
+    on(authActions.getMeFailure, (state, { error }) => ({
+        ...state,
+        isLoggedIn: false,
+        error: null,
+        loadStatus: LoadStatus.NOT_LOADED,
     })),
 );
 

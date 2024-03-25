@@ -19,7 +19,7 @@ export class AuthService {
     return this.#http.get(apiEndpoint.AuthEndpoint.logout, { withCredentials: true });
   }
 
-  getMe() {
-    return this.#http.get(apiEndpoint.AuthEndpoint.me, { withCredentials: true });
+  getMe(): Observable<ApiResponse<User>> {
+    return this.#http.get<ApiResponse<User>>(apiEndpoint.AuthEndpoint.me, { withCredentials: true });
   }
 }

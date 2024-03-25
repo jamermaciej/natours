@@ -67,3 +67,28 @@ export const logoutSuccess = createEffect(
     },
     { functional: true }
 );
+
+export const getMe = createEffect(
+    (actions$ = inject(Actions), authService = inject(AuthService)) => {
+        return actions$.pipe(
+            ofType(authActions.getMe),
+            exhaustMap(() => authService.getMe()
+            .pipe(
+                map(data => authActions.getMeSuccess({ user: data?.data?.data })),
+                catchError(error => of(authActions.getMeFailure({ error: error?.error?.message })))
+            )
+          )
+        );
+    },
+    { functional: true }
+);
+
+export const getMeSuccess = createEffect(
+    (actions$ = inject(Actions)) => {
+        return actions$.pipe(
+            ofType(authActions.getMeSuccess),
+            tap(({ user }) => localStorage.setItem(constants.CURRENT_USER, JSON.stringify(user)))
+        );
+    },
+    { functional: true, dispatch: false }
+);
