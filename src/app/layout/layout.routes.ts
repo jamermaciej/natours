@@ -22,6 +22,11 @@ export const routes: Routes = [
         loadChildren: () => import('../login/login-routes').then(m => m.routes)
     },
     {
+        path: 'signup',
+        canActivate: [guestGuard],
+        loadChildren: () => import('../signup/signup-routes').then(m => m.routes)
+    },
+    {
         path: 'profile',
         loadChildren: () => import('../profile/profile-routes').then(m => m.routes),
     },

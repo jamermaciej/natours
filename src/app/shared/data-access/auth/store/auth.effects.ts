@@ -10,6 +10,35 @@ import { FlowRoutes } from '../../../enums/flow-routes';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { constants } from '../../../constants/constants';
 
+export const signup = createEffect(
+    (actions$ = inject(Actions), authService = inject(AuthService)) => {
+        return actions$.pipe(
+            ofType(authActions.signup),
+            exhaustMap(({ signupData }) => authService.signup(signupData)
+            .pipe(
+                map(data => (authActions.signupSuccess({ user: data?.data?.data }))),
+                catchError(error => of(authActions.signupFailure({ error: error?.error?.message })))
+            )
+          )
+        );
+    },
+    { functional: true }
+);
+
+export const signupSuccess = createEffect(
+    (actions$ = inject(Actions), snackbarService = inject(SnackbarService)) => {
+        return actions$.pipe(
+            ofType(authActions.signupSuccess),
+            tap(({ user }) => localStorage.setItem(constants.CURRENT_USER, JSON.stringify(user))),
+            map(() => {
+                snackbarService.success('Account created and you have been logged in!');
+                return routerActions.go({ path: [FlowRoutes.PROFILE] });
+            })
+        );
+    },
+    { functional: true }
+);
+
 export const login = createEffect(
     (actions$ = inject(Actions), authService = inject(AuthService)) => {
         return actions$.pipe(

@@ -4,12 +4,17 @@ import { Observable } from 'rxjs';
 import { ApiResponse } from '../../interfaces/api-response';
 import { User } from '../../interfaces/user';
 import { apiEndpoint } from '../../constants/constants';
+import { SignupData } from '../../interfaces/signup-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   #http = inject(HttpClient);
+
+  signup(signupData: SignupData): Observable<ApiResponse<User>> {
+    return this.#http.post<ApiResponse<User>>(apiEndpoint.AuthEndpoint.signup, signupData, { withCredentials: true });
+  }
 
   login(email: string, password: string): Observable<ApiResponse<User>> {
     return this.#http.post<ApiResponse<User>>(apiEndpoint.AuthEndpoint.login, { email, password }, { withCredentials: true });

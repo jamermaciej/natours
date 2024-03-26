@@ -1,0 +1,42 @@
+<div [formGroup]="signupForm" class="signup-form" (ngSubmit)="onSubmit()">
+    <h2 class="heading-secondary ma-bt-lg">Create your account</h2>
+    <div class="error-message mb-5 text-center">
+        {{ errorMessage() }}
+    </div>
+    <form class="form form--signup">
+        <div class="form__group">
+            <label class="form__label" for="name">Name</label>
+            <input class="form__input" id="name" type="text" formControlName="name" placeholder="John">
+            <app-control-error controlName="name" />
+        </div>
+        <div class="form__group">
+            <label class="form__label" for="email">Email address</label>
+            <input class="form__input" id="email" type="email" formControlName="email" placeholder="you@example.com">
+            <app-control-error controlName="email" />
+        </div>
+        <div class="form__group ma-bt-md mb-5">
+            <label class="form__label" for="password">Password</label>
+            <input class="form__input" id="password" type="password" formControlName="password" placeholder="••••••••">
+            <app-control-error controlName="password" />
+        </div>
+        <div class="form__group ma-bt-md mb-5">
+            <label class="form__label" for="passwordConfirm">Repeat Password</label>
+            <input class="form__input" id="passwordConfirm" type="password" formControlName="passwordConfirm" placeholder="••••••••">
+            <app-control-error controlName="passwordConfirm" />
+            @if (signupForm.errors?.passwordMismatch) {
+                <div class="error">Password mismatch</div>
+            }
+        </div>
+        <div class="form__group">
+            <button class="btn btn--green">
+                @if (isLoading()) {
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                } @else {
+                    Signup
+                }
+            </button>
+        </div>
+    </form>
+</div>

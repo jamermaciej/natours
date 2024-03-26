@@ -1,0 +1,19 @@
+@import 'functions';
+@import 'mixins';
+
+.signup-form {
+    margin: 0 auto;
+    max-width: toRem(550);
+    background-color: var(--color-white);
+    box-shadow: 0 toRem(25) toRem(80) toRem(20) rgba(0, 0, 0, 0.06);
+    padding: toRem(50) toRem(70);
+    border-radius: toRem(5);
+
+    @include breakpoint(small) {
+        padding: toRem(50) toRem(20);
+    }
+
+    .heading-secondary {
+        margin-bottom: toRem(35);
+    }
+}

@@ -6,6 +6,7 @@ export const constants = {
 
 export const apiEndpoint = {
     AuthEndpoint: {
+        signup: `${environment.apiUrl}/users/signup`,
         login: `${environment.apiUrl}/users/login`,
         logout: `${environment.apiUrl}/users/logout`,
         me: `${environment.apiUrl}/users/me`,

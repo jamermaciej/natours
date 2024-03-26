@@ -1,0 +1,3 @@
+<app-page-wrapper>
+    <app-signup-form [isLoading]="(isLoading$ | async)!" [errorMessage]="(errorMessage$ | async)!" (onSignup)="signup($event)" />
+</app-page-wrapper>

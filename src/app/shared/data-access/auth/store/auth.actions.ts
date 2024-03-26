@@ -1,9 +1,13 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { User } from '../../../interfaces/user';
+import { SignupData } from '../../../interfaces/signup-data';
 
 export const authActions = createActionGroup({
   source: 'Auth',
   events: {
+    'Signup': props<{ signupData: SignupData }>(),
+    'Signup Success': props<{ user: User }>(),
+    'Signup Failure': props<{ error: string }>(),
     'Login': props<{ email: string; password: string }>(),
     'Login Success': props<{ user: User }>(),
     'Login Failure': props<{ error: string }>(),
