@@ -22,5 +22,6 @@ export class TourDetailsComponent {
   tour!: Tour;
 
   readonly toursImgUrl = `${environment.apiHostUrl}/img/tours/`;
+  readonly usersImgUrl = `${environment.apiHostUrl}/img/users/`;
   readonly flowRoutes = FlowRoutes;
 }

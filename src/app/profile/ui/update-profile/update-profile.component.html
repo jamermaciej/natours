@@ -1,0 +1,26 @@
+<div [formGroup]="profileForm" class="update-profile-form" (ngSubmit)="onSubmit()">
+    <h2 class="heading-secondary ma-bt-lg">Your account settings</h2>
+    <div class="error-message mt-5 mb-5 text-center">
+        {{ errorMessage() }}
+    </div>
+    <form class="form form--update-profile">
+        <div class="form__group">
+            <label class="form__label" for="name">Name</label>
+            <input class="form__input" id="name" type="text" formControlName="name" name="name" placeholder="John">
+            <app-control-error controlName="name" />
+        </div>
+        <div class="form__group">
+            <label class="form__label" for="email">Email address</label>
+            <input class="form__input" id="email" type="email" formControlName="email" name="email" placeholder="you@example.com">
+            <app-control-error controlName="email" />
+        </div>
+        <app-file-upload formControlName="photo">
+            <img class="form__user-photo" [src]="apiHostUrl + '/img/users/' + user()?.photo" alt="User photo">
+        </app-file-upload>
+        <div class="form__group right">
+            <button class="btn btn--green">
+                Save settings
+            </button>
+        </div>
+    </form>
+</div>

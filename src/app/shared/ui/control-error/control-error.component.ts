@@ -1,6 +1,6 @@
-import { Component, DestroyRef, InjectionToken, OnInit, inject, input, signal } from '@angular/core';
+import { Component, DestroyRef, InjectionToken, OnInit, effect, inject, input, signal } from '@angular/core';
 import { FormGroupDirective } from '@angular/forms';
-import { distinctUntilChanged, merge, } from 'rxjs';
+import { distinctUntilChanged, merge, take, } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 const defaultErrors: {
@@ -31,6 +31,12 @@ export class ControlErrorComponent implements OnInit {
   controlName = input.required<string>();
   customErrors = input< { [key: string]: string } >();
 
+  constructor() {
+    effect(() => {
+        console.log(`The count is: ${this.controlName()})`);
+    });
+  }
+
   ngOnInit(): void {
       if (this.#formGroupDirective) {
         const control = this.#formGroupDirective.control.get(this.controlName());
@@ -38,8 +44,10 @@ export class ControlErrorComponent implements OnInit {
         if (control) {
           merge(control.valueChanges, this.#formGroupDirective.ngSubmit).pipe(
             distinctUntilChanged(),
+            take(1),
             takeUntilDestroyed(this.#destroyRef)
           ).subscribe(() => {
+            console.log(control.errors)
             const controlErrors = control.errors;
 
             if (controlErrors) {

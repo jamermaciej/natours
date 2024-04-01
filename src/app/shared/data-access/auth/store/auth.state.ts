@@ -20,19 +20,25 @@ export const initialState: State = {
 
 const reducer = createReducer(
   initialState,
-    on(authActions.signup, authActions.login, authActions.getMe, (state) => ({
+    on(authActions.signup, authActions.login, authActions.updateMe, (state) => ({
         ...state,
         loadStatus: LoadStatus.LOADING,
         error: null
     })),
-    on(authActions.signupSuccess, authActions.loginSuccess, authActions.getMeSuccess, (state, { user }) => ({
+    on(authActions.signupSuccess, authActions.loginSuccess, authActions.updateSuccess, (state, { user }) => ({
         ...state,
         isLoggedIn: true,
         user,
         loadStatus: LoadStatus.LOADED,
         error: null
     })),
-    on(authActions.signupFailure, authActions.loginFailure,(state, { error }) => ({
+    on(authActions.getMeSuccess, (state, { user }) => ({
+        ...state,
+        isLoggedIn: true,
+        user,
+        error: null
+    })),
+    on(authActions.signupFailure, authActions.loginFailure, authActions.updateFailure,  (state, { error }) => ({
         ...state,
         isLoggedIn: false,
         error,
@@ -49,6 +55,10 @@ const reducer = createReducer(
         isLoggedIn: false,
         error: null,
         loadStatus: LoadStatus.NOT_LOADED,
+    })),
+    on(authActions.updatePasswordFailure, (state, { error }) => ({
+        ...state,
+        error
     })),
 );
 

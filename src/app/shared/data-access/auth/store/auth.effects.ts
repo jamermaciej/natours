@@ -9,6 +9,7 @@ import { routerActions } from '../../router/store/router.actions';
 import { FlowRoutes } from '../../../enums/flow-routes';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { constants } from '../../../constants/constants';
+import { User } from '../../../interfaces/user';
 
 export const signup = createEffect(
     (actions$ = inject(Actions), authService = inject(AuthService)) => {
@@ -117,6 +118,57 @@ export const getMeSuccess = createEffect(
         return actions$.pipe(
             ofType(authActions.getMeSuccess),
             tap(({ user }) => localStorage.setItem(constants.CURRENT_USER, JSON.stringify(user)))
+        );
+    },
+    { functional: true, dispatch: false }
+);
+
+export const updateMe = createEffect(
+    (actions$ = inject(Actions), authService = inject(AuthService)) => {
+        return actions$.pipe(
+            ofType(authActions.updateMe),
+            exhaustMap(({ user }) => authService.updateMe(user)
+            .pipe(
+                map(data => authActions.updateSuccess({ user: data?.data?.data })),
+                catchError(error => of(authActions.updateFailure({ error: error?.error?.message })))
+            )
+          )
+        );
+    },
+    { functional: true }
+);
+
+export const updateMeSuccess = createEffect(
+    (actions$ = inject(Actions), snackbarService = inject(SnackbarService)) => {
+        return actions$.pipe(
+            ofType(authActions.updateSuccess),
+            tap(({ user }) => localStorage.setItem(constants.CURRENT_USER, JSON.stringify(user))),
+            map(() => snackbarService.success('DATA updated successfully!'))
+        );
+    },
+    { functional: true, dispatch: false }
+);
+
+export const updatePassword = createEffect(
+    (actions$ = inject(Actions), authService = inject(AuthService)) => {
+        return actions$.pipe(
+            ofType(authActions.updatePassword),
+            exhaustMap(({ passwordCurrent, password, passwordConfirm }) => authService.updatePassword(passwordCurrent, password, passwordConfirm)
+            .pipe(
+                map(data => authActions.updatePasswordSuccess({ user: data?.data?.data })),
+                catchError(error => of(authActions.updatePasswordFailure({ error: error?.error?.message })))
+            )
+          )
+        );
+    },
+    { functional: true }
+);
+
+export const updatePasswordSuccess = createEffect(
+    (actions$ = inject(Actions), snackbarService = inject(SnackbarService)) => {
+        return actions$.pipe(
+            ofType(authActions.updatePasswordSuccess),
+            map(() => snackbarService.success('Password changed successfully!'))
         );
     },
     { functional: true, dispatch: false }

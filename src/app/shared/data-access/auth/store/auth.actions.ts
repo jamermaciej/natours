@@ -17,5 +17,11 @@ export const authActions = createActionGroup({
     'Get Me': emptyProps(),
     'Get Me Success': props<{ user: User }>(),
     'Get Me Failure': props<{ error: string }>(),
+    'Update Me': props<{ user: User }>(),
+    'Update Success': props<{ user: User }>(),
+    'Update Failure': props<{ error: string }>(),
+    'Update Password': props<{ passwordCurrent: string; password: string; passwordConfirm: string }>(),
+    'Update Password Success': props<{ user: User }>(),
+    'Update Password Failure': props<{ error: string }>(),
   },
 });

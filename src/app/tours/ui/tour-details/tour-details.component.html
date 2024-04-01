@@ -49,7 +49,7 @@
             <h2 class="heading-secondary ma-bt-lg">Your tour guides</h2>
             @for (guide of tour.guides; track guide._id) {
                 <div class="overview-box__detail">
-                    <img class="overview-box__img" [src]="toursImgUrl + guide.photo" [alt]="guide.name">
+                    <img class="overview-box__img" [src]="usersImgUrl + guide.photo" [alt]="guide.name">
                     <span class="overview-box__label">{{ guide.role | role }}</span>
                     <span class="overview-box__text">{{ guide.name }}</span>
                 </div>

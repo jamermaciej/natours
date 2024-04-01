@@ -10,6 +10,8 @@ export const apiEndpoint = {
         login: `${environment.apiUrl}/users/login`,
         logout: `${environment.apiUrl}/users/logout`,
         me: `${environment.apiUrl}/users/me`,
+        updateMe: `${environment.apiUrl}/users/updateMe`,
+        updatePassword: `${environment.apiUrl}/users/updateMyPassword`,
     },
     TourEndpoint: {
         getAllTours: `${environment.apiUrl}/tours`,

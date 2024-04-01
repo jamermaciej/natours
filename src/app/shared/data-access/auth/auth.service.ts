@@ -5,6 +5,7 @@ import { ApiResponse } from '../../interfaces/api-response';
 import { User } from '../../interfaces/user';
 import { apiEndpoint } from '../../constants/constants';
 import { SignupData } from '../../interfaces/signup-data';
+import GlobalFunctions from '../../helpers/GlobalFunctions';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,15 @@ export class AuthService {
 
   getMe(): Observable<ApiResponse<User>> {
     return this.#http.get<ApiResponse<User>>(apiEndpoint.AuthEndpoint.me, { withCredentials: true });
+  }
+
+  updateMe(user: User): Observable<ApiResponse<User>> {
+    const formData: FormData = GlobalFunctions.convertToFormData(user);
+
+    return this.#http.patch<ApiResponse<User>> (`${apiEndpoint.AuthEndpoint.updateMe}`, formData, { withCredentials: true });
+  }
+
+  updatePassword(passwordCurrent: string, password: string, passwordConfirm: string): Observable<ApiResponse<User>> {
+    return this.#http.patch<ApiResponse<User>> (`${apiEndpoint.AuthEndpoint.updatePassword}`, { passwordCurrent, password, passwordConfirm }, { withCredentials: true });
   }
 }
