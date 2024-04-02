@@ -77,8 +77,8 @@
             "host": "localhost",
             "port": 4202,
             "ssl": true,
-            "sslCert": "./localhost.crt",
-            "sslKey": "./localhost.key" 
+            "sslCert": "./ssl/localhost.crt",
+            "sslKey": "./ssl/localhost.key" 
           },
           "configurations": {
             "production": {

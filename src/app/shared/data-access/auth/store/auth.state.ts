@@ -56,6 +56,10 @@ const reducer = createReducer(
         error: null,
         loadStatus: LoadStatus.NOT_LOADED,
     })),
+    on(authActions.updatePasswordSuccess, state => ({
+        ...state,
+        error: null
+    })),
     on(authActions.updatePasswordFailure, (state, { error }) => ({
         ...state,
         error

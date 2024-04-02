@@ -46,5 +46,4 @@ Thumbs.db
 
 # Custom
 /src/environments
-/localhost.crt
-/localhost.key
+/ssl

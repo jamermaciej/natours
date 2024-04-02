@@ -15,7 +15,7 @@
             <app-control-error controlName="email" />
         </div>
         <app-file-upload formControlName="photo">
-            <img class="form__user-photo" [src]="apiHostUrl + '/img/users/' + user()?.photo" alt="User photo">
+            <img class="form__user-photo" [src]="apiHostUrl + '/img/users/' + user().photo" alt="User photo">
         </app-file-upload>
         <div class="form__group right">
             <button class="btn btn--green">
