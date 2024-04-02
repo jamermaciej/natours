@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../../environments/environment';
 import { RolePipe } from '../../../shared/pipes/role.pipe';
@@ -6,7 +6,7 @@ import { SplitParagraphPipe } from '../../../shared/pipes/split-paragraph.pipe';
 import { TourReviewsComponent } from './tour-reviews/tour-reviews.component';
 import { TourMapComponent } from './tour-map/tour-map.component';
 import { Tour } from '../../interfaces/tour';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 
 @Component({
@@ -18,10 +18,17 @@ import { FlowRoutes } from '../../../shared/enums/flow-routes';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TourDetailsComponent {
-  @Input({ required: true })
-  tour!: Tour;
+  router = inject(Router);
+  @Input({ required: true }) tour!: Tour;
+  @Input({ required: true }) isLoggedIn!: boolean;
+
+  @Output() onBookTour: EventEmitter<string> = new EventEmitter<string>();
 
   readonly toursImgUrl = `${environment.apiHostUrl}/img/tours/`;
   readonly usersImgUrl = `${environment.apiHostUrl}/img/users/`;
   readonly flowRoutes = FlowRoutes;
+
+  bookTour() {
+    this.onBookTour.emit(this.tour._id);
+  }
 }

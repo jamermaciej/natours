@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { authActions } from './auth.actions';
-import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
+import { catchError, concatMap, exhaustMap, map, tap, withLatestFrom } from 'rxjs/operators';
 import { createEffect, Actions } from '@ngrx/effects';
 import { ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -10,6 +10,8 @@ import { FlowRoutes } from '../../../enums/flow-routes';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { constants } from '../../../constants/constants';
 import { User } from '../../../interfaces/user';
+import { selectQueryParams, selectRouteParam } from '../../router/store/router.selectors';
+import { Store } from '@ngrx/store';
 
 export const signup = createEffect(
     (actions$ = inject(Actions), authService = inject(AuthService)) => {
@@ -56,13 +58,15 @@ export const login = createEffect(
 );
 
 export const loginSuccess = createEffect(
-    (actions$ = inject(Actions), snackbarService = inject(SnackbarService)) => {
+    (actions$ = inject(Actions), snackbarService = inject(SnackbarService), store = inject(Store)) => {
         return actions$.pipe(
             ofType(authActions.loginSuccess),
             tap(({ user }) => localStorage.setItem(constants.CURRENT_USER, JSON.stringify(user))),
-            map(() => {
+            withLatestFrom(store.select(selectQueryParams)),
+            concatMap(([, queryParams]) => {
                 snackbarService.success('Logged in successfully!');
-                return routerActions.go({ path: [FlowRoutes.TOURS] });
+                const returnUrl = queryParams.returnUrl;
+                return [routerActions.go({ path: [returnUrl ? returnUrl : FlowRoutes.TOURS] })];
             })
         );
     },
