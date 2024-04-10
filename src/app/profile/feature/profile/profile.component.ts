@@ -11,11 +11,12 @@ import { map } from 'rxjs';
 import { LoadStatus } from '../../../tours/enums/load-status';
 import { AsyncPipe } from '@angular/common';
 import { ChangePasswordComponent } from '../../ui/change-password/change-password.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [PageWrapperComponent, SideNavComponent, UpdateProfileComponent, AsyncPipe, ChangePasswordComponent],
+  imports: [PageWrapperComponent, SideNavComponent, UpdateProfileComponent, AsyncPipe, ChangePasswordComponent, RouterOutlet],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })

@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input, inject } from '@angular/core';
+import { Component, DestroyRef, Input, inject, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { toursFeature } from '../../data-access/store/tours.state';
 import { CommonModule } from '@angular/common';
@@ -23,10 +23,13 @@ export class TourComponent {
   @Input() slug!: string;
   tour$ = this.#store.select(toursFeature.selectTour);
   isLoggedIn$ = this.#store.select(authFeature.selectIsLoggedIn);
+  isProccessingPayment = signal(false);
 
   #bookingService = inject(BookingService);
 
   bookTour(tourId: string) {
+    this.isProccessingPayment.set(true);
+
     this.#bookingService.bookTour(tourId).pipe(
       takeUntilDestroyed(this.#destroyRef)
     ).subscribe((s: any) => window.location.href = s.session.url);

@@ -14,4 +14,8 @@ export class TourService {
   getTours(): Observable<ApiResponse<Tour[]>> {
     return this.#http.get<ApiResponse<Tour[]>>(apiEndpoint.TourEndpoint.getAllTours);
   }
+
+  getMyTours(): Observable<ApiResponse<Tour[]>> {
+    return this.#http.get<ApiResponse<Tour[]>>(apiEndpoint.TourEndpoint.getMyTours, { withCredentials: true });
+  }
 }

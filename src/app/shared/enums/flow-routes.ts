@@ -4,6 +4,7 @@ export enum FlowRoutes {
     SIGN_UP = '/signup',
     LOGIN = '/login',
     PROFILE = '/profile',
+    MY_TOURS = '/my-tours',
     MY_BOOKINGS = '/profile/bookings',
     MY_REVIEWS = '/profile/reviews',
     BILLING = '/profile/billing'

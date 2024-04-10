@@ -92,7 +92,13 @@
             <h2 class="heading-secondary">What are you waiting for?</h2>
             <p class="cta__text">4 days. 1 adventure. Infinite memories. Make it yours today!</p>
             @if (isLoggedIn) {
-                <button class="btn btn--green span-all-rows" (click)="bookTour()">Book tour now!</button>
+                <button class="btn btn--green span-all-rows" (click)="bookTour()">
+                    @if (isProccessingPayment()) {
+                        Processing...
+                    } @else {
+                        Book tour now!
+                    }
+                </button>
             } @else {
                 <a class="btn btn--green span-all-rows" [routerLink]="flowRoutes.LOGIN" [queryParams]="{ returnUrl: router.url }">Log in to book tour</a>
             }

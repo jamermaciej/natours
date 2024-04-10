@@ -1,0 +1,7 @@
+<app-page-wrapper>
+    @if (isLoading$ | async) {
+        <app-loader />
+    } @else {
+        <app-tour-list [tours]="myTours()" />
+    }
+</app-page-wrapper>

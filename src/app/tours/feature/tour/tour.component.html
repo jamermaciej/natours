@@ -1,3 +1,8 @@
 @if (tour$ | async; as tour) {
-    <app-tour-details [tour]="tour" [isLoggedIn]="(isLoggedIn$ | async)!" (onBookTour)="bookTour($event)" />
+    <app-tour-details
+        [tour]="tour"
+        [isLoggedIn]="(isLoggedIn$ | async)!"
+        [isProccessingPayment]="isProccessingPayment()"
+        (onBookTour)="bookTour($event)"
+    />
 }

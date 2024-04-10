@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../../environments/environment';
 import { RolePipe } from '../../../shared/pipes/role.pipe';
@@ -21,6 +21,7 @@ export class TourDetailsComponent {
   router = inject(Router);
   @Input({ required: true }) tour!: Tour;
   @Input({ required: true }) isLoggedIn!: boolean;
+  isProccessingPayment = input<boolean>();
 
   @Output() onBookTour: EventEmitter<string> = new EventEmitter<string>();
 
