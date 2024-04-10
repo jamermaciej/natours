@@ -10,11 +10,13 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { LoadStatus } from '../../../tours/enums/load-status';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
+import { PageHeaderComponent } from '../../../shared/ui/page-header/page-header.component';
+import { FlowRoutes } from '../../../shared/enums/flow-routes';
 
 @Component({
   selector: 'app-my-tours',
   standalone: true,
-  imports: [CommonModule, PageWrapperComponent, TourListComponent, LoaderComponent],
+  imports: [CommonModule, PageWrapperComponent, TourListComponent, LoaderComponent, PageHeaderComponent],
   templateUrl: './my-tours.component.html',
   styleUrl: './my-tours.component.scss'
 })
@@ -25,6 +27,8 @@ export class MyToursComponent implements OnInit {
   isLoading$ = this.#store.select(myToursFeature.selectLoadStatus).pipe(
     map(loadStauts => LoadStatus.LOADING === loadStauts)
   );
+  
+  flowRoutes = FlowRoutes;
 
   ngOnInit(): void {
     this.#store.dispatch(bookingsActions.getMyBookedTours());

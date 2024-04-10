@@ -19,20 +19,24 @@ export const routes: Routes = [
     {
         path: 'login',
         canActivate: [guestGuard],
-        loadChildren: () => import('../login/login-routes').then(m => m.routes)
+        loadChildren: () => import('../login/login-routes').then(m => m.routes),
+        title: 'Login'
     },
     {
         path: 'signup',
         canActivate: [guestGuard],
-        loadChildren: () => import('../signup/signup-routes').then(m => m.routes)
+        loadChildren: () => import('../signup/signup-routes').then(m => m.routes),
+        title: 'Signup'
     },
     {
         path: 'profile',
         loadChildren: () => import('../profile/profile-routes').then(m => m.routes),
+        title: 'My profile'
     },
     {
         path: 'my-tours',
         loadChildren: () => import('../my-tours/my-tours-routes').then(m => m.routes),
+        title: 'My Tours'
     },
     {
         path: '**',

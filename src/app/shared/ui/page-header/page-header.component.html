@@ -1,0 +1,6 @@
+<div class="page-header">
+    <h2 class="heading-secondary">{{ title() }}</h2>
+    @if (link()) {
+        <a [routerLink]="link()">{{ linkText() ? linkText() : 'Back' }}</a>
+    }
+</div>
