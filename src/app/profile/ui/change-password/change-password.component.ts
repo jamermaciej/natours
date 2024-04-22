@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Output, inject, input } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, EventEmitter, Output, inject, input, model } from '@angular/core';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
 import { CommonModule } from '@angular/common';
 import { ControlErrorComponent } from '../../../shared/ui/control-error/control-error.component';
 import { Actions, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
 import { authActions } from '../../../shared/data-access/auth/store/auth.actions';
+import { PasswordUpdateData } from '../../../shared/interfaces/password-update-data';
 
 
 @Component({
@@ -16,13 +17,14 @@ import { authActions } from '../../../shared/data-access/auth/store/auth.actions
   styleUrl: './change-password.component.scss'
 })
 export class ChangePasswordComponent {
-  #formBuilder = inject(FormBuilder);
+  #formBuilder = inject(NonNullableFormBuilder);
   errorMessage = input<string>();
   changePasswordForm = this.#formBuilder.group({
     passwordCurrent: ['', [Validators.required, Validators.minLength(8)]],
     password: ['', [Validators.required, Validators.minLength(8)]],
     passwordConfirm: ['', [Validators.required, Validators.minLength(8)]]
   });
+  // REFACTOR THIS
   #actions = inject(Actions).pipe(
     ofType(authActions.updatePasswordSuccess),
     map(() => {
@@ -31,11 +33,14 @@ export class ChangePasswordComponent {
     })
   ).subscribe();
 
-  @Output() onChangePassword: EventEmitter<any> = new EventEmitter<any>();
+  loading = model.required<boolean>();
+
+  @Output() onChangePassword: EventEmitter<PasswordUpdateData> = new EventEmitter<PasswordUpdateData>();
 
   onSubmit() {
     if (this.changePasswordForm.valid) {
-      this.onChangePassword.emit(this.changePasswordForm.value);
+      this.loading.set(true);
+      this.onChangePassword.emit(this.changePasswordForm.getRawValue());
     } else {
       this.changePasswordForm.markAllAsTouched();
     }

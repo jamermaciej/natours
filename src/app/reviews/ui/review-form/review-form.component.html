@@ -1,0 +1,39 @@
+@if (isLoading()) {
+    <app-loader />
+} @else {
+    <div [formGroup]="reviewForm" class="login-form" (ngSubmit)="onSubmit()">
+        <h2 class="heading-secondary ma-bt-lg">
+            @if (review()) {
+                Update your review for {{ tourName() }} tour!
+            } @else {
+                Add your review!
+            }
+        </h2>
+        <form class="form form--login">
+            <div class="form__group">
+                <label class="form__label" for="review">Review</label>
+                <input class="form__input" id="review" type="text" formControlName="review" placeholder="Amazing tour!">
+                <app-control-error controlName="review" />
+            </div>
+            <div class="form__group">
+                <div class="form__label">Rating</div>
+                <app-rating [control]="rating" />
+                <app-control-error controlName="rating" />
+            </div>
+            <div class="form__group">
+                <a class="btn btn--gray btn--small btn--back" [routerLink]="['..']">Back</a>
+                <button class="btn btn--green btn--small"
+                        [ngClass]="{ 'disabled': reviewForm.pristine || reviewForm.invalid || loading }"
+                        [disabled]="reviewForm.pristine || reviewForm.invalid || loading">
+                    @if (loading) {
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    } @else {
+                        Save
+                    }
+                </button>
+            </div>
+        </form>
+    </div>
+}

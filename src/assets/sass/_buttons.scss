@@ -1,7 +1,17 @@
 @import 'functions';
 
-.btn {  
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.btn {
     font-size: toRem(16);
+    line-height: toRem(16);
     padding: toRem(14) toRem(30);
     border-radius: toRem(100);
     text-transform: uppercase;
@@ -13,19 +23,33 @@
     min-width: toRem(110);
     border: none;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
     &--green {
         background-color: var(--color-green);
         color: var(--color-white);
     }
 
+    &--gray {
+        background-color: var(--color-gray-40);
+        color: var(--color-white);
+    }
+
     &--small {
         padding: toRem(12.5) toRem(30);
         font-size: toRem(14);
+        line-height: toRem(14);
     }
 
-    &:hover {
+    &:hover:not(.disabled) {
         transform: translateY(-3px);
         box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    }
+
+    &.disabled {
+        cursor: default;
+        opacity: .6;
     }
 }

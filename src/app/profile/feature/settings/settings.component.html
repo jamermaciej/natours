@@ -1,0 +1,9 @@
+<div class="settings">
+    <div class="settings__form-container">
+        <app-update-profile [user]="user()!" (onUpdateProfile)="updateProfile($event)" [errorMessage]="(errorMessage$ | async)!" [(loading)]="loadingUpdateProfile" />
+    </div>
+    <div class="line">&nbsp;</div>
+    <div class="settings__form-container">
+        <app-change-password (onChangePassword)="changePassword($event)" [errorMessage]="(errorMessage$ | async)!" [(loading)]="loadingChangePassword" />
+    </div>
+</div>

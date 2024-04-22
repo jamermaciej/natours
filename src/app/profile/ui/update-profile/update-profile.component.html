@@ -18,8 +18,16 @@
             <img class="form__user-photo" [src]="apiHostUrl + '/img/users/' + user().photo" alt="User photo">
         </app-file-upload>
         <div class="form__group right">
-            <button class="btn btn--green">
-                Save settings
+            <button class="btn btn--green"
+                    [ngClass]="{ 'disabled': profileForm.invalid || profileForm.pristine || loading() }"
+                    [disabled]="profileForm.invalid || profileForm.pristine || loading()">
+                @if (loading()) {
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                } @else {
+                    Save settings
+                }
             </button>
         </div>
     </form>

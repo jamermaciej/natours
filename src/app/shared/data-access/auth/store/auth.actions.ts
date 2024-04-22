@@ -1,6 +1,7 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { User } from '../../../interfaces/user';
 import { SignupData } from '../../../interfaces/signup-data';
+import { PasswordUpdateData } from '../../../interfaces/password-update-data';
 
 export const authActions = createActionGroup({
   source: 'Auth',
@@ -17,10 +18,10 @@ export const authActions = createActionGroup({
     'Get Me': emptyProps(),
     'Get Me Success': props<{ user: User }>(),
     'Get Me Failure': props<{ error: string }>(),
-    'Update Me': props<{ user: User }>(),
+    'Update Me': props<{ user: User, callback: () => void }>(),
     'Update Success': props<{ user: User }>(),
     'Update Failure': props<{ error: string }>(),
-    'Update Password': props<{ passwordCurrent: string; password: string; passwordConfirm: string }>(),
+    'Update Password': props<{ passwordUpdateData: PasswordUpdateData, callback: () => void }>(),
     'Update Password Success': props<{ user: User }>(),
     'Update Password Failure': props<{ error: string }>(),
   },

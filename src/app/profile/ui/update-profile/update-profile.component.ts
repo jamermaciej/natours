@@ -1,7 +1,6 @@
-import { Component, EventEmitter, OnInit, Output, inject, input } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
-import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output, inject, input, model } from '@angular/core';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule, NgClass } from '@angular/common';
 import { ControlErrorComponent } from '../../../shared/ui/control-error/control-error.component';
 import { User } from '../../../shared/interfaces/user';
 import { environment } from '../../../../environments/environment';
@@ -10,21 +9,22 @@ import { FileUploadComponent } from '../../../shared/ui/file-upload/file-upload.
 @Component({
   selector: 'app-update-profile',
   standalone: true,
-  imports: [ReactiveFormsModule, LoaderComponent, CommonModule, ControlErrorComponent, FileUploadComponent],
+  imports: [ReactiveFormsModule, CommonModule, ControlErrorComponent, FileUploadComponent, NgClass],
   templateUrl: './update-profile.component.html',
   styleUrl: './update-profile.component.scss'
 })
 export class UpdateProfileComponent implements OnInit {
-  #formBuilder = inject(FormBuilder);
+  #formBuilder = inject(NonNullableFormBuilder);
   errorMessage = input<string>();
   profileForm = this.#formBuilder.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    photo: [null]
+    photo: ['']
   });
   user = input.required<User>();
+  loading = model.required<boolean>();
   readonly apiHostUrl = environment.apiHostUrl;
-  @Output() onUpdateProfile: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onUpdateProfile: EventEmitter<User> = new EventEmitter<User>();
 
   ngOnInit(): void {
       const { name, email } = this.user();
@@ -33,7 +33,12 @@ export class UpdateProfileComponent implements OnInit {
 
   onSubmit() {
     if (this.profileForm.valid) {
-      this.onUpdateProfile.emit(this.profileForm.value);
+      this.loading.set(true);
+      this.onUpdateProfile.emit({
+        ...this.user(),
+        ...this.profileForm.value
+      });
+      
     } else {
       this.profileForm.markAllAsTouched();
     }

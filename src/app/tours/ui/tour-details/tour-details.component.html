@@ -105,3 +105,20 @@
         </div>
     </div>
 </section>
+
+@if (isLoggedIn) {
+    <section class="section-cta">
+        <div class="cta">
+            <div class="cta__img cta__img--logo">
+                <img src="/assets/images/logo-white.png" alt="Natours logo">
+            </div>
+            <img class="cta__img cta__img--1" [src]="toursImgUrl + tour.images[1]" alt="Tour picture">
+            <img class="cta__img cta__img--2" [src]="toursImgUrl + tour.images[2]" alt="Tour picture">
+            <div class="cta__content">
+                <h2 class="heading-secondary">You booked this Tour!</h2>
+                <p class="cta__text">Please share your opinion about this tours whit us!</p>
+                <a class="btn btn--green span-all-rows" [routerLink]="flowRoutes.ADD_REVIEW" [queryParams]="{ user: user._id , tour: tour.id }">Add review</a>
+            </div>
+        </div>
+    </section>
+}

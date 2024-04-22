@@ -1,0 +1,9 @@
+<app-page-wrapper>
+    <app-review-form
+        [review]="reviewsStore.getReview(id())!"
+        [isLoading]="reviewsStore.isLoading()"
+        [tourId]="tour()!"
+        [userId]="user()!"
+        (triggerSubmit)="onSave($event)"
+    />
+</app-page-wrapper>

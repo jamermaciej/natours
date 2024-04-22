@@ -22,6 +22,7 @@ export class TourComponent {
   router = inject(Router);
   @Input() slug!: string;
   tour$ = this.#store.select(toursFeature.selectTour);
+  user$ = this.#store.select(authFeature.selectUser);
   isLoggedIn$ = this.#store.select(authFeature.selectIsLoggedIn);
   isProccessingPayment = signal(false);
 

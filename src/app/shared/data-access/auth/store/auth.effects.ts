@@ -9,8 +9,7 @@ import { routerActions } from '../../router/store/router.actions';
 import { FlowRoutes } from '../../../enums/flow-routes';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { constants } from '../../../constants/constants';
-import { User } from '../../../interfaces/user';
-import { selectQueryParams, selectRouteParam } from '../../router/store/router.selectors';
+import { selectQueryParams } from '../../router/store/router.selectors';
 import { Store } from '@ngrx/store';
 
 export const signup = createEffect(
@@ -131,8 +130,9 @@ export const updateMe = createEffect(
     (actions$ = inject(Actions), authService = inject(AuthService)) => {
         return actions$.pipe(
             ofType(authActions.updateMe),
-            exhaustMap(({ user }) => authService.updateMe(user)
+            exhaustMap(({ user, callback }) => authService.updateMe(user)
             .pipe(
+                tap(() => callback()),
                 map(data => authActions.updateSuccess({ user: data?.data?.data })),
                 catchError(error => of(authActions.updateFailure({ error: error?.error?.message })))
             )
@@ -157,8 +157,9 @@ export const updatePassword = createEffect(
     (actions$ = inject(Actions), authService = inject(AuthService)) => {
         return actions$.pipe(
             ofType(authActions.updatePassword),
-            exhaustMap(({ passwordCurrent, password, passwordConfirm }) => authService.updatePassword(passwordCurrent, password, passwordConfirm)
+            exhaustMap(({ passwordUpdateData, callback }) => authService.updatePassword(passwordUpdateData)
             .pipe(
+                tap(() => callback()),
                 map(data => authActions.updatePasswordSuccess({ user: data?.data?.data })),
                 catchError(error => of(authActions.updatePasswordFailure({ error: error?.error?.message })))
             )

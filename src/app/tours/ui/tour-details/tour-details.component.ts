@@ -8,6 +8,7 @@ import { TourMapComponent } from './tour-map/tour-map.component';
 import { Tour } from '../../interfaces/tour';
 import { Router, RouterLink } from '@angular/router';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
+import { User } from '../../../shared/interfaces/user';
 
 @Component({
   selector: 'app-tour-details',
@@ -20,6 +21,7 @@ import { FlowRoutes } from '../../../shared/enums/flow-routes';
 export class TourDetailsComponent {
   router = inject(Router);
   @Input({ required: true }) tour!: Tour;
+  @Input({ required: true }) user!: User;
   @Input({ required: true }) isLoggedIn!: boolean;
   isProccessingPayment = input<boolean>();
 

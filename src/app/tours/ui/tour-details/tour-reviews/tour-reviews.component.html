@@ -10,9 +10,7 @@
                         </div>
                         <p class="reviews__text">{{ review.review }}</p>
                         <div class="reviews__rating">
-                            @for (star of [1, 2, 3, 4, 5]; track star) {
-                                <svg [ngClass]="review.rating >= star ? 'reviews__star reviews__star--active' : 'reviews__star reviews__star--inactive'"><use href="/assets/images/icons.svg#icon-star"></use></svg>
-                            }
+                            <app-rating [rating]="review.rating" />
                         </div>
                     </div>
                 </ng-template>

@@ -59,20 +59,6 @@
             margin-top: auto;
             display: flex;
         }
-
-        &__star {
-            height: toRem(20);
-            width: toRem(20);
-            margin-right: 1px;
-
-            &--active {
-                fill: var(--color-green);
-            }
-
-            &--inactive {
-                fill: #bbb;
-            }
-        }
     }
 }
   

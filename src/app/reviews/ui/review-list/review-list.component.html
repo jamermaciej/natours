@@ -1,0 +1,30 @@
+<div class="reviews">
+    <ul>
+        @for (review of reviews(); track review.id) {
+            <li class="review">
+                <div class="review__top">
+                    <a class="heading-secondary" [routerLink]="flowRoutes.TOURS + '/' + review.tour.slug">
+                        {{ review.tour.name }}
+                    </a>
+                    <div class="review__actions">
+                        <button (click)="edit.emit(review.id)">
+                            <svg class="edit-icon"><use href="/assets/images/icons.svg#icon-edit"></use></svg>
+                        </button>
+                        <button (click)="remove.emit(review.id)">
+                            <svg class="remove-icon"><use href="/assets/images/icons.svg#icon-trash-2"></use></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="review__content">
+                    <p>{{ review.review }}</p>
+                    <div class="review__rating">
+                        <app-rating [rating]="review.rating"/>
+                    </div>
+                </div>
+            </li>
+        } @empty {
+            You don't have reviews.
+        }
+    </ul>
+</div>
+<router-outlet></router-outlet>

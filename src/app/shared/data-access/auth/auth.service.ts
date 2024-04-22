@@ -6,6 +6,7 @@ import { User } from '../../interfaces/user';
 import { apiEndpoint } from '../../constants/constants';
 import { SignupData } from '../../interfaces/signup-data';
 import GlobalFunctions from '../../helpers/GlobalFunctions';
+import { PasswordUpdateData } from '../../interfaces/password-update-data';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,7 @@ export class AuthService {
     return this.#http.patch<ApiResponse<User>> (`${apiEndpoint.AuthEndpoint.updateMe}`, formData, { withCredentials: true });
   }
 
-  updatePassword(passwordCurrent: string, password: string, passwordConfirm: string): Observable<ApiResponse<User>> {
-    return this.#http.patch<ApiResponse<User>> (`${apiEndpoint.AuthEndpoint.updatePassword}`, { passwordCurrent, password, passwordConfirm }, { withCredentials: true });
+  updatePassword(passwordUpdateData: PasswordUpdateData): Observable<ApiResponse<User>> {
+    return this.#http.patch<ApiResponse<User>> (`${apiEndpoint.AuthEndpoint.updatePassword}`, passwordUpdateData, { withCredentials: true });
   }
 }

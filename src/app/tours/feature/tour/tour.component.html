@@ -1,6 +1,7 @@
 @if (tour$ | async; as tour) {
     <app-tour-details
         [tour]="tour"
+        [user]="(user$ | async)!"
         [isLoggedIn]="(isLoggedIn$ | async)!"
         [isProccessingPayment]="isProccessingPayment()"
         (onBookTour)="bookTour($event)"

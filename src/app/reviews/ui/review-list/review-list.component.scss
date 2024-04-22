@@ -1,0 +1,64 @@
+@import 'functions';
+
+.reviews {
+    max-width: toRem(680);
+    margin: 0 auto;
+    padding: 0 toRem(80);
+
+    ul {
+        .review {
+            
+            &:not(:last-child) {
+                margin-bottom: toRem(40);
+            }
+
+            &__content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                p {
+                    font-size: toRem(15);
+                    line-height: 1;
+                    font-weight: 400;
+                    font-style: italic;
+                }
+            }
+
+            &__top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            &__actions {
+                display: flex;
+                align-items: center;
+
+                button,
+                svg {
+                    height: toRem(19);
+                    width: toRem(19);
+                }
+
+                button {
+                    &:first-child {
+                        margin-right: toRem(10);
+                    }
+
+                    .edit-icon {
+                        fill: var(--color-secondary);
+                    }
+
+                    .remove-icon {
+                        fill: #b71c1c;
+                    }
+                }
+            }
+
+            &__rating {
+                padding-left: toRem(15);
+            }
+        }
+    }
+}
