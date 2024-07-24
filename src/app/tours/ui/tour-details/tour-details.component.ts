@@ -9,11 +9,12 @@ import { Tour } from '../../interfaces/tour';
 import { Router, RouterLink } from '@angular/router';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { User } from '../../../shared/interfaces/user';
+import { CtaSectionComponent } from '../../../shared/ui/cta-section/cta-section.component';
 
 @Component({
   selector: 'app-tour-details',
   standalone: true,
-  imports: [CommonModule, RolePipe, SplitParagraphPipe, TourReviewsComponent, TourMapComponent, RouterLink],
+  imports: [CommonModule, RolePipe, SplitParagraphPipe, TourReviewsComponent, TourMapComponent, RouterLink, CtaSectionComponent],
   templateUrl: './tour-details.component.html',
   styleUrl: './tour-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -23,6 +24,8 @@ export class TourDetailsComponent {
   @Input({ required: true }) tour!: Tour;
   @Input({ required: true }) user!: User;
   @Input({ required: true }) isLoggedIn!: boolean;
+  isTourBooked = input<boolean>();
+  isTourRewieved = input<boolean>();
   isProccessingPayment = input<boolean>();
 
   @Output() onBookTour: EventEmitter<string> = new EventEmitter<string>();

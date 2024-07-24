@@ -245,101 +245,17 @@
     }
 }
 
-.section-cta {
-    margin-top: calc(0px - var(--section-rotate));
-    padding: toRem(30);
-    padding-bottom: toRem(110);
-    padding-top: calc(toRem(150) + var(--section-rotate));
-    background-color: var(--color-gray-1);
+.btn.span-all-rows {
+    grid-row: 1 / -1;
 
-    .cta {
-        position: relative;
-        max-width: toRem(1050);
-        margin: 0 auto;
-        overflow: hidden;
-        background-color: var(--color-white);
-        padding: toRem(90) toRem(50) toRem(90) toRem(210);
-        border-radius: toRem(20);
-        box-shadow: 0 3rem 8rem 0.5rem rgba(0, 0, 0, 0.15);
+    @include breakpoint(large) {
+        grid-row: 3 / 4;
+        justify-self: flex-start;
+        margin-top: toRem(20);
+    }
 
-        @include breakpoint(medium) {
-            padding: toRem(210) toRem(50) toRem(90) toRem(50);
-        }
-      
-        &__img {
-            height: toRem(150);
-            width: toRem(150);
-            position: absolute;
-            left: 0;
-            top: 50%;
-            border-radius: 50%;
-            box-shadow: 1rem 0.5rem 3rem rgba(0, 0, 0, 0.15);
-
-            @include breakpoint(medium) {
-                left: calc(50% - toRem(58));
-                top: toRem(50);
-            }
-
-            &--logo {
-                padding: toRem(20);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background: linear-gradient(to right bottom, #7dd56f, #28b487);
-                z-index: 10;
-                transform: translate(-35%, -50%);
-
-                img {
-                    width: 100%;
-                }
-            }
-
-            &--1 {
-                transform: translate(-10%, -50%) scale(0.97);
-                z-index: 9;
-            }
-
-            &--2 {
-                transform: translate(15%, -50%) scale(0.94);
-                z-index: 8;
-            }
-        }
-
-        &__content {
-            display: grid;
-            grid-template-rows: auto auto;
-            grid-template-columns: 1fr auto;
-            grid-gap: toRem(7);
-            grid-auto-flow: column;
-            align-items: center;
-
-            @include breakpoint(large) {
-                grid-column-gap: toRem(0);
-            }
-
-            @include breakpoint(medium) {
-                text-align: center;
-            }
-        }
-
-        &__text {
-            font-size: toRem(19);
-            font-weight: 400;
-        }
-
-        .btn {
-            grid-row: 1 / -1;
-
-            @include breakpoint(large) {
-                grid-row: 3 / 4;
-                justify-self: flex-start;
-                margin-top: toRem(20);
-            }
-
-            @include breakpoint(medium) {
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
+    @include breakpoint(medium) {
+        margin-left: auto;
+        margin-right: auto;
     }
 }

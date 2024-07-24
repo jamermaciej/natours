@@ -100,4 +100,12 @@ export class ReviewsStore {
           })
         )
     );
+
+    readonly isTourReviewed = (slug: string) => {
+      return !!this.reviews().filter(review => review.tour.slug === slug).length;
+    };
+
+    readonly clearStore = () => {
+      patchState(this.state, initialState);
+    }
 }

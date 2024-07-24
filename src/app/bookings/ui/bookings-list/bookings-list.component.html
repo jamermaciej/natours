@@ -1,0 +1,26 @@
+@if (bookings().length) {
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tour</th>
+            <th scope="col">Booked date</th>
+            <th scope="col">Price</th>
+            <th scope="col">Paid</th>
+          </tr>
+        </thead>
+        <tbody>
+            @for (booking of bookings(); track booking._id; let  i = $index) {
+                <tr>
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ booking.tour.name }}</td>
+                    <td>{{ booking.createdAt | date }}</td>
+                    <td>{{ booking.price | currency }}</td>
+                    <td>{{ booking.paid ? 'Yes' : 'No' }}</td>        
+                </tr>
+            }
+        </tbody>
+    </table>
+} @else {
+    You don't have bookings.
+}

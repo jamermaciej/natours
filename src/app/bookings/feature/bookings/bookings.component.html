@@ -1,0 +1,8 @@
+<div class="bookings">
+    @if (isLoading()) {
+        <app-loader />
+    } @else {
+        <app-page-header title="My Bookings" />
+        <app-bookings-list [bookings]="bookings()"></app-bookings-list>
+    }
+</div>

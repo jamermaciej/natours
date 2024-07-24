@@ -18,6 +18,11 @@ export class SideNavComponent {
       icon: 'settings'
     },
     {
+      link: FlowRoutes.MY_BOOKINGS,
+      name: 'My bookings',
+      icon: 'book-open'
+    },
+    {
       link: FlowRoutes.MY_TOURS,
       name: 'My tours',
       icon: 'briefcase'
@@ -27,10 +32,10 @@ export class SideNavComponent {
       name: 'My reviews',
       icon: 'star'
     },
-    {
-      link: FlowRoutes.BILLING,
-      name: 'BILLING',
-      icon: 'credit-card'
-    }
+    // {
+    //   link: FlowRoutes.BILLING,
+    //   name: 'BILLING',
+    //   icon: 'credit-card'
+    // }
   ]
 }

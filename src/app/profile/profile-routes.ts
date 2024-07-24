@@ -12,6 +12,10 @@ export const routes: Routes = [
                 loadComponent: () => import('./feature/settings/settings.component').then(m => m.SettingsComponent),
             },
             {
+                path: 'bookings',
+                loadComponent: () => import('../bookings/feature/bookings/bookings.component').then(m => m.BookingsComponent),
+            },
+            {
                 path: 'reviews',
                 children: [
                     {

@@ -1,0 +1,17 @@
+<section class="section-cta">
+    <div class="cta">
+        <div class="cta__img cta__img--logo">
+            <img src="/assets/images/logo-white.png" alt="Natours logo">
+        </div>
+        @if (images()) {
+            @for (image of images(); track $index) {
+                <img [class]="'cta__img cta__img--' + ($index + 1) " [src]="toursImgUrl + image" alt="Tour picture">
+            }
+        }
+        <div class="cta__content">
+            <h2 class="heading-secondary">{{ header() }}</h2>
+            <p class="cta__text">{{ description() }}</p>
+            <ng-content></ng-content>
+        </div>
+    </div>
+</section>

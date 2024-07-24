@@ -11,6 +11,8 @@ import { SnackbarService } from '../../../services/snackbar.service';
 import { constants } from '../../../constants/constants';
 import { selectQueryParams } from '../../router/store/router.selectors';
 import { Store } from '@ngrx/store';
+import { ReviewsStore } from '../../../../reviews/data-access/reviews.store';
+import { BookingStore } from '../../../../bookings/data-access/booking-store';
 
 export const signup = createEffect(
     (actions$ = inject(Actions), authService = inject(AuthService)) => {
@@ -88,11 +90,14 @@ export const logout = createEffect(
 );
 
 export const logoutSuccess = createEffect(
-    (actions$ = inject(Actions), snackbarService = inject(SnackbarService)) => {
+    (actions$ = inject(Actions), snackbarService = inject(SnackbarService), reviewsStore = inject(ReviewsStore), bookingStore = inject(BookingStore)) => {
         return actions$.pipe(
             ofType(authActions.logoutSuccess),
             tap(() => localStorage.removeItem(constants.CURRENT_USER)),
             map(( {  message }) => {
+                reviewsStore.clearStore();
+                bookingStore.clearState();
+
                 snackbarService.success(message);
                 return routerActions.go({ path: [FlowRoutes.TOURS] });
             })
