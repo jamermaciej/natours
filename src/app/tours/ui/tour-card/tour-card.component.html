@@ -21,7 +21,7 @@
         </div>
         <div class="card__data">
             <svg class="card__icon"><use href="/assets/images/icons.svg#icon-calendar"></use></svg>
-            <span>{{ tour.startDates[0] | date: 'MMMM YYYY' }}</span>
+            <span>{{ tour.startDates | availableDate }}</span>
         </div>
         <div class="card__data">
             <svg class="card__icon"><use href="/assets/images/icons.svg#icon-flag"></use></svg>
@@ -38,8 +38,10 @@
             <span class="card__footer-text"> per person</span>
         </p>
         <p class="card__ratings">
-            <span class="card__footer-value">{{ tour.ratingsAverage }}</span>
-            <span class="card__footer-text"> rating ({{ tour.ratingsQuantity }})</span>
+            @if (tour.ratingsQuantity) {
+                <span class="card__footer-value">{{ tour.ratingsAverage }}</span>
+                <span class="card__footer-text"> rating ({{ tour.ratingsQuantity }})</span>
+            }
         </p>
         <a class="btn btn--green btn--small" [routerLink]="[flowRoutes.TOURS, tour.slug]">Details</a>
     </div>

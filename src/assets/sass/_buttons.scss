@@ -43,11 +43,12 @@ button {
         line-height: toRem(14);
     }
 
-    &:hover:not(.disabled) {
+    &:hover:not(.disabled):not(:disabled) {
         transform: translateY(-3px);
         box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
     }
 
+    &:disabled,
     &.disabled {
         cursor: default;
         opacity: .6;

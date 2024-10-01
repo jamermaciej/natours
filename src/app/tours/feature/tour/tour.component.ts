@@ -48,10 +48,11 @@ export class TourComponent {
     this.#reviewStore.isTourReviewed(this.slug))
   );
 
-  bookTour(tourId: string) {
+  bookTour(data: { tourId: string, date: Date}) {
     this.isProccessingPayment.set(true);
+    const { tourId, date } = data;
 
-    this.#bookingService.bookTour(tourId).pipe(
+    this.#bookingService.bookTour(tourId, date).pipe(
       takeUntilDestroyed(this.#destroyRef)
     ).subscribe((s: any) => window.location.href = s.session.url);
   }

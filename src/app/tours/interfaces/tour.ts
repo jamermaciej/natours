@@ -1,7 +1,8 @@
 import { Difficulty } from "../enums/difficulty";
 import { Guide } from "./guide"
 import { Location, StartLocation } from "./location";
-import { Review, ReviewResponse } from "./review";
+import { ReviewResponse } from "./review";
+import { StartDate } from "./start-date";
 
 export interface Tour {
     _id: string;
@@ -20,7 +21,7 @@ export interface Tour {
     imageCover: string;
     images: string[];
     createdAt: Date;
-    startDates: Date[];
+    startDates: StartDate[];
     secretTour: boolean;
     startLocation: StartLocation;
     locations: Location[];

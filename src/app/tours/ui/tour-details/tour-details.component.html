@@ -27,7 +27,7 @@
             <div class="overview-box__detail">
                 <svg class="overview-box__icon"><use href="/assets/images/icons.svg#icon-calendar"></use></svg>
                 <span class="overview-box__label">Next date</span>
-                <span class="overview-box__text">{{ tour.startDates[0] | date: 'MMMM YYYY' }}</span>
+                <span class="overview-box__text">{{ tour.startDates | availableDate }}</span>
             </div>
             <div class="overview-box__detail">
                 <svg class="overview-box__icon"><use href="/assets/images/icons.svg#icon-trending-up"></use></svg>
@@ -79,16 +79,23 @@
 
 <app-tour-map [locations]="tour.locations" />
 
-<app-tour-reviews [reviews]="tour.reviews" />
+@if (tour.reviews.length) {
+    <app-tour-reviews [reviews]="tour.reviews" />
+}
 
 @if (!isTourBooked()) {
+
+    @if (isAvailable()) {    
+        <app-book-tour [(selectedDate)]="selectedDate" [tour]="tour" />
+    }
+
     <app-cta-section
         header="What are you waiting for?"
-        description="4 days. 1 adventure. Infinite memories. Make it yours today!"
+        [description]="tour.duration + ' days. 1 adventure. Infinite memories. Make it yours today!'"
         [images]="tour.images.slice(1, 3)"
     >
         @if (isLoggedIn) {
-            <button class="btn btn--green span-all-rows" (click)="bookTour()">
+            <button class="btn btn--green span-all-rows" [ngClass]="{'disabled': !selectedDate }" [disabled]="!selectedDate"  (click)="bookTour()">
                 @if (isProccessingPayment()) {
                     Processing...
                 } @else {

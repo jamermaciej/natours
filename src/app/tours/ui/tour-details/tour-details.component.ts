@@ -10,11 +10,23 @@ import { Router, RouterLink } from '@angular/router';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { User } from '../../../shared/interfaces/user';
 import { CtaSectionComponent } from '../../../shared/ui/cta-section/cta-section.component';
+import { FormsModule } from '@angular/forms';
+import { AvailableDatePipe } from '../../pipes/available-date.pipe';
+import { BookTourComponent } from '../book-tour/book-tour.component';
 
 @Component({
   selector: 'app-tour-details',
   standalone: true,
-  imports: [CommonModule, RolePipe, SplitParagraphPipe, TourReviewsComponent, TourMapComponent, RouterLink, CtaSectionComponent],
+  imports: [CommonModule,
+            RolePipe,
+            SplitParagraphPipe,
+            TourReviewsComponent,
+            TourMapComponent,
+            RouterLink,
+            CtaSectionComponent,
+            AvailableDatePipe,
+            BookTourComponent
+          ],
   templateUrl: './tour-details.component.html',
   styleUrl: './tour-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -27,14 +39,24 @@ export class TourDetailsComponent {
   isTourBooked = input<boolean>();
   isTourRewieved = input<boolean>();
   isProccessingPayment = input<boolean>();
+  selectedDate!: Date;
 
-  @Output() onBookTour: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onBookTour: EventEmitter<{ tourId: string, date: Date }> = new EventEmitter<{ tourId: string, date: Date}>();
 
   readonly toursImgUrl = `${environment.apiHostUrl}/img/tours/`;
   readonly usersImgUrl = `${environment.apiHostUrl}/img/users/`;
   readonly flowRoutes = FlowRoutes;
 
   bookTour() {
-    this.onBookTour.emit(this.tour._id);
+    this.onBookTour.emit({ tourId: this.tour._id, date: this.selectedDate });
+  }
+
+  isAvailable() {
+    const dates = [];
+    for(let date of this.tour.startDates) {
+      dates.push(date.date);
+    }
+
+    return dates.some(d => new Date(d).getTime() > new Date().getTime())
   }
 }

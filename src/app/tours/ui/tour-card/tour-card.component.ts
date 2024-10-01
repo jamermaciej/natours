@@ -4,11 +4,12 @@ import { Tour } from '../../interfaces/tour';
 import { RouterModule } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
+import { AvailableDatePipe } from '../../pipes/available-date.pipe';
 
 @Component({
   selector: 'app-tour-card',
   standalone: true,
-  imports: [CommonModule, RouterModule, NgOptimizedImage],
+  imports: [CommonModule, RouterModule, NgOptimizedImage, AvailableDatePipe],
   providers: [
     provideImgixLoader(environment.imgixUrl)
   ],

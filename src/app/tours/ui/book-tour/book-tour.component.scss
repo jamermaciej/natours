@@ -1,0 +1,14 @@
+@import 'mixins';
+@import 'functions';
+
+.section {
+    margin-top: calc(0px - var(--section-rotate));
+    padding: toRem(30);
+    padding-top: calc(toRem(150) + var(--section-rotate));
+
+    mat-select {
+        display: block;
+        max-width: toRem(500);
+        margin: 0 auto;
+    }
+}

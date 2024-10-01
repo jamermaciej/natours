@@ -11,8 +11,8 @@ import { Observable } from 'rxjs';
 export class BookingService {
   #http = inject(HttpClient);
 
-  bookTour(tourId: string){
-    return this.#http.get(`${apiEndpoint.BookingEndpoint.bookTour}${tourId}`, { withCredentials: true });
+  bookTour(tourId: string, date: Date){
+    return this.#http.get(`${apiEndpoint.BookingEndpoint.bookTour}${tourId}/${date}`, { withCredentials: true });
   }
 
   getMyBookings(): Observable<ApiResponse<Booking[]>> {
