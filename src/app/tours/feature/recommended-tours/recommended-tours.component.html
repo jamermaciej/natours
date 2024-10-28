@@ -1,0 +1,6 @@
+<section class="recommended-tours">
+    <h2 class="heading-secondary mb-5">Recommended tours</h2>
+    @if (!recommendedToursStore.isLoading()) {
+        <app-tour-list [tours]="recommendedToursStore.tours()" />
+    }
+</section>

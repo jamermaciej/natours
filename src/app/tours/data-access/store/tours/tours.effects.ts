@@ -3,11 +3,11 @@ import { toursActions } from './tours.actions';
 import { catchError, exhaustMap, filter, map } from 'rxjs/operators';
 import { createEffect, Actions, concatLatestFrom } from '@ngrx/effects';
 import { ofType } from '@ngrx/effects';
-import { TourService } from '../tour.service';
+import { TourService } from '../../tour.service';
 import { of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { toursFeature } from './tours.state';
-import { LoadStatus } from '../../enums/load-status';
+import { LoadStatus } from '../../../enums/load-status';
 
 export const getTours = createEffect(
     (actions$ = inject(Actions), store = inject(Store)) => {

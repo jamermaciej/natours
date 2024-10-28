@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
-import { toursFeature } from '../data-access/store/tours.state';
+import { toursFeature } from '../data-access/store/tours/tours.state';
 import { FlowRoutes } from '../../shared/enums/flow-routes';
 
 export const tourDetailsGuard: CanActivateFn = (

@@ -18,4 +18,8 @@ export class TourService {
   getMyTours(): Observable<ApiResponse<Tour[]>> {
     return this.#http.get<ApiResponse<Tour[]>>(apiEndpoint.TourEndpoint.getMyTours, { withCredentials: true });
   }
+
+  getRecommendedTours(): Observable<ApiResponse<Tour[]>> {
+    return this.#http.get<ApiResponse<Tour[]>>(apiEndpoint.TourEndpoint.getRecommendedTours);
+  }
 }

@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { Tour } from '../../interfaces/tour';
+import { Tour } from '../../../interfaces/tour';
 
 export const toursActions = createActionGroup({
   source: 'Tours',

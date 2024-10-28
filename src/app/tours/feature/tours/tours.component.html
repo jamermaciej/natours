@@ -2,4 +2,9 @@
     @if (tours$ | async; as tours) {
         <app-tour-list [tours]="tours" />
     }
+    @defer (on viewport) {
+        <app-recommended-tours />
+     } @placeholder {
+        <span>Recommended tours list!</span>
+     }
 </app-page-wrapper>

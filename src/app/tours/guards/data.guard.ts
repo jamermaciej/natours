@@ -2,8 +2,8 @@ import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, filter, map } from 'rxjs';
-import { toursActions } from '../data-access/store/tours.actions';
-import { toursFeature } from '../data-access/store/tours.state';
+import { toursActions } from '../data-access/store/tours/tours.actions';
+import { toursFeature } from '../data-access/store/tours/tours.state';
 import { LoadStatus } from '../enums/load-status';
 
 export const dataGuard: CanActivateFn = (

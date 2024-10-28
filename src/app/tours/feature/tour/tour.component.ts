@@ -1,6 +1,6 @@
 import { Component, DestroyRef, Input, Signal, computed, inject, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { toursFeature } from '../../data-access/store/tours.state';
+import { toursFeature } from '../../data-access/store/tours/tours.state';
 import { CommonModule } from '@angular/common';
 import { TourDetailsComponent } from '../../ui/tour-details/tour-details.component';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
