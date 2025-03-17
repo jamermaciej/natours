@@ -8,5 +8,6 @@ export enum FlowRoutes {
     MY_BOOKINGS = '/profile/bookings',
     MY_REVIEWS = '/profile/reviews',
     ADD_REVIEW = '/profile/reviews/new',
-    BILLING = '/profile/billing'
+    LEAD_GUIDE = '/lead-guide',
+    ADMIN = '/admin'
 }
