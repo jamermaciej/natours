@@ -1,0 +1,5 @@
+<ul class="side-nav">
+    @for (item of navItems; track $index) {
+        <app-nav-item *appHasRole="item.role!" [item]="item"></app-nav-item>
+    }
+</ul>

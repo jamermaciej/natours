@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
-import { NavItem } from '../../interfaces/nav-item';
-import { HasRoleDirective } from '../../../shared/directives/has-role.directive';
 import { Role } from '../../../tours/enums/role';
+import { NavItem } from '../../interfaces/nav-item';
+import { NavItemComponent } from "../nav-item/nav-item.component";
+import { HasRoleDirective } from '../../../shared/directives/has-role.directive';
 
 @Component({
   selector: 'app-side-nav',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, HasRoleDirective],
+  imports: [NavItemComponent, HasRoleDirective],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.scss'
 })
@@ -38,7 +38,14 @@ export class SideNavComponent {
       link: FlowRoutes.ADMIN,
       name: 'Admin',
       icon: 'database',
-      role: [Role.ADMIN]
+      role: [Role.ADMIN],
+      children: [
+        {
+          link: FlowRoutes.USERS,
+          name: 'Users',
+          icon: 'user'
+        }
+      ]
     },
     {
       link: FlowRoutes.LEAD_GUIDE,

@@ -5,5 +5,6 @@ export interface NavItem {
     link: FlowRoutes,
     name: string;
     icon: string;
-    role?: Role[]
+    role?: Role[],
+    children?: NavItem[]
 }

@@ -1,0 +1,9 @@
+<li [ngStyle]="{'padding-left': (25 * depth()) + 'px'}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <a [routerLink]="item().link">
+        <svg><use [attr.href]="'/assets/images/icons.svg#icon-' + item().icon"></use></svg>
+        {{ item().name }}
+    </a>
+</li>
+@for (item of item().children; track $index) {
+    <app-nav-item [item]="item" [depth]="depth() + 1"></app-nav-item>
+}

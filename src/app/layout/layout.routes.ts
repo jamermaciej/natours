@@ -39,6 +39,11 @@ export const routes: Routes = [
         title: 'My Tours'
     },
     {
+        path: 'admin',
+        loadChildren: () => import('../admin/admin-routes').then(m => m.routes),
+        title: 'Admin'
+    },
+    {
         path: '**',
         loadComponent: () => import('./ui/page-not-found/page-not-found.component').then(m => m.PageNotFoundComponent),
         title: 'Page Not Found'
