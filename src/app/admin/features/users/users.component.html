@@ -1,0 +1,8 @@
+<div class="users">
+    @if (usersStore.isLoading()) {
+        <app-loader />
+    } @else {
+        <app-page-header title="Users" />
+        <app-users-list [users]="usersStore.users()"></app-users-list>
+    }    
+</div>

@@ -13,7 +13,8 @@ export const routes: Routes = [
             },
             {
                 path: 'users',
-                loadComponent: () => import('./ui/users/users.component').then(m => m.UsersComponent),
+                loadComponent: () => import('./features/users/users.component').then(m => m.UsersComponent),
+                title: 'Users'
             },
         ]
     }

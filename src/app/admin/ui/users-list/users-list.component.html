@@ -1,0 +1,26 @@
+@if (users().length) {
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+          </tr>
+        </thead>
+        <tbody>
+            @for (user of users(); track user._id; let  i = $index) {
+                <tr>
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td align="center"><img class="user-img" [src]="apiHostUrl + '/img/users/' + user.photo" [alt]="'Photo of' + user.name"></td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.role }}</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+} @else {
+    No users yet.
+}
