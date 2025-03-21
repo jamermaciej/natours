@@ -9,7 +9,7 @@
         @if (user()) {
             <a class="nav__el nav__el--logout" (click)="logout()">Log out</a>
             <a class="nav__el" [routerLink]="flowRoutes.PROFILE">
-                <img class="nav__user-img" [src]="apiHostUrl + '/img/users/' + user()?.photo" [alt]="'Photo of' + user()?.name">
+                <app-user-img [photo]="user()?.photo!" [name]="user()?.name!"></app-user-img>
                 <span>{{ user()?.name }}</span>&nbsp;({{ user()?.role }})
             </a>
         } @else {
