@@ -4,5 +4,13 @@
     } @else {
         <app-page-header title="Users" />
         <app-users-list [users]="usersStore.users()"></app-users-list>
+        <app-pagination [totalItems]="usersStore.total()"
+                        [itemsPerPage]="usersStore.limit()"
+                        [currentPage]="usersStore.page()"
+                        [totalPages]="usersStore.pages()"
+                        (triggerPageChange)="changePage($event)"
+                        (triggerPrevPage)="prevPage($event)"
+                        (triggerNextPage)="nextPage($event)"
+        ></app-pagination>
     }    
 </div>

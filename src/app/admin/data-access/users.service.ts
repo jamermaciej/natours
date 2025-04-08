@@ -12,6 +12,13 @@ export class UsersService {
   #http = inject(HttpClient);
 
   getAllUsers(page = 1, limit = 10): Observable<ApiResponse<User[]>> {
-    return this.#http.get<ApiResponse<User[]>>(apiEndpoint.UserEndpoint.getAllUsers, { withCredentials: true });
+    // ?page=1 ?limit=3 ?role=user
+
+    let params = new HttpParams();
+    params = params.set('page', page);
+    params = params.set('limit', limit);
+    params = params.set('sort', 'role');
+
+    return this.#http.get<ApiResponse<User[]>>(apiEndpoint.UserEndpoint.getAllUsers, { params, withCredentials: true });
   }
 }
