@@ -1,4 +1,29 @@
+@import 'mixins';
+@import 'functions';
+
 nav {
     display: flex;
     justify-content: center;
+
+    .pagination {
+
+        .page-item {
+
+            &.active {
+                a {
+                    border-color: var(--color-brand);
+                    background-color: var(--color-brand);
+                    color: var(--color-white);
+                }
+            }
+
+            a {
+                cursor: pointer;
+            }
+
+            &:not(.disabled):not(.active) a {
+                color: var(--color-brand);
+            }
+        }
+    }
 }
