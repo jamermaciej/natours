@@ -11,13 +11,21 @@ import { User } from '../../shared/interfaces/user';
 export class UsersService {
   #http = inject(HttpClient);
 
-  getAllUsers(page = 1, limit = 10): Observable<ApiResponse<User[]>> {
-    // ?page=1 ?limit=3 ?role=user
-
+  getAllUsers(filters?: any, page = 1, limit = 10): Observable<ApiResponse<User[]>> {
     let params = new HttpParams();
     params = params.set('page', page);
     params = params.set('limit', limit);
     params = params.set('sort', 'role');
+
+    if (filters) {
+      if (filters.role) {
+        params = params.set('role', filters.role);
+      }
+  
+      if (filters.query) {
+        params = params.set('q', filters.query);
+      }
+    }
 
     return this.#http.get<ApiResponse<User[]>>(apiEndpoint.UserEndpoint.getAllUsers, { params, withCredentials: true });
   }

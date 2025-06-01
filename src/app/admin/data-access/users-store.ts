@@ -11,12 +11,17 @@ import { Pagination } from '../../shared/interfaces/pagination';
 
 type UsersState = {
     users: User[];
+    filters: any;
     listConfig: Pagination;
     isLoading: boolean;
 }
 
 const initialState: UsersState = {
     users: [],
+    filters: {
+      query: '',
+      role: ''
+    },
     listConfig: {
       page: 1,
       limit: 10,
@@ -39,16 +44,21 @@ export class UsersStore {
     readonly total = this.state.listConfig.total;
     readonly pages = this.state.listConfig.pages;
     readonly isLoading = this.state.isLoading;
+    readonly filters = this.state.filters;
 
-    readonly loadUsers = rxMethod<number>(
+    readonly loadUsers = rxMethod<{ filters?: any, page: number }>(
         pipe(
           // filter(() => !this.users().length),
           tap(() => patchState(this.state, { isLoading: true })),
-          exhaustMap(page => {
-            return this.#usersService.getAllUsers(page).pipe(
+          exhaustMap(params => {
+            return this.#usersService.getAllUsers(params.filters, params.page).pipe(
               tapResponse({
                 next: (response) => patchState(this.state,
                   { users: response.data.data,
+                    filters: {
+                      query: params.filters?.query,
+                      role: params.filters?.role
+                    },
                     listConfig: {
                       page: response.pagination.page,
                       limit: response.pagination.limit,

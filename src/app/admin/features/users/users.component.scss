@@ -5,3 +5,10 @@
     margin: 0 auto;
     padding: 0 toRem(80);
 }
+
+.filters {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10rem;
+    margin-bottom: 3rem;
+}

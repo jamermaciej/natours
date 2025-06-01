@@ -1,0 +1,7 @@
+<select class="form-select" aria-label="Roles select" [ngModel]="selectedOption()" (ngModelChange)="onSelectionChange($event)">
+    <option value="" disabled selected hidden>Select role</option>
+    <option [ngValue]="null">all</option>
+    @for (option of options(); track $index) {
+        <option [value]="option">{{ option }}</option>
+    }
+</select>
