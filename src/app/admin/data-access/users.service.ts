@@ -15,7 +15,7 @@ export class UsersService {
     let params = new HttpParams();
     params = params.set('page', page);
     params = params.set('limit', limit);
-    params = params.set('sort', 'role');
+    params = params.set('sort', 'name');
 
     if (filters) {
       if (filters.role) {
@@ -27,6 +27,14 @@ export class UsersService {
       }
     }
 
-    return this.#http.get<ApiResponse<User[]>>(apiEndpoint.UserEndpoint.getAllUsers, { params, withCredentials: true });
+    return this.#http.get<ApiResponse<User[]>>(apiEndpoint.UserEndpoint.baseUser, { params, withCredentials: true });
+  }
+
+  getUser(id: string): Observable<ApiResponse<User>> {
+    return this.#http.get<ApiResponse<User>>(`${apiEndpoint.UserEndpoint.baseUser}/${id}`, { withCredentials: true });
+  }
+
+  updateUser(user: User): Observable<ApiResponse<User>> {
+    return this.#http.patch<ApiResponse<User>>(`${apiEndpoint.UserEndpoint.baseUser}/${user._id}`, user, { withCredentials: true });
   }
 }

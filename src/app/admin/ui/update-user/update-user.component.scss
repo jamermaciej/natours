@@ -1,0 +1,12 @@
+@import 'functions';
+
+.update-user {
+
+    .password-updated {
+        margin-top: toRem(20);
+
+        h3 {
+            font-size: toRem(15);
+        }
+    }
+}

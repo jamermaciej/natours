@@ -9,7 +9,7 @@
             <app-search-input (triggerSearch)="search($event)" [control]="searchControl"></app-search-input>
         </div>
 
-        <app-users-list [users]="usersStore.users()"></app-users-list>
+        <app-users-list [users]="usersStore.users()" (triggerUserDetails)="goToUserDetails($event)"></app-users-list>
         @if (usersStore.pages() > 1) {
             <app-pagination [totalItems]="usersStore.total()"
                 [itemsPerPage]="usersStore.limit()"

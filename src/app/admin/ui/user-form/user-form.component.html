@@ -1,0 +1,38 @@
+<div [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
+    <!-- <h2 class="heading-secondary ma-bt-lg">
+        @if (review()) {
+            Update your review for {{ tourName() }} tour!
+        } @else {
+            Add your review!
+        }
+    </h2> -->
+    <form class="form form--login">
+        <div class="form__group">
+            <label class="form__label" for="email">Email</label>
+            <input class="form__input" id="email" type="email" formControlName="email">
+            <app-control-error controlName="email" />
+        </div>
+        <div class="form__group">
+            <label class="form__label" for="name">Name</label>
+            <input class="form__input" id="name" type="text" formControlName="name">
+            <app-control-error controlName="name" />
+        </div>
+        <div class="form__group">
+            <label class="form__label" for="role">Role</label>
+            <app-role-select [options]="roles" [control]="role" />
+        </div>
+        <div class="form__group">
+            <button class="btn btn--green btn--small"
+                    [ngClass]="{ 'disabled': userForm.pristine || userForm.invalid || loading() }"
+                    [disabled]="userForm.pristine || userForm.invalid || loading()">
+                @if (loading()) {
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                } @else {
+                    Update
+                }
+            </button>
+        </div>
+    </form>
+</div>

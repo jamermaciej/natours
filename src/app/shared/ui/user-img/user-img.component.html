@@ -1,1 +1,5 @@
-<img class="user-img" [src]="apiHostUrl + '/img/users/' + photo()" [alt]="'Photo of' + name()">
+<img [style.width.rem]="width()"
+     [style.height.rem]="height()"
+     class="user-img"
+     [src]="apiHostUrl + '/img/users/' + photo()"
+     [alt]="'Photo of' + name()">

@@ -1,0 +1,14 @@
+<div class="update-user">
+    @if (user()) {
+        <app-user-img [photo]="user().photo" [name]="user().name" [width]="10" [height]="10"></app-user-img>
+        
+        <app-user-form [user]="user()" [loading]="isLoading()" (triggerSubmit)="onUpdate($event)"></app-user-form>
+    
+        @if (user().passwordChangedAt) {
+            <div class="password-updated">
+                <h3>Last password updated:</h3>
+                {{ user().passwordChangedAt | date }}
+            </div>
+        }
+    }
+</div>

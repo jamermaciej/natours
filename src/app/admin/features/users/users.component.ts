@@ -7,6 +7,8 @@ import { PaginationComponent } from '../../../shared/ui/pagination/pagination.co
 import { SearchInputComponent } from "../../../shared/ui/search-input/search-input.component";
 import { FormControl } from '@angular/forms';
 import { RoleSelectComponent } from '../../../shared/ui/role-select/role-select.component';
+import { Router } from '@angular/router';
+import { FlowRoutes } from '../../../shared/enums/flow-routes';
 
 @Component({
   selector: 'app-users',
@@ -25,6 +27,7 @@ import { RoleSelectComponent } from '../../../shared/ui/role-select/role-select.
 })
 export class UsersComponent implements OnInit {
   readonly usersStore = inject(UsersStore);
+  router = inject(Router)
 
   role = signal('');
   
@@ -56,5 +59,9 @@ export class UsersComponent implements OnInit {
   selectRole(value: string) {
     this.usersStore.loadUsers({ filters: { query: this.usersStore.filters().query, role: value }, page: 1 });
     this.role.set(value);
+  }
+
+  goToUserDetails(id: string) {
+    this.router.navigate([FlowRoutes.USERS, id])
   }
 }

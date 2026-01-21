@@ -14,7 +14,7 @@
                 <tr>
                     <th scope="row">{{ i + 1 }}</th>
                     <td align="center"><app-user-img [photo]="user.photo" [name]="user.name"></app-user-img></td>
-                    <td>{{ user.name }}</td>
+                    <td><a href="#" (click)="goToUserDetails(user._id); $event.preventDefault()">{{ user.name }}</a></td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.role }}</td>
                 </tr>

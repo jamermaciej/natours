@@ -12,4 +12,6 @@ export class UserImgComponent {
   readonly apiHostUrl = environment.apiHostUrl;
   photo = input.required<string>();
   name = input.required<string>();
+  width = input<number>(3.5);
+  height = input<number>(3.5);
 }

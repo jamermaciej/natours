@@ -7,6 +7,7 @@ export interface User {
     email: string;
     photo: string;
     role: Role;
+    passwordChangedAt?: string;
 }
 
 export type ReviewUser = Pick<User, '_id' | 'name' | 'photo'>;

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { User } from '../../../shared/interfaces/user';
 import { UserImgComponent } from '../../../shared/ui/user-img/user-img.component';
 
@@ -11,4 +11,9 @@ import { UserImgComponent } from '../../../shared/ui/user-img/user-img.component
 })
 export class UsersListComponent {
   users = input.required<User[]>();
+  triggerUserDetails = output<string>();
+
+  goToUserDetails(id: string) {
+    this.triggerUserDetails.emit(id);
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, input, model, output, signal } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-role-select',
@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export class RoleSelectComponent {
   selectedOption = model<string>('');
   options = input.required<string[]>();
+  control = input<FormControl>();
 
   onSelectionChange(value: string) {
     this.selectedOption.set(value);
