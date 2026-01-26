@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -18,8 +18,9 @@ export class FileUploadComponent {
   #host = inject(ElementRef<HTMLInputElement>);
   onChange!: Function;
   file: File | null = null;
-  @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
-    const file = event && event.item(0);
+  @HostListener('change', ['$event']) emitFiles(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const file = target.files?.item(0) ?? null;
     this.onChange(file);
     this.file = file;
   }
