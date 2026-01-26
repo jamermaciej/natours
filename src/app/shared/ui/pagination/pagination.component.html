@@ -1,14 +1,14 @@
 <nav aria-label="Pagination">
     <ul class="pagination">
-        <li class="page-item" [ngClass]="{ 'disabled': currentPage() < totalPages() - 1 }">
+        <li class="page-item" [class.disabled]="currentPage() < totalPages() - 1">
             <a class="page-link" (click)="prevPage()">Previous</a>
         </li>
         @for (page of pages; track $index) {
-            <li class="page-item" [ngClass]="{ 'active': page === currentPage() }">
+            <li class="page-item" [class.active]="page === currentPage()">
                 <a class="page-link" (click)="changePage(page)">{{ page }}</a>
             </li>
         }
-        <li class="page-item" [ngClass]="{ 'disabled': currentPage() > totalPages() - 1 }">
+        <li class="page-item" [class.disabled]="currentPage() > totalPages() - 1">
             <a class="page-link" (click)="nextPage()">Next</a>
         </li>
     </ul>

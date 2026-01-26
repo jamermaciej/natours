@@ -19,7 +19,7 @@
         </app-file-upload>
         <div class="form__group right">
             <button class="btn btn--green"
-                    [ngClass]="{ 'disabled': profileForm.invalid || profileForm.pristine || loading() }"
+                    [class.disabled]="profileForm.invalid || profileForm.pristine || loading()"
                     [disabled]="profileForm.invalid || profileForm.pristine || loading()">
                 @if (loading()) {
                     <div class="spinner-border" role="status">

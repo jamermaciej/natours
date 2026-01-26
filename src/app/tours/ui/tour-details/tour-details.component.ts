@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { environment } from '../../../../environments/environment';
 import { RolePipe } from '../../../shared/pipes/role.pipe';
 import { SplitParagraphPipe } from '../../../shared/pipes/split-paragraph.pipe';
@@ -16,16 +16,15 @@ import { BookTourComponent } from '../book-tour/book-tour.component';
 
 @Component({
     selector: 'app-tour-details',
-    imports: [CommonModule,
-        RolePipe,
-        SplitParagraphPipe,
-        TourReviewsComponent,
-        TourMapComponent,
-        RouterLink,
-        CtaSectionComponent,
-        AvailableDatePipe,
-        BookTourComponent
-    ],
+    imports: [
+    RolePipe,
+    SplitParagraphPipe,
+    TourReviewsComponent,
+    TourMapComponent,
+    RouterLink,
+    CtaSectionComponent,
+    AvailableDatePipe,
+    BookTourComponent],
     templateUrl: './tour-details.component.html',
     styleUrl: './tour-details.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush

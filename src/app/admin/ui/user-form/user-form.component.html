@@ -22,7 +22,7 @@
         </div>
         <div class="form__group">
             <button class="btn btn--green btn--small"
-                    [ngClass]="{ 'disabled': userForm.pristine || userForm.invalid || loading() }"
+                    [class.disabled]="userForm.pristine || userForm.invalid || loading()"
                     [disabled]="userForm.pristine || userForm.invalid || loading()">
                 @if (loading()) {
                     <div class="spinner-border" role="status">

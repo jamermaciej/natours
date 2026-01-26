@@ -3,13 +3,13 @@ import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angula
 import { ControlErrorComponent } from '../../../shared/ui/control-error/control-error.component';
 import { ReviewBody, ReviewResponse } from '../../../tours/interfaces/review';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
-import { NgClass } from '@angular/common';
+
 import { RatingComponent } from '../../../shared/ui/rating/rating.component';
 import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-review-form',
-    imports: [ReactiveFormsModule, ControlErrorComponent, LoaderComponent, NgClass, RatingComponent, RouterLink],
+    imports: [ReactiveFormsModule, ControlErrorComponent, LoaderComponent, RatingComponent, RouterLink],
     templateUrl: './review-form.component.html',
     styleUrl: './review-form.component.scss'
 })

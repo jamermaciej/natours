@@ -5,7 +5,7 @@
       <mat-option
         [value]="date.date"
         [disabled]="date.participants === tour().maxGroupSize || isPrev(date.date)"
-        [ngClass]="{ 'text-danger': date.soldOut }"
+        [class.text-danger]="date.soldOut"
         >
         {{ date.date | date: 'dd MMMM YYYY' }}
         @if (date.soldOut) {

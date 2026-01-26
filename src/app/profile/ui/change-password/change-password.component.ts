@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, inject, input, model } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { CommonModule } from '@angular/common';
+
 import { ControlErrorComponent } from '../../../shared/ui/control-error/control-error.component';
 import { Actions, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
@@ -11,7 +11,7 @@ import { PasswordUpdateData } from '../../../shared/interfaces/password-update-d
 
 @Component({
     selector: 'app-change-password',
-    imports: [ReactiveFormsModule, CommonModule, ControlErrorComponent],
+    imports: [ReactiveFormsModule, ControlErrorComponent],
     templateUrl: './change-password.component.html',
     styleUrl: './change-password.component.scss'
 })

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, inject, input, model } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonModule, NgClass } from '@angular/common';
+
 import { ControlErrorComponent } from '../../../shared/ui/control-error/control-error.component';
 import { User } from '../../../shared/interfaces/user';
 import { environment } from '../../../../environments/environment';
@@ -8,7 +8,7 @@ import { FileUploadComponent } from '../../../shared/ui/file-upload/file-upload.
 
 @Component({
     selector: 'app-update-profile',
-    imports: [ReactiveFormsModule, CommonModule, ControlErrorComponent, FileUploadComponent, NgClass],
+    imports: [ReactiveFormsModule, ControlErrorComponent, FileUploadComponent],
     templateUrl: './update-profile.component.html',
     styleUrl: './update-profile.component.scss'
 })

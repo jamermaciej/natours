@@ -4,12 +4,12 @@ import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angula
 import { ControlErrorComponent } from '../../../shared/ui/control-error/control-error.component';
 import { RoleSelectComponent } from '../../../shared/ui/role-select/role-select.component';
 import { Role } from '../../../tours/enums/role';
-import { NgClass } from '@angular/common';
+
 import { validateEmailValidator } from '../../../shared/validators/validate-email.validator';
 
 @Component({
     selector: 'app-user-form',
-    imports: [ReactiveFormsModule, ControlErrorComponent, RoleSelectComponent, NgClass],
+    imports: [ReactiveFormsModule, ControlErrorComponent, RoleSelectComponent],
     templateUrl: './user-form.component.html',
     styleUrl: './user-form.component.scss'
 })

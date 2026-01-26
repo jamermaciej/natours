@@ -23,7 +23,7 @@
             <div class="form__group">
                 <a class="btn btn--gray btn--small btn--back" [routerLink]="['..']">Back</a>
                 <button class="btn btn--green btn--small"
-                        [ngClass]="{ 'disabled': reviewForm.pristine || reviewForm.invalid || loading }"
+                        [class.disabled]="reviewForm.pristine || reviewForm.invalid || loading"
                         [disabled]="reviewForm.pristine || reviewForm.invalid || loading">
                     @if (loading) {
                         <div class="spinner-border" role="status">

@@ -2,7 +2,7 @@
     @if (user()) {
         <app-page-header [title]="'User ' + user().name">
             <button class="btn btn--red btn--small delete-user"
-                    [ngClass]="{ 'disabled': loadingRemove() }"
+                    [class.disabled]="loadingRemove()"
                     [disabled]="loadingRemove()"
                     (click)="deleteUser(user()._id!)">
                 @if (loadingRemove()) {

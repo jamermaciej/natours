@@ -1,13 +1,13 @@
 import { Component, input, output } from '@angular/core';
 import { User, UserBody } from '../../../shared/interfaces/user';
 import { UserImgComponent } from '../../../shared/ui/user-img/user-img.component';
-import { DatePipe, NgClass } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { PageHeaderComponent } from '../../../shared/ui/page-header/page-header.component';
 
 @Component({
     selector: 'app-update-user',
-    imports: [UserImgComponent, UserFormComponent, DatePipe, PageHeaderComponent, NgClass],
+    imports: [UserImgComponent, UserFormComponent, DatePipe, PageHeaderComponent],
     templateUrl: './update-user.component.html',
     styleUrl: './update-user.component.scss'
 })

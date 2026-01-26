@@ -2,11 +2,11 @@ import { Component, input, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { Tour } from '../../interfaces/tour';
-import { DatePipe, NgClass } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-book-tour',
-    imports: [MatSelectModule, FormsModule, NgClass, DatePipe],
+    imports: [MatSelectModule, FormsModule, DatePipe],
     templateUrl: './book-tour.component.html',
     styleUrl: './book-tour.component.scss'
 })
