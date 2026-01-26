@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Output, inject, input } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { CommonModule } from '@angular/common';
+
 import { ControlErrorComponent } from '../../../shared/ui/control-error/control-error.component';
 import { matchPasswordValidator } from '../../../shared/validators/match-password-validator';
 
 @Component({
     selector: 'app-signup-form',
-    imports: [ReactiveFormsModule, CommonModule, ControlErrorComponent],
+    imports: [ReactiveFormsModule, ControlErrorComponent],
     templateUrl: './signup-form.component.html',
     styleUrl: './signup-form.component.scss'
 })

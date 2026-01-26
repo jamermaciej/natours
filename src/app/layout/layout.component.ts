@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './ui/header/header.component';
 import { FooterComponent } from './ui/footer/footer.component';
 
 @Component({
     selector: 'app-layout',
-    imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent],
+    imports: [RouterOutlet, HeaderComponent, FooterComponent],
     template: `
     <div class="layout">
       <!-- HEADER -->

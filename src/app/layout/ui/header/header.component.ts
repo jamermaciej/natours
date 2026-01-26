@@ -1,5 +1,5 @@
 import { Component, Signal, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { authFeature } from '../../../shared/data-access/auth/store/auth.state';
@@ -12,7 +12,7 @@ import { UserImgComponent } from '../../../shared/ui/user-img/user-img.component
 
 @Component({
     selector: 'app-header',
-    imports: [CommonModule, RouterModule, UserImgComponent],
+    imports: [RouterModule, UserImgComponent],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss'
 })

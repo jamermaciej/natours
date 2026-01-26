@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
     selector: 'app-page-wrapper',
-    imports: [CommonModule],
+    imports: [],
     template: `
     <div class="page-wrapper">
       <ng-content></ng-content>

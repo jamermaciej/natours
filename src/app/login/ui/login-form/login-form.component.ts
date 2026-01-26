@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject, input } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { CommonModule } from '@angular/common';
+
 import { ControlErrorComponent } from '../../../shared/ui/control-error/control-error.component';
 
 @Component({
     selector: 'app-login-form',
-    imports: [ReactiveFormsModule, CommonModule, ControlErrorComponent],
+    imports: [ReactiveFormsModule, ControlErrorComponent],
     templateUrl: './login-form.component.html',
     styleUrl: './login-form.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush

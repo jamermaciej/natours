@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Tour } from '../../interfaces/tour';
 import { TourCardComponent } from '../tour-card/tour-card.component';
 
 @Component({
     selector: 'app-tour-list',
-    imports: [CommonModule, TourCardComponent],
+    imports: [TourCardComponent],
     templateUrl: './tour-list.component.html',
     styleUrl: './tour-list.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
