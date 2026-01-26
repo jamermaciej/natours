@@ -37,6 +37,11 @@ button {
         color: var(--color-white);
     }
 
+    &--red {
+        background-color: #b71c1c;
+        color: var(--color-white);
+    }
+
     &--small {
         padding: toRem(12.5) toRem(30);
         font-size: toRem(14);

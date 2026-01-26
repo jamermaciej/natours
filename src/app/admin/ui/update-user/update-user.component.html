@@ -1,10 +1,23 @@
 <div class="update-user">
     @if (user()) {
-        <app-page-header [title]="'User ' + user().name" />
+        <app-page-header [title]="'User ' + user().name">
+            <button class="btn btn--red btn--small delete-user"
+                    [ngClass]="{ 'disabled': loadingRemove() }"
+                    [disabled]="loadingRemove()"
+                    (click)="deleteUser(user()._id!)">
+                @if (loadingRemove()) {
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                } @else {
+                    Delete
+                }
+            </button>
+        </app-page-header>
 
         <app-user-img [photo]="user().photo" [name]="user().name" [width]="10" [height]="10"></app-user-img>
         
-        <app-user-form [user]="user()" [loading]="isLoading()" (triggerSubmit)="onUpdate($event)" btnText="Update"></app-user-form>
+        <app-user-form [user]="user()" [loading]="loadingUpdate()" (triggerSubmit)="onUpdate($event)" btnText="Update"></app-user-form>
     
         @if (user().passwordChangedAt) {
             <div class="password-updated">

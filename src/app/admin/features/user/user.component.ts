@@ -35,4 +35,8 @@ export class UserComponent {
   onUserUpdated(user: UserBody) {
     this.usersStore.updateUser({ user: user, id: this.userId() });    
   }
+
+  onUserDeleted(id: string) {
+    this.usersStore.removeUser(id);
+  }
 }

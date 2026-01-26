@@ -51,4 +51,8 @@ export class UsersService {
 
     return this.#http.get<{ exists: boolean }>(`${apiEndpoint.UserEndpoint.checkEmail}`, { params, withCredentials: true, });
   }
+
+  removeUser(id: string) {
+    return this.#http.delete(`${apiEndpoint.UserEndpoint.baseUser}/${id}`, { withCredentials: true });
+  }
 }

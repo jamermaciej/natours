@@ -10,5 +10,6 @@ import { RouterLink } from '@angular/router';
 })
 export class PageHeaderComponent {
   title = input.required<string>();
+  subtitle = input<string>();
   link = input<string>();
   linkText = input<string>();}

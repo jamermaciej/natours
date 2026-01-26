@@ -1,5 +1,5 @@
 
-<app-page-header title="Add new user!" />
+<app-page-header title="Add new user!" subtitle="Add the user’s email, name, and role. A temporary password will be sent via email and should be changed after signing in." />
 
 @if (usersStore.errors().length) {
     <app-error-message [message]="usersStore.errors()" />

@@ -1,6 +1,9 @@
 @import 'functions';
 
 .update-user {
+    .delete-user {
+        justify-self: end;
+    }
 
     .password-updated {
         margin-top: toRem(20);
