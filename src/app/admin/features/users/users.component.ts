@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, Signal, signal } from '@angular/core';
 import { UsersStore } from '../../data-access/users-store';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
 import { PageHeaderComponent } from '../../../shared/ui/page-header/page-header.component';
@@ -11,8 +11,10 @@ import { Router } from '@angular/router';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { Dialog } from '@angular/cdk/dialog';
 import { AddUserModalComponent } from '../../ui/add-user-modal/add-user-modal.component';
-import { UserBody } from '../../../shared/interfaces/user';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { User, UserBody } from '../../../shared/interfaces/user';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Store } from '@ngrx/store';
+import { authFeature } from '../../../shared/data-access/auth/store/auth.state';
 
 @Component({
   selector: 'app-users',
@@ -33,8 +35,9 @@ export class UsersComponent implements OnInit {
   readonly usersStore = inject(UsersStore);
   router = inject(Router)
   #dialog = inject(Dialog);
-  #destroyRef = inject(DestroyRef);
   role = signal('');
+  #store = inject(Store);
+  user: Signal<User | null> = toSignal(this.#store.select(authFeature.selectUser), { initialValue: null });
 
   options: string[] = ['admin', 'lead-guide', 'guide', 'user'];
   selectedRole = signal<string>('');
