@@ -10,13 +10,7 @@ import { Pagination } from '../../shared/interfaces/pagination';
 import { Router } from '@angular/router';
 import { FlowRoutes } from '../../shared/enums/flow-routes';
 import { SnackbarService } from '../../shared/services/snackbar.service';
-
-enum LoadingType {
-  List = 'list',
-  Submit = 'submit',
-  Update = 'update',
-  Remove = 'remove'
-}
+import { LoadingType } from '../../shared/enums/loading-type';
 
 type UsersState = {
     users: User[];
