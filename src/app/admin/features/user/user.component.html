@@ -2,10 +2,9 @@
     @if (isLoading()) {
         <app-loader />
     } @else {
-        <app-page-header [title]="'User ' + user()?.name" />
         @if (usersStore.errors().length) {
             <app-error-message [message]="usersStore.errors()" />
         }
-        <app-update-user [user]="user()!" [isLoading]="usersStore.isLoading()" (userUpdated)="onUserUpdated($event)"></app-update-user>
+        <app-update-user [user]="user()!" [isLoading]="usersStore.loadingUpdate()" (userUpdated)="onUserUpdated($event)"></app-update-user>
     }
 </div>

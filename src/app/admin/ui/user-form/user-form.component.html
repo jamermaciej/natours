@@ -1,16 +1,15 @@
 <div [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
-    <!-- <h2 class="heading-secondary ma-bt-lg">
-        @if (review()) {
-            Update your review for {{ tourName() }} tour!
-        } @else {
-            Add your review!
-        }
-    </h2> -->
-    <form class="form form--login">
+    <form class="form form--user">
         <div class="form__group">
             <label class="form__label" for="email">Email</label>
             <input class="form__input" id="email" type="email" formControlName="email">
             <app-control-error controlName="email" />
+            @if (email.pending && email.dirty) {
+                <div class="pending">Checking availability......</div>
+            }
+            @if (email.hasError('emailTaken')) {
+                <div class="error">Email is already taken!</div>
+            }
         </div>
         <div class="form__group">
             <label class="form__label" for="name">Name</label>
@@ -30,7 +29,7 @@
                         <span class="sr-only">Loading...</span>
                     </div>
                 } @else {
-                    Update
+                    {{ btnText() }}
                 }
             </button>
         </div>

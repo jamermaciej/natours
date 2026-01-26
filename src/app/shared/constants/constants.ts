@@ -27,6 +27,7 @@ export const apiEndpoint = {
         getMyReviews: `${environment.apiUrl}/reviews/my-reviews`,
     },
     UserEndpoint: {
-        baseUser: `${environment.apiUrl}/users`
+        baseUser: `${environment.apiUrl}/users`,
+        checkEmail: `${environment.apiUrl}/users/exists`,
     }
 }

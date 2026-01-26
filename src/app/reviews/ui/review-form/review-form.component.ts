@@ -1,16 +1,16 @@
-import { Component, Input, computed, effect, inject, input, model, output } from '@angular/core';
+import { Component, computed, effect, inject, input, output } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ControlErrorComponent } from '../../../shared/ui/control-error/control-error.component';
-import { ReviewBody, Review, ReviewResponse } from '../../../tours/interfaces/review';
+import { ReviewBody, ReviewResponse } from '../../../tours/interfaces/review';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
-import { JsonPipe, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { RatingComponent } from '../../../shared/ui/rating/rating.component';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-review-form',
   standalone: true,
-  imports: [ReactiveFormsModule, ControlErrorComponent, LoaderComponent, NgClass, RatingComponent, RouterLink, JsonPipe],
+  imports: [ReactiveFormsModule, ControlErrorComponent, LoaderComponent, NgClass, RatingComponent, RouterLink],
   templateUrl: './review-form.component.html',
   styleUrl: './review-form.component.scss'
 })

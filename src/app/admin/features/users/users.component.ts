@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { UsersStore } from '../../data-access/users-store';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
 import { PageHeaderComponent } from '../../../shared/ui/page-header/page-header.component';
@@ -9,6 +9,10 @@ import { FormControl } from '@angular/forms';
 import { RoleSelectComponent } from '../../../shared/ui/role-select/role-select.component';
 import { Router } from '@angular/router';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
+import { Dialog } from '@angular/cdk/dialog';
+import { AddUserModalComponent } from '../../ui/add-user-modal/add-user-modal.component';
+import { UserBody } from '../../../shared/interfaces/user';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-users',
@@ -28,9 +32,10 @@ import { FlowRoutes } from '../../../shared/enums/flow-routes';
 export class UsersComponent implements OnInit {
   readonly usersStore = inject(UsersStore);
   router = inject(Router)
-
+  #dialog = inject(Dialog);
+  #destroyRef = inject(DestroyRef);
   role = signal('');
-  
+
   options: string[] = ['admin', 'lead-guide', 'guide', 'user'];
   selectedRole = signal<string>('');
 
@@ -63,5 +68,9 @@ export class UsersComponent implements OnInit {
 
   goToUserDetails(id: string) {
     this.router.navigate([FlowRoutes.USERS, id])
+  }
+
+  openAddUserModal() {
+    const dialogRef = this.#dialog.open<UserBody>(AddUserModalComponent, { autoFocus: false });
   }
 }

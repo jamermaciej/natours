@@ -1,10 +1,11 @@
-import { Component, effect, inject, input, output } from '@angular/core';
-import { User } from '../../../shared/interfaces/user';
+import { Component, effect, EnvironmentInjector, inject, input, output, runInInjectionContext } from '@angular/core';
+import { User, UserBody } from '../../../shared/interfaces/user';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ControlErrorComponent } from '../../../shared/ui/control-error/control-error.component';
 import { RoleSelectComponent } from '../../../shared/ui/role-select/role-select.component';
 import { Role } from '../../../tours/enums/role';
 import { NgClass } from '@angular/common';
+import { validateEmailValidator } from '../../../shared/validators/validate-email.validator';
 
 @Component({
   selector: 'app-user-form',
@@ -15,40 +16,47 @@ import { NgClass } from '@angular/common';
 })
 export class UserFormComponent {
   #formBuilder = inject(NonNullableFormBuilder);
-  user = input.required<User>();
+  user = input<User>();
   roles = Object.values(Role);
   loading = input<boolean>();
+  btnText = input.required<string>();
 
   userForm = this.#formBuilder.group({
     name: ['', Validators.required],
-    email: ['', [Validators.email, Validators.required]],
+    email: ['', {
+      validators: [Validators.email, Validators.required],
+      asyncValidators: [validateEmailValidator()],
+      updateOn: 'blur'
+    }],
     role: [Role.USER, Validators.required]
   });
 
-  triggerSubmit = output<User>();
-
+  triggerSubmit = output<UserBody>();
+  #injector = inject(EnvironmentInjector);
+  
   constructor() {
     effect(() => {
       const user = this.user();
 
-      if (user) {
-        this.userForm.patchValue({
-          email: user.email,
-          name: user.name,
-          role: user.role
+      if (user?._id && this.email) {     
+        runInInjectionContext(this.#injector, () => {
+          this.email.setAsyncValidators([
+            validateEmailValidator(user._id)
+          ]);
         });
+
+        this.userForm.patchValue(user);
+        this.userForm.markAsPristine();
+        this.userForm.markAsUntouched();
+        this.email.updateValueAndValidity({ emitEvent: false });
       }
     });
   }
   
   onSubmit() {
     if (this.userForm.valid) {
-      let user = {
-        ...this.user(),
-        ...this.userForm.value
-      }
-
-      this.triggerSubmit.emit(user);
+      const formValues = this.userForm.getRawValue();
+      this.triggerSubmit.emit(formValues);
     } else {
       this.userForm.markAllAsTouched();
     }
@@ -56,5 +64,9 @@ export class UserFormComponent {
 
   get role() {
     return this.userForm.controls.role;
+  }
+
+  get email() {
+    return this.userForm.controls.email;
   }
 }

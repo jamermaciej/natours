@@ -1,8 +1,12 @@
 <div class="users">
-    @if (usersStore.isLoading()) {
+    @if (usersStore.loadingList()) {
         <app-loader />
     } @else {
-        <app-page-header title="Users" />
+        <app-page-header title="Users">
+            <button class="btn btn--green btn--small" (click)="openAddUserModal()">
+                Add User
+            </button>
+        </app-page-header>
 
         <div class="filters">
             <app-role-select (selectedOptionChange)="selectRole($event)" [(selectedOption)]="selectedRole" [options]="options"></app-role-select>

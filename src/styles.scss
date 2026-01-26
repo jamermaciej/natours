@@ -129,6 +129,11 @@ ul {
   color: #b71c1c;
 }
 
+.pending {
+  font-size: toRem(12);
+  color: var(--color-secondary);
+}
+
 .header .user-img {
   margin-right: toRem(10);
 }

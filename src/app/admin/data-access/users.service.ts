@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { apiEndpoint } from '../../shared/constants/constants';
 import { ApiResponse } from '../../shared/interfaces/api-response';
-import { User } from '../../shared/interfaces/user';
+import { User, UserBody } from '../../shared/interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,21 @@ export class UsersService {
     return this.#http.get<ApiResponse<User>>(`${apiEndpoint.UserEndpoint.baseUser}/${id}`, { withCredentials: true });
   }
 
-  updateUser(user: User): Observable<ApiResponse<User>> {
-    return this.#http.patch<ApiResponse<User>>(`${apiEndpoint.UserEndpoint.baseUser}/${user._id}`, user, { withCredentials: true });
+  updateUser(user: UserBody, id: string): Observable<ApiResponse<User>> {
+    return this.#http.patch<ApiResponse<User>>(`${apiEndpoint.UserEndpoint.baseUser}/${id}`, user, { withCredentials: true });
+  }
+
+  addUser(user: UserBody): Observable<ApiResponse<User>> {
+    return this.#http.post<ApiResponse<User>>(`${apiEndpoint.UserEndpoint.baseUser}`, user, { withCredentials: true });
+  }
+
+  checkEmail(email: string, excludeId?: string): Observable<{ exists: boolean }> {
+    let params = new HttpParams().set('email', email);
+
+    if (excludeId) {
+      params = params.set('excludeId', excludeId);
+    }
+
+    return this.#http.get<{ exists: boolean }>(`${apiEndpoint.UserEndpoint.checkEmail}`, { params, withCredentials: true, });
   }
 }

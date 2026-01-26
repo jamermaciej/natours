@@ -3,4 +3,5 @@
     @if (link()) {
         <a [routerLink]="link()">{{ linkText() ? linkText() : 'Back' }}</a>
     }
+    <ng-content></ng-content>
 </div>

@@ -1,8 +1,10 @@
 <div class="update-user">
     @if (user()) {
+        <app-page-header [title]="'User ' + user().name" />
+
         <app-user-img [photo]="user().photo" [name]="user().name" [width]="10" [height]="10"></app-user-img>
         
-        <app-user-form [user]="user()" [loading]="isLoading()" (triggerSubmit)="onUpdate($event)"></app-user-form>
+        <app-user-form [user]="user()" [loading]="isLoading()" (triggerSubmit)="onUpdate($event)" btnText="Update"></app-user-form>
     
         @if (user().passwordChangedAt) {
             <div class="password-updated">
