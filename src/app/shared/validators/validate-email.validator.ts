@@ -7,7 +7,7 @@ export const validateEmailValidator = (excludeId?: string): AsyncValidatorFn  =>
     const usersStore = inject(UsersService);
 
     return (control: AbstractControl) => {
-        if (!control.value) return of(null);
+        if (!control.value || control.pristine) return of(null);
 
         return timer(500).pipe(
           switchMap(() => usersStore.checkEmail(control.value, excludeId)),
