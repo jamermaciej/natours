@@ -16,7 +16,7 @@ const initialState: BookingState = {
 }
 
 export const BookingStore = signalStore(
-    { providedIn: 'root' },
+    { providedIn: 'root', protectedState: false },
     withDevtools('bookings'),
     withState(initialState),
     withMethods((

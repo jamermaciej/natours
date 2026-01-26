@@ -1,7 +1,8 @@
 import { inject } from '@angular/core';
 import { bookingsActions } from './my-tours.actions';
 import { catchError, exhaustMap, filter, map, tap } from 'rxjs/operators';
-import { createEffect, Actions, concatLatestFrom } from '@ngrx/effects';
+import { createEffect, Actions } from '@ngrx/effects';
+import { concatLatestFrom } from '@ngrx/operators';
 import { ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { Store } from '@ngrx/store';

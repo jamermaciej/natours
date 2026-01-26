@@ -1,7 +1,8 @@
 import { inject } from '@angular/core';
 import { toursActions } from './tours.actions';
 import { catchError, exhaustMap, filter, map } from 'rxjs/operators';
-import { createEffect, Actions, concatLatestFrom } from '@ngrx/effects';
+import { createEffect, Actions } from '@ngrx/effects';
+import { concatLatestFrom } from '@ngrx/operators';
 import { ofType } from '@ngrx/effects';
 import { TourService } from '../../tour.service';
 import { of } from 'rxjs';
