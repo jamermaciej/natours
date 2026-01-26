@@ -4,14 +4,14 @@ import { toursFeature } from '../../data-access/store/tours/tours.state';
 import { TourService } from '../../data-access/tour.service';
 import { Store } from '@ngrx/store';
 import { TourListComponent } from '../../ui/tour-list/tour-list.component';
-import { FooterComponent } from '../../../layout/ui/footer/footer.component';
-import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
+
+
 import { PageWrapperComponent } from '../../../layout/ui/page-wrapper/page-wrapper.component';
 import { RecommendedToursComponent } from '../recommended-tours/recommended-tours.component';
 
 @Component({
     selector: 'app-tours',
-    imports: [CommonModule, TourListComponent, FooterComponent, LoaderComponent, PageWrapperComponent, RecommendedToursComponent],
+    imports: [CommonModule, TourListComponent, PageWrapperComponent, RecommendedToursComponent],
     templateUrl: './tours.component.html',
     styleUrl: './tours.component.scss'
 })

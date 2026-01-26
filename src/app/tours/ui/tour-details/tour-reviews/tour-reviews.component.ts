@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Review, ReviewResponse } from '../../../interfaces/review';
 import { environment } from '../../../../../environments/environment';
-import { NgClass } from '@angular/common';
+
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RatingComponent } from '../../../../shared/ui/rating/rating.component';
 
 @Component({
     selector: 'app-tour-reviews',
-    imports: [NgClass, CarouselModule, RatingComponent],
+    imports: [CarouselModule, RatingComponent],
     templateUrl: './tour-reviews.component.html',
     styleUrl: './tour-reviews.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
