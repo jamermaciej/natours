@@ -10,11 +10,10 @@ import { PageWrapperComponent } from '../../../layout/ui/page-wrapper/page-wrapp
 import { RecommendedToursComponent } from '../recommended-tours/recommended-tours.component';
 
 @Component({
-  selector: 'app-tours',
-  standalone: true,
-  imports: [CommonModule, TourListComponent, FooterComponent, LoaderComponent, PageWrapperComponent, RecommendedToursComponent],
-  templateUrl: './tours.component.html',
-  styleUrl: './tours.component.scss'
+    selector: 'app-tours',
+    imports: [CommonModule, TourListComponent, FooterComponent, LoaderComponent, PageWrapperComponent, RecommendedToursComponent],
+    templateUrl: './tours.component.html',
+    styleUrl: './tours.component.scss'
 })
 export class ToursComponent {
   #tourService = inject(TourService);

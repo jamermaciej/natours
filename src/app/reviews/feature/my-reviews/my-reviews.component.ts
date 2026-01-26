@@ -7,10 +7,9 @@ import { routerActions } from '../../../shared/data-access/router/store/router.a
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 
 @Component({
-  selector: 'app-my-reviews',
-  standalone: true,
-  imports: [LoaderComponent, ReviewListComponent],
-  template: `
+    selector: 'app-my-reviews',
+    imports: [LoaderComponent, ReviewListComponent],
+    template: `
     @if (reviewsStore.isLoading()) {
         <app-loader />
     } @else {

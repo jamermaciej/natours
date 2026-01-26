@@ -10,11 +10,10 @@ import { CommonModule } from '@angular/common';
 import { Creditionals } from '../../../shared/interfaces/creditionals';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [PageWrapperComponent, LoginFormComponent, CommonModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+    selector: 'app-login',
+    imports: [PageWrapperComponent, LoginFormComponent, CommonModule],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   #store = inject(Store);

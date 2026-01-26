@@ -8,11 +8,10 @@ import { RatingComponent } from '../../../shared/ui/rating/rating.component';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-review-form',
-  standalone: true,
-  imports: [ReactiveFormsModule, ControlErrorComponent, LoaderComponent, NgClass, RatingComponent, RouterLink],
-  templateUrl: './review-form.component.html',
-  styleUrl: './review-form.component.scss'
+    selector: 'app-review-form',
+    imports: [ReactiveFormsModule, ControlErrorComponent, LoaderComponent, NgClass, RatingComponent, RouterLink],
+    templateUrl: './review-form.component.html',
+    styleUrl: './review-form.component.scss'
 })
 export class ReviewFormComponent {
   #formBuilder = inject(NonNullableFormBuilder);

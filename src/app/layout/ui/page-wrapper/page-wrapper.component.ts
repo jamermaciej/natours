@@ -2,15 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-page-wrapper',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'app-page-wrapper',
+    imports: [CommonModule],
+    template: `
     <div class="page-wrapper">
       <ng-content></ng-content>
     </div>
   `,
-  styles: `
+    styles: `
     @import 'mixins';
 
     .page-wrapper {

@@ -7,11 +7,10 @@ import { environment } from '../../../../environments/environment';
 import { FileUploadComponent } from '../../../shared/ui/file-upload/file-upload.component';
 
 @Component({
-  selector: 'app-update-profile',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, ControlErrorComponent, FileUploadComponent, NgClass],
-  templateUrl: './update-profile.component.html',
-  styleUrl: './update-profile.component.scss'
+    selector: 'app-update-profile',
+    imports: [ReactiveFormsModule, CommonModule, ControlErrorComponent, FileUploadComponent, NgClass],
+    templateUrl: './update-profile.component.html',
+    styleUrl: './update-profile.component.scss'
 })
 export class UpdateProfileComponent implements OnInit {
   #formBuilder = inject(NonNullableFormBuilder);

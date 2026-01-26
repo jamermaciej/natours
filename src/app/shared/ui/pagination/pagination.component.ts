@@ -2,11 +2,10 @@ import { NgClass } from '@angular/common';
 import { Component, input, OnInit, output } from '@angular/core';
 
 @Component({
-  selector: 'app-pagination',
-  standalone: true,
-  imports: [NgClass],
-  templateUrl: './pagination.component.html',
-  styleUrl: './pagination.component.scss'
+    selector: 'app-pagination',
+    imports: [NgClass],
+    templateUrl: './pagination.component.html',
+    styleUrl: './pagination.component.scss'
 })
 export class PaginationComponent implements OnInit {
   totalItems = input.required<number>();

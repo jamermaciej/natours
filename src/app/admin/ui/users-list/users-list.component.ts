@@ -5,11 +5,10 @@ import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-users-list',
-  standalone: true,
-  imports: [UserImgComponent, RouterLink],
-  templateUrl: './users-list.component.html',
-  styleUrl: './users-list.component.scss'
+    selector: 'app-users-list',
+    imports: [UserImgComponent, RouterLink],
+    templateUrl: './users-list.component.html',
+    styleUrl: './users-list.component.scss'
 })
 export class UsersListComponent {
   users = input.required<User[]>();

@@ -5,11 +5,10 @@ import { PageHeaderComponent } from '../../../shared/ui/page-header/page-header.
 import { BookingsListComponent } from '../../ui/bookings-list/bookings-list.component';
 
 @Component({
-  selector: 'app-bookings',
-  standalone: true,
-  imports: [LoaderComponent, PageHeaderComponent, BookingsListComponent],
-  templateUrl: './bookings.component.html',
-  styleUrl: './bookings.component.scss'
+    selector: 'app-bookings',
+    imports: [LoaderComponent, PageHeaderComponent, BookingsListComponent],
+    templateUrl: './bookings.component.html',
+    styleUrl: './bookings.component.scss'
 })
 export class BookingsComponent implements OnInit {
   #bookingStore = inject(BookingStore);

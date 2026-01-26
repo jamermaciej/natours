@@ -10,11 +10,10 @@ import { PasswordUpdateData } from '../../../shared/interfaces/password-update-d
 
 
 @Component({
-  selector: 'app-change-password',
-  standalone: true,
-  imports: [ReactiveFormsModule, LoaderComponent, CommonModule, ControlErrorComponent],
-  templateUrl: './change-password.component.html',
-  styleUrl: './change-password.component.scss'
+    selector: 'app-change-password',
+    imports: [ReactiveFormsModule, LoaderComponent, CommonModule, ControlErrorComponent],
+    templateUrl: './change-password.component.html',
+    styleUrl: './change-password.component.scss'
 })
 export class ChangePasswordComponent {
   #formBuilder = inject(NonNullableFormBuilder);

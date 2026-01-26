@@ -4,12 +4,11 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
-  selector: 'app-search-input',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './search-input.component.html',
-  styleUrl: './search-input.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-search-input',
+    imports: [ReactiveFormsModule],
+    templateUrl: './search-input.component.html',
+    styleUrl: './search-input.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchInputComponent implements OnInit {
   destroyRef = inject(DestroyRef)

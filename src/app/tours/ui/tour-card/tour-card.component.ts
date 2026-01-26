@@ -7,15 +7,14 @@ import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { AvailableDatePipe } from '../../pipes/available-date.pipe';
 
 @Component({
-  selector: 'app-tour-card',
-  standalone: true,
-  imports: [CommonModule, RouterModule, NgOptimizedImage, AvailableDatePipe],
-  providers: [
-    provideImgixLoader(environment.imgixUrl)
-  ],
-  templateUrl: './tour-card.component.html',
-  styleUrl: './tour-card.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-tour-card',
+    imports: [CommonModule, RouterModule, NgOptimizedImage, AvailableDatePipe],
+    providers: [
+        provideImgixLoader(environment.imgixUrl)
+    ],
+    templateUrl: './tour-card.component.html',
+    styleUrl: './tour-card.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TourCardComponent {
   @Input({ required: true })

@@ -4,12 +4,11 @@ import { Location } from '../../../interfaces/location';
 import { ParseCoordinatesPipe } from '../../../../shared/pipes/parse-coordinates.pipe';
 
 @Component({
-  selector: 'app-tour-map',
-  standalone: true,
-  imports: [GoogleMapsModule, ParseCoordinatesPipe],
-  templateUrl: './tour-map.component.html',
-  styleUrl: './tour-map.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-tour-map',
+    imports: [GoogleMapsModule, ParseCoordinatesPipe],
+    templateUrl: './tour-map.component.html',
+    styleUrl: './tour-map.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TourMapComponent implements OnInit, AfterViewInit {
   @Input({ required: true })

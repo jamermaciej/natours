@@ -5,12 +5,11 @@ import { CommonModule } from '@angular/common';
 import { ControlErrorComponent } from '../../../shared/ui/control-error/control-error.component';
 
 @Component({
-  selector: 'app-login-form',
-  standalone: true,
-  imports: [ReactiveFormsModule, LoaderComponent, CommonModule, ControlErrorComponent],
-  templateUrl: './login-form.component.html',
-  styleUrl: './login-form.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-login-form',
+    imports: [ReactiveFormsModule, LoaderComponent, CommonModule, ControlErrorComponent],
+    templateUrl: './login-form.component.html',
+    styleUrl: './login-form.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginFormComponent {
   #formBuilder = inject(FormBuilder);

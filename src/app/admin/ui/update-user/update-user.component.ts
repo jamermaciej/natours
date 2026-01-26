@@ -6,11 +6,10 @@ import { UserFormComponent } from '../user-form/user-form.component';
 import { PageHeaderComponent } from '../../../shared/ui/page-header/page-header.component';
 
 @Component({
-  selector: 'app-update-user',
-  standalone: true,
-  imports: [UserImgComponent, UserFormComponent, DatePipe, PageHeaderComponent, NgClass],
-  templateUrl: './update-user.component.html',
-  styleUrl: './update-user.component.scss'
+    selector: 'app-update-user',
+    imports: [UserImgComponent, UserFormComponent, DatePipe, PageHeaderComponent, NgClass],
+    templateUrl: './update-user.component.html',
+    styleUrl: './update-user.component.scss'
 })
 export class UpdateUserComponent {
   user = input.required<User>();

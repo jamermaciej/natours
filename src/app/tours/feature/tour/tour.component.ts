@@ -14,11 +14,10 @@ import { ReviewsStore } from '../../../reviews/data-access/reviews.store';
 import { Tour } from '../../interfaces/tour';
 
 @Component({
-  selector: 'app-tour',
-  standalone: true,
-  imports: [CommonModule, TourDetailsComponent, LoaderComponent],
-  templateUrl: './tour.component.html',
-  styleUrl: './tour.component.scss'
+    selector: 'app-tour',
+    imports: [CommonModule, TourDetailsComponent, LoaderComponent],
+    templateUrl: './tour.component.html',
+    styleUrl: './tour.component.scss'
 })
 export class TourComponent {
   #store = inject(Store);

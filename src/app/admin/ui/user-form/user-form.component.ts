@@ -8,11 +8,10 @@ import { NgClass } from '@angular/common';
 import { validateEmailValidator } from '../../../shared/validators/validate-email.validator';
 
 @Component({
-  selector: 'app-user-form',
-  standalone: true,
-  imports: [ReactiveFormsModule, ControlErrorComponent, RoleSelectComponent, NgClass],
-  templateUrl: './user-form.component.html',
-  styleUrl: './user-form.component.scss'
+    selector: 'app-user-form',
+    imports: [ReactiveFormsModule, ControlErrorComponent, RoleSelectComponent, NgClass],
+    templateUrl: './user-form.component.html',
+    styleUrl: './user-form.component.scss'
 })
 export class UserFormComponent {
   #formBuilder = inject(NonNullableFormBuilder);

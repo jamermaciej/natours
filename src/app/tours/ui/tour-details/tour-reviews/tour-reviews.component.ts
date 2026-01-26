@@ -6,12 +6,11 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RatingComponent } from '../../../../shared/ui/rating/rating.component';
 
 @Component({
-  selector: 'app-tour-reviews',
-  standalone: true,
-  imports: [NgClass, CarouselModule, RatingComponent],
-  templateUrl: './tour-reviews.component.html',
-  styleUrl: './tour-reviews.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-tour-reviews',
+    imports: [NgClass, CarouselModule, RatingComponent],
+    templateUrl: './tour-reviews.component.html',
+    styleUrl: './tour-reviews.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TourReviewsComponent {
   @Input({ required: true}) reviews!: ReviewResponse[]; 

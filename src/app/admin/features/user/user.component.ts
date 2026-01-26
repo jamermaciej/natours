@@ -9,11 +9,10 @@ import { User, UserBody } from '../../../shared/interfaces/user';
 import { ErrorMessageComponent } from '../../../shared/ui/error-message/error-message.component';
 
 @Component({
-  selector: 'app-user',
-  standalone: true,
-  imports: [UpdateUserComponent, LoaderComponent, ErrorMessageComponent],
-  templateUrl: './user.component.html',
-  styleUrl: './user.component.scss'
+    selector: 'app-user',
+    imports: [UpdateUserComponent, LoaderComponent, ErrorMessageComponent],
+    templateUrl: './user.component.html',
+    styleUrl: './user.component.scss'
 })
 export class UserComponent {
   usersService = inject(UsersService);

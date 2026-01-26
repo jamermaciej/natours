@@ -14,11 +14,10 @@ import { PageHeaderComponent } from '../../../shared/ui/page-header/page-header.
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 
 @Component({
-  selector: 'app-my-tours',
-  standalone: true,
-  imports: [CommonModule, PageWrapperComponent, TourListComponent, LoaderComponent, PageHeaderComponent],
-  templateUrl: './my-tours.component.html',
-  styleUrl: './my-tours.component.scss'
+    selector: 'app-my-tours',
+    imports: [CommonModule, PageWrapperComponent, TourListComponent, LoaderComponent, PageHeaderComponent],
+    templateUrl: './my-tours.component.html',
+    styleUrl: './my-tours.component.scss'
 })
 export class MyToursComponent implements OnInit {
   #store = inject(Store);

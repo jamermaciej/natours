@@ -17,19 +17,18 @@ import { Store } from '@ngrx/store';
 import { authFeature } from '../../../shared/data-access/auth/store/auth.state';
 
 @Component({
-  selector: 'app-users',
-  standalone: true,
-  imports: [
-    LoaderComponent,
-    PageHeaderComponent,
-    UsersListComponent,
-    UsersListComponent,
-    PaginationComponent,
-    SearchInputComponent,
-    RoleSelectComponent
-  ],
-  templateUrl: './users.component.html',
-  styleUrl: './users.component.scss'
+    selector: 'app-users',
+    imports: [
+        LoaderComponent,
+        PageHeaderComponent,
+        UsersListComponent,
+        UsersListComponent,
+        PaginationComponent,
+        SearchInputComponent,
+        RoleSelectComponent
+    ],
+    templateUrl: './users.component.html',
+    styleUrl: './users.component.scss'
 })
 export class UsersComponent implements OnInit {
   readonly usersStore = inject(UsersStore);

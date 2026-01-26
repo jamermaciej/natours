@@ -5,11 +5,10 @@ import { PageWrapperComponent } from '../../../layout/ui/page-wrapper/page-wrapp
 import { ReviewBody, Review } from '../../../tours/interfaces/review';
 
 @Component({
-  selector: 'app-review',
-  standalone: true,
-  imports: [PageWrapperComponent, ReviewFormComponent],
-  templateUrl: './review.component.html',
-  styleUrl: './review.component.scss'
+    selector: 'app-review',
+    imports: [PageWrapperComponent, ReviewFormComponent],
+    templateUrl: './review.component.html',
+    styleUrl: './review.component.scss'
 })
 export class ReviewComponent {
   readonly reviewsStore = inject(ReviewsStore);

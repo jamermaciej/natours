@@ -12,11 +12,10 @@ import { LoadStatus } from '../../../tours/enums/load-status';
 import { PasswordUpdateData } from '../../../shared/interfaces/password-update-data';
 
 @Component({
-  selector: 'app-settings',
-  standalone: true,
-  imports: [UpdateProfileComponent, AsyncPipe, ChangePasswordComponent],
-  templateUrl: './settings.component.html',
-  styleUrl: './settings.component.scss'
+    selector: 'app-settings',
+    imports: [UpdateProfileComponent, AsyncPipe, ChangePasswordComponent],
+    templateUrl: './settings.component.html',
+    styleUrl: './settings.component.scss'
 })
 export class SettingsComponent {
   #store = inject(Store);

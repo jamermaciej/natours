@@ -6,11 +6,10 @@ import { NavItemComponent } from "../nav-item/nav-item.component";
 import { HasRoleDirective } from '../../../shared/directives/has-role.directive';
 
 @Component({
-  selector: 'app-side-nav',
-  standalone: true,
-  imports: [NavItemComponent, HasRoleDirective],
-  templateUrl: './side-nav.component.html',
-  styleUrl: './side-nav.component.scss'
+    selector: 'app-side-nav',
+    imports: [NavItemComponent, HasRoleDirective],
+    templateUrl: './side-nav.component.html',
+    styleUrl: './side-nav.component.scss'
 })
 export class SideNavComponent {
   protected navItems: NavItem[] = [

@@ -2,18 +2,17 @@ import { Component, ElementRef, HostListener, Input, inject } from '@angular/cor
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'app-file-upload',
-  standalone: true,
-  imports: [],
-  templateUrl: './file-upload.component.html',
-  styleUrl: './file-upload.component.scss',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: FileUploadComponent,
-      multi: true
-    }
-  ]
+    selector: 'app-file-upload',
+    imports: [],
+    templateUrl: './file-upload.component.html',
+    styleUrl: './file-upload.component.scss',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: FileUploadComponent,
+            multi: true
+        }
+    ]
 })
 export class FileUploadComponent {
   #host = inject(ElementRef<HTMLInputElement>);

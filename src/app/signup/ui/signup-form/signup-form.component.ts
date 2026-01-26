@@ -6,11 +6,10 @@ import { ControlErrorComponent } from '../../../shared/ui/control-error/control-
 import { matchPasswordValidator } from '../../../shared/validators/match-password-validator';
 
 @Component({
-  selector: 'app-signup-form',
-  standalone: true,
-  imports: [ReactiveFormsModule, LoaderComponent, CommonModule, ControlErrorComponent],
-  templateUrl: './signup-form.component.html',
-  styleUrl: './signup-form.component.scss'
+    selector: 'app-signup-form',
+    imports: [ReactiveFormsModule, LoaderComponent, CommonModule, ControlErrorComponent],
+    templateUrl: './signup-form.component.html',
+    styleUrl: './signup-form.component.scss'
 })
 export class SignupFormComponent {
   #formBuilder = inject(FormBuilder);

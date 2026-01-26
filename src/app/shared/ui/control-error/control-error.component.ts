@@ -17,11 +17,10 @@ export const FORM_ERRORS = new InjectionToken('FORM_ERRORS', {
 });
 
 @Component({
-  selector: 'app-control-error',
-  standalone: true,
-  imports: [],
-  templateUrl: './control-error.component.html',
-  styleUrl: './control-error.component.scss'
+    selector: 'app-control-error',
+    imports: [],
+    templateUrl: './control-error.component.html',
+    styleUrl: './control-error.component.scss'
 })
 export class ControlErrorComponent implements OnInit {
   #formGroupDirective = inject(FormGroupDirective);
