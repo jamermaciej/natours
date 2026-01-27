@@ -1,4 +1,4 @@
-import { Component, input, model, output, signal } from '@angular/core';
+import { Component, input, model } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -12,7 +12,8 @@ export class RoleSelectComponent {
   options = input.required<string[]>();
   control = input<FormControl>();
 
-  onSelectionChange(value: string) {
+  onSelectionChange(event: Event) {
+    const value = (event.target as HTMLSelectElement).value;
     this.selectedOption.set(value);
   }
 }
