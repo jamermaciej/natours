@@ -1,4 +1,4 @@
-@import 'functions';
+@use 'functions' as *;
 
 .user {
     max-width: toRem(880);

@@ -1,4 +1,4 @@
-@import 'mixins';
+@use 'mixins' as *;
 
 .tour-list {
     max-width: 120rem;

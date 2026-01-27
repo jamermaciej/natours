@@ -1,5 +1,6 @@
 
-@import 'functions';
+@use 'functions' as *;
+@use 'sass:color';
 
 .rating {
     display: flex;
@@ -22,7 +23,7 @@
         }
 
         &:hover ~ input:checked ~ label {
-            color: darken(#55c57a, 15%);
+            color: color.adjust(#55c57a, $lightness: -15%);
         }
     }
 
@@ -36,7 +37,7 @@
         &:checked + label:hover,
         &:checked ~ label:hover,
         &:checked ~ label:hover ~ label {
-            color: darken(#55c57a, 15%);
+            color: color.adjust(#55c57a, $lightness: -15%);
         }
     }
     

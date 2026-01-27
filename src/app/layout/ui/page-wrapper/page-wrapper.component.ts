@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
     </div>
   `,
     styles: `
-    @import 'mixins';
+    @use 'mixins' as *;
 
     .page-wrapper {
       padding: 8rem 6rem;

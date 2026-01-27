@@ -1,4 +1,4 @@
-@import 'functions';
+@use 'functions' as *;
 
 .settings {
     &__form-container {

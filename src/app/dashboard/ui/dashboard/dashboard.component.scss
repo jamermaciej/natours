@@ -1,5 +1,5 @@
-@import 'functions';
-@import 'mixins';
+@use 'functions' as *;
+@use 'mixins' as *;
 
 .dashbaord {
     background-color: var(--color-white);
