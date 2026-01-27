@@ -15,7 +15,7 @@
             </button>
         </app-page-header>
 
-        <app-user-img [photo]="user().photo" [name]="user().name" [width]="10" [height]="10"></app-user-img>
+        <app-user-img [photo]="user().photo" [name]="user().name" [width]="10" [height]="10" [class]="'mb-4'"></app-user-img>
         
         <app-user-form [user]="user()" [loading]="loadingUpdate()" (triggerSubmit)="onUpdate($event)" btnText="Update"></app-user-form>
     

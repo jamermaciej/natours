@@ -20,7 +20,10 @@
             <label class="form__label" for="role">Role</label>
             <app-role-select [options]="roles" [control]="role" />
         </div>
-        <div class="form__group">
+        <div class="form__group d-flex justify-content-between">
+            @if (user()) {
+                <a [routerLink]="[flowRoutes.USERS]" class="btn btn--gray btn--small">Back</a>
+            }
             <button class="btn btn--green btn--small"
                     [class.disabled]="userForm.pristine || userForm.invalid || loading()"
                     [disabled]="userForm.pristine || userForm.invalid || loading()">

@@ -13,4 +13,5 @@ export class UserImgComponent {
   name = input.required<string>();
   width = input<number>(3.5);
   height = input<number>(3.5);
+  class = input<string>();
 }

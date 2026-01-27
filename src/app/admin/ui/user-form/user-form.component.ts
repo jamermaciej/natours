@@ -6,10 +6,12 @@ import { RoleSelectComponent } from '../../../shared/ui/role-select/role-select.
 import { Role } from '../../../tours/enums/role';
 
 import { validateEmailValidator } from '../../../shared/validators/validate-email.validator';
+import { RouterLink } from "@angular/router";
+import { FlowRoutes } from '../../../shared/enums/flow-routes';
 
 @Component({
     selector: 'app-user-form',
-    imports: [ReactiveFormsModule, ControlErrorComponent, RoleSelectComponent],
+    imports: [ReactiveFormsModule, ControlErrorComponent, RoleSelectComponent, RouterLink],
     templateUrl: './user-form.component.html',
     styleUrl: './user-form.component.scss'
 })
@@ -32,6 +34,7 @@ export class UserFormComponent {
 
   triggerSubmit = output<UserBody>();
   #injector = inject(EnvironmentInjector);
+  flowRoutes = FlowRoutes;
   
   constructor() {
     effect(() => {

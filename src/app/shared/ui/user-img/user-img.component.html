@@ -1,5 +1,5 @@
 <img [style.width.rem]="width()"
      [style.height.rem]="height()"
-     class="user-img"
+     [class]="'user-img ' + class()"
      [src]="apiHostUrl + '/img/users/' + photo()"
      [alt]="'Photo of' + name()">
