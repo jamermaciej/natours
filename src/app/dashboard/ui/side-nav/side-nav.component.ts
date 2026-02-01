@@ -43,6 +43,11 @@ export class SideNavComponent {
           link: FlowRoutes.USERS,
           name: 'Users',
           icon: 'user'
+        },
+        {
+          link: FlowRoutes.BOOKINGS,
+          name: 'Bookings',
+          icon: 'book'
         }
       ]
     },

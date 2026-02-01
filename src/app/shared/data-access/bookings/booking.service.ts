@@ -18,4 +18,8 @@ export class BookingService {
   getMyBookings(): Observable<ApiResponse<Booking[]>> {
     return this.#http.get<ApiResponse<Booking[]>>(apiEndpoint.BookingEndpoint.getMyBookings, { withCredentials: true });
   }
+
+  getAllBookings(): Observable<ApiResponse<Booking[]>> {
+    return this.#http.get<ApiResponse<Booking[]>>(apiEndpoint.BookingEndpoint.getAllBookings, { withCredentials: true });
+  }
 }
