@@ -3,18 +3,16 @@
         <div class="form__group">
             <label class="form__label" for="email">Email</label>
             <input class="form__input" id="email" type="email" formControlName="email">
-            <app-control-error controlName="email" />
-            @if (email.pending && email.dirty) {
-                <div class="pending">Checking availability......</div>
-            }
-            @if (email.hasError('emailTaken')) {
-                <div class="error">Email is already taken!</div>
-            }
+            <app-control-error
+                controlName="email"
+                [customErrors]="{ emailTaken: 'Email is already taken!' }"
+                pendingText="Checking if email is available..."
+            />
         </div>
         <div class="form__group">
             <label class="form__label" for="name">Name</label>
             <input class="form__input" id="name" type="text" formControlName="name">
-            <app-control-error controlName="name" />
+            <app-control-error controlName="name" [customErrors]="nameCustomErrors" />
         </div>
         <div class="form__group">
             <label class="form__label" for="role">Role</label>
@@ -25,8 +23,8 @@
                 <a [routerLink]="[flowRoutes.USERS]" class="btn btn--gray btn--small">Back</a>
             }
             <button class="btn btn--green btn--small"
-                    [class.disabled]="userForm.pristine || userForm.invalid || loading()"
-                    [disabled]="userForm.pristine || userForm.invalid || loading()">
+                    [class.disabled]="userForm.pristine || userForm.invalid || userForm.pending || loading()"
+                    [disabled]="userForm.pristine || userForm.invalid || userForm.pending || loading()">
                 @if (loading()) {
                     <div class="spinner-border" role="status">
                         <span class="sr-only">Loading...</span>

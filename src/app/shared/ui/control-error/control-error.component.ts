@@ -1,6 +1,6 @@
 import { Component, DestroyRef, InjectionToken, OnInit, inject, input, signal } from '@angular/core';
 import { FormGroupDirective } from '@angular/forms';
-import { distinctUntilChanged, merge, take, } from 'rxjs';
+import { delay, distinctUntilChanged, merge, take, } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 const defaultErrors: {
@@ -26,29 +26,41 @@ export class ControlErrorComponent implements OnInit {
   #formGroupDirective = inject(FormGroupDirective);
   #errors = inject(FORM_ERRORS);
   #destroyRef = inject(DestroyRef);
-  message = signal<string>('');  
+  errorMessage = signal<string>('');  
   controlName = input.required<string>();
-  customErrors = input< { [key: string]: string } >();
+  customErrors = input< { [key: string]: string | ((error: any) => string) } >();
+  pendingMessage = signal<string>('');
+  pendingText = input<string>('Validating...');
 
   ngOnInit(): void {
       if (this.#formGroupDirective) {
         const control = this.#formGroupDirective.control.get(this.controlName());
 
         if (control) {
-          merge(control.valueChanges, this.#formGroupDirective.ngSubmit).pipe(
+          merge(control.statusChanges, control.valueChanges, this.#formGroupDirective.ngSubmit).pipe(
             distinctUntilChanged(),
             takeUntilDestroyed(this.#destroyRef)
           ).subscribe(() => {
+            if (control.status === 'PENDING') {
+              this.setPendingMessage(this.pendingText());
+              this.setErrorMessage('');
+              return;
+            }
+
+            this.setPendingMessage('');
+            
             const controlErrors = control.errors;
 
             if (controlErrors && control.dirty) {
               const firstKey = Object.keys(controlErrors)[0];
-              const getError = this.#errors[firstKey];
-              const text = this.customErrors()?.[firstKey] || getError(controlErrors[firstKey]);
-
-              this.setError(text);
+              const getError = this.customErrors()?.[firstKey] || this.#errors[firstKey];
+              const text = typeof getError === 'function' 
+                ? getError(controlErrors[firstKey]) 
+                : getError;
+                
+              this.setErrorMessage(text);
             } else {
-              this.setError('');
+              this.setErrorMessage('');
             }
           });
         } else {
@@ -57,7 +69,11 @@ export class ControlErrorComponent implements OnInit {
       }
   }
 
-  setError(text: string) {
-    this.message.set(text);
+  setErrorMessage(text: string) {
+    this.errorMessage.set(text);
+  }
+
+  setPendingMessage(text: string) {
+    this.pendingMessage.set(text);
   }
 }

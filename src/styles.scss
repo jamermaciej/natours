@@ -116,11 +116,19 @@ ul {
 .error {
   font-size: toRem(12);
   color: #b71c1c;
+
+  strong {
+    font-weight: 700;
+  }
 }
 
 .pending {
   font-size: toRem(12);
   color: var(--color-secondary);
+
+    &::before {
+      content: '⏳ ';
+    }
 }
 
 .header .user-img {
