@@ -1,0 +1,42 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+        @if (config()?.showRowNumbers) {
+            <th scope="col">{{ config()?.rowNumberHeader || '#' }}</th>
+        }
+        @for (column of columns(); track column) {
+            <th scope="col">{{ column.header }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+        @for (item of data(); track item; let idx = $index) {
+            <tr>
+                @if (config()?.showRowNumbers) {
+                    <td>{{ idx + 1 }}</td>
+                }
+                @for (column of columns(); track column) {
+                    <td>
+                        @if (!column.templateRef) {
+                            @switch (column.type) {
+                                @case (TableColumnType.DATE) {
+                                    {{ item | nestedProperty: column.key! | date: (column.format ?? 'dd.MM.yyyy') }}
+                                }
+                                @case (TableColumnType.CURRENCY) {
+                                    {{ item | nestedProperty: column.key! | currency:(column.currency ?? 'PLN'):'symbol':'1.0-2' }}
+                                }
+                                @default {
+                                    {{ item | nestedProperty: column.key! }}
+                                }
+                            }
+                        } @else if (column.templateRef) {
+                            <ng-container 
+                                *ngTemplateOutlet="column.templateRef; context: { $implicit: item }">
+                            </ng-container>
+                        }
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

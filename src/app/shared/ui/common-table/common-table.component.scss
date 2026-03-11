@@ -1,0 +1,8 @@
+@use 'functions' as *;
+
+th,
+td {
+    vertical-align: middle;
+    padding-top: toRem(10);
+    padding-bottom: toRem(10);
+}
