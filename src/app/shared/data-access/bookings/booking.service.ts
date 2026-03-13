@@ -20,6 +20,10 @@ export class BookingService {
   }
 
   getAllBookings(): Observable<ApiResponse<Booking[]>> {
-    return this.#http.get<ApiResponse<Booking[]>>(apiEndpoint.BookingEndpoint.getAllBookings, { withCredentials: true });
+    return this.#http.get<ApiResponse<Booking[]>>(apiEndpoint.BookingEndpoint.baseBooking, { withCredentials: true });
+  }
+
+  removeBooking(id: string) {
+    return this.#http.delete(`${apiEndpoint.BookingEndpoint.baseBooking}/${id}`, { withCredentials: true });
   }
 }

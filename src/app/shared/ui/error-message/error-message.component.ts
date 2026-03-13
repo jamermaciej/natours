@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 @Component({
     selector: 'app-error-message',
@@ -7,5 +7,8 @@ import { Component, input } from '@angular/core';
     styleUrl: './error-message.component.scss'
 })
 export class ErrorMessageComponent {
-  message = input.required<string[]>();
+  message = input.required<string[], string | string[]>({
+    transform: (m: string | string[]) =>
+      Array.isArray(m) ? m : [m]
+  });
 }

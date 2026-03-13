@@ -62,6 +62,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+strong,
+b {
+  font-weight: bolder;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -133,4 +138,9 @@ ul {
 
 .header .user-img {
   margin-right: toRem(10);
+}
+
+.cdk-overlay-backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.2s ease-out;
 }

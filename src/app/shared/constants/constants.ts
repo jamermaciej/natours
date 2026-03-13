@@ -19,9 +19,9 @@ export const apiEndpoint = {
         getRecommendedTours: `${environment.apiUrl}/tours/recommended`
     },
     BookingEndpoint: {
+        baseBooking: `${environment.apiUrl}/bookings`,
         getMyBookings: `${environment.apiUrl}/bookings/my-bookings`,
-        bookTour: `${environment.apiUrl}/bookings/checkout-session/`,
-        getAllBookings: `${environment.apiUrl}/bookings`
+        bookTour: `${environment.apiUrl}/bookings/checkout-session/`
     },
     ReviewEndpoint: {
         baseReviews: `${environment.apiUrl}/reviews`,

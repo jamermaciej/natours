@@ -30,6 +30,12 @@ export const BookingsStore = signalStore(
                 patchState(store, { bookings: response.data.data, isLoading: false });
             }
         },
+        async removeBooking(id: string) {      
+            await lastValueFrom(bookingService.removeBooking(id));
+            patchState(store, {
+                bookings: store.bookings().filter(booking => booking._id !== id)
+            });
+        },
         clearState() {
             patchState(store, initialState)
         }
