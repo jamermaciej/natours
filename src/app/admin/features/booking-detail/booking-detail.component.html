@@ -1,0 +1,11 @@
+<div class="booking-detail">
+    @if (booking.error(); as error) {
+        <app-error-message [message]="errorMessage()" />
+    }
+
+    @if (booking.isLoading()) {
+        <app-loader />
+    } @else {
+        {{ booking.value() }}
+    }
+</div>

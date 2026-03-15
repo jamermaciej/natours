@@ -11,10 +11,12 @@ import { Dialog } from '@angular/cdk/dialog';
 import { ConfirmModalComponent } from '../../../shared/ui/confirm-modal/confirm-modal.component';
 import { ConfirmDialogData } from '../../../shared/interfaces/confirm-dialog-data';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
+import { Router, RouterLink } from '@angular/router';
+import { FlowRoutes } from '../../../shared/enums/flow-routes';
 
 @Component({
   selector: 'app-bookings',
-  imports: [LoaderComponent, PageHeaderComponent, CommonTableComponent],
+  imports: [LoaderComponent, PageHeaderComponent, CommonTableComponent, RouterLink],
   templateUrl: './bookings.component.html',
   styleUrl: './bookings.component.scss',
 })
@@ -22,8 +24,7 @@ export class BookingsComponent {
   private actionsTemplate = viewChild<TemplateRef<any>>('actionsTemplate');
   private paidTemplate = viewChild<TemplateRef<any>>('paidTemplate');
 
-  #dialog = inject(Dialog);
-
+  readonly #dialog = inject(Dialog);
   readonly #bookingsStore = inject(BookingsStore);
   readonly #snackbarService = inject(SnackbarService);
   protected readonly bookings = this.#bookingsStore.bookings;
@@ -42,13 +43,11 @@ export class BookingsComponent {
     { key: 'paid', header: 'Paid', type: TableColumnType.CUSTOM, templateRef: this.paidTemplate() },
     { header: 'Action', type: TableColumnType.ACTION, templateRef: this.actionsTemplate() }
   ]);
+
+  protected readonly flowRoutes = FlowRoutes;
   
   ngOnInit() {
     this.#bookingsStore.load();
-  }
-
-  editBooking(booking: Booking) {
-    console.log(booking);
   }
 
   async deleteBooking(booking: Booking) {

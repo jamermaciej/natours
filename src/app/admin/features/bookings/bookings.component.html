@@ -11,7 +11,7 @@
           </ng-template>
         <ng-template #actionsTemplate let-booking>
             <div class="bookings__actions">
-                <button (click)="editBooking(booking)">
+                <button [routerLink]="[flowRoutes.BOOKINGS, booking._id]">
                     <svg class="edit-icon"><use href="/assets/images/icons.svg#icon-edit"></use></svg>
                 </button>
                 <button (click)="deleteBooking(booking)">
