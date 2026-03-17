@@ -15,6 +15,7 @@
                     [subtitle]="booking.user.email"
                     buttonLabel="Go to profile ↗"
                     [link]="[flowRoutes.USERS, booking.user._id!]"
+                    [queryParams]="{ returnUrl: `${flowRoutes.BOOKINGS}/${booking._id}` }"
                 />
             </app-section-card>
             <app-section-card title="Tour">

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, QueryList } from '@angular/core';
 import { UserImgComponent } from '../user-img/user-img.component';
 import { RouterLink } from "@angular/router";
 
@@ -14,4 +14,5 @@ export class InfoCardComponent {
   subtitle = input.required<string>();
   buttonLabel = input.required<string>();
   link = input.required<string[]>();
+  queryParams = input<any>();
 }

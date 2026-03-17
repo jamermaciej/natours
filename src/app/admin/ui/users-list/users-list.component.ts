@@ -12,11 +12,6 @@ import { RouterLink } from '@angular/router';
 })
 export class UsersListComponent {
   users = input.required<User[]>();
-  triggerUserDetails = output<string>();
   flowRoutes = FlowRoutes;
   currentUser = input.required<User | null>();
-
-  goToUserDetails(id: string) {
-    this.triggerUserDetails.emit(id);
-  }
 }

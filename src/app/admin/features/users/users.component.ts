@@ -68,10 +68,6 @@ export class UsersComponent implements OnInit {
     this.role.set(value);
   }
 
-  goToUserDetails(id: string) {
-    this.router.navigate([FlowRoutes.USERS, id])
-  }
-
   openAddUserModal() {
     const dialogRef = this.#dialog.open<UserBody>(AddUserModalComponent, { autoFocus: false });
   }

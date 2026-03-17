@@ -18,7 +18,7 @@
                         @if (currentUser()?._id  === user._id) {
                             <a [routerLink]="flowRoutes.PROFILE">{{ user.name }}</a>
                         } @else {
-                            <a href="#" (click)="goToUserDetails(user._id!); $event.preventDefault()">{{ user.name }}</a>
+                            <a [routerLink]="[flowRoutes.USERS, user._id]" [queryParams]="{ returnUrl: flowRoutes.USERS }">{{ user.name }}</a>
                         }
                     </td>
                     <td>{{ user.email }}</td>

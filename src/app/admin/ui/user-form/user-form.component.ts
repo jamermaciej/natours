@@ -6,22 +6,25 @@ import { RoleSelectComponent } from '../../../shared/ui/role-select/role-select.
 import { Role } from '../../../tours/enums/role';
 
 import { validateEmailValidator } from '../../../shared/validators/validate-email.validator';
-import { RouterLink } from "@angular/router";
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { banWordsValidator } from '../../../shared/validators/ban-words.validator';
 import { environment } from '../../../../environments/environment';
 import { distinctUntilChanged } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NavigationService } from '../../../shared/services/navigation.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-user-form',
-    imports: [ReactiveFormsModule, ControlErrorComponent, RoleSelectComponent, RouterLink],
+    imports: [ReactiveFormsModule, ControlErrorComponent, RoleSelectComponent],
     templateUrl: './user-form.component.html',
     styleUrl: './user-form.component.scss'
 })
 export class UserFormComponent {
   #formBuilder = inject(NonNullableFormBuilder);
   #destroyRef = inject(DestroyRef);
+  #navigationService = inject(NavigationService);
+  #route = inject(ActivatedRoute);
   user = input<User>();
   roles = Object.values(Role);
   loading = input<boolean>();
@@ -40,6 +43,7 @@ export class UserFormComponent {
   triggerSubmit = output<UserBody>();
   #injector = inject(EnvironmentInjector);
   flowRoutes = FlowRoutes;
+  returnUrl = this.#route.snapshot.queryParams['returnUrl'];
   
   constructor() {
     effect(() => {
@@ -80,6 +84,10 @@ export class UserFormComponent {
     } else {
       this.userForm.markAllAsTouched();
     }
+  }
+
+  goBack() {
+    this.#navigationService.back(this.returnUrl);
   }
 
   get name() {

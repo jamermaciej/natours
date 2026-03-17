@@ -10,5 +10,5 @@
             <p>{{ subtitle() }}</p>
         </div>
     </div>
-    <a class="btn btn--small btn--outline w-100" [routerLink]="link()">{{ buttonLabel() }}</a>
+    <a class="btn btn--small btn--outline w-100" [routerLink]="link()" [queryParams]="queryParams()">{{ buttonLabel() }}</a>
 </div>
