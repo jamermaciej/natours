@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from '../shared/guards/auth.guard';
+import { cannotEditSelfGuard } from '../shared/guards/cannot-edit-self.guard';
 
 export const routes: Routes = [
     {
@@ -19,6 +20,7 @@ export const routes: Routes = [
             {
                 path: 'users/:userId',
                 loadComponent: () => import('./features/user/user.component').then(m => m.UserComponent),
+                canActivate: [cannotEditSelfGuard],
                 title: 'User Details'
             },
             {

@@ -4,14 +4,17 @@ import { Store } from '@ngrx/store';
 import { inject } from '@angular/core';
 import { authActions } from '../data-access/auth/store/auth.actions';
 import { authFeature } from '../../shared/data-access/auth/store/auth.state';
+import { Router } from '@angular/router';
+import { FlowRoutes } from '../enums/flow-routes';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const store = inject(Store);
-
+  const router = inject(Router);
+  
   return next(req).pipe(
     catchError(err => {
       if (err instanceof HttpErrorResponse) {
-        if (err && err.status === 401) {
+        if (err.status === 401) {
           return store.select(authFeature.selectIsLoggedIn).pipe(
             take(1),
             switchMap((isLoggedIn) => {
@@ -19,9 +22,12 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
                 store.dispatch(authActions.logout({ message: 'Session expired, you have been logged out.'}));
               }
       
-              return next(req);
+              return throwError(() => err);
             })
           );
+        }
+        if (err.status === 403) {
+          router.navigate([FlowRoutes.PROFILE]);
         }
       }
       return throwError(() => err);

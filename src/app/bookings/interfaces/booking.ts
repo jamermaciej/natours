@@ -9,4 +9,5 @@ export interface Booking {
     tour: Tour;
     user: User;
     price: number;
+    startDate: string;
 }

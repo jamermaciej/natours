@@ -5,7 +5,43 @@
 
     @if (booking.isLoading()) {
         <app-loader />
-    } @else {
-        {{ booking.value() }}
+    } @else if (booking.value(); as booking) {
+        <app-booking-detail-header [reservationNumber]="booking.reservationNumber" [status]="booking.paid ? 'paid' : 'unpaid'" />
+        <div class="cards-grid">
+            <app-section-card title="Client">
+                <app-info-card
+                    [photo]="booking.user.photo"
+                    [title]="booking.user.name"
+                    [subtitle]="booking.user.email"
+                    buttonLabel="Go to profile ↗"
+                    [link]="[flowRoutes.USERS, booking.user._id!]"
+                />
+            </app-section-card>
+            <app-section-card title="Tour">
+                <app-info-card
+                    [title]="booking.tour.name"
+                    [subtitle]="`ID: ${booking.tour._id}`"
+                    buttonLabel="Go to tour ↗"
+                    [link]="[flowRoutes.TOURS, booking.tour.slug]"
+                />
+            </app-section-card>
+        </div>
+        <div class="box-grid">
+            <app-info-box label="Price">
+                {{ booking.price | currency: 'PLN' }}
+            </app-info-box>
+            <app-info-box label="Booked date">
+                {{ booking.createdAt | date }}
+            </app-info-box>
+            <app-info-box label="Start date">
+                {{ booking.startDate | date }}
+            </app-info-box>
+            <app-info-box label="Payment status">
+                <span [class]="booking.paid ? 'paid' : 'unpaid'">{{ booking.paid ? 'Paid' : 'Unpaid' }}</span>
+            </app-info-box>
+        </div>
+        <app-section-card title="Guides">
+            <app-guides-list [guides]="booking.tour.guides"></app-guides-list>
+        </app-section-card>
     }
 </div>

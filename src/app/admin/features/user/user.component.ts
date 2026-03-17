@@ -19,6 +19,7 @@ export class UserComponent {
   userId = input.required<string>();
   isLoading = signal(false);
   readonly usersStore = inject(UsersStore);
+
   
   user = toSignal(
     toObservable(this.userId).pipe(

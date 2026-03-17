@@ -1,0 +1,30 @@
+@use 'functions' as *;
+
+.info-card {
+    &__photo {
+        margin-right: toRem(20);
+    }
+    
+    &__details {
+        min-height: toRem(50);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        p {
+            font-size: toRem(15);
+            line-height: toRem(20);
+        }
+    }
+    
+    a {
+        text-transform: none;
+
+        &:hover {
+            transform: translateY(0);
+            background-color: var(--color-gray-50);
+            color: var(--color-gray-1);
+        }
+    }
+}
+

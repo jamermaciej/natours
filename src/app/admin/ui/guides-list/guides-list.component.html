@@ -1,0 +1,12 @@
+<div class="guide-list">
+    @for (guide of guides(); track guide._id) {
+        <div class="guide-list__item">
+            <app-user-img [photo]="guide.photo" [name]="guide.name" [width]="5" [height]="5"></app-user-img>
+            <div class="flex-grow-1">
+                <p><strong>{{ guide.name }}</strong></p>
+                <p>{{ guide.email }}</p>
+            </div>
+            <app-role-badge [role]="guide.role"></app-role-badge>
+        </div>
+    }
+</div>

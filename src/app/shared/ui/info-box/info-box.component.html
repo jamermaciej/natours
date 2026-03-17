@@ -1,0 +1,10 @@
+<div class="info-box">
+    <p class="info-box__label">{{ label() }}</p>
+    <p class="info-box__value">
+        @if (value()) {
+            {{ value() }}
+        } @else {
+            <ng-content />
+        }
+    </p>
+</div>

@@ -1,0 +1,23 @@
+@use 'functions' as *;
+
+.guide-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: toRem(20);
+
+    &__item {
+        display: flex;
+        align-items: center;
+        column-gap: toRem(20);
+
+        p {
+            font-size: toRem(15);
+            line-height: toRem(20);
+        }
+
+        &:not(:last-child) {
+            border-bottom: 1px solid var(--color-gray-40);
+            padding-bottom: toRem(15);
+        }
+    }
+}

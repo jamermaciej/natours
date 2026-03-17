@@ -1,0 +1,14 @@
+<div class="info-card">
+    <div class="d-flex mb-4">
+        @if (photo()) {
+            <div class="info-card__photo">
+                <app-user-img [photo]="photo()!" [name]="title()" [width]="5" [height]="5"></app-user-img>
+            </div>
+        }
+        <div class="info-card__details">
+            <p><strong>{{ title() }}</strong></p>
+            <p>{{ subtitle() }}</p>
+        </div>
+    </div>
+    <a class="btn btn--small btn--outline w-100" [routerLink]="link()">{{ buttonLabel() }}</a>
+</div>

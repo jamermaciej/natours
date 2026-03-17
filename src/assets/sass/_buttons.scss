@@ -44,6 +44,7 @@ button {
 
     &--outline {
         border: 1px solid var(--color-gray-50);
+        color: var(--color-gray-50);
     }
 
     &--small {
@@ -52,7 +53,7 @@ button {
         line-height: toRem(14);
     }
 
-    &:hover:not(.disabled):not(:disabled) {
+    &:hover:not(.disabled):not(:disabled){
         transform: translateY(-3px);
         box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
     }

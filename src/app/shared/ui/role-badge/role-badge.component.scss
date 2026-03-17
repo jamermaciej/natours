@@ -1,0 +1,18 @@
+@use 'functions' as *;
+
+.role-badge {
+    padding: toRem(5) toRem(15);
+    border-radius: toRem(5);
+    font-size: toRem(10);
+    font-weight: 700;
+
+    &.lead-guide {
+        background-color: #483a0f;
+        color: #d1a041;
+    }
+
+    &.guide {
+        background-color: #262624;
+        color: #c2c0b6;
+    }
+}
