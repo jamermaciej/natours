@@ -8,25 +8,22 @@ import { provideEffects } from '@ngrx/effects';
 import { dataGuard } from './guards/data.guard';
 
 export const routes: Routes = [
-    {
+  {
     path: '',
-    providers: [
-      provideEffects(toursEffects),
-      provideState(toursFeature)
-    ],
+    providers: [provideEffects(toursEffects), provideState(toursFeature)],
     canActivate: [dataGuard],
     children: [
       {
         path: '',
         loadComponent: () => import('./feature/tours/tours.component').then(m => m.ToursComponent),
-        title: 'Tours'
+        title: 'Tours',
       },
       {
         path: ':slug',
         loadComponent: () => import('./feature/tour/tour.component').then(m => m.TourComponent),
         canActivate: [tourDetailsGuard],
-        title: tourTitleResolver
-      }
-    ]
-  }
+        title: tourTitleResolver,
+      },
+    ],
+  },
 ];

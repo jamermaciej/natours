@@ -1,17 +1,16 @@
-
 import { Component, input, OnInit, output } from '@angular/core';
 
 @Component({
-    selector: 'app-pagination',
-    templateUrl: './pagination.component.html',
-    styleUrl: './pagination.component.scss'
+  selector: 'app-pagination',
+  templateUrl: './pagination.component.html',
+  styleUrl: './pagination.component.scss',
 })
 export class PaginationComponent implements OnInit {
   totalItems = input.required<number>();
   currentPage = input.required<number>();
   itemsPerPage = input.required<number>();
   totalPages = input.required<number>();
-  
+
   triggerPageChange = output<number>();
   triggerPrevPage = output<number>();
   triggerNextPage = output<number>();

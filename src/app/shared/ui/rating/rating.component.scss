@@ -1,62 +1,61 @@
-
 @use 'functions' as *;
 @use 'sass:color';
 
 .rating {
-    display: flex;
+  display: flex;
 
-    flex-direction: row-reverse;
-    justify-content: flex-end;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
 
-    & > label {
-        color: #bbb;
-        width: toRem(20);
-        height: toRem(20);
-        cursor: pointer;
+  & > label {
+    color: #bbb;
+    width: toRem(20);
+    height: toRem(20);
+    cursor: pointer;
 
-        &:before {
-            font-size: toRem(20);
-            font-family: FontAwesome;
-            content: "\f005";
-            position: relative;
-            top: -7px;
-        }
-
-        &:hover ~ input:checked ~ label {
-            color: color.adjust(#55c57a, $lightness: -15%);
-        }
+    &:before {
+      font-size: toRem(20);
+      font-family: FontAwesome;
+      content: '\f005';
+      position: relative;
+      top: -7px;
     }
 
-    & > input {
-        display: none;
-
-        &:checked ~ label {
-            color: var(--color-brand);
-        }
-
-        &:checked + label:hover,
-        &:checked ~ label:hover,
-        &:checked ~ label:hover ~ label {
-            color: color.adjust(#55c57a, $lightness: -15%);
-        }
+    &:hover ~ input:checked ~ label {
+      color: color.adjust(#55c57a, $lightness: -15%);
     }
-    
-    &:not(:checked) > label:hover,
-    &:not(:checked) > label:hover ~ label {
-        color: var(--color-brand);
+  }
+
+  & > input {
+    display: none;
+
+    &:checked ~ label {
+      color: var(--color-brand);
     }
 
-    &__star {
-        height: toRem(20);
-        width: toRem(20);
-        margin-right: 1px;
-    
-        &--active {
-            fill: var(--color-green);
-        }
-    
-        &--inactive {
-            fill: #bbb;
-        }
+    &:checked + label:hover,
+    &:checked ~ label:hover,
+    &:checked ~ label:hover ~ label {
+      color: color.adjust(#55c57a, $lightness: -15%);
     }
+  }
+
+  &:not(:checked) > label:hover,
+  &:not(:checked) > label:hover ~ label {
+    color: var(--color-brand);
+  }
+
+  &__star {
+    height: toRem(20);
+    width: toRem(20);
+    margin-right: 1px;
+
+    &--active {
+      fill: var(--color-green);
+    }
+
+    &--inactive {
+      fill: #bbb;
+    }
+  }
 }

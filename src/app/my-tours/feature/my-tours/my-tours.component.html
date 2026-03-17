@@ -1,8 +1,8 @@
 <app-page-wrapper>
-    @if (isLoading$ | async) {
-        <app-loader />
-    } @else {
-        <app-page-header title="My Tours" [link]="flowRoutes.PROFILE" linkText="Back to Profile" />
-        <app-tour-list [tours]="myTours()" />
-    }
+  @if (isLoading$ | async) {
+    <app-loader />
+  } @else {
+    <app-page-header title="My Tours" [link]="flowRoutes.PROFILE" linkText="Back to Profile" />
+    <app-tour-list [tours]="myTours()" />
+  }
 </app-page-wrapper>

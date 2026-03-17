@@ -1,24 +1,24 @@
 @use 'functions' as *;
 
 .error {
-    text-align: center;
+  text-align: center;
 
-    &__title {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: toRem(10);
-    }
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: toRem(10);
+  }
 
-    &__emoji {
-        font-size: toRem(37.5);
-        margin-left: toRem(10);
-    }
+  &__emoji {
+    font-size: toRem(37.5);
+    margin-left: toRem(10);
+  }
 
-    &__msg {
-        font-size: toRem(25);
-        font-weight: 700;
-        max-width: toRem(500);
-        margin: 0 auto;
-    }
+  &__msg {
+    font-size: toRem(25);
+    font-weight: 700;
+    max-width: toRem(500);
+    margin: 0 auto;
+  }
 }

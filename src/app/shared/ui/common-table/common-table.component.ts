@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { TableColumn } from '../../interfaces/table-column';
-import { nestedProperty } from "../../pipes/nested-property";
+import { nestedProperty } from '../../pipes/nested-property';
 import { TableConfig } from '../../interfaces/table-config';
 import { TableColumnType } from '../../enums/table-column-type';
 import { CurrencyPipe, DatePipe, NgTemplateOutlet } from '@angular/common';

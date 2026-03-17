@@ -7,10 +7,10 @@ import { environment } from '../../../../environments/environment';
 import { FileUploadComponent } from '../../../shared/ui/file-upload/file-upload.component';
 
 @Component({
-    selector: 'app-update-profile',
-    imports: [ReactiveFormsModule, ControlErrorComponent, FileUploadComponent],
-    templateUrl: './update-profile.component.html',
-    styleUrl: './update-profile.component.scss'
+  selector: 'app-update-profile',
+  imports: [ReactiveFormsModule, ControlErrorComponent, FileUploadComponent],
+  templateUrl: './update-profile.component.html',
+  styleUrl: './update-profile.component.scss',
 })
 export class UpdateProfileComponent implements OnInit {
   #formBuilder = inject(NonNullableFormBuilder);
@@ -18,7 +18,7 @@ export class UpdateProfileComponent implements OnInit {
   profileForm = this.#formBuilder.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    photo: ['']
+    photo: [''],
   });
   user = input.required<User>();
   loading = model.required<boolean>();
@@ -26,8 +26,8 @@ export class UpdateProfileComponent implements OnInit {
   @Output() onUpdateProfile: EventEmitter<User> = new EventEmitter<User>();
 
   ngOnInit(): void {
-      const { name, email } = this.user();
-      this.profileForm.patchValue({ name, email });
+    const { name, email } = this.user();
+    this.profileForm.patchValue({ name, email });
   }
 
   onSubmit() {
@@ -35,9 +35,8 @@ export class UpdateProfileComponent implements OnInit {
       this.loading.set(true);
       this.onUpdateProfile.emit({
         ...this.user(),
-        ...this.profileForm.value
+        ...this.profileForm.value,
       });
-      
     } else {
       this.profileForm.markAllAsTouched();
     }

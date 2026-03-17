@@ -9,7 +9,9 @@ import { FlowRoutes } from '../enums/flow-routes';
 export const cannotEditSelfGuard: CanActivateFn = (route, state) => {
   const store = inject(Store);
   const router = inject(Router);
-  const currentUser: Signal<User | null> = toSignal(store.select(authFeature.selectUser), { initialValue: null });
+  const currentUser: Signal<User | null> = toSignal(store.select(authFeature.selectUser), {
+    initialValue: null,
+  });
   const id = route.paramMap.get('userId');
 
   if (currentUser()?._id === id) {

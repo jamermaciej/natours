@@ -3,10 +3,9 @@ import { Role } from '../../tours/enums/role';
 
 @Pipe({
   name: 'role',
-  standalone: true
+  standalone: true,
 })
 export class RolePipe implements PipeTransform {
-
   transform(role: string): string {
     if (role === Role.LEAD_GUIDE) {
       return 'Lead guide';
@@ -16,5 +15,4 @@ export class RolePipe implements PipeTransform {
       return role;
     }
   }
-
 }

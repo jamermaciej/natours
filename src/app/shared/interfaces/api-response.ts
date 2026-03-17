@@ -1,11 +1,11 @@
-import { Pagination } from "./pagination";
+import { Pagination } from './pagination';
 
 export interface ApiResponse<T> {
-    status: string;
-    message?: string;
-    results?: number;
-    pagination: Pagination
-    data: {
-        data: T
-    };
+  status: string;
+  message?: string;
+  results?: number;
+  pagination: Pagination;
+  data: {
+    data: T;
+  };
 }

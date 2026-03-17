@@ -19,11 +19,9 @@ registerLocaleData(localePl);
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withComponentInputBinding()),
-    provideHttpClient(
-      withInterceptors([errorInterceptor])
-    ),
+    provideHttpClient(withInterceptors([errorInterceptor])),
     provideStore({
-      router: routerReducer
+      router: routerReducer,
     }),
     provideEffects(routerEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
@@ -32,7 +30,7 @@ export const appConfig: ApplicationConfig = {
     provideState(authFeature),
     {
       provide: LOCALE_ID,
-      useValue: 'pl-PL'
-    }
-]
+      useValue: 'pl-PL',
+    },
+  ],
 };

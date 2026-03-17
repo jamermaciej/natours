@@ -1,17 +1,17 @@
 @use 'functions' as *;
 
 .detail-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: toRem(20);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: toRem(20);
 
-    h2 {
-        font-weight: 700;
-        font-size: toRem(22.5);
-    }
+  h2 {
+    font-weight: 700;
+    font-size: toRem(22.5);
+  }
 
-    p {
-        font-weight: 400;
-        font-size: toRem(14);
-    }
+  p {
+    font-weight: 400;
+    font-size: toRem(14);
+  }
 }

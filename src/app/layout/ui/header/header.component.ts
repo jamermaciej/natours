@@ -9,19 +9,20 @@ import { authActions } from '../../../shared/data-access/auth/store/auth.actions
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { UserImgComponent } from '../../../shared/ui/user-img/user-img.component';
 
-
 @Component({
-    selector: 'app-header',
-    imports: [RouterModule, UserImgComponent],
-    templateUrl: './header.component.html',
-    styleUrl: './header.component.scss'
+  selector: 'app-header',
+  imports: [RouterModule, UserImgComponent],
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   #store = inject(Store);
-  user: Signal<User | null> = toSignal(this.#store.select(authFeature.selectUser), { initialValue: null });
+  user: Signal<User | null> = toSignal(this.#store.select(authFeature.selectUser), {
+    initialValue: null,
+  });
   readonly flowRoutes = FlowRoutes;
 
   logout() {
-    this.#store.dispatch(authActions.logout({ message: 'Logged out successfully!'}));
+    this.#store.dispatch(authActions.logout({ message: 'Logged out successfully!' }));
   }
 }

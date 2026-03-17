@@ -1,5 +1,5 @@
 export interface StartDate {
-    date: Date,
-    participants: number,
-    soldOut?: boolean
+  date: Date;
+  participants: number;
+  soldOut?: boolean;
 }

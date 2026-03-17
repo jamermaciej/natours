@@ -10,20 +10,22 @@ import { FlowRoutes } from '../enums/flow-routes';
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const store = inject(Store);
   const router = inject(Router);
-  
+
   return next(req).pipe(
     catchError(err => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
           return store.select(authFeature.selectIsLoggedIn).pipe(
             take(1),
-            switchMap((isLoggedIn) => {
+            switchMap(isLoggedIn => {
               if (isLoggedIn) {
-                store.dispatch(authActions.logout({ message: 'Session expired, you have been logged out.'}));
+                store.dispatch(
+                  authActions.logout({ message: 'Session expired, you have been logged out.' }),
+                );
               }
-      
+
               return throwError(() => err);
-            })
+            }),
           );
         }
         if (err.status === 403) {
@@ -31,6 +33,6 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         }
       }
       return throwError(() => err);
-    }
-  ));
+    }),
+  );
 };

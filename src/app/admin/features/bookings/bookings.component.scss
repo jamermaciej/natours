@@ -1,34 +1,33 @@
 @use 'functions' as *;
 
 .bookings {
-    max-width: toRem(880);
-    margin: 0 auto;
-    padding: 0 toRem(80);
+  max-width: toRem(880);
+  margin: 0 auto;
+  padding: 0 toRem(80);
 
-    .paid-status {
-        text-align: center;
+  .paid-status {
+    text-align: center;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    button,
+    svg {
+      height: toRem(19);
+      width: toRem(19);
     }
 
-    &__actions {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
+    button {
+      .edit-icon {
+        fill: var(--color-secondary);
+      }
 
-        button,
-        svg {
-            height: toRem(19);
-            width: toRem(19);
-        }
-
-        button {
-
-            .edit-icon {
-                fill: var(--color-secondary);
-            }
-
-            .remove-icon {
-                fill: #b71c1c;
-            }
-        }
+      .remove-icon {
+        fill: #b71c1c;
+      }
     }
+  }
 }

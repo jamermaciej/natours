@@ -31,8 +31,8 @@ export class BookingsComponent {
   protected readonly isLoading = this.#bookingsStore.isLoading;
 
   protected readonly tableConfig: TableConfig = {
-    showRowNumbers: true
-  }
+    showRowNumbers: true,
+  };
 
   protected columns = computed<TableColumn[]>(() => [
     { key: 'reservationNumber', header: '#', type: TableColumnType.TEXT },
@@ -41,11 +41,11 @@ export class BookingsComponent {
     { key: 'createdAt', header: 'Booked date', type: TableColumnType.DATE, format: 'dd MMM yyyy' },
     { key: 'price', header: 'Price', type: TableColumnType.CURRENCY },
     { key: 'paid', header: 'Paid', type: TableColumnType.CUSTOM, templateRef: this.paidTemplate() },
-    { header: 'Action', type: TableColumnType.ACTION, templateRef: this.actionsTemplate() }
+    { header: 'Action', type: TableColumnType.ACTION, templateRef: this.actionsTemplate() },
   ]);
 
   protected readonly flowRoutes = FlowRoutes;
-  
+
   ngOnInit() {
     this.#bookingsStore.load();
   }
@@ -66,7 +66,7 @@ export class BookingsComponent {
       data: dialogData,
       disableClose: false,
       hasBackdrop: true,
-      backdropClass: 'cdk-overlay-backdrop'
+      backdropClass: 'cdk-overlay-backdrop',
     });
   }
 }

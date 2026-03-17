@@ -6,7 +6,7 @@ import { Observable, delay } from 'rxjs';
 import { apiEndpoint } from '../../shared/constants/constants';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TourService {
   #http = inject(HttpClient);
@@ -16,7 +16,9 @@ export class TourService {
   }
 
   getMyTours(): Observable<ApiResponse<Tour[]>> {
-    return this.#http.get<ApiResponse<Tour[]>>(apiEndpoint.TourEndpoint.getMyTours, { withCredentials: true });
+    return this.#http.get<ApiResponse<Tour[]>>(apiEndpoint.TourEndpoint.getMyTours, {
+      withCredentials: true,
+    });
   }
 
   getRecommendedTours(): Observable<ApiResponse<Tour[]>> {

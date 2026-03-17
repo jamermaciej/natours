@@ -1,13 +1,13 @@
-import { Role } from "../../tours/enums/role";
-import { Tour } from "../../tours/interfaces/tour";
+import { Role } from '../../tours/enums/role';
+import { Tour } from '../../tours/interfaces/tour';
 
 export interface User {
-    _id?: string;
-    name: string;
-    email: string;
-    photo: string;
-    role: Role;
-    passwordChangedAt?: string;
+  _id?: string;
+  name: string;
+  email: string;
+  photo: string;
+  role: Role;
+  passwordChangedAt?: string;
 }
 
 export type ReviewUser = Pick<User, '_id' | 'name' | 'photo'>;

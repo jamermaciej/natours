@@ -1,6 +1,6 @@
 import { Component, input, QueryList } from '@angular/core';
 import { UserImgComponent } from '../user-img/user-img.component';
-import { RouterLink } from "@angular/router";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-info-card',

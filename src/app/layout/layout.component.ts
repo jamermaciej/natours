@@ -5,9 +5,9 @@ import { HeaderComponent } from './ui/header/header.component';
 import { FooterComponent } from './ui/footer/footer.component';
 
 @Component({
-    selector: 'app-layout',
-    imports: [RouterOutlet, HeaderComponent, FooterComponent],
-    template: `
+  selector: 'app-layout',
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  template: `
     <div class="layout">
       <!-- HEADER -->
       <app-header></app-header>
@@ -21,7 +21,7 @@ import { FooterComponent } from './ui/footer/footer.component';
       <app-footer></app-footer>
     </div>
   `,
-    styles: `
+  styles: `
     .layout {
       display: flex;
       flex-direction: column;
@@ -34,8 +34,6 @@ import { FooterComponent } from './ui/footer/footer.component';
       flex: 1;
       position: relative;
     }
-  `
+  `,
 })
-export class LayoutComponent {
-
-}
+export class LayoutComponent {}

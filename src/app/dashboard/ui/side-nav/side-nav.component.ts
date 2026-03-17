@@ -2,31 +2,31 @@ import { Component } from '@angular/core';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { Role } from '../../../tours/enums/role';
 import { NavItem } from '../../interfaces/nav-item';
-import { NavItemComponent } from "../nav-item/nav-item.component";
+import { NavItemComponent } from '../nav-item/nav-item.component';
 import { HasRoleDirective } from '../../../shared/directives/has-role.directive';
 
 @Component({
-    selector: 'app-side-nav',
-    imports: [NavItemComponent, HasRoleDirective],
-    templateUrl: './side-nav.component.html',
-    styleUrl: './side-nav.component.scss'
+  selector: 'app-side-nav',
+  imports: [NavItemComponent, HasRoleDirective],
+  templateUrl: './side-nav.component.html',
+  styleUrl: './side-nav.component.scss',
 })
 export class SideNavComponent {
   protected navItems: NavItem[] = [
     {
       link: FlowRoutes.PROFILE,
       name: 'Settings',
-      icon: 'settings'
+      icon: 'settings',
     },
     {
       link: FlowRoutes.MY_BOOKINGS,
       name: 'My bookings',
-      icon: 'book-open'
+      icon: 'book-open',
     },
     {
       link: FlowRoutes.MY_TOURS,
       name: 'My tours',
-      icon: 'briefcase'
+      icon: 'briefcase',
     },
     {
       link: FlowRoutes.MY_REVIEWS,
@@ -42,20 +42,20 @@ export class SideNavComponent {
         {
           link: FlowRoutes.USERS,
           name: 'Users',
-          icon: 'user'
+          icon: 'user',
         },
         {
           link: FlowRoutes.BOOKINGS,
           name: 'Bookings',
-          icon: 'book'
-        }
-      ]
+          icon: 'book',
+        },
+      ],
     },
     {
       link: FlowRoutes.LEAD_GUIDE,
       name: 'Lead guide',
       icon: 'credit-card',
-      role: [Role.ADMIN, Role.LEAD_GUIDE]
-    }
-  ]
+      role: [Role.ADMIN, Role.LEAD_GUIDE],
+    },
+  ];
 }

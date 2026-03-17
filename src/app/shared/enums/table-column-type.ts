@@ -1,7 +1,7 @@
 export enum TableColumnType {
-    TEXT,
-    DATE,
-    CURRENCY,
-    CUSTOM,
-    ACTION,
+  TEXT,
+  DATE,
+  CURRENCY,
+  CUSTOM,
+  ACTION,
 }

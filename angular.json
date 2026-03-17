@@ -78,7 +78,7 @@
             "port": 4202,
             "ssl": true,
             "sslCert": "./ssl/localhost.crt",
-            "sslKey": "./ssl/localhost.key" 
+            "sslKey": "./ssl/localhost.key"
           },
           "configurations": {
             "production": {
@@ -114,12 +114,24 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   },
   "schematics": {
     "@schematics/angular:component": {

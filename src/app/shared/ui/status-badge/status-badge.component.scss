@@ -1,21 +1,21 @@
 @use 'functions' as *;
 
 .status-badge {
-    padding: toRem(5) toRem(15);
-    border-radius: toRem(5);
-    font-size: toRem(12);
-    font-weight: 700;
-    text-transform: capitalize;
+  padding: toRem(5) toRem(15);
+  border-radius: toRem(5);
+  font-size: toRem(12);
+  font-weight: 700;
+  text-transform: capitalize;
 
-    &.paid {
-        background-color: var(--color-green-light);
-    }
+  &.paid {
+    background-color: var(--color-green-light);
+  }
 
-    &.unpaid {
-        background-color: var(--color-orange-light);
-    }
+  &.unpaid {
+    background-color: var(--color-orange-light);
+  }
 
-    &.cancelled {
-        background-color: var(--color-red-light);
-    }
+  &.cancelled {
+    background-color: var(--color-red-light);
+  }
 }

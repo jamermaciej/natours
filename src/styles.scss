@@ -33,7 +33,7 @@
   background-color: var(--color-brand);
   color: var(--color-white);
 }
-  
+
 ::selection {
   background-color: var(--color-brand);
   color: var(--color-white);
@@ -42,13 +42,16 @@
 html {
   font-size: var(--root-font-size-fixed, 62.5%);
   font-size: 10px;
-  font-size: calc(var(--root-font-size-fixed-factor) * var(--root-font-size-fixed, 62.5%) + var(--root-font-size-fluid-factor) * var(--root-font-size-px) / 1440 * 100vw);
+  font-size: calc(
+    var(--root-font-size-fixed-factor) * var(--root-font-size-fixed, 62.5%) +
+      var(--root-font-size-fluid-factor) * var(--root-font-size-px) / 1440 * 100vw
+  );
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   scroll-padding: var(--root-scroll-padding, 180px);
-  overflow-x: hidden
+  overflow-x: hidden;
 }
 
 body {
@@ -131,9 +134,9 @@ ul {
   font-size: toRem(12);
   color: var(--color-secondary);
 
-    &::before {
-      content: '⏳ ';
-    }
+  &::before {
+    content: '⏳ ';
+  }
 }
 
 .header .user-img {

@@ -6,14 +6,14 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RatingComponent } from '../../../../shared/ui/rating/rating.component';
 
 @Component({
-    selector: 'app-tour-reviews',
-    imports: [CarouselModule, RatingComponent],
-    templateUrl: './tour-reviews.component.html',
-    styleUrl: './tour-reviews.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-tour-reviews',
+  imports: [CarouselModule, RatingComponent],
+  templateUrl: './tour-reviews.component.html',
+  styleUrl: './tour-reviews.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TourReviewsComponent {
-  @Input({ required: true}) reviews!: ReviewResponse[]; 
+  @Input({ required: true }) reviews!: ReviewResponse[];
 
   readonly apiHostUrl = environment.apiHostUrl;
 
@@ -26,20 +26,20 @@ export class TourReviewsComponent {
     navText: ['', ''],
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       600: {
-        items: 2
+        items: 2,
       },
       940: {
-        items: 3
+        items: 3,
       },
       1300: {
-        items: 4
+        items: 4,
       },
       1800: {
-        items: 5
-      }
-    }
-  }
+        items: 5,
+      },
+    },
+  };
 }

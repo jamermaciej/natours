@@ -5,12 +5,12 @@ import { createActionGroup } from '@ngrx/store';
 export const routerActions = createActionGroup({
   source: 'Router',
   events: {
-    'Go': props<{
-        path: any[];
-        query?: object;
-        extras?: NavigationExtras;
+    Go: props<{
+      path: any[];
+      query?: object;
+      extras?: NavigationExtras;
     }>(),
-    'Back': emptyProps(),
-    'Forward': emptyProps()
+    Back: emptyProps(),
+    Forward: emptyProps(),
   },
 });

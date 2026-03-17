@@ -1,4 +1,13 @@
-import { Component, DestroyRef, effect, EnvironmentInjector, inject, input, output, runInInjectionContext } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  effect,
+  EnvironmentInjector,
+  inject,
+  input,
+  output,
+  runInInjectionContext,
+} from '@angular/core';
 import { User, UserBody } from '../../../shared/interfaces/user';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ControlErrorComponent } from '../../../shared/ui/control-error/control-error.component';
@@ -15,10 +24,10 @@ import { NavigationService } from '../../../shared/services/navigation.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector: 'app-user-form',
-    imports: [ReactiveFormsModule, ControlErrorComponent, RoleSelectComponent],
-    templateUrl: './user-form.component.html',
-    styleUrl: './user-form.component.scss'
+  selector: 'app-user-form',
+  imports: [ReactiveFormsModule, ControlErrorComponent, RoleSelectComponent],
+  templateUrl: './user-form.component.html',
+  styleUrl: './user-form.component.scss',
 })
 export class UserFormComponent {
   #formBuilder = inject(NonNullableFormBuilder);
@@ -32,28 +41,29 @@ export class UserFormComponent {
 
   userForm = this.#formBuilder.group({
     name: ['', [Validators.required, banWordsValidator(environment.bannedWords)]],
-    email: ['', {
-      validators: [Validators.email, Validators.required],
-      asyncValidators: [validateEmailValidator()],
-      updateOn: 'blur'
-    }],
-    role: [Role.USER, Validators.required]
+    email: [
+      '',
+      {
+        validators: [Validators.email, Validators.required],
+        asyncValidators: [validateEmailValidator()],
+        updateOn: 'blur',
+      },
+    ],
+    role: [Role.USER, Validators.required],
   });
 
   triggerSubmit = output<UserBody>();
   #injector = inject(EnvironmentInjector);
   flowRoutes = FlowRoutes;
   returnUrl = this.#route.snapshot.queryParams['returnUrl'];
-  
+
   constructor() {
     effect(() => {
       const user = this.user();
 
-      if (user?._id && this.email) {     
+      if (user?._id && this.email) {
         runInInjectionContext(this.#injector, () => {
-          this.email.setAsyncValidators([
-            validateEmailValidator(user._id)
-          ]);
+          this.email.setAsyncValidators([validateEmailValidator(user._id)]);
         });
 
         this.userForm.patchValue(user);
@@ -63,20 +73,22 @@ export class UserFormComponent {
       }
     });
 
-    this.userForm.controls.role.valueChanges.pipe(
-      distinctUntilChanged(),
-      takeUntilDestroyed(this.#destroyRef)
-    ).subscribe(role => {
-      if (role === Role.ADMIN) {
-        this.name.setValidators([Validators.required]);
-      } else {
-        this.name.setValidators([Validators.required, banWordsValidator(environment.bannedWords)]);
-      }
+    this.userForm.controls.role.valueChanges
+      .pipe(distinctUntilChanged(), takeUntilDestroyed(this.#destroyRef))
+      .subscribe(role => {
+        if (role === Role.ADMIN) {
+          this.name.setValidators([Validators.required]);
+        } else {
+          this.name.setValidators([
+            Validators.required,
+            banWordsValidator(environment.bannedWords),
+          ]);
+        }
 
-      this.name.updateValueAndValidity();
-    });
+        this.name.updateValueAndValidity();
+      });
   }
-  
+
   onSubmit() {
     if (this.userForm.valid) {
       const formValues = this.userForm.getRawValue();
@@ -103,7 +115,8 @@ export class UserFormComponent {
   }
 
   nameCustomErrors = {
-    banWords: (error: { bannedWord: string }) => `The value <strong>${error.bannedWord}</strong> is not allowed!`,
-    required: 'Please enter your name'
+    banWords: (error: { bannedWord: string }) =>
+      `The value <strong>${error.bannedWord}</strong> is not allowed!`,
+    required: 'Please enter your name',
   };
 }

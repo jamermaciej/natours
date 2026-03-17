@@ -1,18 +1,18 @@
 @use 'functions' as *;
 
 .page-header {
-    max-width: 120rem;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: toRem(50);
-    
-    a {
-        color: var(--color-secondary);
-        text-decoration: none !important;
-        transition: all 0.2s;
-        margin-left: auto;        
-    }
+  max-width: 120rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: toRem(50);
+
+  a {
+    color: var(--color-secondary);
+    text-decoration: none !important;
+    transition: all 0.2s;
+    margin-left: auto;
+  }
 }

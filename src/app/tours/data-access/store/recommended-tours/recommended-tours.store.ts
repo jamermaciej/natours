@@ -1,4 +1,3 @@
-
 import { patchState, signalState } from '@ngrx/signals';
 import { Injectable, inject } from '@angular/core';
 import { exhaustMap, filter, pipe, tap } from 'rxjs';
@@ -8,42 +7,42 @@ import { TourService } from '../../tour.service';
 import { Tour } from '../../../interfaces/tour';
 
 type RecommendedToursState = {
-    tours: Tour[];
-    isLoading: boolean;
-}
+  tours: Tour[];
+  isLoading: boolean;
+};
 
 const initialState: RecommendedToursState = {
-    tours: [],
-    isLoading: false
+  tours: [],
+  isLoading: false,
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RecommendedToursStore {
-    readonly #tourService = inject(TourService);
-    readonly state = signalState(initialState);
+  readonly #tourService = inject(TourService);
+  readonly state = signalState(initialState);
 
-    readonly tours = this.state.tours;
-    readonly isLoading = this.state.isLoading;
+  readonly tours = this.state.tours;
+  readonly isLoading = this.state.isLoading;
 
-    readonly loadRecommendedTours = rxMethod<void>(
-        pipe(
-          filter(() => !this.tours().length),
-          tap(() => patchState(this.state, { isLoading: true })),
-          exhaustMap(() => {
-            return this.#tourService.getRecommendedTours().pipe(
-              tapResponse({
-                next: (response) => patchState(this.state, { tours: response.data.data }),
-                error: console.error,
-                finalize: () => patchState(this.state, { isLoading: false }),
-              })
-            );
-          })
-        )
-    );
+  readonly loadRecommendedTours = rxMethod<void>(
+    pipe(
+      filter(() => !this.tours().length),
+      tap(() => patchState(this.state, { isLoading: true })),
+      exhaustMap(() => {
+        return this.#tourService.getRecommendedTours().pipe(
+          tapResponse({
+            next: response => patchState(this.state, { tours: response.data.data }),
+            error: console.error,
+            finalize: () => patchState(this.state, { isLoading: false }),
+          }),
+        );
+      }),
+    ),
+  );
 
-    readonly clearStore = () => {
-      patchState(this.state, initialState);
-    }
+  readonly clearStore = () => {
+    patchState(this.state, initialState);
+  };
 }

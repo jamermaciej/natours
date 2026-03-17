@@ -6,28 +6,39 @@ import { Booking } from '../../../bookings/interfaces/booking';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BookingService {
   #http = inject(HttpClient);
 
-  bookTour(tourId: string, date: Date){
-    return this.#http.get(`${apiEndpoint.BookingEndpoint.bookTour}${tourId}/${date}`, { withCredentials: true });
+  bookTour(tourId: string, date: Date) {
+    return this.#http.get(`${apiEndpoint.BookingEndpoint.bookTour}${tourId}/${date}`, {
+      withCredentials: true,
+    });
   }
 
   getMyBookings(): Observable<ApiResponse<Booking[]>> {
-    return this.#http.get<ApiResponse<Booking[]>>(apiEndpoint.BookingEndpoint.getMyBookings, { withCredentials: true });
+    return this.#http.get<ApiResponse<Booking[]>>(apiEndpoint.BookingEndpoint.getMyBookings, {
+      withCredentials: true,
+    });
   }
 
   getAllBookings(): Observable<ApiResponse<Booking[]>> {
-    return this.#http.get<ApiResponse<Booking[]>>(apiEndpoint.BookingEndpoint.baseBooking, { withCredentials: true });
+    return this.#http.get<ApiResponse<Booking[]>>(apiEndpoint.BookingEndpoint.baseBooking, {
+      withCredentials: true,
+    });
   }
 
   removeBooking(id: string) {
-    return this.#http.delete(`${apiEndpoint.BookingEndpoint.baseBooking}/${id}`, { withCredentials: true });
+    return this.#http.delete(`${apiEndpoint.BookingEndpoint.baseBooking}/${id}`, {
+      withCredentials: true,
+    });
   }
 
   getBooking(id: string): Observable<ApiResponse<Booking>> {
-    return this.#http.get<ApiResponse<Booking>>(`${apiEndpoint.BookingEndpoint.baseBooking}/${id}`, { withCredentials: true });
+    return this.#http.get<ApiResponse<Booking>>(
+      `${apiEndpoint.BookingEndpoint.baseBooking}/${id}`,
+      { withCredentials: true },
+    );
   }
 }

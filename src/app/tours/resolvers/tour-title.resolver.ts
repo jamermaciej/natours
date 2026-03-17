@@ -7,10 +7,8 @@ import { toursFeature } from '../data-access/store/tours/tours.state';
 export const tourTitleResolver: ResolveFn<string> = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot,
-  store: Store = inject(Store)
-): Observable<string> => (
-  inject(Store).select(toursFeature.selectTour).pipe(
-    map(tour => tour?.name ? `Tour | ${tour?.name}` : `Tour`
-    )
-  )
-);
+  store: Store = inject(Store),
+): Observable<string> =>
+  inject(Store)
+    .select(toursFeature.selectTour)
+    .pipe(map(tour => (tour?.name ? `Tour | ${tour?.name}` : `Tour`)));

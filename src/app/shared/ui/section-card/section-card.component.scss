@@ -1,15 +1,15 @@
 @use 'functions' as *;
 
 .section-card {
-    background: var(--color-gray-1);
-    border-radius: toRem(10);
-    border: 1px solid #f1f1f1;
-    padding: toRem(16) toRem(20);
-  
-    &__title {
-        font-size: toRem(12);
-        font-weight: 700;
-        text-transform: uppercase;
-        margin: 0 0 toRem(15);
-    }
+  background: var(--color-gray-1);
+  border-radius: toRem(10);
+  border: 1px solid #f1f1f1;
+  padding: toRem(16) toRem(20);
+
+  &__title {
+    font-size: toRem(12);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 0 toRem(15);
+  }
 }

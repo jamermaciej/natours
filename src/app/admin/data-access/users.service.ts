@@ -6,7 +6,7 @@ import { ApiResponse } from '../../shared/interfaces/api-response';
 import { User, UserBody } from '../../shared/interfaces/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
   #http = inject(HttpClient);
@@ -21,25 +21,34 @@ export class UsersService {
       if (filters.role) {
         params = params.set('role', filters.role);
       }
-  
+
       if (filters.query) {
         params = params.set('q', filters.query);
       }
     }
 
-    return this.#http.get<ApiResponse<User[]>>(apiEndpoint.UserEndpoint.baseUser, { params, withCredentials: true });
+    return this.#http.get<ApiResponse<User[]>>(apiEndpoint.UserEndpoint.baseUser, {
+      params,
+      withCredentials: true,
+    });
   }
 
   getUser(id: string): Observable<ApiResponse<User>> {
-    return this.#http.get<ApiResponse<User>>(`${apiEndpoint.UserEndpoint.baseUser}/${id}`, { withCredentials: true });
+    return this.#http.get<ApiResponse<User>>(`${apiEndpoint.UserEndpoint.baseUser}/${id}`, {
+      withCredentials: true,
+    });
   }
 
   updateUser(user: UserBody, id: string): Observable<ApiResponse<User>> {
-    return this.#http.patch<ApiResponse<User>>(`${apiEndpoint.UserEndpoint.baseUser}/${id}`, user, { withCredentials: true });
+    return this.#http.patch<ApiResponse<User>>(`${apiEndpoint.UserEndpoint.baseUser}/${id}`, user, {
+      withCredentials: true,
+    });
   }
 
   addUser(user: UserBody): Observable<ApiResponse<User>> {
-    return this.#http.post<ApiResponse<User>>(`${apiEndpoint.UserEndpoint.baseUser}`, user, { withCredentials: true });
+    return this.#http.post<ApiResponse<User>>(`${apiEndpoint.UserEndpoint.baseUser}`, user, {
+      withCredentials: true,
+    });
   }
 
   checkEmail(email: string, excludeId?: string): Observable<{ exists: boolean }> {
@@ -49,10 +58,15 @@ export class UsersService {
       params = params.set('excludeId', excludeId);
     }
 
-    return this.#http.get<{ exists: boolean }>(`${apiEndpoint.UserEndpoint.checkEmail}`, { params, withCredentials: true, });
+    return this.#http.get<{ exists: boolean }>(`${apiEndpoint.UserEndpoint.checkEmail}`, {
+      params,
+      withCredentials: true,
+    });
   }
 
   removeUser(id: string) {
-    return this.#http.delete(`${apiEndpoint.UserEndpoint.baseUser}/${id}`, { withCredentials: true });
+    return this.#http.delete(`${apiEndpoint.UserEndpoint.baseUser}/${id}`, {
+      withCredentials: true,
+    });
   }
 }

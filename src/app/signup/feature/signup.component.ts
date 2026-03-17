@@ -11,16 +11,16 @@ import { AsyncPipe } from '@angular/common';
 import { SignupData } from '../../shared/interfaces/signup-data';
 
 @Component({
-    selector: 'app-signup',
-    imports: [PageWrapperComponent, SignupFormComponent, AsyncPipe],
-    templateUrl: './signup.component.html',
-    styleUrl: './signup.component.scss'
+  selector: 'app-signup',
+  imports: [PageWrapperComponent, SignupFormComponent, AsyncPipe],
+  templateUrl: './signup.component.html',
+  styleUrl: './signup.component.scss',
 })
 export class SignupComponent {
   #store = inject(Store);
-  isLoading$ = this.#store.select(authFeature.selectLoadStatus).pipe(
-    map(loadStatus => loadStatus === LoadStatus.LOADING)
-  );
+  isLoading$ = this.#store
+    .select(authFeature.selectLoadStatus)
+    .pipe(map(loadStatus => loadStatus === LoadStatus.LOADING));
   errorMessage$ = this.#store.select(authFeature.selectError);
 
   signup(signupData: SignupData) {

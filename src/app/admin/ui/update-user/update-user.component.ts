@@ -6,10 +6,10 @@ import { UserFormComponent } from '../user-form/user-form.component';
 import { PageHeaderComponent } from '../../../shared/ui/page-header/page-header.component';
 
 @Component({
-    selector: 'app-update-user',
-    imports: [UserImgComponent, UserFormComponent, DatePipe, PageHeaderComponent],
-    templateUrl: './update-user.component.html',
-    styleUrl: './update-user.component.scss'
+  selector: 'app-update-user',
+  imports: [UserImgComponent, UserFormComponent, DatePipe, PageHeaderComponent],
+  templateUrl: './update-user.component.html',
+  styleUrl: './update-user.component.scss',
 })
 export class UpdateUserComponent {
   user = input.required<User>();
@@ -17,7 +17,7 @@ export class UpdateUserComponent {
   loadingRemove = input<boolean>();
   userUpdated = output<UserBody>();
   userDeleted = output<string>();
-  
+
   onUpdate(user: UserBody) {
     this.userUpdated.emit(user);
   }

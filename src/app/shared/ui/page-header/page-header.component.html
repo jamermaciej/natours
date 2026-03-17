@@ -1,12 +1,12 @@
 <div class="page-header">
-    <div class="d-flex flex-column">
-        <h2 class="heading-secondary">{{ title() }}</h2>
-        @if (subtitle()) {
-            <p>{{ subtitle() }}</p>
-        }
-    </div>
-    @if (link()) {
-        <a [routerLink]="link()">{{ linkText() ? linkText() : 'Back' }}</a>
+  <div class="d-flex flex-column">
+    <h2 class="heading-secondary">{{ title() }}</h2>
+    @if (subtitle()) {
+      <p>{{ subtitle() }}</p>
     }
-    <ng-content></ng-content>
+  </div>
+  @if (link()) {
+    <a [routerLink]="link()">{{ linkText() ? linkText() : 'Back' }}</a>
+  }
+  <ng-content></ng-content>
 </div>

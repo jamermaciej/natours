@@ -15,7 +15,17 @@ import { GuidesListComponent } from '../../ui/guides-list/guides-list.component'
 
 @Component({
   selector: 'app-booking-detail',
-  imports: [LoaderComponent, ErrorMessageComponent, BookingDetailHeaderComponent, SectionCardComponent, InfoCardComponent, InfoBoxComponent, CurrencyPipe, DatePipe, GuidesListComponent],
+  imports: [
+    LoaderComponent,
+    ErrorMessageComponent,
+    BookingDetailHeaderComponent,
+    SectionCardComponent,
+    InfoCardComponent,
+    InfoBoxComponent,
+    CurrencyPipe,
+    DatePipe,
+    GuidesListComponent,
+  ],
   templateUrl: './booking-detail.component.html',
   styleUrl: './booking-detail.component.scss',
 })
@@ -27,7 +37,7 @@ export class BookingDetailComponent {
 
   booking = resource<Booking, string>({
     params: () => this.bookingId(),
-    loader: ({ params: id }) => this.bookingsStore.loadBookingDetail(id)
+    loader: ({ params: id }) => this.bookingsStore.loadBookingDetail(id),
   });
 
   errorMessage = computed(() => {

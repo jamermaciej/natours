@@ -1,32 +1,38 @@
 @if (users().length) {
-    <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Photo</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-          </tr>
-        </thead>
-        <tbody>
-            @for (user of users(); track user._id; let  i = $index) {
-                <tr>
-                    <th scope="row">{{ i + 1 }}</th>
-                    <td align="center"><app-user-img [photo]="user.photo" [name]="user.name"></app-user-img></td>
-                    <td>
-                        @if (currentUser()?._id  === user._id) {
-                            <a [routerLink]="flowRoutes.PROFILE">{{ user.name }}</a>
-                        } @else {
-                            <a [routerLink]="[flowRoutes.USERS, user._id]" [queryParams]="{ returnUrl: flowRoutes.USERS }">{{ user.name }}</a>
-                        }
-                    </td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.role }}</td>
-                </tr>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (user of users(); track user._id; let i = $index) {
+        <tr>
+          <th scope="row">{{ i + 1 }}</th>
+          <td align="center">
+            <app-user-img [photo]="user.photo" [name]="user.name"></app-user-img>
+          </td>
+          <td>
+            @if (currentUser()?._id === user._id) {
+              <a [routerLink]="flowRoutes.PROFILE">{{ user.name }}</a>
+            } @else {
+              <a
+                [routerLink]="[flowRoutes.USERS, user._id]"
+                [queryParams]="{ returnUrl: flowRoutes.USERS }"
+                >{{ user.name }}</a
+              >
             }
-        </tbody>
-    </table>
+          </td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
 } @else {
-    No users yet.
+  No users yet.
 }

@@ -11,28 +11,30 @@ import { TourService } from '../../../tours/data-access/tour.service';
 import { LoadStatus } from '../../../tours/enums/load-status';
 
 export const getMyBookedTours = createEffect(
-    (actions$ = inject(Actions), store = inject(Store)) => {
-        return actions$.pipe(
-            ofType(bookingsActions.getMyBookedTours),
-            concatLatestFrom(() => store.select(myToursFeature.selectLoadStatus)),
-            filter(([ ,loadStatus ]) => loadStatus === LoadStatus.NOT_LOADED),
-            map(() => bookingsActions.loadMyBookedTours())
-        );
-    },
-    { functional: true }
+  (actions$ = inject(Actions), store = inject(Store)) => {
+    return actions$.pipe(
+      ofType(bookingsActions.getMyBookedTours),
+      concatLatestFrom(() => store.select(myToursFeature.selectLoadStatus)),
+      filter(([, loadStatus]) => loadStatus === LoadStatus.NOT_LOADED),
+      map(() => bookingsActions.loadMyBookedTours()),
+    );
+  },
+  { functional: true },
 );
 
 export const loadMyBookedTours = createEffect(
-    (actions$ = inject(Actions), tourService = inject(TourService)) => {
-        return actions$.pipe(
-            ofType(bookingsActions.loadMyBookedTours),
-            exhaustMap(() => tourService.getMyTours()
-            .pipe(
-                map(data => (bookingsActions.loadMyBookedToursSuccess({ tours: data?.data?.data }))),
-                catchError(error => of(bookingsActions.loadMyBookedToursFailure({ error: error?.error?.message })))
-            )
-          )
-        );
-    },
-    { functional: true }
+  (actions$ = inject(Actions), tourService = inject(TourService)) => {
+    return actions$.pipe(
+      ofType(bookingsActions.loadMyBookedTours),
+      exhaustMap(() =>
+        tourService.getMyTours().pipe(
+          map(data => bookingsActions.loadMyBookedToursSuccess({ tours: data?.data?.data })),
+          catchError(error =>
+            of(bookingsActions.loadMyBookedToursFailure({ error: error?.error?.message })),
+          ),
+        ),
+      ),
+    );
+  },
+  { functional: true },
 );

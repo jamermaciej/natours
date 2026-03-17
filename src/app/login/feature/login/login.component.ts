@@ -10,16 +10,16 @@ import { CommonModule } from '@angular/common';
 import { Creditionals } from '../../../shared/interfaces/creditionals';
 
 @Component({
-    selector: 'app-login',
-    imports: [PageWrapperComponent, LoginFormComponent, CommonModule],
-    templateUrl: './login.component.html',
-    styleUrl: './login.component.scss'
+  selector: 'app-login',
+  imports: [PageWrapperComponent, LoginFormComponent, CommonModule],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent {
   #store = inject(Store);
-  isLoading$ = this.#store.select(authFeature.selectLoadStatus).pipe(
-    map(loadStatus => loadStatus === LoadStatus.LOADING)
-  );
+  isLoading$ = this.#store
+    .select(authFeature.selectLoadStatus)
+    .pipe(map(loadStatus => loadStatus === LoadStatus.LOADING));
   errorMessage$ = this.#store.select(authFeature.selectError);
 
   login(creditionals: Creditionals) {

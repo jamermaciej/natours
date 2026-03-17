@@ -1,16 +1,16 @@
 @use 'functions' as *;
 
 .info-box {
-    padding: toRem(20);
-    
-    &__label {
-        font-weight: 400;
-        font-size: toRem(14);
-    }
+  padding: toRem(20);
 
-    &__value {
-        font-weight: 700;
-        font-size: toRem(22.5);
-        line-height: toRem(30);
-    }
+  &__label {
+    font-weight: 400;
+    font-size: toRem(14);
+  }
+
+  &__value {
+    font-weight: 700;
+    font-size: toRem(22.5);
+    line-height: toRem(30);
+  }
 }

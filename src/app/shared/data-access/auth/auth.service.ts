@@ -9,17 +9,23 @@ import GlobalFunctions from '../../helpers/GlobalFunctions';
 import { PasswordUpdateData } from '../../interfaces/password-update-data';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   #http = inject(HttpClient);
 
   signup(signupData: SignupData): Observable<ApiResponse<User>> {
-    return this.#http.post<ApiResponse<User>>(apiEndpoint.AuthEndpoint.signup, signupData, { withCredentials: true });
+    return this.#http.post<ApiResponse<User>>(apiEndpoint.AuthEndpoint.signup, signupData, {
+      withCredentials: true,
+    });
   }
 
   login(email: string, password: string): Observable<ApiResponse<User>> {
-    return this.#http.post<ApiResponse<User>>(apiEndpoint.AuthEndpoint.login, { email, password }, { withCredentials: true });
+    return this.#http.post<ApiResponse<User>>(
+      apiEndpoint.AuthEndpoint.login,
+      { email, password },
+      { withCredentials: true },
+    );
   }
 
   logout() {
@@ -27,16 +33,24 @@ export class AuthService {
   }
 
   getMe(): Observable<ApiResponse<User>> {
-    return this.#http.get<ApiResponse<User>>(apiEndpoint.AuthEndpoint.me, { withCredentials: true });
+    return this.#http.get<ApiResponse<User>>(apiEndpoint.AuthEndpoint.me, {
+      withCredentials: true,
+    });
   }
 
   updateMe(user: User): Observable<ApiResponse<User>> {
     const formData: FormData = GlobalFunctions.convertToFormData(user);
 
-    return this.#http.patch<ApiResponse<User>> (`${apiEndpoint.AuthEndpoint.updateMe}`, formData, { withCredentials: true });
+    return this.#http.patch<ApiResponse<User>>(`${apiEndpoint.AuthEndpoint.updateMe}`, formData, {
+      withCredentials: true,
+    });
   }
 
   updatePassword(passwordUpdateData: PasswordUpdateData): Observable<ApiResponse<User>> {
-    return this.#http.patch<ApiResponse<User>> (`${apiEndpoint.AuthEndpoint.updatePassword}`, passwordUpdateData, { withCredentials: true });
+    return this.#http.patch<ApiResponse<User>>(
+      `${apiEndpoint.AuthEndpoint.updatePassword}`,
+      passwordUpdateData,
+      { withCredentials: true },
+    );
   }
 }

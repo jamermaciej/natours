@@ -3,36 +3,41 @@ import { authGuard } from '../shared/guards/auth.guard';
 import { cannotEditSelfGuard } from '../shared/guards/cannot-edit-self.guard';
 
 export const routes: Routes = [
-    {
+  {
+    path: '',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('../dashboard/ui/dashboard/dashboard.component').then(m => m.DashboardComponent),
+    children: [
+      {
         path: '',
-        canActivate: [authGuard],
-        loadComponent: () => import('../dashboard/ui/dashboard/dashboard.component').then(m => m.DashboardComponent),
-        children: [
-            {
-                path: '',
-                loadComponent: () => import('./ui/admin/admin.component').then(m => m.AdminComponent),
-            },
-            {
-                path: 'users',
-                loadComponent: () => import('./features/users/users.component').then(m => m.UsersComponent),
-                title: 'Users'
-            },
-            {
-                path: 'users/:userId',
-                loadComponent: () => import('./features/user/user.component').then(m => m.UserComponent),
-                canActivate: [cannotEditSelfGuard],
-                title: 'User Details'
-            },
-            {
-                path: 'bookings',
-                loadComponent: () => import('./features/bookings/bookings.component').then(m => m.BookingsComponent),
-                title: 'Bookings'
-            },
-            {
-                path: 'bookings/:bookingId',
-                loadComponent: () => import('./features/booking-detail/booking-detail.component').then(m => m.BookingDetailComponent),
-                title: 'Booking Details'
-            }
-        ]
-    }
+        loadComponent: () => import('./ui/admin/admin.component').then(m => m.AdminComponent),
+      },
+      {
+        path: 'users',
+        loadComponent: () => import('./features/users/users.component').then(m => m.UsersComponent),
+        title: 'Users',
+      },
+      {
+        path: 'users/:userId',
+        loadComponent: () => import('./features/user/user.component').then(m => m.UserComponent),
+        canActivate: [cannotEditSelfGuard],
+        title: 'User Details',
+      },
+      {
+        path: 'bookings',
+        loadComponent: () =>
+          import('./features/bookings/bookings.component').then(m => m.BookingsComponent),
+        title: 'Bookings',
+      },
+      {
+        path: 'bookings/:bookingId',
+        loadComponent: () =>
+          import('./features/booking-detail/booking-detail.component').then(
+            m => m.BookingDetailComponent,
+          ),
+        title: 'Booking Details',
+      },
+    ],
+  },
 ];

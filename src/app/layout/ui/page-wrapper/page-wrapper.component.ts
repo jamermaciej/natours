@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 
-
 @Component({
-    selector: 'app-page-wrapper',
-    imports: [],
-    template: `
+  selector: 'app-page-wrapper',
+  imports: [],
+  template: `
     <div class="page-wrapper">
       <ng-content></ng-content>
     </div>
   `,
-    styles: `
+  styles: `
     @use 'mixins' as *;
 
     .page-wrapper {
@@ -19,8 +18,6 @@ import { Component } from '@angular/core';
         padding: 4rem 2rem;
       }
     }
-  `
+  `,
 })
-export class PageWrapperComponent {
-
-}
+export class PageWrapperComponent {}

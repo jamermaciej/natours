@@ -8,10 +8,16 @@ import { RatingComponent } from '../../../shared/ui/rating/rating.component';
 import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-review-form',
-    imports: [ReactiveFormsModule, ControlErrorComponent, LoaderComponent, RatingComponent, RouterLink],
-    templateUrl: './review-form.component.html',
-    styleUrl: './review-form.component.scss'
+  selector: 'app-review-form',
+  imports: [
+    ReactiveFormsModule,
+    ControlErrorComponent,
+    LoaderComponent,
+    RatingComponent,
+    RouterLink,
+  ],
+  templateUrl: './review-form.component.html',
+  styleUrl: './review-form.component.scss',
 })
 export class ReviewFormComponent {
   #formBuilder = inject(NonNullableFormBuilder);
@@ -23,12 +29,10 @@ export class ReviewFormComponent {
   isLoading = input<boolean>();
   reviewForm = this.#formBuilder.group({
     review: ['', Validators.required],
-    rating: [0, [Validators.required, Validators.min(1), Validators.max(5)]]
+    rating: [0, [Validators.required, Validators.min(1), Validators.max(5)]],
   });
   triggerSubmit = output<ReviewBody>();
-  tourName = computed(() => (
-    this.review()?.tour.name
-  ));
+  tourName = computed(() => this.review()?.tour.name);
   loading: boolean | undefined;
 
   constructor() {
@@ -38,7 +42,7 @@ export class ReviewFormComponent {
       if (review) {
         this.reviewForm.patchValue({
           review: review.review,
-          rating: review.rating
+          rating: review.rating,
         });
       }
     });
@@ -50,8 +54,8 @@ export class ReviewFormComponent {
         ...this.reviewForm.getRawValue(),
         tour: this.tourId() ?? this.review().tour._id,
         user: this.userId() ?? this.review().user._id,
-        id: this.review()?.id ?? undefined
-      }
+        id: this.review()?.id ?? undefined,
+      };
 
       this.triggerSubmit.emit(review);
       this.loading = true;

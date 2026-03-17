@@ -2,8 +2,8 @@
 @use 'mixins' as *;
 
 .error-message {
-    border: toRem(2) solid var(--color-red);
-    text-align: center;
-    margin-bottom: toRem(20);
-    padding: toRem(10);
+  border: toRem(2) solid var(--color-red);
+  text-align: center;
+  margin-bottom: toRem(20);
+  padding: toRem(10);
 }

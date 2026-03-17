@@ -1,4 +1,4 @@
 export interface TableConfig {
-    showRowNumbers: boolean;
-    rowNumberHeader?: '#'
+  showRowNumbers: boolean;
+  rowNumberHeader?: '#';
 }

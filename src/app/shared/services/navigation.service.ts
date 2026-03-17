@@ -14,21 +14,19 @@ export class NavigationService {
     this.#previousUrl = sessionStorage.getItem('previousUrl') ?? '/';
     this.#currentUrl = sessionStorage.getItem('currentUrl') ?? '/';
 
-    this.#router.events.pipe(
-      filter(e => e instanceof NavigationEnd)
-    ).subscribe((e: NavigationEnd) => {
-      this.#previousUrl = this.#currentUrl;
-      this.#currentUrl = e.urlAfterRedirects;
+    this.#router.events
+      .pipe(filter(e => e instanceof NavigationEnd))
+      .subscribe((e: NavigationEnd) => {
+        this.#previousUrl = this.#currentUrl;
+        this.#currentUrl = e.urlAfterRedirects;
 
-      sessionStorage.setItem('previousUrl', this.#previousUrl);
-      sessionStorage.setItem('currentUrl', this.#currentUrl);
-    });
+        sessionStorage.setItem('previousUrl', this.#previousUrl);
+        sessionStorage.setItem('currentUrl', this.#currentUrl);
+      });
   }
 
   back(fallbackUrl?: string) {
-    const url = this.#previousUrl !== '/' 
-      ? this.#previousUrl
-      : fallbackUrl ?? '/';
+    const url = this.#previousUrl !== '/' ? this.#previousUrl : (fallbackUrl ?? '/');
     this.#router.navigateByUrl(url);
   }
 

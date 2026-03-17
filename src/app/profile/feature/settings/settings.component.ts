@@ -12,32 +12,41 @@ import { LoadStatus } from '../../../tours/enums/load-status';
 import { PasswordUpdateData } from '../../../shared/interfaces/password-update-data';
 
 @Component({
-    selector: 'app-settings',
-    imports: [UpdateProfileComponent, AsyncPipe, ChangePasswordComponent],
-    templateUrl: './settings.component.html',
-    styleUrl: './settings.component.scss'
+  selector: 'app-settings',
+  imports: [UpdateProfileComponent, AsyncPipe, ChangePasswordComponent],
+  templateUrl: './settings.component.html',
+  styleUrl: './settings.component.scss',
 })
 export class SettingsComponent {
   #store = inject(Store);
-  isLoading$ = this.#store.select(authFeature.selectLoadStatus).pipe(
-    map(loadStatus => loadStatus === LoadStatus.LOADING)
-  );
+  isLoading$ = this.#store
+    .select(authFeature.selectLoadStatus)
+    .pipe(map(loadStatus => loadStatus === LoadStatus.LOADING));
   errorMessage$ = this.#store.select(authFeature.selectError);
-  user: Signal<User | null> = toSignal(this.#store.select(authFeature.selectUser), { initialValue: null});
+  user: Signal<User | null> = toSignal(this.#store.select(authFeature.selectUser), {
+    initialValue: null,
+  });
   loadingUpdateProfile = false;
   loadingChangePassword = false;
 
   loading = false;
 
   ngOnInit(): void {
-      this.#store.dispatch(authActions.getMe());
+    this.#store.dispatch(authActions.getMe());
   }
 
   updateProfile(user: User) {
-    this.#store.dispatch(authActions.updateMe({ user, callback: () => (this.loadingUpdateProfile = false) }));
+    this.#store.dispatch(
+      authActions.updateMe({ user, callback: () => (this.loadingUpdateProfile = false) }),
+    );
   }
 
   changePassword(passwordUpdateData: PasswordUpdateData) {
-    this.#store.dispatch(authActions.updatePassword({ passwordUpdateData, callback: () => (this.loadingChangePassword = false)}));
+    this.#store.dispatch(
+      authActions.updatePassword({
+        passwordUpdateData,
+        callback: () => (this.loadingChangePassword = false),
+      }),
+    );
   }
 }

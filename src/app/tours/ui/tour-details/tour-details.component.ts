@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  inject,
+  input,
+} from '@angular/core';
 
 import { environment } from '../../../../environments/environment';
 import { RolePipe } from '../../../shared/pipes/role.pipe';
@@ -15,8 +23,8 @@ import { AvailableDatePipe } from '../../pipes/available-date.pipe';
 import { BookTourComponent } from '../book-tour/book-tour.component';
 
 @Component({
-    selector: 'app-tour-details',
-    imports: [
+  selector: 'app-tour-details',
+  imports: [
     RolePipe,
     SplitParagraphPipe,
     TourReviewsComponent,
@@ -24,10 +32,11 @@ import { BookTourComponent } from '../book-tour/book-tour.component';
     RouterLink,
     CtaSectionComponent,
     AvailableDatePipe,
-    BookTourComponent],
-    templateUrl: './tour-details.component.html',
-    styleUrl: './tour-details.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    BookTourComponent,
+  ],
+  templateUrl: './tour-details.component.html',
+  styleUrl: './tour-details.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TourDetailsComponent {
   router = inject(Router);
@@ -39,7 +48,10 @@ export class TourDetailsComponent {
   isProccessingPayment = input<boolean>();
   selectedDate!: Date;
 
-  @Output() onBookTour: EventEmitter<{ tourId: string, date: Date }> = new EventEmitter<{ tourId: string, date: Date}>();
+  @Output() onBookTour: EventEmitter<{ tourId: string; date: Date }> = new EventEmitter<{
+    tourId: string;
+    date: Date;
+  }>();
 
   readonly toursImgUrl = `${environment.apiHostUrl}/img/tours/`;
   readonly usersImgUrl = `${environment.apiHostUrl}/img/users/`;
@@ -51,10 +63,10 @@ export class TourDetailsComponent {
 
   isAvailable() {
     const dates = [];
-    for(let date of this.tour.startDates) {
+    for (let date of this.tour.startDates) {
       dates.push(date.date);
     }
 
-    return dates.some(d => new Date(d).getTime() > new Date().getTime())
+    return dates.some(d => new Date(d).getTime() > new Date().getTime());
   }
 }

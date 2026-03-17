@@ -9,10 +9,10 @@ import { User, UserBody } from '../../../shared/interfaces/user';
 import { ErrorMessageComponent } from '../../../shared/ui/error-message/error-message.component';
 
 @Component({
-    selector: 'app-user',
-    imports: [UpdateUserComponent, LoaderComponent, ErrorMessageComponent],
-    templateUrl: './user.component.html',
-    styleUrl: './user.component.scss'
+  selector: 'app-user',
+  imports: [UpdateUserComponent, LoaderComponent, ErrorMessageComponent],
+  templateUrl: './user.component.html',
+  styleUrl: './user.component.scss',
 })
 export class UserComponent {
   usersService = inject(UsersService);
@@ -20,20 +20,19 @@ export class UserComponent {
   isLoading = signal(false);
   readonly usersStore = inject(UsersStore);
 
-  
   user = toSignal(
     toObservable(this.userId).pipe(
       tap(() => this.isLoading.set(true)),
-      switchMap(id => this.usersService.getUser(id).pipe(
-        finalize(() => this.isLoading.set(false))
-      )),
-      map(res => res.data.data)
+      switchMap(id =>
+        this.usersService.getUser(id).pipe(finalize(() => this.isLoading.set(false))),
+      ),
+      map(res => res.data.data),
     ),
-    { initialValue: null }
+    { initialValue: null },
   );
 
   onUserUpdated(user: UserBody) {
-    this.usersStore.updateUser({ user: user, id: this.userId() });    
+    this.usersStore.updateUser({ user: user, id: this.userId() });
   }
 
   onUserDeleted(id: string) {

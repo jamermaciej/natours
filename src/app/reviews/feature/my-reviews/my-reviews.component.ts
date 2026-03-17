@@ -7,15 +7,19 @@ import { routerActions } from '../../../shared/data-access/router/store/router.a
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 
 @Component({
-    selector: 'app-my-reviews',
-    imports: [LoaderComponent, ReviewListComponent],
-    template: `
+  selector: 'app-my-reviews',
+  imports: [LoaderComponent, ReviewListComponent],
+  template: `
     @if (reviewsStore.isLoading()) {
-        <app-loader />
+      <app-loader />
     } @else {
-        <app-review-list [reviews]="reviewsStore.reviews()" (remove)="remove($event)" (edit)="edit($event)" />
+      <app-review-list
+        [reviews]="reviewsStore.reviews()"
+        (remove)="remove($event)"
+        (edit)="edit($event)"
+      />
     }
-  `
+  `,
 })
 export class MyReviewsComponent implements OnInit {
   readonly reviewsStore = inject(ReviewsStore);

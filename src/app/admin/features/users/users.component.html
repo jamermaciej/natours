@@ -1,28 +1,36 @@
 <div class="users">
-    @if (usersStore.loadingList()) {
-        <app-loader />
-    } @else {
-        <app-page-header title="Users">
-            <button class="btn btn--green btn--small update-user" (click)="openAddUserModal()">
-                Add User
-            </button>
-        </app-page-header>
+  @if (usersStore.loadingList()) {
+    <app-loader />
+  } @else {
+    <app-page-header title="Users">
+      <button class="btn btn--green btn--small update-user" (click)="openAddUserModal()">
+        Add User
+      </button>
+    </app-page-header>
 
-        <div class="filters">
-            <app-role-select (selectedOptionChange)="selectRole($event)" [(selectedOption)]="selectedRole" [options]="options"></app-role-select>
-            <app-search-input (triggerSearch)="search($event)" [control]="searchControl"></app-search-input>
-        </div>
+    <div class="filters">
+      <app-role-select
+        (selectedOptionChange)="selectRole($event)"
+        [(selectedOption)]="selectedRole"
+        [options]="options"
+      ></app-role-select>
+      <app-search-input
+        (triggerSearch)="search($event)"
+        [control]="searchControl"
+      ></app-search-input>
+    </div>
 
-        <app-users-list [users]="usersStore.users()" [currentUser]="user()"></app-users-list>
-        @if (usersStore.pages() > 1) {
-            <app-pagination [totalItems]="usersStore.total()"
-                [itemsPerPage]="usersStore.limit()"
-                [currentPage]="usersStore.page()"
-                [totalPages]="usersStore.pages()"
-                (triggerPageChange)="changePage($event)"
-                (triggerPrevPage)="prevPage($event)"
-                (triggerNextPage)="nextPage($event)"
-            ></app-pagination>
-        }
-    }    
+    <app-users-list [users]="usersStore.users()" [currentUser]="user()"></app-users-list>
+    @if (usersStore.pages() > 1) {
+      <app-pagination
+        [totalItems]="usersStore.total()"
+        [itemsPerPage]="usersStore.limit()"
+        [currentPage]="usersStore.page()"
+        [totalPages]="usersStore.pages()"
+        (triggerPageChange)="changePage($event)"
+        (triggerPrevPage)="prevPage($event)"
+        (triggerNextPage)="nextPage($event)"
+      ></app-pagination>
+    }
+  }
 </div>

@@ -1,6 +1,6 @@
 export enum LoadingType {
-    List = 'list',
-    Submit = 'submit',
-    Update = 'update',
-    Remove = 'remove'
+  List = 'list',
+  Submit = 'submit',
+  Update = 'update',
+  Remove = 'remove',
 }

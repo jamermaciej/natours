@@ -1,15 +1,15 @@
 @use 'functions' as *;
 
 .update-user {
-    .delete-user {
-        justify-self: end;
-    }
+  .delete-user {
+    justify-self: end;
+  }
 
-    .password-updated {
-        margin-top: toRem(20);
+  .password-updated {
+    margin-top: toRem(20);
 
-        h3 {
-            font-size: toRem(15);
-        }
+    h3 {
+      font-size: toRem(15);
     }
+  }
 }

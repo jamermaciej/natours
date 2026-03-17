@@ -2,9 +2,9 @@ import { Component, inject, OnInit, Signal, signal } from '@angular/core';
 import { UsersStore } from '../../data-access/users-store';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
 import { PageHeaderComponent } from '../../../shared/ui/page-header/page-header.component';
-import { UsersListComponent } from "../../ui/users-list/users-list.component";
+import { UsersListComponent } from '../../ui/users-list/users-list.component';
 import { PaginationComponent } from '../../../shared/ui/pagination/pagination.component';
-import { SearchInputComponent } from "../../../shared/ui/search-input/search-input.component";
+import { SearchInputComponent } from '../../../shared/ui/search-input/search-input.component';
 import { FormControl } from '@angular/forms';
 import { RoleSelectComponent } from '../../../shared/ui/role-select/role-select.component';
 import { Router } from '@angular/router';
@@ -17,26 +17,28 @@ import { Store } from '@ngrx/store';
 import { authFeature } from '../../../shared/data-access/auth/store/auth.state';
 
 @Component({
-    selector: 'app-users',
-    imports: [
-        LoaderComponent,
-        PageHeaderComponent,
-        UsersListComponent,
-        UsersListComponent,
-        PaginationComponent,
-        SearchInputComponent,
-        RoleSelectComponent
-    ],
-    templateUrl: './users.component.html',
-    styleUrl: './users.component.scss'
+  selector: 'app-users',
+  imports: [
+    LoaderComponent,
+    PageHeaderComponent,
+    UsersListComponent,
+    UsersListComponent,
+    PaginationComponent,
+    SearchInputComponent,
+    RoleSelectComponent,
+  ],
+  templateUrl: './users.component.html',
+  styleUrl: './users.component.scss',
 })
 export class UsersComponent implements OnInit {
   readonly usersStore = inject(UsersStore);
-  router = inject(Router)
+  router = inject(Router);
   #dialog = inject(Dialog);
   role = signal('');
   #store = inject(Store);
-  user: Signal<User | null> = toSignal(this.#store.select(authFeature.selectUser), { initialValue: null });
+  user: Signal<User | null> = toSignal(this.#store.select(authFeature.selectUser), {
+    initialValue: null,
+  });
 
   options: string[] = ['admin', 'lead-guide', 'guide', 'user'];
   selectedRole = signal<string>('');
@@ -48,15 +50,24 @@ export class UsersComponent implements OnInit {
   }
 
   changePage(page: number) {
-    this.usersStore.loadUsers({ filters: { query: this.usersStore.filters().query, role: this.role() }, page });
+    this.usersStore.loadUsers({
+      filters: { query: this.usersStore.filters().query, role: this.role() },
+      page,
+    });
   }
 
   prevPage(page: number) {
-    this.usersStore.loadUsers({ filters: { query: this.usersStore.filters().query, role: this.role() }, page: --page });
+    this.usersStore.loadUsers({
+      filters: { query: this.usersStore.filters().query, role: this.role() },
+      page: --page,
+    });
   }
 
   nextPage(page: number) {
-    this.usersStore.loadUsers({ filters: { query: this.usersStore.filters().query, role: this.role() }, page: ++page });
+    this.usersStore.loadUsers({
+      filters: { query: this.usersStore.filters().query, role: this.role() },
+      page: ++page,
+    });
   }
 
   search(value: string) {
@@ -64,7 +75,10 @@ export class UsersComponent implements OnInit {
   }
 
   selectRole(value: string) {
-    this.usersStore.loadUsers({ filters: { query: this.usersStore.filters().query, role: value }, page: 1 });
+    this.usersStore.loadUsers({
+      filters: { query: this.usersStore.filters().query, role: value },
+      page: 1,
+    });
     this.role.set(value);
   }
 

@@ -1,8 +1,12 @@
 import { Injectable, inject } from '@angular/core';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SnackbarService {
   #snackBar = inject(MatSnackBar);
@@ -15,7 +19,7 @@ export class SnackbarService {
       duration: duration || this.defaultDuration,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
-      panelClass: 'snackbar-success'
+      panelClass: 'snackbar-success',
     });
   }
 
@@ -24,7 +28,7 @@ export class SnackbarService {
       duration: duration || this.defaultDuration,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
-      panelClass: 'snackbar-error'
+      panelClass: 'snackbar-error',
     });
   }
 
@@ -33,7 +37,7 @@ export class SnackbarService {
       duration: duration || this.defaultDuration,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
-      panelClass: 'snackbar-info'
+      panelClass: 'snackbar-info',
     });
   }
 }

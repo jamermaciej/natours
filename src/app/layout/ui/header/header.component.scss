@@ -2,109 +2,109 @@
 @use 'mixins' as *;
 
 .header {
-    background-color: var(--color-gray-70);
-    padding: toRem(20) toRem(50);
-    min-height: toRem(80);
-    position: relative;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: var(--color-gray-70);
+  padding: toRem(20) toRem(50);
+  min-height: toRem(80);
+  position: relative;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
+  @include breakpoint(large) {
+    flex-direction: column;
+  }
+
+  &__logo {
     @include breakpoint(large) {
-        flex-direction: column;
+      order: -1;
+      margin-bottom: toRem(15);
     }
 
-    &__logo {
-        @include breakpoint(large) {
-            order: -1;
-            margin-bottom: toRem(15);
-        }
-
-        img {
-            height: toRem(35);
-        }
+    img {
+      height: toRem(35);
     }
+  }
 }
 
 .nav {
-    display: flex;
+  display: flex;
+  align-items: center;
+
+  @include breakpoint(small) {
+    flex-direction: column;
+  }
+
+  &__el {
+    color: var(--color-gray-1);
+    text-transform: uppercase;
+    font-size: toRem(16);
+    text-decoration: none;
+    display: inline-flex;
     align-items: center;
+    transition: all 0.2s;
+    font-weight: 400;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
 
-    @include breakpoint(small) {
-        flex-direction: column;
+    &:not(:last-child) {
+      margin-right: toRem(30);
+
+      @include breakpoint(small) {
+        margin-right: 0;
+        margin-bottom: toRem(12);
+      }
     }
 
-    &__el {
-        color: var(--color-gray-1);
-        text-transform: uppercase;
-        font-size: toRem(16);
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        transition: all 0.2s;
-        font-weight: 400;
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-family: inherit;
-
-        &:not(:last-child) {
-            margin-right: toRem(30);
-
-            @include breakpoint(small) {
-                margin-right: 0;
-                margin-bottom: toRem(12);  
-            }
-        }
-
-        &:hover,
-        &:active {
-            transform: translateY(-2px);
-            text-shadow: 0 toRem(7) toRem(10) var(--color-black);
-        }
-
-        // &:link,
-        // &:visited {}
-
-        &--cta {
-            padding: toRem(10) toRem(30);
-            border-radius: toRem(100);
-            border: 1px solid currentColor !important;
-            transition: all 0.3s;
-
-            &:hover {
-                background-color: var(--color-gray-1);
-                color: var(--color-secondary);
-                text-shadow: none;
-                border-color: var(--color-gray-1);
-            }
-        }
+    &:hover,
+    &:active {
+      transform: translateY(-2px);
+      text-shadow: 0 toRem(7) toRem(10) var(--color-black);
     }
 
-    &__user {
-        &-img {
-            height: toRem(35);
-            width: toRem(35);
-            border-radius: 50%;
-            margin-right: toRem(10);
-        }
-    }
+    // &:link,
+    // &:visited {}
 
-    &--tours {
-        flex: 0 1 40%;
+    &--cta {
+      padding: toRem(10) toRem(30);
+      border-radius: toRem(100);
+      border: 1px solid currentColor !important;
+      transition: all 0.3s;
 
-        @include breakpoint(large) {
-            margin-bottom: toRem(15);
-        }
-
-        @include breakpoint(small) {
-            margin-bottom: 0;
-        }
-    }
-
-    &--user {
-        flex: 0 1 40%;
-        justify-content: flex-end;
+      &:hover {
+        background-color: var(--color-gray-1);
+        color: var(--color-secondary);
+        text-shadow: none;
+        border-color: var(--color-gray-1);
+      }
     }
   }
+
+  &__user {
+    &-img {
+      height: toRem(35);
+      width: toRem(35);
+      border-radius: 50%;
+      margin-right: toRem(10);
+    }
+  }
+
+  &--tours {
+    flex: 0 1 40%;
+
+    @include breakpoint(large) {
+      margin-bottom: toRem(15);
+    }
+
+    @include breakpoint(small) {
+      margin-bottom: 0;
+    }
+  }
+
+  &--user {
+    flex: 0 1 40%;
+    justify-content: flex-end;
+  }
+}

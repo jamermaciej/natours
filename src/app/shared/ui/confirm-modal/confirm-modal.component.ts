@@ -36,10 +36,11 @@ export class ConfirmModalComponent {
       } catch (err) {
         this.isLoading.set(false);
 
-        const errorMessage = err instanceof HttpErrorResponse 
-        ? err.error.message 
-        : 'Something went wrong. Please try again.';
-      
+        const errorMessage =
+          err instanceof HttpErrorResponse
+            ? err.error.message
+            : 'Something went wrong. Please try again.';
+
         this.error.set(errorMessage);
       }
     } else {

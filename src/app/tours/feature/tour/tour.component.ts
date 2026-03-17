@@ -14,10 +14,10 @@ import { ReviewsStore } from '../../../reviews/data-access/reviews.store';
 import { Tour } from '../../interfaces/tour';
 
 @Component({
-    selector: 'app-tour',
-    imports: [CommonModule, TourDetailsComponent ],
-    templateUrl: './tour.component.html',
-    styleUrl: './tour.component.scss'
+  selector: 'app-tour',
+  imports: [CommonModule, TourDetailsComponent],
+  templateUrl: './tour.component.html',
+  styleUrl: './tour.component.scss',
 })
 export class TourComponent {
   #store = inject(Store);
@@ -33,26 +33,23 @@ export class TourComponent {
     tap(() => {
       this.#bookingStore.load();
       this.#reviewStore.loadReviews();
-    })
+    }),
   );
   tour: Signal<Tour | undefined> = toSignal(this.#store.select(toursFeature.selectTour));
 
   isProccessingPayment = signal(false);
 
-  isTourBooked = computed(() => (
-    this.#bookingStore.isTourBooked(this.tour()?._id!)
-  ));
-    
-  isTourRewieved = computed(() => (
-    this.#reviewStore.isTourReviewed(this.slug))
-  );
+  isTourBooked = computed(() => this.#bookingStore.isTourBooked(this.tour()?._id!));
 
-  bookTour(data: { tourId: string, date: Date}) {
+  isTourRewieved = computed(() => this.#reviewStore.isTourReviewed(this.slug));
+
+  bookTour(data: { tourId: string; date: Date }) {
     this.isProccessingPayment.set(true);
     const { tourId, date } = data;
 
-    this.#bookingService.bookTour(tourId, date).pipe(
-      takeUntilDestroyed(this.#destroyRef)
-    ).subscribe((s: any) => window.location.href = s.session.url);
+    this.#bookingService
+      .bookTour(tourId, date)
+      .pipe(takeUntilDestroyed(this.#destroyRef))
+      .subscribe((s: any) => (window.location.href = s.session.url));
   }
 }

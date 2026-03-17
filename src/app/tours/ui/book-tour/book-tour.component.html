@@ -6,7 +6,7 @@
         [value]="date.date"
         [disabled]="date.participants === tour().maxGroupSize || isPrev(date.date)"
         [class.text-danger]="date.soldOut"
-        >
+      >
         {{ date.date | date: 'dd MMMM yyyy' }}
         @if (date.soldOut) {
           ***Sold out!***
@@ -15,7 +15,9 @@
           <span class="text-warning">***Last place left!***</span>
         }
         @if (!isPrev(date.date) && tour().maxGroupSize - date.participants > 1) {
-          <span class="text-success">***{{ tour().maxGroupSize - date.participants }} places left!***</span>
+          <span class="text-success"
+            >***{{ tour().maxGroupSize - date.participants }} places left!***</span
+          >
         }
       </mat-option>
     }
