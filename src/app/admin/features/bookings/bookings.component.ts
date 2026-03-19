@@ -1,4 +1,4 @@
-import { Component, computed, inject, TemplateRef, viewChild } from '@angular/core';
+import { Component, computed, inject, OnInit, TemplateRef, viewChild } from '@angular/core';
 import { PageHeaderComponent } from '../../../shared/ui/page-header/page-header.component';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
 import { BookingsStore } from '../../data-access/bookings-store';
@@ -11,7 +11,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { ConfirmModalComponent } from '../../../shared/ui/confirm-modal/confirm-modal.component';
 import { ConfirmDialogData } from '../../../shared/interfaces/confirm-dialog-data';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 
 @Component({
@@ -20,7 +20,7 @@ import { FlowRoutes } from '../../../shared/enums/flow-routes';
   templateUrl: './bookings.component.html',
   styleUrl: './bookings.component.scss',
 })
-export class BookingsComponent {
+export class BookingsComponent implements OnInit {
   private actionsTemplate = viewChild<TemplateRef<any>>('actionsTemplate');
   private paidTemplate = viewChild<TemplateRef<any>>('paidTemplate');
 
@@ -62,7 +62,7 @@ export class BookingsComponent {
       },
     };
 
-    const dialogRef = this.#dialog.open<ConfirmDialogData>(ConfirmModalComponent, {
+    this.#dialog.open<ConfirmDialogData>(ConfirmModalComponent, {
       data: dialogData,
       disableClose: false,
       hasBackdrop: true,

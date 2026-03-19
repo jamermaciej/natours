@@ -1,5 +1,4 @@
-import { Component, computed, inject, input, resource } from '@angular/core';
-import { BookingService } from '../../../shared/data-access/bookings/booking.service';
+import { Component, computed, inject, input, linkedSignal, resource, signal } from '@angular/core';
 import { Booking } from '../../../bookings/interfaces/booking';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
 import { ErrorMessageComponent } from '../../../shared/ui/error-message/error-message.component';
@@ -12,6 +11,8 @@ import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { InfoBoxComponent } from '../../../shared/ui/info-box/info-box.component';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { GuidesListComponent } from '../../ui/guides-list/guides-list.component';
+import { PaymentToggleComponent } from '../../ui/payment-toggle/payment-toggle.component';
+import { SnackbarService } from '../../../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-booking-detail',
@@ -25,23 +26,54 @@ import { GuidesListComponent } from '../../ui/guides-list/guides-list.component'
     CurrencyPipe,
     DatePipe,
     GuidesListComponent,
+    PaymentToggleComponent,
   ],
   templateUrl: './booking-detail.component.html',
   styleUrl: './booking-detail.component.scss',
 })
 export class BookingDetailComponent {
-  bookingId = input.required<string>();
-  readonly bookingService = inject(BookingService);
-  readonly bookingsStore = inject(BookingsStore);
+  private readonly bookingsStore = inject(BookingsStore);
+  private readonly snackbarService = inject(SnackbarService);
+  readonly bookingId = input.required<string>();
   readonly flowRoutes = FlowRoutes;
 
-  booking = resource<Booking, string>({
+  protected readonly booking = resource<Booking, string>({
     params: () => this.bookingId(),
     loader: ({ params: id }) => this.bookingsStore.loadBookingDetail(id),
   });
 
-  errorMessage = computed(() => {
+  protected readonly errorMessage = computed(() => {
     const error = this.booking.error() as HttpErrorResponse;
     return error?.error?.message || 'Error';
   });
+
+  protected readonly paid = linkedSignal(() => this.booking.value()?.paid ?? false);
+  protected readonly isUpdating = signal(false);
+
+  protected async updateBooking(booking: Booking, paid: boolean) {
+    const previous = this.paid();
+    this.paid.set(paid);
+    this.isUpdating.set(true);
+
+    try {
+      const response = (
+        await this.bookingsStore.updateBooking({
+          ...booking,
+          paid: this.paid(),
+        })
+      ).data.data;
+      this.booking.set(response);
+    } catch (err) {
+      this.paid.set(previous);
+
+      const errorMessage =
+        err instanceof HttpErrorResponse
+          ? err.error.message
+          : 'Something went wrong. Please try again.';
+
+      this.snackbarService.error(errorMessage);
+    } finally {
+      this.isUpdating.set(false);
+    }
+  }
 }

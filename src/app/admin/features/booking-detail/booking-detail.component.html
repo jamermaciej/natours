@@ -41,9 +41,11 @@
         {{ booking.startDate | date }}
       </app-info-box>
       <app-info-box label="Payment status">
-        <span [class]="booking.paid ? 'paid' : 'unpaid'">{{
-          booking.paid ? 'Paid' : 'Unpaid'
-        }}</span>
+        <app-payment-toggle
+          [paid]="paid()"
+          [isUpdating]="isUpdating()"
+          (paidChanged)="updateBooking(booking, $event)"
+        ></app-payment-toggle>
       </app-info-box>
     </div>
     <app-section-card title="Guides">

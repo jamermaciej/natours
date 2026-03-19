@@ -1,0 +1,21 @@
+<div class="form-check form-switch">
+  <input
+    class="form-check-input"
+    type="checkbox"
+    value=""
+    id="paid-toggle"
+    switch
+    [disabled]="isUpdating()"
+    [checked]="paid()"
+    (change)="valueChanged($event)"
+  />
+  @if (isUpdating()) {
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  } @else {
+    <label class="form-check-label" for="paid-toggle" [class]="paid() ? 'paid' : 'unpaid'">{{
+      paid() ? 'Paid' : 'Unpaid'
+    }}</label>
+  }
+</div>

@@ -39,6 +39,15 @@ export const BookingsStore = signalStore(
 
       return (await lastValueFrom(bookingService.getBooking(id))).data.data;
     },
+    async updateBooking(booking: Booking) {
+      const response = await lastValueFrom(bookingService.updateBooking(booking));
+      if (store.bookings().length) {
+        patchState(store, {
+          bookings: store.bookings().map(b => (b._id === booking._id ? response.data.data : b)),
+        });
+      }
+      return response;
+    },
     clearState() {
       patchState(store, initialState);
     },

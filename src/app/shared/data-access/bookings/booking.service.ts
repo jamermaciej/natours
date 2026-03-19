@@ -41,4 +41,14 @@ export class BookingService {
       { withCredentials: true },
     );
   }
+
+  updateBooking(booking: Booking): Observable<ApiResponse<Booking>> {
+    return this.#http.patch<ApiResponse<Booking>>(
+      `${apiEndpoint.BookingEndpoint.baseBooking}/${booking._id}`,
+      booking,
+      {
+        withCredentials: true,
+      },
+    );
+  }
 }

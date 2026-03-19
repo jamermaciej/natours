@@ -5,7 +5,7 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { UpdateUserComponent } from '../../ui/update-user/update-user.component';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
 import { UsersStore } from '../../data-access/users-store';
-import { User, UserBody } from '../../../shared/interfaces/user';
+import { UserBody } from '../../../shared/interfaces/user';
 import { ErrorMessageComponent } from '../../../shared/ui/error-message/error-message.component';
 
 @Component({
