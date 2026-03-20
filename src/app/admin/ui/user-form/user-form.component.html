@@ -20,10 +20,10 @@
     </div>
     <div class="form__group d-flex justify-content-between">
       @if (user()) {
-        <a (click)="goBack()" class="btn btn--gray btn--small">Back</a>
+        <a (click)="goBack()" class="btn btn--gray btn--medium">Back</a>
       }
       <button
-        class="btn btn--green btn--small"
+        class="btn btn--green btn--medium"
         [class.disabled]="userForm.pristine || userForm.invalid || userForm.pending || loading()"
         [disabled]="userForm.pristine || userForm.invalid || userForm.pending || loading()"
       >

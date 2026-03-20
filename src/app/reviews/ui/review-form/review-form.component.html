@@ -27,9 +27,9 @@
         <app-control-error controlName="rating" />
       </div>
       <div class="form__group">
-        <a class="btn btn--gray btn--small btn--back" [routerLink]="['..']">Back</a>
+        <a class="btn btn--gray btn--medium btn--back" [routerLink]="['..']">Back</a>
         <button
-          class="btn btn--green btn--small"
+          class="btn btn--green btn--medium"
           [class.disabled]="reviewForm.pristine || reviewForm.invalid || loading"
           [disabled]="reviewForm.pristine || reviewForm.invalid || loading"
         >

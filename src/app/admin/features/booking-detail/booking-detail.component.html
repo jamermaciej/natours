@@ -9,6 +9,7 @@
     <app-booking-detail-header
       [reservationNumber]="booking.reservationNumber"
       [status]="booking.paid ? 'paid' : 'unpaid'"
+      (dateChanged)="openDateModal(booking)"
     />
     <div class="cards-grid">
       <app-section-card title="Client">

@@ -1,0 +1,68 @@
+<div class="booking-date-modal">
+  <h2 class="heading-secondary">Change start date</h2>
+  <p class="mb-4">Select a new departure date for this booking.</p>
+
+  @if (error()) {
+    <app-error-message [message]="error()!" />
+  }
+
+  <div class="dates-list">
+    @for (date of data.tour.startDates; track date.date) {
+      <label
+        class="date-option"
+        [class.disabled]="isDisabled(date)"
+        [class.selected]="selectedDate() === date.date"
+      >
+        <input
+          type="radio"
+          name="startDate"
+          [value]="date.date"
+          [disabled]="isDisabled(date)"
+          [checked]="selectedDate() === date.date"
+          (change)="selectedDate.set(date.date)"
+        />
+        <span class="date-label">
+          {{ date.date | date }}
+          @if (selectedDate() === date.date) {
+            <div class="check">
+              <svg viewBox="0 0 10 10" fill="none">
+                <polyline
+                  points="2,5 4,7 8,3"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></polyline>
+              </svg>
+            </div>
+          }
+        </span>
+        @if (isPast(date.date)) {
+          <span class="tag past">Past</span>
+        } @else if (date.soldOut) {
+          <span class="tag sold-out">Sold out</span>
+        } @else {
+          <span class="spots" [class.low]="spotsLeft(date) <= 3"
+            >{{ spotsLeft(date) }} spost left</span
+          >
+        }
+      </label>
+    }
+  </div>
+  <div class="d-flex justify-content-between">
+    <button class="btn btn--medium btn--outline" (click)="onCancel()">Cancel</button>
+    <button
+      class="btn btn--medium btn--green"
+      (click)="onConfirm()"
+      [disabled]="isUpdating() || !isDateChanged()"
+    >
+      @if (isUpdating()) {
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      } @else {
+        Save
+      }
+    </button>
+  </div>
+</div>

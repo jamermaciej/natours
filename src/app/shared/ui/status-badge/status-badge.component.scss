@@ -1,9 +1,11 @@
 @use 'functions' as *;
 
 .status-badge {
+  display: block;
   padding: toRem(5) toRem(15);
   border-radius: toRem(5);
   font-size: toRem(12);
+  line-height: toRem(14);
   font-weight: 700;
   text-transform: capitalize;
 

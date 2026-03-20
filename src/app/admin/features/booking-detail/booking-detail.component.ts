@@ -13,6 +13,8 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 import { GuidesListComponent } from '../../ui/guides-list/guides-list.component';
 import { PaymentToggleComponent } from '../../ui/payment-toggle/payment-toggle.component';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
+import { Dialog } from '@angular/cdk/dialog';
+import { BookingDateModalComponent } from '../../ui/booking-date-modal/booking-date-modal.component';
 
 @Component({
   selector: 'app-booking-detail',
@@ -34,6 +36,7 @@ import { SnackbarService } from '../../../shared/services/snackbar.service';
 export class BookingDetailComponent {
   private readonly bookingsStore = inject(BookingsStore);
   private readonly snackbarService = inject(SnackbarService);
+  private dialog = inject(Dialog);
   readonly bookingId = input.required<string>();
   readonly flowRoutes = FlowRoutes;
 
@@ -56,12 +59,10 @@ export class BookingDetailComponent {
     this.isUpdating.set(true);
 
     try {
-      const response = (
-        await this.bookingsStore.updateBooking({
-          ...booking,
-          paid: this.paid(),
-        })
-      ).data.data;
+      const response = await this.bookingsStore.updateBooking({
+        ...booking,
+        paid: this.paid(),
+      });
       this.booking.set(response);
     } catch (err) {
       this.paid.set(previous);
@@ -75,5 +76,18 @@ export class BookingDetailComponent {
     } finally {
       this.isUpdating.set(false);
     }
+  }
+
+  openDateModal(booking: Booking) {
+    const dialogRef = this.dialog.open<Booking>(BookingDateModalComponent, {
+      data: booking,
+      disableClose: false,
+      hasBackdrop: true,
+      backdropClass: 'cdk-overlay-backdrop',
+    });
+
+    dialogRef.closed.subscribe(booking => {
+      if (booking) this.booking.set(booking);
+    });
   }
 }

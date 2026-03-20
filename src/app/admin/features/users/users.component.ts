@@ -8,7 +8,6 @@ import { SearchInputComponent } from '../../../shared/ui/search-input/search-inp
 import { FormControl } from '@angular/forms';
 import { RoleSelectComponent } from '../../../shared/ui/role-select/role-select.component';
 import { Router } from '@angular/router';
-import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { Dialog } from '@angular/cdk/dialog';
 import { AddUserModalComponent } from '../../ui/add-user-modal/add-user-modal.component';
 import { User, UserBody } from '../../../shared/interfaces/user';
@@ -83,6 +82,6 @@ export class UsersComponent implements OnInit {
   }
 
   openAddUserModal() {
-    const dialogRef = this.#dialog.open<UserBody>(AddUserModalComponent, { autoFocus: false });
+    this.#dialog.open<UserBody>(AddUserModalComponent, { autoFocus: false });
   }
 }

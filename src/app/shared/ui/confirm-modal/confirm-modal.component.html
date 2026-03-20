@@ -5,11 +5,11 @@
     <app-error-message [message]="error()!" />
   }
   <div class="d-flex justify-content-evenly">
-    <button class="btn btn--gray btn--small" [disabled]="isLoading()" (click)="onCancel()">
+    <button class="btn btn--gray btn--medium" [disabled]="isLoading()" (click)="onCancel()">
       {{ cancelText }}
     </button>
     <button
-      class="btn btn--small"
+      class="btn btn--medium"
       [class]="confirmBtnClass"
       [disabled]="isLoading()"
       (click)="onConfirm()"

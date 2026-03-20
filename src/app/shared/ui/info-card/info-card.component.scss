@@ -19,11 +19,5 @@
 
   a {
     text-transform: none;
-
-    &:hover {
-      transform: translateY(0);
-      background-color: var(--color-gray-50);
-      color: var(--color-gray-1);
-    }
   }
 }

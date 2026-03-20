@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { StatusBadgeComponent } from '../../../shared/ui/status-badge/status-badge.component';
 
 @Component({
@@ -10,4 +10,9 @@ import { StatusBadgeComponent } from '../../../shared/ui/status-badge/status-bad
 export class BookingDetailHeaderComponent {
   reservationNumber = input.required<string>();
   status = input.required<string>();
+  dateChanged = output<void>();
+
+  onChangeDate() {
+    this.dateChanged.emit();
+  }
 }

@@ -46,7 +46,7 @@ export const BookingsStore = signalStore(
           bookings: store.bookings().map(b => (b._id === booking._id ? response.data.data : b)),
         });
       }
-      return response;
+      return response.data.data;
     },
     clearState() {
       patchState(store, initialState);
