@@ -4,10 +4,11 @@
   } @else {
     <app-page-header title="Bookings" />
     <app-common-table [columns]="columns()" [data]="bookings()"></app-common-table>
+    <ng-template #bookigStatusTemplate let-booking>
+      <app-status-badge [status]="booking.status" />
+    </ng-template>
     <ng-template #paidTemplate let-booking>
-      <div class="paid-status">
-        {{ booking.paid ? '✅' : '⏳' }}
-      </div>
+      {{ booking.paid ? '✅' : '⏳' }}
     </ng-template>
     <ng-template #actionsTemplate let-booking>
       <div class="bookings__actions">

@@ -8,8 +8,9 @@
   } @else if (booking.value(); as booking) {
     <app-booking-detail-header
       [reservationNumber]="booking.reservationNumber"
-      [status]="booking.paid ? 'paid' : 'unpaid'"
+      [status]="booking.status"
       (dateChanged)="openDateModal(booking)"
+      (bookingCancelled)="openCancelModal(booking)"
     />
     <div class="cards-grid">
       <app-section-card title="Client">

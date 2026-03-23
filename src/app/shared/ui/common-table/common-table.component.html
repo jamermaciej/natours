@@ -16,7 +16,7 @@
           <td>{{ idx + 1 }}</td>
         }
         @for (column of columns(); track column) {
-          <td>
+          <td [class]="column.cssClass">
             @if (!column.templateRef) {
               @switch (column.type) {
                 @case (TableColumnType.DATE) {
@@ -39,6 +39,10 @@
             }
           </td>
         }
+      </tr>
+    } @empty {
+      <tr>
+        <td class="table__empty" [colSpan]="columns().length">No bookings yet.</td>
       </tr>
     }
   </tbody>

@@ -1,4 +1,5 @@
 import { User } from '../../shared/interfaces/user';
+import { BookingStatus } from '../../tours/enums/booking-status';
 import { Tour } from '../../tours/interfaces/tour';
 
 export interface Booking {
@@ -10,4 +11,5 @@ export interface Booking {
   user: User;
   price: number;
   startDate: Date;
+  status: BookingStatus;
 }

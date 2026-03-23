@@ -1,13 +1,9 @@
 @use 'functions' as *;
 
 .bookings {
-  max-width: toRem(880);
+  max-width: toRem(960);
   margin: 0 auto;
   padding: 0 toRem(80);
-
-  .paid-status {
-    text-align: center;
-  }
 
   &__actions {
     display: flex;

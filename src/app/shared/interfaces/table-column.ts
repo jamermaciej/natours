@@ -5,6 +5,7 @@ export interface TableColumn {
   key?: string;
   header: string;
   type?: TableColumnType;
+  cssClass?: string;
   templateRef?: TemplateRef<any>;
   format?: string;
   currency?: string;

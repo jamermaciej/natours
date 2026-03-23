@@ -13,16 +13,24 @@ import { ConfirmDialogData } from '../../../shared/interfaces/confirm-dialog-dat
 import { SnackbarService } from '../../../shared/services/snackbar.service';
 import { RouterLink } from '@angular/router';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
+import { StatusBadgeComponent } from '../../../shared/ui/status-badge/status-badge.component';
 
 @Component({
   selector: 'app-bookings',
-  imports: [LoaderComponent, PageHeaderComponent, CommonTableComponent, RouterLink],
+  imports: [
+    LoaderComponent,
+    PageHeaderComponent,
+    CommonTableComponent,
+    RouterLink,
+    StatusBadgeComponent,
+  ],
   templateUrl: './bookings.component.html',
   styleUrl: './bookings.component.scss',
 })
 export class BookingsComponent implements OnInit {
   private actionsTemplate = viewChild<TemplateRef<any>>('actionsTemplate');
   private paidTemplate = viewChild<TemplateRef<any>>('paidTemplate');
+  private bookigStatusTemplate = viewChild<TemplateRef<any>>('bookigStatusTemplate');
 
   readonly #dialog = inject(Dialog);
   readonly #bookingsStore = inject(BookingsStore);
@@ -40,7 +48,20 @@ export class BookingsComponent implements OnInit {
     { key: 'tour.name', header: 'Tour', type: TableColumnType.TEXT },
     { key: 'createdAt', header: 'Booked date', type: TableColumnType.DATE, format: 'dd MMM yyyy' },
     { key: 'price', header: 'Price', type: TableColumnType.CURRENCY },
-    { key: 'paid', header: 'Paid', type: TableColumnType.CUSTOM, templateRef: this.paidTemplate() },
+    {
+      key: 'status',
+      header: 'Status',
+      type: TableColumnType.CUSTOM,
+      cssClass: 'text-center',
+      templateRef: this.bookigStatusTemplate(),
+    },
+    {
+      key: 'paid',
+      header: 'Paid',
+      type: TableColumnType.CUSTOM,
+      cssClass: 'text-center',
+      templateRef: this.paidTemplate(),
+    },
     { header: 'Action', type: TableColumnType.ACTION, templateRef: this.actionsTemplate() },
   ]);
 

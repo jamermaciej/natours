@@ -28,9 +28,28 @@ export const BookingsStore = signalStore(
       }
     },
     async removeBooking(id: string) {
+      const booking = store.bookings().find(b => b._id === id);
+
       await lastValueFrom(bookingService.removeBooking(id));
+
       patchState(store, {
-        bookings: store.bookings().filter(booking => booking._id !== id),
+        bookings: store
+          .bookings()
+          .filter(booking => booking._id !== id)
+          .map(b => {
+            if (b.tour._id !== booking?.tour._id) return b;
+            return {
+              ...b,
+              tour: {
+                ...b.tour,
+                startDates: b.tour.startDates.map(d =>
+                  d.date === booking?.startDate
+                    ? { ...d, participants: d.participants - 1, soldOut: false }
+                    : d,
+                ),
+              },
+            };
+          }),
       });
     },
     async loadBookingDetail(id: string) {

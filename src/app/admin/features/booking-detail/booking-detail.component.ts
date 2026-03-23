@@ -15,6 +15,9 @@ import { PaymentToggleComponent } from '../../ui/payment-toggle/payment-toggle.c
 import { SnackbarService } from '../../../shared/services/snackbar.service';
 import { Dialog } from '@angular/cdk/dialog';
 import { BookingDateModalComponent } from '../../ui/booking-date-modal/booking-date-modal.component';
+import { ConfirmModalComponent } from '../../../shared/ui/confirm-modal/confirm-modal.component';
+import { ConfirmDialogData } from '../../../shared/interfaces/confirm-dialog-data';
+import { BookingStatus } from '../../../tours/enums/booking-status';
 
 @Component({
   selector: 'app-booking-detail',
@@ -88,6 +91,31 @@ export class BookingDetailComponent {
 
     dialogRef.closed.subscribe(booking => {
       if (booking) this.booking.set(booking);
+    });
+  }
+
+  async openCancelModal(booking: Booking) {
+    const dialogData: ConfirmDialogData = {
+      title: 'Cancel booking',
+      message: `Are you sure you want to cancel booking <strong>${booking.reservationNumber}</strong>?`,
+      cancelText: 'Back',
+      confirmText: 'Cancel',
+      confirmButtonClass: 'btn--red',
+      onConfirm: async () => {
+        const newBooking = await this.bookingsStore.updateBooking({
+          ...booking,
+          status: BookingStatus.CANCELLED,
+        });
+        this.booking.set(newBooking);
+        this.snackbarService.success(`Booking ${booking.reservationNumber} cancelled successfully`);
+      },
+    };
+
+    this.dialog.open<ConfirmDialogData>(ConfirmModalComponent, {
+      data: dialogData,
+      disableClose: false,
+      hasBackdrop: true,
+      backdropClass: 'cdk-overlay-backdrop',
     });
   }
 }
