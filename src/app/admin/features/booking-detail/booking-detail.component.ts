@@ -118,4 +118,25 @@ export class BookingDetailComponent {
       backdropClass: 'cdk-overlay-backdrop',
     });
   }
+
+  openRefundModal(booking: Booking) {
+    const dialogData: ConfirmDialogData = {
+      title: 'Refund payment',
+      message: `Refunds take 5–10 days to appear on a customer's statement. Stripe's fees for the original payment won't be returned, but there are no additional fees for the refund.`,
+      confirmText: 'Refund',
+      confirmButtonClass: 'btn--red',
+      onConfirm: async () => {
+        const newBooking = await this.bookingsStore.refundPayment(booking._id);
+        this.booking.set(newBooking);
+        this.snackbarService.success(`Payment refunded successfully`);
+      },
+    };
+
+    this.dialog.open<ConfirmDialogData>(ConfirmModalComponent, {
+      data: dialogData,
+      disableClose: false,
+      hasBackdrop: true,
+      backdropClass: 'cdk-overlay-backdrop',
+    });
+  }
 }

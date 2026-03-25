@@ -15,7 +15,20 @@
     font-size: toRem(14);
   }
 
-  button {
+  .btn {
     margin-left: toRem(5);
+
+    &--outline {
+      svg {
+        transition: all 0.4s;
+        fill: var(--color-gray-50);
+      }
+
+      &:hover {
+        svg {
+          fill: var(--color-white);
+        }
+      }
+    }
   }
 }

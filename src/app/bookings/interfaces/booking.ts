@@ -12,4 +12,6 @@ export interface Booking {
   price: number;
   startDate: Date;
   status: BookingStatus;
+  stripePaymentIntentId?: string;
+  stripeSessionId?: string;
 }

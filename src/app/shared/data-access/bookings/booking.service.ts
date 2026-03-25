@@ -17,6 +17,16 @@ export class BookingService {
     });
   }
 
+  refundPayment(bookingId: string): Observable<ApiResponse<Booking>> {
+    return this.#http.post<ApiResponse<Booking>>(
+      `${apiEndpoint.BookingEndpoint.baseBooking}/${bookingId}/refund`,
+      null,
+      {
+        withCredentials: true,
+      },
+    );
+  }
+
   getMyBookings(): Observable<ApiResponse<Booking[]>> {
     return this.#http.get<ApiResponse<Booking[]>>(apiEndpoint.BookingEndpoint.getMyBookings, {
       withCredentials: true,

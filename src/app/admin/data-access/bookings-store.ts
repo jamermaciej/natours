@@ -67,6 +67,15 @@ export const BookingsStore = signalStore(
       }
       return response.data.data;
     },
+    async refundPayment(id: string) {
+      const response = await lastValueFrom(bookingService.refundPayment(id));
+
+      patchState(store, {
+        bookings: store.bookings().map(b => (b._id === id ? response.data.data : b)),
+      });
+
+      return response.data.data;
+    },
     clearState() {
       patchState(store, initialState);
     },

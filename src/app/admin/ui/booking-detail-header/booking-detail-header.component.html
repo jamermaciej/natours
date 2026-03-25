@@ -5,8 +5,26 @@
   </div>
   <div class="d-flex align-items-center align-self-start">
     <app-status-badge [status]="status()" />
-    <button class="btn btn--small btn--outline" (click)="onChangeDate()">Change date</button>
-    @if (status() !== bookingStatus.CANCELLED) {
+    @if (status() === bookingStatus.ACTIVE) {
+      <button class="btn btn--small btn--outline" (click)="onChangeDate()">Change date</button>
+    }
+    @if (status() === bookingStatus.ACTIVE && paid()) {
+      <button class="btn btn--small btn--outline justify-content-evenly" (click)="onRefund()">
+        <svg
+          aria-hidden="true"
+          width="12"
+          height="12"
+          viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5.994 2.38a.875.875 0 1 0-1.238-1.238l-4.25 4.25A.849.849 0 0 0 .25 6c0 .232.093.466.257.63l4.25 4.24a.875.875 0 1 0 1.236-1.24L3.238 6.875h7.387C12.492 6.875 14 8.271 14 10c0 1.797-1.578 3.375-3.375 3.375a.875.875 0 0 0 0 1.75c2.763 0 5.125-2.362 5.125-5.125 0-2.83-2.43-4.872-5.12-4.875H3.24l2.754-2.746Z"
+          ></path>
+        </svg>
+        Refund
+      </button>
+    }
+    @if (status() !== bookingStatus.CANCELLED && status() !== bookingStatus.REFUNDED) {
       <button class="btn btn--small btn--outline-red" (click)="onCancelBooking()">
         Cancel booking
       </button>

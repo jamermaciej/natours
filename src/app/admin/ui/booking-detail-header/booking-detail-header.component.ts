@@ -11,8 +11,10 @@ import { BookingStatus } from '../../../tours/enums/booking-status';
 export class BookingDetailHeaderComponent {
   reservationNumber = input.required<string>();
   status = input.required<BookingStatus>();
+  paid = input.required<boolean>();
   dateChanged = output<void>();
   bookingCancelled = output<void>();
+  refunded = output<void>();
   protected readonly bookingStatus = BookingStatus;
 
   onChangeDate() {
@@ -21,5 +23,9 @@ export class BookingDetailHeaderComponent {
 
   onCancelBooking() {
     this.bookingCancelled.emit();
+  }
+
+  onRefund() {
+    this.refunded.emit();
   }
 }

@@ -9,8 +9,10 @@
     <app-booking-detail-header
       [reservationNumber]="booking.reservationNumber"
       [status]="booking.status"
+      [paid]="booking.paid"
       (dateChanged)="openDateModal(booking)"
       (bookingCancelled)="openCancelModal(booking)"
+      (refunded)="openRefundModal(booking)"
     />
     <div class="cards-grid">
       <app-section-card title="Client">
