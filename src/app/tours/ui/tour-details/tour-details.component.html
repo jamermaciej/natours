@@ -72,14 +72,14 @@
   </div>
   <div class="description-box">
     <h2 class="heading-secondary ma-bt-lg">About {{ tour.name }} tour</h2>
-    @for (p of tour.description | splitParagraph; track tour.id) {
+    @for (p of tour.description | splitParagraph; track $index) {
       <p class="description__text">{{ p }}</p>
     }
   </div>
 </section>
 
 <section class="section-pictures">
-  @for (image of tour.images; track tour.id; let i = $index) {
+  @for (image of tour.images; track $index; let i = $index) {
     <div class="picture-box">
       <img
         [class]="'picture-box__img picture-box__img--' + (i + 1)"
