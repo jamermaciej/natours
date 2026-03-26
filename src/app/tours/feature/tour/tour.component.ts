@@ -7,11 +7,12 @@ import { TourDetailsComponent } from '../../ui/tour-details/tour-details.compone
 import { Router } from '@angular/router';
 import { authFeature } from '../../../shared/data-access/auth/store/auth.state';
 import { BookingService } from '../../../shared/data-access/bookings/booking.service';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { BookingStore } from '../../../bookings/data-access/booking-store';
+import { rxResource, takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { filter, tap } from 'rxjs';
 import { ReviewsStore } from '../../../reviews/data-access/reviews.store';
 import { Tour } from '../../interfaces/tour';
+import { BookingStatus } from '../../enums/booking-status';
+import { ApiResponse } from '../../../shared/interfaces/api-response';
 
 @Component({
   selector: 'app-tour',
@@ -23,7 +24,6 @@ export class TourComponent {
   #store = inject(Store);
   #destroyRef = inject(DestroyRef);
   #bookingService = inject(BookingService);
-  #bookingStore = inject(BookingStore);
   #reviewStore = inject(ReviewsStore);
   router = inject(Router);
   @Input() slug!: string;
@@ -31,15 +31,23 @@ export class TourComponent {
   isLoggedIn$ = this.#store.select(authFeature.selectIsLoggedIn).pipe(
     filter(isLoggedIn => isLoggedIn),
     tap(() => {
-      this.#bookingStore.load();
       this.#reviewStore.loadReviews();
     }),
   );
+  private readonly isLoggedIn = toSignal(this.#store.select(authFeature.selectIsLoggedIn));
   tour: Signal<Tour | undefined> = toSignal(this.#store.select(toursFeature.selectTour));
 
   isProccessingPayment = signal(false);
 
-  isTourBooked = computed(() => this.#bookingStore.isTourBooked(this.tour()?._id!));
+  private readonly isTourBooked = rxResource<
+    ApiResponse<{ status: BookingStatus | null }>,
+    string | undefined
+  >({
+    params: () => (this.isLoggedIn() ? this.tour()?._id : undefined),
+    stream: ({ params: tourId }) => this.#bookingService.checkTourBookingStatus(tourId),
+  });
+
+  protected readonly isBooked = computed(() => !!this.isTourBooked.value()?.data.data.status);
 
   isTourRewieved = computed(() => this.#reviewStore.isTourReviewed(this.slug));
 

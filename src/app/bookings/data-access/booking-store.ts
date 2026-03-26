@@ -1,17 +1,9 @@
-import {
-  patchState,
-  signalStore,
-  withComputed,
-  withHooks,
-  withMethods,
-  withState,
-} from '@ngrx/signals';
+import { patchState, signalStore, withHooks, withMethods, withState } from '@ngrx/signals';
 import { Booking } from '../interfaces/booking';
 import { inject } from '@angular/core';
 import { BookingService } from '../../shared/data-access/bookings/booking.service';
 import { lastValueFrom } from 'rxjs';
 import { withDevtools } from '@angular-architects/ngrx-toolkit';
-import { BookingStatus } from '../../tours/enums/booking-status';
 
 export interface BookingState {
   bookings: Booking[];
@@ -34,15 +26,6 @@ export const BookingStore = signalStore(
         const response = await lastValueFrom(bookingService.getMyBookings());
         patchState(store, { bookings: response.data.data, isLoading: false });
       }
-    },
-    isTourBooked(tourId: string) {
-      return !!store
-        .bookings()
-        .filter(
-          booking =>
-            booking.tour._id === tourId &&
-            (booking.status === BookingStatus.PENDING || booking.status === BookingStatus.ACTIVE),
-        ).length;
     },
     clearState() {
       patchState(store, initialState);

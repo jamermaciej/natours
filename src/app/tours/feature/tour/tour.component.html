@@ -5,7 +5,7 @@
     [isLoggedIn]="(isLoggedIn$ | async)!"
     [isProccessingPayment]="isProccessingPayment()"
     (onBookTour)="bookTour($event)"
-    [isTourBooked]="isTourBooked()"
+    [isTourBooked]="isBooked()"
     [isTourRewieved]="isTourRewieved()"
   />
 }

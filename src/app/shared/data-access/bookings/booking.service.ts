@@ -4,6 +4,7 @@ import { apiEndpoint } from '../../constants/constants';
 import { ApiResponse } from '../../interfaces/api-response';
 import { Booking } from '../../../bookings/interfaces/booking';
 import { Observable } from 'rxjs';
+import { BookingStatus } from '../../../tours/enums/booking-status';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,15 @@ export class BookingService {
     return this.#http.get<ApiResponse<Booking[]>>(apiEndpoint.BookingEndpoint.getMyBookings, {
       withCredentials: true,
     });
+  }
+
+  checkTourBookingStatus(tourId: string) {
+    return this.#http.get<ApiResponse<{ status: BookingStatus | null }>>(
+      `${apiEndpoint.BookingEndpoint.baseBooking}/tour/${tourId}/status`,
+      {
+        withCredentials: true,
+      },
+    );
   }
 
   getAllBookings(): Observable<ApiResponse<Booking[]>> {
