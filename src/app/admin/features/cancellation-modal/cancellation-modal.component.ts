@@ -5,7 +5,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { BookingsStore } from '../../data-access/bookings-store';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
 import { Booking } from '../../../bookings/interfaces/booking';
-import { BookingStatus } from '../../../tours/enums/booking-status';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { CancellationReason } from '../../../bookings/models/cancellation-reason';
 import { EnumLabelPipe } from '../../../shared/pipes/enum-label.pipe';
@@ -49,14 +48,11 @@ export class CancellationModalComponent {
     this.error.set(null);
 
     try {
-      const newBooking = await this.bookingsStore.updateBooking({
-        ...this.booking,
-        status: BookingStatus.CANCELLED,
-        cancellation: {
-          reason: this.reason()!,
-          note: this.note(),
-        } as any,
+      const newBooking = await this.bookingsStore.cancelBooking(this.booking._id, {
+        reason: this.reason()!,
+        note: this.note(),
       });
+
       this.snackbarService.success(
         `Booking ${this.booking.reservationNumber} cancelled successfully`,
       );

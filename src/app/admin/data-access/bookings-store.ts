@@ -4,6 +4,7 @@ import { BookingService } from '../../shared/data-access/bookings/booking.servic
 import { lastValueFrom } from 'rxjs';
 import { withDevtools } from '@angular-architects/ngrx-toolkit';
 import { Booking } from '../../bookings/interfaces/booking';
+import { CancelBookingRequest } from '../../bookings/models/cancel-booking-request';
 
 export interface BookingsState {
   bookings: Booking[];
@@ -69,6 +70,15 @@ export const BookingsStore = signalStore(
     },
     async refundPayment(id: string) {
       const response = await lastValueFrom(bookingService.refundPayment(id));
+
+      patchState(store, {
+        bookings: store.bookings().map(b => (b._id === id ? response.data.data : b)),
+      });
+
+      return response.data.data;
+    },
+    async cancelBooking(id: string, data: CancelBookingRequest) {
+      const response = await lastValueFrom(bookingService.cancelBooking(id, data));
 
       patchState(store, {
         bookings: store.bookings().map(b => (b._id === id ? response.data.data : b)),
