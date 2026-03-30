@@ -18,6 +18,8 @@ import { BookingDateModalComponent } from '../../ui/booking-date-modal/booking-d
 import { ConfirmModalComponent } from '../../../shared/ui/confirm-modal/confirm-modal.component';
 import { ConfirmDialogData } from '../../../shared/interfaces/confirm-dialog-data';
 import { BookingStatus } from '../../../tours/enums/booking-status';
+import { BookingCancellationDetailsComponent } from '../../ui/booking-cancellation-details/booking-cancellation-details.component';
+import { BookingRefundedDetailsComponent } from '../../ui/booking-refunded-details/booking-refunded-details.component';
 
 @Component({
   selector: 'app-booking-detail',
@@ -32,6 +34,8 @@ import { BookingStatus } from '../../../tours/enums/booking-status';
     DatePipe,
     GuidesListComponent,
     PaymentToggleComponent,
+    BookingCancellationDetailsComponent,
+    BookingRefundedDetailsComponent,
   ],
   templateUrl: './booking-detail.component.html',
   styleUrl: './booking-detail.component.scss',
@@ -42,6 +46,7 @@ export class BookingDetailComponent {
   private dialog = inject(Dialog);
   readonly bookingId = input.required<string>();
   readonly flowRoutes = FlowRoutes;
+  readonly bookingStatus = BookingStatus;
 
   protected readonly booking = resource<Booking, string>({
     params: () => this.bookingId(),

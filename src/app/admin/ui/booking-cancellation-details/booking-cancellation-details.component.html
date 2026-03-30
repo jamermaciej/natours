@@ -1,0 +1,24 @@
+<app-section-card [title]="'Cancellation details'" variant="cancelled">
+  <div class="booking-cancellation">
+    <div class="booking-cancellation__item">
+      <p class="small">Cancelled at</p>
+      <p class="small">
+        <strong>{{ cancellation().cancelledAt | date: 'dd.MM.yyyy HH:MM' }}</strong>
+      </p>
+    </div>
+    <div class="booking-cancellation__item">
+      <p class="small">Cancelled by</p>
+      <p class="small">
+        <strong
+          >{{ cancellation().cancelledBy.name }} ({{ cancellation().cancelledBy.email }})</strong
+        >
+      </p>
+    </div>
+    @if (cancellation().reason) {
+      <div class="booking-cancellation__item">
+        <p class="small"><strong>Reason</strong></p>
+        <p class="small">{{ cancellation().reason }}</p>
+      </div>
+    }
+  </div>
+</app-section-card>

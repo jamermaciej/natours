@@ -14,6 +14,14 @@
       (bookingCancelled)="openCancelModal(booking)"
       (refunded)="openRefundModal(booking)"
     />
+    @if (booking.status === bookingStatus.CANCELLED && booking.cancellation) {
+      <app-booking-cancellation-details
+        [cancellation]="booking.cancellation"
+      ></app-booking-cancellation-details>
+    }
+    @if (booking.status === bookingStatus.REFUNDED && booking.refund) {
+      <app-booking-refunded-details [refund]="booking.refund"></app-booking-refunded-details>
+    }
     <div class="cards-grid">
       <app-section-card title="Client">
         <app-info-card

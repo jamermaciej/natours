@@ -1,0 +1,8 @@
+@use 'functions' as *;
+
+.booking-refunded {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: toRem(20);
+  grid-column-gap: toRem(20);
+}

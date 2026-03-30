@@ -1,4 +1,4 @@
-<div class="section-card">
+<div class="section-card" [class]="`section-card--${variant()}`">
   @if (title()) {
     <h3 class="section-card__title">{{ title() }}</h3>
   }

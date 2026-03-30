@@ -1,0 +1,34 @@
+<app-section-card [title]="'Refunded details'" variant="refunded">
+  <div class="booking-refunded">
+    <div class="booking-refunded__item">
+      <p class="small">Cancelled at</p>
+      <p class="small">
+        <strong>{{ refund().refundedAt | date: 'dd.MM.yyyy HH:MM' }}</strong>
+      </p>
+    </div>
+    <div class="booking-refunded__item">
+      <p class="small">Refunded by</p>
+      <p class="small">
+        @if (refund().refundedBy) {
+          <strong>{{ refund().refundedBy.name }} ({{ refund().refundedBy.email }})</strong>
+        } @else {
+          <strong>Via Stripe</strong>
+        }
+      </p>
+    </div>
+    <div class="booking-refunded__item">
+      <p class="small">Amount</p>
+      <p class="small">
+        <strong>{{ refund().amount | currency: 'PLN' }}</strong>
+      </p>
+    </div>
+    @if (refund().reason) {
+      <div class="booking-refunded__item">
+        <p class="small">Reason</p>
+        <p class="small">
+          <strong>{{ refund().reason! | refundReason }}</strong>
+        </p>
+      </div>
+    }
+  </div>
+</app-section-card>

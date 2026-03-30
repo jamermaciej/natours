@@ -12,4 +12,20 @@
     text-transform: uppercase;
     margin: 0 0 toRem(15);
   }
+
+  &--cancelled {
+    border-color: #b71c1c;
+
+    .section-card__title {
+      color: #b71c1c;
+    }
+  }
+
+  &--refunded {
+    border-color: var(--color-orange);
+
+    .section-card__title {
+      color: var(--color-orange);
+    }
+  }
 }

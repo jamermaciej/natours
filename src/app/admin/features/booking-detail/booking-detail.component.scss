@@ -4,11 +4,13 @@
   max-width: toRem(880);
   margin: 0 auto;
   padding: 0 toRem(80);
+  display: grid;
+  row-gap: toRem(20);
 
   .cards-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: toRem(12);
+    grid-gap: toRem(20);
   }
 
   .box-grid {

@@ -36,6 +36,24 @@ h6 {
   line-height: var(--line-height-h6);
 }
 
+p {
+  &.extra-small {
+    font-size: toRem(14);
+    line-height: toRem(18);
+  }
+
+  &.small {
+    font-size: toRem(15);
+    line-height: toRem(20);
+  }
+
+  &.medium {
+  }
+
+  &.large {
+  }
+}
+
 .heading-secondary {
   font-size: toRem(22.5);
   text-transform: uppercase;

@@ -8,4 +8,5 @@ import { Component, input } from '@angular/core';
 })
 export class SectionCardComponent {
   title = input<string>();
+  variant = input<'default' | 'cancelled' | 'refunded'>('default');
 }
