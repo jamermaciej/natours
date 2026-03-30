@@ -3,7 +3,7 @@
     <div class="booking-cancellation__item">
       <p class="small">Cancelled at</p>
       <p class="small">
-        <strong>{{ cancellation().cancelledAt | date: 'dd.MM.yyyy HH:MM' }}</strong>
+        <strong>{{ cancellation().cancelledAt | date: 'dd.MM.yyyy HH:mm' }}</strong>
       </p>
     </div>
     <div class="booking-cancellation__item">
@@ -17,7 +17,13 @@
     @if (cancellation().reason) {
       <div class="booking-cancellation__item">
         <p class="small"><strong>Reason</strong></p>
-        <p class="small">{{ cancellation().reason }}</p>
+        <p class="small">{{ cancellation().reason! | enumLabel: cancellationReasonLabel }}</p>
+      </div>
+    }
+    @if (cancellation().note) {
+      <div class="booking-cancellation__item">
+        <p class="small"><strong>Note</strong></p>
+        <p class="small">{{ cancellation().note }}</p>
       </div>
     }
   </div>

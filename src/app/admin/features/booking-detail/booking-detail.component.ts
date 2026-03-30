@@ -20,6 +20,7 @@ import { ConfirmDialogData } from '../../../shared/interfaces/confirm-dialog-dat
 import { BookingStatus } from '../../../tours/enums/booking-status';
 import { BookingCancellationDetailsComponent } from '../../ui/booking-cancellation-details/booking-cancellation-details.component';
 import { BookingRefundedDetailsComponent } from '../../ui/booking-refunded-details/booking-refunded-details.component';
+import { CancellationModalComponent } from '../cancellation-modal/cancellation-modal.component';
 
 @Component({
   selector: 'app-booking-detail',
@@ -100,27 +101,15 @@ export class BookingDetailComponent {
   }
 
   async openCancelModal(booking: Booking) {
-    const dialogData: ConfirmDialogData = {
-      title: 'Cancel booking',
-      message: `Are you sure you want to cancel booking <strong>${booking.reservationNumber}</strong>?`,
-      cancelText: 'Back',
-      confirmText: 'Cancel',
-      confirmButtonClass: 'btn--red',
-      onConfirm: async () => {
-        const newBooking = await this.bookingsStore.updateBooking({
-          ...booking,
-          status: BookingStatus.CANCELLED,
-        });
-        this.booking.set(newBooking);
-        this.snackbarService.success(`Booking ${booking.reservationNumber} cancelled successfully`);
-      },
-    };
-
-    this.dialog.open<ConfirmDialogData>(ConfirmModalComponent, {
-      data: dialogData,
+    const dialogRef = this.dialog.open<Booking>(CancellationModalComponent, {
+      data: booking,
       disableClose: false,
       hasBackdrop: true,
       backdropClass: 'cdk-overlay-backdrop',
+    });
+
+    dialogRef.closed.subscribe(booking => {
+      if (booking) this.booking.set(booking);
     });
   }
 

@@ -1,0 +1,35 @@
+<app-modal-layout
+  heading="Cancel booking"
+  [subheading]="
+    'Are you sure you want to cancel booking <strong>' +
+    booking.reservationNumber +
+    '</strong>? Please select a cancellation reason (required) and optionally add a note with additional details.'
+  "
+  cancelText="back"
+  confirmText="cancel"
+  confirmClass="btn--red"
+  [error]="error()"
+  [isLoading]="isLoading()"
+  (cancelled)="dialogRef.close()"
+  (confirmed)="onConfirm()"
+>
+  <div class="cancellation-form">
+    <div class="form__group">
+      <label class="form__label" for="reason">Reason*</label>
+      <mat-select placeholder="Select reason" [(ngModel)]="reason" name="reason">
+        @for (reason of cancellationReason | keyvalue; track reason) {
+          <mat-option [value]="reason.value">
+            {{ reason.value | enumLabel: cancellationReasonLabel }}
+          </mat-option>
+        }
+      </mat-select>
+      @if (reasonError()) {
+        <div class="error">{{ reasonError() }}</div>
+      }
+    </div>
+    <div class="form__group">
+      <label class="form__label" for="note">Note</label>
+      <textarea class="form__input" id="note" [(ngModel)]="note"></textarea>
+    </div>
+  </div>
+</app-modal-layout>

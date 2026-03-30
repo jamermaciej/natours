@@ -1,0 +1,31 @@
+<div class="modal">
+  <div class="modal__header">
+    <h3 class="text-center mb-3">{{ heading() }}</h3>
+    <p class="text-center" [innerHTML]="subheading()"></p>
+  </div>
+  @if (error()) {
+    <app-error-message [message]="error()!" />
+  }
+  <div class="modal__body">
+    <ng-content />
+  </div>
+  <div class="modal__footer">
+    <button class="btn btn--gray btn--medium" [disabled]="isLoading()" (click)="cancelled.emit()">
+      {{ cancelText() }}
+    </button>
+    <button
+      class="btn btn--medium"
+      [class]="confirmClass()"
+      [disabled]="isLoading()"
+      (click)="confirmed.emit()"
+    >
+      @if (isLoading()) {
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      } @else {
+        {{ confirmText() }}
+      }
+    </button>
+  </div>
+</div>

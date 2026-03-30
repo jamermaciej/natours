@@ -1,0 +1,9 @@
+@use 'functions' as *;
+
+.cancellation-form {
+  margin-bottom: toRem(20);
+
+  textarea {
+    resize: none;
+  }
+}
