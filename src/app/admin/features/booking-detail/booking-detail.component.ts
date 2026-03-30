@@ -105,6 +105,7 @@ export class BookingDetailComponent {
       data: booking,
       disableClose: false,
       hasBackdrop: true,
+      autoFocus: false,
       backdropClass: 'cdk-overlay-backdrop',
     });
 

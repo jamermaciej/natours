@@ -1,7 +1,11 @@
 @use 'functions' as *;
 
 .cancellation-form {
-  margin-bottom: toRem(20);
+  margin: toRem(20) 0;
+
+  mat-form-field {
+    margin-bottom: toRem(25);
+  }
 
   textarea {
     resize: none;

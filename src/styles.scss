@@ -155,3 +155,20 @@ ul {
 .unpaid {
   color: var(--color-orange);
 }
+
+mat-form-field.mat-mdc-form-field-type-mat-select {
+  --mat-form-field-filled-focus-label-text-color: var(--color-brand);
+  --mat-select-focused-arrow-color: var(--color-brand);
+  --mat-option-selected-state-label-text-color: var(--color-brand);
+  --mat-select-enabled-trigger-text-color: var(--color-secondary);
+
+  width: 100%;
+
+  .mat-mdc-text-field-wrapper {
+    border-radius: toRem(4);
+  }
+
+  .mdc-line-ripple {
+    display: none;
+  }
+}
