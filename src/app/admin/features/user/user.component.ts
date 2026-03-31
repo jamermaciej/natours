@@ -7,10 +7,11 @@ import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
 import { UsersStore } from '../../data-access/users-store';
 import { UserBody } from '../../../shared/interfaces/user';
 import { ErrorMessageComponent } from '../../../shared/ui/error-message/error-message.component';
+import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/content-wrapper.component';
 
 @Component({
   selector: 'app-user',
-  imports: [UpdateUserComponent, LoaderComponent, ErrorMessageComponent],
+  imports: [UpdateUserComponent, LoaderComponent, ErrorMessageComponent, ContentWrapperComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
 })

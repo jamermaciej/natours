@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Output, input, output } from '@angular/core';
-import { Review, ReviewResponse } from '../../../tours/interfaces/review';
+import { Component, input, output } from '@angular/core';
+import { ReviewResponse } from '../../../tours/interfaces/review';
 import { RatingComponent } from '../../../shared/ui/rating/rating.component';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/content-wrapper.component';
 
 @Component({
   selector: 'app-review-list',
-  imports: [RatingComponent, RouterLink, RouterOutlet],
+  imports: [RatingComponent, RouterLink, RouterOutlet, ContentWrapperComponent],
   templateUrl: './review-list.component.html',
   styleUrl: './review-list.component.scss',
 })

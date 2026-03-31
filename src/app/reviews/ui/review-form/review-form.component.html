@@ -1,7 +1,7 @@
 @if (isLoading()) {
   <app-loader />
 } @else {
-  <div [formGroup]="reviewForm" class="login-form" (ngSubmit)="onSubmit()">
+  <div [formGroup]="reviewForm" class="review-form" (ngSubmit)="onSubmit()">
     <h2 class="heading-secondary ma-bt-lg">
       @if (review()) {
         Update your review for {{ tourName() }} tour!

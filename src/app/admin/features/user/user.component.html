@@ -1,16 +1,18 @@
-<div class="user">
-  @if (isLoading()) {
-    <app-loader />
-  } @else {
-    @if (usersStore.errors().length) {
-      <app-error-message [message]="usersStore.errors()" />
+<app-content-wrapper>
+  <div class="user">
+    @if (isLoading()) {
+      <app-loader />
+    } @else {
+      @if (usersStore.errors().length) {
+        <app-error-message [message]="usersStore.errors()" />
+      }
+      <app-update-user
+        [user]="user()!"
+        [loadingUpdate]="usersStore.loadingUpdate()"
+        [loadingRemove]="usersStore.loadingRemove()"
+        (userUpdated)="onUserUpdated($event)"
+        (userDeleted)="onUserDeleted($event)"
+      ></app-update-user>
     }
-    <app-update-user
-      [user]="user()!"
-      [loadingUpdate]="usersStore.loadingUpdate()"
-      [loadingRemove]="usersStore.loadingRemove()"
-      (userUpdated)="onUserUpdated($event)"
-      (userDeleted)="onUserDeleted($event)"
-    ></app-update-user>
-  }
-</div>
+  </div>
+</app-content-wrapper>

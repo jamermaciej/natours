@@ -1,24 +1,26 @@
-<div class="bookings">
-  @if (isLoading()) {
-    <app-loader />
-  } @else {
-    <app-page-header title="Bookings" />
-    <app-common-table [columns]="columns()" [data]="bookings()"></app-common-table>
-    <ng-template #bookigStatusTemplate let-booking>
-      <app-status-badge [status]="booking.status" />
-    </ng-template>
-    <ng-template #paidTemplate let-booking>
-      {{ booking.paid ? '✅' : '⏳' }}
-    </ng-template>
-    <ng-template #actionsTemplate let-booking>
-      <div class="bookings__actions">
-        <button [routerLink]="[flowRoutes.BOOKINGS, booking._id]">
-          <svg class="edit-icon"><use href="/assets/images/icons.svg#icon-edit"></use></svg>
-        </button>
-        <button (click)="deleteBooking(booking)">
-          <svg class="remove-icon"><use href="/assets/images/icons.svg#icon-trash-2"></use></svg>
-        </button>
-      </div>
-    </ng-template>
-  }
-</div>
+<app-content-wrapper>
+  <div class="bookings">
+    @if (isLoading()) {
+      <app-loader />
+    } @else {
+      <app-page-header title="Bookings" />
+      <app-common-table [columns]="columns()" [data]="bookings()"></app-common-table>
+      <ng-template #bookigStatusTemplate let-booking>
+        <app-status-badge [status]="booking.status" />
+      </ng-template>
+      <ng-template #paidTemplate let-booking>
+        {{ booking.paid ? '✅' : '⏳' }}
+      </ng-template>
+      <ng-template #actionsTemplate let-booking>
+        <div class="bookings__actions">
+          <button [routerLink]="[flowRoutes.BOOKINGS, booking._id]">
+            <svg class="edit-icon"><use href="/assets/images/icons.svg#icon-edit"></use></svg>
+          </button>
+          <button (click)="deleteBooking(booking)">
+            <svg class="remove-icon"><use href="/assets/images/icons.svg#icon-trash-2"></use></svg>
+          </button>
+        </div>
+      </ng-template>
+    }
+  </div>
+</app-content-wrapper>

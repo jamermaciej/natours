@@ -1,10 +1,6 @@
 @use 'functions' as *;
 
 .reviews {
-  max-width: toRem(680);
-  margin: 0 auto;
-  padding: 0 toRem(80);
-
   ul {
     .review {
       &:not(:last-child) {

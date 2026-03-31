@@ -1,16 +1,16 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { ReviewFormComponent } from '../../ui/review-form/review-form.component';
 import { ReviewsStore } from '../../data-access/reviews.store';
-import { PageWrapperComponent } from '../../../layout/ui/page-wrapper/page-wrapper.component';
-import { ReviewBody, Review } from '../../../tours/interfaces/review';
+import { ReviewBody } from '../../../tours/interfaces/review';
+import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/content-wrapper.component';
 
 @Component({
   selector: 'app-review',
-  imports: [PageWrapperComponent, ReviewFormComponent],
+  imports: [ContentWrapperComponent, ReviewFormComponent],
   templateUrl: './review.component.html',
   styleUrl: './review.component.scss',
 })
-export class ReviewComponent {
+export class ReviewComponent implements OnInit {
   readonly reviewsStore = inject(ReviewsStore);
   id = input.required<string>();
   mode = input<string>();

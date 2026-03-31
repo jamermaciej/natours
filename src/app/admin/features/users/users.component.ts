@@ -14,6 +14,7 @@ import { User, UserBody } from '../../../shared/interfaces/user';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 import { authFeature } from '../../../shared/data-access/auth/store/auth.state';
+import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/content-wrapper.component';
 
 @Component({
   selector: 'app-users',
@@ -25,6 +26,7 @@ import { authFeature } from '../../../shared/data-access/auth/store/auth.state';
     PaginationComponent,
     SearchInputComponent,
     RoleSelectComponent,
+    ContentWrapperComponent,
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',

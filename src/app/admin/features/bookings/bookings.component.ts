@@ -14,6 +14,7 @@ import { SnackbarService } from '../../../shared/services/snackbar.service';
 import { RouterLink } from '@angular/router';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { StatusBadgeComponent } from '../../../shared/ui/status-badge/status-badge.component';
+import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/content-wrapper.component';
 
 @Component({
   selector: 'app-bookings',
@@ -23,6 +24,7 @@ import { StatusBadgeComponent } from '../../../shared/ui/status-badge/status-bad
     CommonTableComponent,
     RouterLink,
     StatusBadgeComponent,
+    ContentWrapperComponent,
   ],
   templateUrl: './bookings.component.html',
   styleUrl: './bookings.component.scss',

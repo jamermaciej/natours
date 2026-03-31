@@ -20,6 +20,7 @@ import { BookingCancellationDetailsComponent } from '../../ui/booking-cancellati
 import { BookingRefundedDetailsComponent } from '../../ui/booking-refunded-details/booking-refunded-details.component';
 import { CancellationModalComponent } from '../cancellation-modal/cancellation-modal.component';
 import { RefundModalComponent } from '../refund-modal/refund-modal.component';
+import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/content-wrapper.component';
 
 @Component({
   selector: 'app-booking-detail',
@@ -36,6 +37,7 @@ import { RefundModalComponent } from '../refund-modal/refund-modal.component';
     PaymentToggleComponent,
     BookingCancellationDetailsComponent,
     BookingRefundedDetailsComponent,
+    ContentWrapperComponent,
   ],
   templateUrl: './booking-detail.component.html',
   styleUrl: './booking-detail.component.scss',

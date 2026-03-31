@@ -1,67 +1,69 @@
-<div class="booking-detail">
-  @if (booking.error(); as error) {
-    <app-error-message [message]="errorMessage()" />
-  }
+<app-content-wrapper>
+  <div class="booking-detail">
+    @if (booking.error(); as error) {
+      <app-error-message [message]="errorMessage()" />
+    }
 
-  @if (booking.isLoading()) {
-    <app-loader />
-  } @else if (booking.value(); as booking) {
-    <app-booking-detail-header
-      [reservationNumber]="booking.reservationNumber"
-      [status]="booking.status"
-      [paid]="booking.paid"
-      (dateChanged)="openDateModal(booking)"
-      (bookingCancelled)="openCancelModal(booking)"
-      (refunded)="openRefundModal(booking)"
-    />
-    @if (booking.status === bookingStatus.CANCELLED && booking.cancellation) {
-      <app-booking-cancellation-details
-        [cancellation]="booking.cancellation"
-      ></app-booking-cancellation-details>
-    }
-    @if (booking.status === bookingStatus.REFUNDED && booking.refund) {
-      <app-booking-refunded-details [refund]="booking.refund"></app-booking-refunded-details>
-    }
-    <div class="cards-grid">
-      <app-section-card title="Client">
-        <app-info-card
-          [photo]="booking.user.photo"
-          [title]="booking.user.name"
-          [subtitle]="booking.user.email"
-          buttonLabel="Go to profile ↗"
-          [link]="[flowRoutes.USERS, booking.user._id!]"
-          [queryParams]="{ returnUrl: `${flowRoutes.BOOKINGS}/${booking._id}` }"
-        />
+    @if (booking.isLoading()) {
+      <app-loader />
+    } @else if (booking.value(); as booking) {
+      <app-booking-detail-header
+        [reservationNumber]="booking.reservationNumber"
+        [status]="booking.status"
+        [paid]="booking.paid"
+        (dateChanged)="openDateModal(booking)"
+        (bookingCancelled)="openCancelModal(booking)"
+        (refunded)="openRefundModal(booking)"
+      />
+      @if (booking.status === bookingStatus.CANCELLED && booking.cancellation) {
+        <app-booking-cancellation-details
+          [cancellation]="booking.cancellation"
+        ></app-booking-cancellation-details>
+      }
+      @if (booking.status === bookingStatus.REFUNDED && booking.refund) {
+        <app-booking-refunded-details [refund]="booking.refund"></app-booking-refunded-details>
+      }
+      <div class="cards-grid">
+        <app-section-card title="Client">
+          <app-info-card
+            [photo]="booking.user.photo"
+            [title]="booking.user.name"
+            [subtitle]="booking.user.email"
+            buttonLabel="Go to profile ↗"
+            [link]="[flowRoutes.USERS, booking.user._id!]"
+            [queryParams]="{ returnUrl: `${flowRoutes.BOOKINGS}/${booking._id}` }"
+          />
+        </app-section-card>
+        <app-section-card title="Tour">
+          <app-info-card
+            [title]="booking.tour.name"
+            [subtitle]="`ID: ${booking.tour._id}`"
+            buttonLabel="Go to tour ↗"
+            [link]="[flowRoutes.TOURS, booking.tour.slug]"
+          />
+        </app-section-card>
+      </div>
+      <div class="box-grid">
+        <app-info-box label="Price">
+          {{ booking.price | currency: 'PLN' }}
+        </app-info-box>
+        <app-info-box label="Booked date">
+          {{ booking.createdAt | date }}
+        </app-info-box>
+        <app-info-box label="Start date">
+          {{ booking.startDate | date }}
+        </app-info-box>
+        <app-info-box label="Payment status">
+          <app-payment-toggle
+            [paid]="paid()"
+            [isUpdating]="isUpdating()"
+            (paidChanged)="updateBooking(booking, $event)"
+          ></app-payment-toggle>
+        </app-info-box>
+      </div>
+      <app-section-card title="Guides">
+        <app-guides-list [guides]="booking.tour.guides"></app-guides-list>
       </app-section-card>
-      <app-section-card title="Tour">
-        <app-info-card
-          [title]="booking.tour.name"
-          [subtitle]="`ID: ${booking.tour._id}`"
-          buttonLabel="Go to tour ↗"
-          [link]="[flowRoutes.TOURS, booking.tour.slug]"
-        />
-      </app-section-card>
-    </div>
-    <div class="box-grid">
-      <app-info-box label="Price">
-        {{ booking.price | currency: 'PLN' }}
-      </app-info-box>
-      <app-info-box label="Booked date">
-        {{ booking.createdAt | date }}
-      </app-info-box>
-      <app-info-box label="Start date">
-        {{ booking.startDate | date }}
-      </app-info-box>
-      <app-info-box label="Payment status">
-        <app-payment-toggle
-          [paid]="paid()"
-          [isUpdating]="isUpdating()"
-          (paidChanged)="updateBooking(booking, $event)"
-        ></app-payment-toggle>
-      </app-info-box>
-    </div>
-    <app-section-card title="Guides">
-      <app-guides-list [guides]="booking.tour.guides"></app-guides-list>
-    </app-section-card>
-  }
-</div>
+    }
+  </div>
+</app-content-wrapper>

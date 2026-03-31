@@ -1,10 +1,6 @@
 @use 'functions' as *;
 
 .users {
-  max-width: toRem(880);
-  margin: 0 auto;
-  padding: 0 toRem(80);
-
   .update-user {
     justify-self: end;
   }

@@ -1,4 +1,4 @@
-<app-page-wrapper>
+<app-content-wrapper>
   <app-review-form
     [review]="reviewsStore.getReview(id())!"
     [isLoading]="reviewsStore.isLoading()"
@@ -6,4 +6,4 @@
     [userId]="user()!"
     (triggerSubmit)="onSave($event)"
   />
-</app-page-wrapper>
+</app-content-wrapper>
