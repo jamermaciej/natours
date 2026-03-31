@@ -6,6 +6,7 @@ import { Booking } from '../../../bookings/interfaces/booking';
 import { Observable } from 'rxjs';
 import { BookingStatus } from '../../../tours/enums/booking-status';
 import { CancelBookingRequest } from '../../../bookings/models/cancel-booking-request';
+import { RefundBookingData } from '../../../bookings/models/refund-booking-data';
 
 @Injectable({
   providedIn: 'root',
@@ -19,10 +20,10 @@ export class BookingService {
     });
   }
 
-  refundPayment(bookingId: string): Observable<ApiResponse<Booking>> {
+  refundPayment(bookingId: string, data: RefundBookingData): Observable<ApiResponse<Booking>> {
     return this.#http.post<ApiResponse<Booking>>(
       `${apiEndpoint.BookingEndpoint.baseBooking}/${bookingId}/refund`,
-      null,
+      data,
       {
         withCredentials: true,
       },

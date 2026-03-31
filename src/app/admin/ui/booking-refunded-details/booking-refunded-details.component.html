@@ -30,5 +30,13 @@
         </p>
       </div>
     }
+    @if (refund().note) {
+      <div class="booking-refunded__item">
+        <p class="small">Note</p>
+        <p class="small">
+          <strong>{{ refund().note }}</strong>
+        </p>
+      </div>
+    }
   </div>
 </app-section-card>

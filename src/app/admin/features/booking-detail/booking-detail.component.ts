@@ -15,12 +15,11 @@ import { PaymentToggleComponent } from '../../ui/payment-toggle/payment-toggle.c
 import { SnackbarService } from '../../../shared/services/snackbar.service';
 import { Dialog } from '@angular/cdk/dialog';
 import { BookingDateModalComponent } from '../../ui/booking-date-modal/booking-date-modal.component';
-import { ConfirmModalComponent } from '../../../shared/ui/confirm-modal/confirm-modal.component';
-import { ConfirmDialogData } from '../../../shared/interfaces/confirm-dialog-data';
 import { BookingStatus } from '../../../tours/enums/booking-status';
 import { BookingCancellationDetailsComponent } from '../../ui/booking-cancellation-details/booking-cancellation-details.component';
 import { BookingRefundedDetailsComponent } from '../../ui/booking-refunded-details/booking-refunded-details.component';
 import { CancellationModalComponent } from '../cancellation-modal/cancellation-modal.component';
+import { RefundModalComponent } from '../refund-modal/refund-modal.component';
 
 @Component({
   selector: 'app-booking-detail',
@@ -115,23 +114,16 @@ export class BookingDetailComponent {
   }
 
   openRefundModal(booking: Booking) {
-    const dialogData: ConfirmDialogData = {
-      title: 'Refund payment',
-      message: `Refunds take 5–10 days to appear on a customer's statement. Stripe's fees for the original payment won't be returned, but there are no additional fees for the refund.`,
-      confirmText: 'Refund',
-      confirmButtonClass: 'btn--red',
-      onConfirm: async () => {
-        const newBooking = await this.bookingsStore.refundPayment(booking._id);
-        this.booking.set(newBooking);
-        this.snackbarService.success(`Payment refunded successfully`);
-      },
-    };
-
-    this.dialog.open<ConfirmDialogData>(ConfirmModalComponent, {
-      data: dialogData,
+    const dialogRef = this.dialog.open<Booking>(RefundModalComponent, {
+      data: booking,
       disableClose: false,
       hasBackdrop: true,
+      autoFocus: false,
       backdropClass: 'cdk-overlay-backdrop',
+    });
+
+    dialogRef.closed.subscribe(booking => {
+      if (booking) this.booking.set(booking);
     });
   }
 }

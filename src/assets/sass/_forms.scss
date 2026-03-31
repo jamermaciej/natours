@@ -38,6 +38,10 @@
       border-bottom: toRem(3) solid var(--color-brand);
     }
 
+    &:disabled {
+      cursor: not-allowed;
+    }
+
     &::-webkit-input-placeholder {
       color: #bbb;
     }
@@ -85,6 +89,16 @@
     width: toRem(75);
     border-radius: 50%;
     margin-right: toRem(20);
+  }
+
+  &__hint {
+    font-size: toRem(12);
+    font-weight: 400;
+    color: var(--color-brand);
+  }
+
+  textarea {
+    resize: none;
   }
 }
 

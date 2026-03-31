@@ -1,0 +1,45 @@
+<app-modal-layout
+  heading="Refund booking"
+  [subheading]="
+    'Are you sure you want to refund booking <strong>' +
+    booking.reservationNumber +
+    '</strong>? Please select a reason (required) and optionally specify the refund amount and add a note.<br><strong><span class=\'text-danger\'>Stripe processing fees will not be refunded.</span></strong>'
+  "
+  confirmText="Process refund"
+  confirmClass="btn--red"
+  [error]="error()"
+  [isLoading]="isLoading()"
+  [isFormValid]="refundForm().valid()"
+  (cancelled)="dialogRef.close()"
+  (confirmed)="onConfirm()"
+>
+  <form class="form form--refund">
+    <mat-form-field>
+      <mat-label>Reason</mat-label>
+      <mat-select placeholder="Select reason" [formField]="refundForm.reason">
+        @for (reason of refundReason; track reason) {
+          <mat-option [value]="reason">
+            {{ reason | enumLabel: refundReasonLabel }}
+          </mat-option>
+        }
+      </mat-select>
+      @if (refundForm.reason().invalid() && refundForm.reason().touched()) {
+        <mat-error>Reason is required</mat-error>
+      }
+    </mat-form-field>
+    <div class="form__group">
+      <label class="form__label" for="amount">Refund amount</label>
+      <input class="form__input" id="amount" type="number" [formField]="refundForm.amount" />
+      <div class="form__hint">Maximum refund: {{ booking.price | currency: 'PLN' }}</div>
+    </div>
+    <div class="form__group">
+      <label class="form__label" for="note">Note (optional)</label>
+      <textarea
+        class="form__input"
+        id="note"
+        placeholder="Add additional details..."
+        [formField]="refundForm.note"
+      ></textarea>
+    </div>
+  </form>
+</app-modal-layout>

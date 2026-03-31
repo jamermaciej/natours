@@ -1,9 +1,9 @@
 @use 'functions' as *;
 
-.cancellation-form {
+.form {
   margin: toRem(20) 0;
 
   mat-form-field {
-    margin-bottom: toRem(25);
+    margin-bottom: toRem(10);
   }
 }

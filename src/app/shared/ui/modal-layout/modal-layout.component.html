@@ -1,7 +1,7 @@
 <div class="modal">
   <div class="modal__header">
     <h3 class="text-center mb-3">{{ heading() }}</h3>
-    <p class="text-center" [innerHTML]="subheading()"></p>
+    <p class="text-center small" [innerHTML]="subheading()"></p>
   </div>
   @if (error()) {
     <app-error-message [message]="error()!" />
@@ -16,7 +16,7 @@
     <button
       class="btn btn--medium"
       [class]="confirmClass()"
-      [disabled]="isLoading()"
+      [disabled]="isLoading() || !isFormValid()"
       (click)="confirmed.emit()"
     >
       @if (isLoading()) {
