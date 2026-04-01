@@ -1,7 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { RefundReason } from '../../../bookings/models/refund-reason';
-import { REFUND_REASON_LABELS } from '../../../bookings/models/refund-reason-labels';
-import { Booking } from '../../../bookings/interfaces/booking';
+import { RefundReason } from '../../enums/refund-reason';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ModalLayoutComponent } from '../../../shared/ui/modal-layout/modal-layout.component';
@@ -18,8 +16,10 @@ import { EnumLabelPipe } from '../../../shared/pipes/enum-label.pipe';
 import { BookingsStore } from '../../data-access/bookings-store';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
 import { disabled, form, FormField, required } from '@angular/forms/signals';
-import { RefundBookingData } from '../../../bookings/models/refund-booking-data';
+import { RefundBookingData } from '../../interfaces/refund-booking-data';
 import { CurrencyPipe } from '@angular/common';
+import { Booking } from '../../../shared/interfaces/booking';
+import { REFUND_REASON_LABELS } from '../../enums/refund-reason-labels';
 
 @Component({
   selector: 'app-refund-modal',

@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { BookingStore } from '../../data-access/booking-store';
+import { MyBookingsStore } from '../../data-access/my-bookings-store';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
 import { PageHeaderComponent } from '../../../shared/ui/page-header/page-header.component';
 import { BookingsListComponent } from '../../ui/bookings-list/bookings-list.component';
@@ -12,11 +12,11 @@ import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/cont
   styleUrl: './bookings.component.scss',
 })
 export class BookingsComponent implements OnInit {
-  #bookingStore = inject(BookingStore);
-  bookings = this.#bookingStore.bookings;
-  isLoading = this.#bookingStore.isLoading;
+  #myBookingStore = inject(MyBookingsStore);
+  bookings = this.#myBookingStore.bookings;
+  isLoading = this.#myBookingStore.isLoading;
 
   ngOnInit() {
-    this.#bookingStore.load();
+    this.#myBookingStore.load();
   }
 }

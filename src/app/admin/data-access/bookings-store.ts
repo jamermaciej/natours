@@ -3,9 +3,9 @@ import { inject } from '@angular/core';
 import { BookingService } from '../../shared/data-access/bookings/booking.service';
 import { lastValueFrom } from 'rxjs';
 import { withDevtools } from '@angular-architects/ngrx-toolkit';
-import { Booking } from '../../bookings/interfaces/booking';
-import { CancelBookingRequest } from '../../bookings/models/cancel-booking-request';
-import { RefundBookingData } from '../../bookings/models/refund-booking-data';
+import { CancelBookingRequest } from '../interfaces/cancel-booking-request';
+import { RefundBookingData } from '../interfaces/refund-booking-data';
+import { Booking } from '../../shared/interfaces/booking';
 
 export interface BookingsState {
   bookings: Booking[];

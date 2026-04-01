@@ -6,7 +6,6 @@ import { CommonTableComponent } from '../../../shared/ui/common-table/common-tab
 import { TableConfig } from '../../../shared/interfaces/table-config';
 import { TableColumnType } from '../../../shared/enums/table-column-type';
 import { TableColumn } from '../../../shared/interfaces/table-column';
-import { Booking } from '../../../bookings/interfaces/booking';
 import { Dialog } from '@angular/cdk/dialog';
 import { ConfirmModalComponent } from '../../../shared/ui/confirm-modal/confirm-modal.component';
 import { ConfirmDialogData } from '../../../shared/interfaces/confirm-dialog-data';
@@ -15,6 +14,7 @@ import { RouterLink } from '@angular/router';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { StatusBadgeComponent } from '../../../shared/ui/status-badge/status-badge.component';
 import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/content-wrapper.component';
+import { Booking } from '../../../shared/interfaces/booking';
 
 @Component({
   selector: 'app-bookings',

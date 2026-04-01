@@ -1,5 +1,5 @@
+import { CancellationReason } from '../enums/cancellation-reason';
 import { User } from '../../shared/interfaces/user';
-import { CancellationReason } from '../models/cancellation-reason';
 
 export interface BookingCancellation {
   cancelledAt: Date;

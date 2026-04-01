@@ -1,9 +1,9 @@
 import { Component, input } from '@angular/core';
 import { SectionCardComponent } from '../../../shared/ui/section-card/section-card.component';
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { BookingRefunded } from '../../../bookings/interfaces/booking-refunded';
 import { EnumLabelPipe } from '../../../shared/pipes/enum-label.pipe';
-import { REFUND_REASON_LABELS } from '../../../bookings/models/refund-reason-labels';
+import { BookingRefunded } from '../../interfaces/booking-refunded';
+import { REFUND_REASON_LABELS } from '../../enums/refund-reason-labels';
 
 @Component({
   selector: 'app-booking-refunded-details',

@@ -1,4 +1,4 @@
-import { RefundReason } from './refund-reason';
+import { RefundReason } from '../enums/refund-reason';
 
 export const REFUND_REASON_LABELS: Record<RefundReason, string> = {
   [RefundReason.DUPLICATE]: 'Duplicate',

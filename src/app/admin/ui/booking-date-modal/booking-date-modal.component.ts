@@ -1,11 +1,11 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { Booking } from '../../../bookings/interfaces/booking';
 import { ErrorMessageComponent } from '../../../shared/ui/error-message/error-message.component';
 import { DatePipe } from '@angular/common';
 import { BookingsStore } from '../../data-access/bookings-store';
 import { HttpErrorResponse } from '@angular/common/http';
 import { StartDate } from '../../../tours/interfaces/start-date';
+import { Booking } from '../../../shared/interfaces/booking';
 
 @Component({
   selector: 'app-booking-date-modal',

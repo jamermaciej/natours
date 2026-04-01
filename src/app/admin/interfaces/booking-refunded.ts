@@ -1,5 +1,5 @@
+import { RefundReason } from '../enums/refund-reason';
 import { User } from '../../shared/interfaces/user';
-import { RefundReason } from '../models/refund-reason';
 
 export interface BookingRefunded {
   refundedAt: Date;

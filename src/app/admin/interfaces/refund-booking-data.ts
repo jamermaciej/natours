@@ -1,4 +1,4 @@
-import { RefundReason } from './refund-reason';
+import { RefundReason } from '../enums/refund-reason';
 
 export interface RefundBookingData {
   reason: RefundReason | null;

@@ -12,7 +12,7 @@ import { constants } from '../../../constants/constants';
 import { selectQueryParams } from '../../router/store/router.selectors';
 import { Store } from '@ngrx/store';
 import { ReviewsStore } from '../../../../reviews/data-access/reviews.store';
-import { BookingStore } from '../../../../bookings/data-access/booking-store';
+import { MyBookingsStore } from '../../../../my-bookings/data-access/my-bookings-store';
 import { UsersStore } from '../../../../admin/data-access/users-store';
 
 export const signup = createEffect(
@@ -99,7 +99,7 @@ export const logoutSuccess = createEffect(
     actions$ = inject(Actions),
     snackbarService = inject(SnackbarService),
     reviewsStore = inject(ReviewsStore),
-    bookingStore = inject(BookingStore),
+    myBookingsStore = inject(MyBookingsStore),
     usersStore = inject(UsersStore),
   ) => {
     return actions$.pipe(
@@ -107,7 +107,7 @@ export const logoutSuccess = createEffect(
       tap(() => localStorage.removeItem(constants.CURRENT_USER)),
       map(({ message }) => {
         reviewsStore.clearStore();
-        bookingStore.clearState();
+        myBookingsStore.clearState();
         usersStore.clearStore();
 
         snackbarService.success(message);

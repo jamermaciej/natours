@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { apiEndpoint } from '../../constants/constants';
 import { ApiResponse } from '../../interfaces/api-response';
-import { Booking } from '../../../bookings/interfaces/booking';
+
 import { Observable } from 'rxjs';
 import { BookingStatus } from '../../../tours/enums/booking-status';
-import { CancelBookingRequest } from '../../../bookings/models/cancel-booking-request';
-import { RefundBookingData } from '../../../bookings/models/refund-booking-data';
+import { CancelBookingRequest } from '../../../admin/interfaces/cancel-booking-request';
+import { RefundBookingData } from '../../../admin/interfaces/refund-booking-data';
+import { Booking } from '../../interfaces/booking';
 
 @Injectable({
   providedIn: 'root',

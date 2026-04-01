@@ -4,12 +4,12 @@ import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { HttpErrorResponse } from '@angular/common/http';
 import { BookingsStore } from '../../data-access/bookings-store';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
-import { Booking } from '../../../bookings/interfaces/booking';
 import { MatError, MatFormField, MatLabel, MatOption, MatSelect } from '@angular/material/select';
-import { CancellationReason } from '../../../bookings/models/cancellation-reason';
+import { CancellationReason } from '../../enums/cancellation-reason';
 import { EnumLabelPipe } from '../../../shared/pipes/enum-label.pipe';
-import { CANCELLATION_REASON_LABELS } from '../../../bookings/models/cancellation-reason-labels';
+import { CANCELLATION_REASON_LABELS } from '../../enums/cancellation-reason-labels';
 import { FormsModule, NgModel } from '@angular/forms';
+import { Booking } from '../../../shared/interfaces/booking';
 
 @Component({
   selector: 'app-cancellation-modal',

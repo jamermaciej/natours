@@ -1,9 +1,9 @@
 import { patchState, signalStore, withHooks, withMethods, withState } from '@ngrx/signals';
-import { Booking } from '../interfaces/booking';
 import { inject } from '@angular/core';
 import { BookingService } from '../../shared/data-access/bookings/booking.service';
 import { lastValueFrom } from 'rxjs';
 import { withDevtools } from '@angular-architects/ngrx-toolkit';
+import { Booking } from '../../shared/interfaces/booking';
 
 export interface BookingState {
   bookings: Booking[];
@@ -15,9 +15,9 @@ const initialState: BookingState = {
   isLoading: false,
 };
 
-export const BookingStore = signalStore(
+export const MyBookingsStore = signalStore(
   { providedIn: 'root', protectedState: false },
-  withDevtools('bookings'),
+  withDevtools('my-bookings'),
   withState(initialState),
   withMethods((store, bookingService = inject(BookingService)) => ({
     async load() {

@@ -1,8 +1,8 @@
 import { User } from '../../shared/interfaces/user';
 import { BookingStatus } from '../../tours/enums/booking-status';
 import { Tour } from '../../tours/interfaces/tour';
-import { BookingCancellation } from './booking-cancellation';
-import { BookingRefunded } from './booking-refunded';
+import { BookingCancellation } from '../../admin/interfaces/booking-cancellation';
+import { BookingRefunded } from '../../admin/interfaces/booking-refunded';
 
 export interface Booking {
   _id: string;

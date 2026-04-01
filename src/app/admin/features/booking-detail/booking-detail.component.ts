@@ -1,5 +1,4 @@
 import { Component, computed, inject, input, linkedSignal, resource, signal } from '@angular/core';
-import { Booking } from '../../../bookings/interfaces/booking';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
 import { ErrorMessageComponent } from '../../../shared/ui/error-message/error-message.component';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -21,6 +20,7 @@ import { BookingRefundedDetailsComponent } from '../../ui/booking-refunded-detai
 import { CancellationModalComponent } from '../cancellation-modal/cancellation-modal.component';
 import { RefundModalComponent } from '../refund-modal/refund-modal.component';
 import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/content-wrapper.component';
+import { Booking } from '../../../shared/interfaces/booking';
 
 @Component({
   selector: 'app-booking-detail',
