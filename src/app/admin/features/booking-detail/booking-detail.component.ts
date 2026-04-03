@@ -63,13 +63,13 @@ export class BookingDetailComponent {
   protected readonly paid = linkedSignal(() => this.booking.value()?.paid ?? false);
   protected readonly isUpdating = signal(false);
 
-  protected async updateBooking(booking: Booking, paid: boolean) {
+  protected async updateBooking(id: string, paid: boolean) {
     const previous = this.paid();
     this.paid.set(paid);
     this.isUpdating.set(true);
 
     try {
-      const response = await this.bookingsStore.updateBooking(booking._id, { paid: this.paid() });
+      const response = await this.bookingsStore.updateBooking(id, { paid: this.paid() });
       this.booking.set(response);
     } catch (err) {
       this.paid.set(previous);
