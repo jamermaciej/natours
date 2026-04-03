@@ -5,7 +5,7 @@ import { authFeature } from '../../shared/data-access/auth/store/auth.state';
 import { map } from 'rxjs';
 import { FlowRoutes } from '../enums/flow-routes';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const authGuard: CanActivateFn = () => {
   const store = inject(Store);
   const router = inject(Router);
 

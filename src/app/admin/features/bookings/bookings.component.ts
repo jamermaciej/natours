@@ -45,11 +45,22 @@ export class BookingsComponent implements OnInit {
   };
 
   protected columns = computed<TableColumn[]>(() => [
-    { key: 'reservationNumber', header: '#', type: TableColumnType.TEXT },
+    {
+      key: 'reservationNumber',
+      header: 'Reservation no.',
+      type: TableColumnType.TEXT,
+      cssClass: 'text-center',
+    },
     { key: 'user.name', header: 'User', type: TableColumnType.TEXT },
     { key: 'tour.name', header: 'Tour', type: TableColumnType.TEXT },
-    { key: 'createdAt', header: 'Booked date', type: TableColumnType.DATE, format: 'dd MMM yyyy' },
-    { key: 'price', header: 'Price', type: TableColumnType.CURRENCY },
+    {
+      key: 'createdAt',
+      header: 'Booked date',
+      type: TableColumnType.DATE,
+      cssClass: 'text-center',
+      format: 'dd.MM.yyyy',
+    },
+    { key: 'price', header: 'Price', type: TableColumnType.CURRENCY, cssClass: 'text-center' },
     {
       key: 'status',
       header: 'Status',

@@ -21,6 +21,14 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'bookings/:bookingId',
+        loadComponent: () =>
+          import('../admin/features/booking-detail/booking-detail.component').then(
+            m => m.BookingDetailComponent,
+          ),
+        title: 'Booking Details',
+      },
+      {
         path: 'reviews',
         children: [
           {

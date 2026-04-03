@@ -14,6 +14,7 @@ import { Store } from '@ngrx/store';
 import { ReviewsStore } from '../../../../reviews/data-access/reviews.store';
 import { MyBookingsStore } from '../../../../my-bookings/data-access/my-bookings-store';
 import { UsersStore } from '../../../../admin/data-access/users-store';
+import { BookingsStore } from '../../../../admin/data-access/bookings-store';
 
 export const signup = createEffect(
   (actions$ = inject(Actions), authService = inject(AuthService)) => {
@@ -101,6 +102,7 @@ export const logoutSuccess = createEffect(
     reviewsStore = inject(ReviewsStore),
     myBookingsStore = inject(MyBookingsStore),
     usersStore = inject(UsersStore),
+    bookingsStore = inject(BookingsStore),
   ) => {
     return actions$.pipe(
       ofType(authActions.logoutSuccess),
@@ -109,6 +111,7 @@ export const logoutSuccess = createEffect(
         reviewsStore.clearStore();
         myBookingsStore.clearState();
         usersStore.clearStore();
+        bookingsStore.clearState();
 
         snackbarService.success(message);
         return routerActions.go({ path: [FlowRoutes.TOURS] });

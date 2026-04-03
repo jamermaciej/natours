@@ -2,21 +2,31 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">#</th>
+        <th scope="col">Reservation no.</th>
         <th scope="col">Tour</th>
-        <th scope="col">Booked date</th>
+        <th scope="col">Start date</th>
         <th scope="col">Price</th>
-        <th scope="col">Paid</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       @for (booking of bookings(); track booking._id; let i = $index) {
         <tr>
-          <th scope="row">{{ i + 1 }}</th>
+          <th scope="row">{{ booking.reservationNumber }}</th>
           <td>{{ booking.tour.name }}</td>
-          <td>{{ booking.createdAt | date }}</td>
-          <td>{{ booking.price | currency }}</td>
-          <td>{{ booking.paid ? 'Yes' : 'No' }}</td>
+          <td class="text-center">{{ booking.startDate | date: 'dd.MM.yyyy' }}</td>
+          <td class="text-center">{{ booking.price | currency: 'PLN' : 'symbol' : '1.0-2' }}</td>
+          <td class="text-center">
+            <app-status-badge [status]="booking.status"></app-status-badge>
+          </td>
+          <td class="text-center">
+            <a
+              class="btn btn--outline btn--small d-inline"
+              [routerLink]="[flowRoutes.MY_BOOKINGS, booking._id]"
+              >View</a
+            >
+          </td>
         </tr>
       }
     </tbody>

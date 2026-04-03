@@ -1,11 +1,13 @@
 import { Routes } from '@angular/router';
 import { authGuard } from '../shared/guards/auth.guard';
 import { cannotEditSelfGuard } from '../shared/guards/cannot-edit-self.guard';
+import { Role } from '../tours/enums/role';
+import { roleGuard } from '../shared/guards/role.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleGuard([Role.ADMIN])],
     loadComponent: () =>
       import('../dashboard/ui/dashboard/dashboard.component').then(m => m.DashboardComponent),
     children: [
