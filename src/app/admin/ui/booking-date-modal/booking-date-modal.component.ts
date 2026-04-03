@@ -36,8 +36,7 @@ export class BookingDateModalComponent {
     this.error.set(null);
 
     try {
-      const updatedBooking = await this.bookingStore.updateBooking({
-        ...this.data,
+      const updatedBooking = await this.bookingStore.updateBooking(this.data._id, {
         startDate: this.selectedDate(),
       });
       this.dialogRef.close(updatedBooking);

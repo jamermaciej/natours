@@ -65,10 +65,10 @@ export class BookingService {
     );
   }
 
-  updateBooking(booking: Booking): Observable<ApiResponse<Booking>> {
+  updateBooking(id: string, data: Partial<Booking>): Observable<ApiResponse<Booking>> {
     return this.#http.patch<ApiResponse<Booking>>(
-      `${apiEndpoint.BookingEndpoint.baseBooking}/${booking._id}`,
-      booking,
+      `${apiEndpoint.BookingEndpoint.baseBooking}/${id}`,
+      data,
       {
         withCredentials: true,
       },

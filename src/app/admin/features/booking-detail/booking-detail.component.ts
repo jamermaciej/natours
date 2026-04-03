@@ -69,10 +69,7 @@ export class BookingDetailComponent {
     this.isUpdating.set(true);
 
     try {
-      const response = await this.bookingsStore.updateBooking({
-        ...booking,
-        paid: this.paid(),
-      });
+      const response = await this.bookingsStore.updateBooking(booking._id, { paid: this.paid() });
       this.booking.set(response);
     } catch (err) {
       this.paid.set(previous);

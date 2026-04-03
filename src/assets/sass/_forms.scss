@@ -96,13 +96,13 @@
     font-weight: 400;
     color: var(--color-brand);
   }
-
-  textarea {
-    resize: none;
-  }
 }
 
 .error-message {
   font-weight: 700;
   color: #ff7730;
+}
+
+textarea {
+  resize: none;
 }
