@@ -1,10 +1,29 @@
 <app-content-wrapper>
-  <div class="bookings">
-    @if (isLoading()) {
-      <app-loader />
+  @if (isLoading()) {
+    <app-loader />
+  } @else {
+    @if (!bookings().length) {
+      <app-empty-state
+        title="You don't have bookings yet."
+        description="You haven't booked any tours yet. Start exploring and plan your next adventure."
+        ctaLabel="Browse tours"
+        [ctaLink]="flowRoutes.TOURS"
+      />
     } @else {
-      <app-page-header title="My Bookings" />
-      <app-bookings-list [bookings]="bookings()"></app-bookings-list>
+      <app-bookings-list [bookings]="upcomingBookings()" heading="Upcoming bookings">
+        <app-empty-state
+          title="No upcoming trips"
+          description="You have no upcoming tours scheduled. Ready for your next adventure?"
+          ctaLabel="Browse tours"
+          [ctaLink]="flowRoutes.TOURS"
+        />
+      </app-bookings-list>
+      <app-bookings-list [bookings]="pastBookings()" heading="Past bookings">
+        <app-empty-state
+          title="No past trips yet"
+          description="Your completed tours will appear here."
+        />
+      </app-bookings-list>
     }
-  </div>
+  }
 </app-content-wrapper>

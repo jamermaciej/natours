@@ -1,0 +1,9 @@
+<div class="empty-state">
+  <p class="empty-state__title">{{ title() }}</p>
+  <p class="empty-state__description">{{ description() }}</p>
+  @if (ctaLabel()) {
+    <a class="btn btn--outline btn--small empty-state__cta" [routerLink]="ctaLink()">{{
+      ctaLabel()
+    }}</a>
+  }
+</div>

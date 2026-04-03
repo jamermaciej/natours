@@ -1,5 +1,12 @@
-import { patchState, signalStore, withHooks, withMethods, withState } from '@ngrx/signals';
-import { inject } from '@angular/core';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withHooks,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
+import { computed, inject } from '@angular/core';
 import { BookingService } from '../../shared/data-access/bookings/booking.service';
 import { lastValueFrom } from 'rxjs';
 import { withDevtools } from '@angular-architects/ngrx-toolkit';
@@ -19,6 +26,14 @@ export const MyBookingsStore = signalStore(
   { providedIn: 'root', protectedState: false },
   withDevtools('my-bookings'),
   withState(initialState),
+  withComputed(({ bookings }) => ({
+    upcomingBookings: computed(() =>
+      bookings().filter(booking => new Date(booking.startDate) >= new Date()),
+    ),
+    pastBookings: computed(() =>
+      bookings().filter(booking => new Date(booking.startDate) < new Date()),
+    ),
+  })),
   withMethods((store, bookingService = inject(BookingService)) => ({
     async load() {
       if (!store.bookings().length) {

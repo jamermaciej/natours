@@ -1,0 +1,19 @@
+@use 'functions' as *;
+
+.empty-state {
+  text-align: center;
+  max-width: toRem(300);
+  margin: toRem(30) auto;
+
+  &__title {
+    font-weight: 700;
+  }
+
+  &__description {
+    line-height: toRem(20);
+  }
+
+  &__cta {
+    margin-top: toRem(15);
+  }
+}

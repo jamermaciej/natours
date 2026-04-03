@@ -1,36 +1,41 @@
-@if (bookings().length) {
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Reservation no.</th>
-        <th scope="col">Tour</th>
-        <th scope="col">Start date</th>
-        <th scope="col">Price</th>
-        <th scope="col">Status</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (booking of bookings(); track booking._id; let i = $index) {
+<div class="bookings">
+  @if (heading()) {
+    <h2 class="heading-secondary">{{ heading() }}</h2>
+  }
+  @if (bookings().length) {
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <th scope="row">{{ booking.reservationNumber }}</th>
-          <td>{{ booking.tour.name }}</td>
-          <td class="text-center">{{ booking.startDate | date: 'dd.MM.yyyy' }}</td>
-          <td class="text-center">{{ booking.price | currency: 'PLN' : 'symbol' : '1.0-2' }}</td>
-          <td class="text-center">
-            <app-status-badge [status]="booking.status"></app-status-badge>
-          </td>
-          <td class="text-center">
-            <a
-              class="btn btn--outline btn--small d-inline"
-              [routerLink]="[flowRoutes.MY_BOOKINGS, booking._id]"
-              >View</a
-            >
-          </td>
+          <th scope="col">Reservation no.</th>
+          <th scope="col">Tour</th>
+          <th scope="col">Start date</th>
+          <th scope="col">Price</th>
+          <th scope="col">Status</th>
+          <th scope="col"></th>
         </tr>
-      }
-    </tbody>
-  </table>
-} @else {
-  You don't have bookings.
-}
+      </thead>
+      <tbody>
+        @for (booking of bookings(); track booking._id; let i = $index) {
+          <tr>
+            <th scope="row">{{ booking.reservationNumber }}</th>
+            <td>{{ booking.tour.name }}</td>
+            <td class="text-center">{{ booking.startDate | date: 'dd.MM.yyyy' }}</td>
+            <td class="text-center">{{ booking.price | currency: 'PLN' : 'symbol' : '1.0-2' }}</td>
+            <td class="text-center">
+              <app-status-badge [status]="booking.status"></app-status-badge>
+            </td>
+            <td class="text-center">
+              <a
+                class="btn btn--outline btn--small d-inline"
+                [routerLink]="[flowRoutes.MY_BOOKINGS, booking._id]"
+                >View</a
+              >
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <ng-content />
+  }
+</div>

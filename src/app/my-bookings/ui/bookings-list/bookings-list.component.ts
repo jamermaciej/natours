@@ -13,5 +13,6 @@ import { FlowRoutes } from '../../../shared/enums/flow-routes';
 })
 export class BookingsListComponent {
   readonly bookings = input.required<Booking[]>();
+  readonly heading = input<string>();
   protected readonly flowRoutes = FlowRoutes;
 }
