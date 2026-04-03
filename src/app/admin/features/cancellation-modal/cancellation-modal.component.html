@@ -10,6 +10,7 @@
   confirmClass="btn--red"
   [error]="error()"
   [isLoading]="isLoading()"
+  [isFormValid]="isValid()"
   (cancelled)="dialogRef.close()"
   (confirmed)="onConfirm()"
 >

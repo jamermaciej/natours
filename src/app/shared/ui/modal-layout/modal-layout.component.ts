@@ -12,7 +12,7 @@ export class ModalLayoutComponent {
   readonly subheading = input.required<string>();
   readonly error = input<string | null>(null);
   readonly isLoading = input<boolean>(false);
-  readonly isFormValid = input<boolean>(false);
+  readonly isFormValid = input.required<boolean>();
   readonly cancelText = input<string>('Cancel');
   readonly confirmText = input<string>('Confirm');
   readonly confirmClass = input<string>('btn--outline');
