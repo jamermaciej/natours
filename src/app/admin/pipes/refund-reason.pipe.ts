@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { RefundReason } from '../../admin/enums/refund-reason';
-import { REFUND_REASON_LABELS } from '../../admin/enums/refund-reason-labels';
+import { RefundReason } from '../enums/refund-reason';
+import { REFUND_REASON_LABELS } from '../enums/refund-reason-labels';
 
 @Pipe({
   name: 'refundReason',

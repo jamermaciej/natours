@@ -21,6 +21,7 @@ import { CancellationModalComponent } from '../cancellation-modal/cancellation-m
 import { RefundModalComponent } from '../refund-modal/refund-modal.component';
 import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/content-wrapper.component';
 import { Booking } from '../../../shared/interfaces/booking';
+import { BookingActionsService } from '../../services/booking-actions.service';
 
 @Component({
   selector: 'app-booking-detail',
@@ -45,6 +46,7 @@ import { Booking } from '../../../shared/interfaces/booking';
 export class BookingDetailComponent {
   private readonly bookingsStore = inject(BookingsStore);
   private readonly snackbarService = inject(SnackbarService);
+  private readonly bookingActionsService = inject(BookingActionsService);
   private dialog = inject(Dialog);
   readonly bookingId = input.required<string>();
   readonly flowRoutes = FlowRoutes;
@@ -124,5 +126,9 @@ export class BookingDetailComponent {
     dialogRef.closed.subscribe(booking => {
       if (booking) this.booking.set(booking);
     });
+  }
+
+  async deleteBooking(booking: Booking) {
+    this.bookingActionsService.openDeleteModal(booking, FlowRoutes.BOOKINGS);
   }
 }

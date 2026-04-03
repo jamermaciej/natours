@@ -29,5 +29,17 @@
         }
       }
     }
+
+    &--delete {
+      min-width: auto;
+      color: var(--color-white);
+      background-color: #b71c1c;
+      border: 1px solid #b71c1c;
+
+      &:hover {
+        background-color: #9b1414;
+        border-color: #9b1414;
+      }
+    }
   }
 }

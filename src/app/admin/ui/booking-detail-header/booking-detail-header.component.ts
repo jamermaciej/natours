@@ -15,6 +15,7 @@ export class BookingDetailHeaderComponent {
   dateChanged = output<void>();
   bookingCancelled = output<void>();
   refunded = output<void>();
+  bookingDeleted = output<void>();
   protected readonly bookingStatus = BookingStatus;
 
   onChangeDate() {
@@ -27,5 +28,9 @@ export class BookingDetailHeaderComponent {
 
   onRefund() {
     this.refunded.emit();
+  }
+
+  onDeleteBooking() {
+    this.bookingDeleted.emit();
   }
 }
