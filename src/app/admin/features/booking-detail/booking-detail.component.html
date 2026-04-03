@@ -57,6 +57,7 @@
           <app-payment-toggle
             [paid]="paid()"
             [isUpdating]="isUpdating()"
+            [disabled]="isUpdating() || booking.status === bookingStatus.REFUNDED"
             (paidChanged)="updateBooking(booking, $event)"
           ></app-payment-toggle>
         </app-info-box>

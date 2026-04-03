@@ -2,10 +2,9 @@
   <input
     class="form-check-input"
     type="checkbox"
-    value=""
     id="paid-toggle"
     switch
-    [disabled]="isUpdating()"
+    [disabled]="disabled()"
     [checked]="paid()"
     (change)="valueChanged($event)"
   />

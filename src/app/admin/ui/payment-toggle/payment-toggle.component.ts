@@ -9,6 +9,7 @@ import { Component, input, output } from '@angular/core';
 export class PaymentToggleComponent {
   readonly paid = input.required<boolean>();
   readonly isUpdating = input<boolean>();
+  readonly disabled = input<boolean>();
   readonly paidChanged = output<boolean>();
 
   protected valueChanged(event: Event) {
