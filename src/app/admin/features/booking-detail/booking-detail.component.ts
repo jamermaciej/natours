@@ -100,6 +100,12 @@ export class BookingDetailComponent {
     });
   }
 
+  cancelBooking(booking: Booking) {
+    this.bookingActionsService.openCancelModal(booking).closed.subscribe(booking => {
+      if (booking) this.booking.set(booking);
+    });
+  }
+
   async openCancelModal(booking: Booking) {
     const dialogRef = this.dialog.open<Booking>(CancellationModalComponent, {
       data: booking,

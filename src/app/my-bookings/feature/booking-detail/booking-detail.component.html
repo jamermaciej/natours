@@ -3,7 +3,6 @@
     @if (booking.error(); as error) {
       <app-error-message [message]="errorMessage()" />
     }
-
     @if (booking.isLoading()) {
       <app-loader />
     } @else if (booking.value(); as booking) {
@@ -11,10 +10,7 @@
         [reservationNumber]="booking.reservationNumber"
         [status]="booking.status"
         [paid]="booking.paid"
-        (dateChanged)="openDateModal(booking)"
         (bookingCancelled)="cancelBooking(booking)"
-        (refunded)="openRefundModal(booking)"
-        (bookingDeleted)="deleteBooking(booking)"
       />
       @if (booking.status === bookingStatus.CANCELLED && booking.cancellation) {
         <app-booking-cancellation-details
@@ -25,21 +21,11 @@
         <app-booking-refunded-details [refund]="booking.refund"></app-booking-refunded-details>
       }
       <div class="cards-grid">
-        <app-section-card title="Client">
-          <app-info-card
-            [photo]="booking.user.photo"
-            [title]="booking.user.name"
-            [subtitle]="booking.user.email"
-            buttonLabel="Go to profile ↗"
-            [link]="[flowRoutes.USERS, booking.user._id!]"
-            [queryParams]="{ returnUrl: `${flowRoutes.BOOKINGS}/${booking._id}` }"
-          />
-        </app-section-card>
         <app-section-card title="Tour">
           <app-info-card
             [title]="booking.tour.name"
             [subtitle]="`ID: ${booking.tour._id}`"
-            buttonLabel="Go to tour ↗"
+            buttonLabel="View tour ↗"
             [link]="[flowRoutes.TOURS, booking.tour.slug]"
           />
         </app-section-card>
@@ -55,12 +41,9 @@
           {{ booking.startDate | date }}
         </app-info-box>
         <app-info-box label="Payment status">
-          <app-payment-toggle
-            [paid]="paid()"
-            [isUpdating]="isUpdating()"
-            [disabled]="isUpdating() || booking.status === bookingStatus.REFUNDED"
-            (paidChanged)="updateBooking(booking._id, $event)"
-          ></app-payment-toggle>
+          <span [class]="booking.paid ? 'paid' : 'unpaid'">{{
+            booking.paid ? 'Paid' : 'Unpaid'
+          }}</span>
         </app-info-box>
       </div>
       <app-section-card title="Guides">

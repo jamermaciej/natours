@@ -1,0 +1,15 @@
+@use 'functions' as *;
+
+.booking-detail {
+  display: grid;
+  row-gap: toRem(20);
+
+  app-info-card {
+    display: flex;
+  }
+
+  .box-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

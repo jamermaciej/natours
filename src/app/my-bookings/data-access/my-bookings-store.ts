@@ -42,6 +42,12 @@ export const MyBookingsStore = signalStore(
         patchState(store, { bookings: response.data.data, isLoading: false });
       }
     },
+    async loadBookingDetail(id: string) {
+      const existing = store.bookings().find(b => b._id === id);
+      if (existing) return existing;
+
+      return (await lastValueFrom(bookingService.getBooking(id))).data.data;
+    },
     clearState() {
       patchState(store, initialState);
     },

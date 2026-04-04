@@ -1,0 +1,15 @@
+<div class="detail-header">
+  <div>
+    <p>Reservation no.</p>
+    <h2>{{ reservationNumber() }}</h2>
+  </div>
+  <div class="d-flex align-items-center align-self-start">
+    <app-status-badge [status]="status()" />
+
+    @if (status() !== bookingStatus.CANCELLED && status() !== bookingStatus.REFUNDED) {
+      <button class="btn btn--small btn--outline-red" (click)="onCancelBooking()">
+        Cancel booking
+      </button>
+    }
+  </div>
+</div>
