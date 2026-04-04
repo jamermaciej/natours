@@ -2,8 +2,8 @@ import { Component, input } from '@angular/core';
 import { SectionCardComponent } from '../../../shared/ui/section-card/section-card.component';
 import { DatePipe } from '@angular/common';
 import { EnumLabelPipe } from '../../../shared/pipes/enum-label.pipe';
-import { CANCELLATION_REASON_LABELS } from '../../enums/cancellation-reason-labels';
 import { BookingCancellation } from '../../interfaces/booking-cancellation';
+import { CANCELLATION_REASON_LABELS } from '../../enums/cancellation-reason-labels';
 
 @Component({
   selector: 'app-booking-cancellation-details',

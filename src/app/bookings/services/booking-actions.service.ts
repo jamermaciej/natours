@@ -1,12 +1,13 @@
 import { inject, Injectable } from '@angular/core';
-import { Booking } from '../../shared/interfaces/booking';
+import { Booking } from '../interfaces/booking';
 import { ConfirmDialogData } from '../../shared/interfaces/confirm-dialog-data';
 import { Dialog } from '@angular/cdk/dialog';
 import { ConfirmModalComponent } from '../../shared/ui/confirm-modal/confirm-modal.component';
-import { BookingsStore } from '../data-access/bookings-store';
+
 import { SnackbarService } from '../../shared/services/snackbar.service';
 import { FlowRoutes } from '../../shared/enums/flow-routes';
 import { Router } from '@angular/router';
+import { BookingsStore } from '../../admin/data-access/bookings-store';
 import { CancellationModalComponent } from '../features/cancellation-modal/cancellation-modal.component';
 
 @Injectable({

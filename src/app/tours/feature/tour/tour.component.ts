@@ -6,13 +6,13 @@ import { TourDetailsComponent } from '../../ui/tour-details/tour-details.compone
 
 import { Router } from '@angular/router';
 import { authFeature } from '../../../shared/data-access/auth/store/auth.state';
-import { BookingService } from '../../../shared/data-access/bookings/booking.service';
 import { rxResource, takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { filter, tap } from 'rxjs';
 import { ReviewsStore } from '../../../reviews/data-access/reviews.store';
 import { Tour } from '../../interfaces/tour';
 import { BookingStatus } from '../../enums/booking-status';
 import { ApiResponse } from '../../../shared/interfaces/api-response';
+import { BookingService } from '../../../bookings/data-access/booking.service';
 
 @Component({
   selector: 'app-tour',

@@ -1,6 +1,6 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { Booking } from '../../../shared/interfaces/booking';
+import { Booking } from '../../../bookings/interfaces/booking';
 import { StatusBadgeComponent } from '../../../shared/ui/status-badge/status-badge.component';
 import { RouterLink } from '@angular/router';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';

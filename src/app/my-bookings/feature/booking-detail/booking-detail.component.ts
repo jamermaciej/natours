@@ -1,23 +1,23 @@
 import { Component, computed, inject, input, resource } from '@angular/core';
 
-import { Booking } from '../../../shared/interfaces/booking';
+import { Booking } from '../../../bookings/interfaces/booking';
 import { MyBookingsStore } from '../../data-access/my-bookings-store';
 import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/content-wrapper.component';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
 import { SectionCardComponent } from '../../../shared/ui/section-card/section-card.component';
-import { GuidesListComponent } from '../../../admin/ui/guides-list/guides-list.component';
+import { GuidesListComponent } from '../../../bookings/ui/guides-list/guides-list.component';
 import { InfoBoxComponent } from '../../../shared/ui/info-box/info-box.component';
 import { InfoCardComponent } from '../../../shared/ui/info-card/info-card.component';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 
-import { BookingRefundedDetailsComponent } from '../../../admin/ui/booking-refunded-details/booking-refunded-details.component';
-import { BookingCancellationDetailsComponent } from '../../../admin/ui/booking-cancellation-details/booking-cancellation-details.component';
+import { BookingRefundedDetailsComponent } from '../../../bookings/ui/booking-refunded-details/booking-refunded-details.component';
 import { BookingStatus } from '../../../tours/enums/booking-status';
 import { BookingDetailHeaderComponent } from '../../ui/booking-detail-header/booking-detail-header.component';
-import { BookingActionsService } from '../../../admin/services/booking-actions.service';
 import { ErrorMessageComponent } from '../../../shared/ui/error-message/error-message.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { BookingCancellationDetailsComponent } from '../../../bookings/ui/booking-cancellation-details/booking-cancellation-details.component';
+import { BookingActionsService } from '../../../bookings/services/booking-actions.service';
 
 @Component({
   selector: 'app-booking-detail',

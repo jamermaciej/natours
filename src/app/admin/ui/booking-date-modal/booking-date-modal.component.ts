@@ -5,7 +5,7 @@ import { DatePipe } from '@angular/common';
 import { BookingsStore } from '../../data-access/bookings-store';
 import { HttpErrorResponse } from '@angular/common/http';
 import { StartDate } from '../../../tours/interfaces/start-date';
-import { Booking } from '../../../shared/interfaces/booking';
+import { Booking } from '../../../bookings/interfaces/booking';
 
 @Component({
   selector: 'app-booking-date-modal',

@@ -9,19 +9,19 @@ import { InfoCardComponent } from '../../../shared/ui/info-card/info-card.compon
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { InfoBoxComponent } from '../../../shared/ui/info-box/info-box.component';
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { GuidesListComponent } from '../../ui/guides-list/guides-list.component';
+import { GuidesListComponent } from '../../../bookings/ui/guides-list/guides-list.component';
 import { PaymentToggleComponent } from '../../ui/payment-toggle/payment-toggle.component';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
 import { Dialog } from '@angular/cdk/dialog';
 import { BookingDateModalComponent } from '../../ui/booking-date-modal/booking-date-modal.component';
 import { BookingStatus } from '../../../tours/enums/booking-status';
-import { BookingCancellationDetailsComponent } from '../../ui/booking-cancellation-details/booking-cancellation-details.component';
-import { BookingRefundedDetailsComponent } from '../../ui/booking-refunded-details/booking-refunded-details.component';
-import { CancellationModalComponent } from '../cancellation-modal/cancellation-modal.component';
+import { BookingRefundedDetailsComponent } from '../../../bookings/ui/booking-refunded-details/booking-refunded-details.component';
+import { CancellationModalComponent } from '../../../bookings/features/cancellation-modal/cancellation-modal.component';
 import { RefundModalComponent } from '../refund-modal/refund-modal.component';
 import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/content-wrapper.component';
-import { Booking } from '../../../shared/interfaces/booking';
-import { BookingActionsService } from '../../services/booking-actions.service';
+import { Booking } from '../../../bookings/interfaces/booking';
+import { BookingCancellationDetailsComponent } from '../../../bookings/ui/booking-cancellation-details/booking-cancellation-details.component';
+import { BookingActionsService } from '../../../bookings/services/booking-actions.service';
 
 @Component({
   selector: 'app-booking-detail',

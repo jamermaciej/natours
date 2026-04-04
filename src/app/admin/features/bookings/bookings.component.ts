@@ -10,8 +10,8 @@ import { RouterLink } from '@angular/router';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { StatusBadgeComponent } from '../../../shared/ui/status-badge/status-badge.component';
 import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/content-wrapper.component';
-import { Booking } from '../../../shared/interfaces/booking';
-import { BookingActionsService } from '../../services/booking-actions.service';
+import { Booking } from '../../../bookings/interfaces/booking';
+import { BookingActionsService } from '../../../bookings/services/booking-actions.service';
 
 @Component({
   selector: 'app-bookings',

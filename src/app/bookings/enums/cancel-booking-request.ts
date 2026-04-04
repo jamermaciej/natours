@@ -1,4 +1,4 @@
-import { CancellationReason } from '../enums/cancellation-reason';
+import { CancellationReason } from './cancellation-reason';
 
 export interface CancelBookingRequest {
   reason: CancellationReason;

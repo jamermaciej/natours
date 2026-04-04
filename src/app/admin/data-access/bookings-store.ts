@@ -1,11 +1,11 @@
 import { patchState, signalStore, withHooks, withMethods, withState } from '@ngrx/signals';
 import { inject } from '@angular/core';
-import { BookingService } from '../../shared/data-access/bookings/booking.service';
 import { lastValueFrom } from 'rxjs';
 import { withDevtools } from '@angular-architects/ngrx-toolkit';
-import { CancelBookingRequest } from '../interfaces/cancel-booking-request';
 import { RefundBookingData } from '../interfaces/refund-booking-data';
-import { Booking } from '../../shared/interfaces/booking';
+import { Booking } from '../../bookings/interfaces/booking';
+import { BookingService } from '../../bookings/data-access/booking.service';
+import { CancelBookingRequest } from '../../bookings/enums/cancel-booking-request';
 
 export interface BookingsState {
   bookings: Booking[];

@@ -7,10 +7,10 @@ import {
   withState,
 } from '@ngrx/signals';
 import { computed, inject } from '@angular/core';
-import { BookingService } from '../../shared/data-access/bookings/booking.service';
 import { lastValueFrom } from 'rxjs';
 import { withDevtools } from '@angular-architects/ngrx-toolkit';
-import { Booking } from '../../shared/interfaces/booking';
+import { Booking } from '../../bookings/interfaces/booking';
+import { BookingService } from '../../bookings/data-access/booking.service';
 
 export interface BookingState {
   bookings: Booking[];
