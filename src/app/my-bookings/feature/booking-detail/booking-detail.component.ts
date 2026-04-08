@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, resource } from '@angular/core';
+import { Component, computed, inject, input, resource, Signal } from '@angular/core';
 
 import { Booking } from '../../../bookings/interfaces/booking';
 import { MyBookingsStore } from '../../data-access/my-bookings-store';
@@ -18,6 +18,11 @@ import { ErrorMessageComponent } from '../../../shared/ui/error-message/error-me
 import { HttpErrorResponse } from '@angular/common/http';
 import { BookingCancellationDetailsComponent } from '../../../bookings/ui/booking-cancellation-details/booking-cancellation-details.component';
 import { BookingActionsService } from '../../../bookings/services/booking-actions.service';
+import dayjs from 'dayjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { authFeature } from '../../../shared/data-access/auth/store/auth.state';
+import { User } from '../../../shared/interfaces/user';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-booking-detail',
@@ -39,15 +44,28 @@ import { BookingActionsService } from '../../../bookings/services/booking-action
   styleUrl: './booking-detail.component.scss',
 })
 export class BookingDetailComponent {
+  private readonly store = inject(Store);
   private readonly bookingActionsService = inject(BookingActionsService);
   private readonly myBookingsStore = inject(MyBookingsStore);
   readonly bookingId = input.required<string>();
   protected readonly flowRoutes = FlowRoutes;
   protected readonly bookingStatus = BookingStatus;
 
+  protected readonly user: Signal<User | null> = toSignal(
+    this.store.select(authFeature.selectUser),
+    {
+      initialValue: null,
+    },
+  );
+
   protected readonly errorMessage = computed(() => {
     const error = this.booking.error() as HttpErrorResponse;
     return error?.error?.message || 'Error';
+  });
+
+  protected readonly canCancel = computed(() => {
+    const b = this.booking.value();
+    return b?.status === BookingStatus.ACTIVE && dayjs(b?.startDate).diff(dayjs(), 'hour') >= 168;
   });
 
   protected readonly booking = resource<Booking, string>({
@@ -56,8 +74,10 @@ export class BookingDetailComponent {
   });
 
   cancelBooking(booking: Booking) {
-    this.bookingActionsService.openCancelModal(booking).closed.subscribe(booking => {
-      if (booking) this.booking.set(booking);
-    });
+    this.bookingActionsService
+      .openCancelModal(booking, this.myBookingsStore)
+      .closed.subscribe(booking => {
+        if (booking) this.booking.set(booking);
+      });
   }
 }

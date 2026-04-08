@@ -3,7 +3,7 @@ import { CancellationReason } from '../enums/cancellation-reason';
 
 export interface BookingCancellation {
   cancelledAt: Date;
-  cancelledBy: Pick<User, 'name' | 'email'>;
+  cancelledBy: Omit<User, 'photo' | 'passwordChangedAt'>;
   reason: CancellationReason;
   note?: string;
 }

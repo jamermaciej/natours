@@ -10,11 +10,13 @@
         [reservationNumber]="booking.reservationNumber"
         [status]="booking.status"
         [paid]="booking.paid"
+        [canCancel]="canCancel()"
         (bookingCancelled)="cancelBooking(booking)"
       />
       @if (booking.status === bookingStatus.CANCELLED && booking.cancellation) {
         <app-booking-cancellation-details
           [cancellation]="booking.cancellation"
+          [currentUserId]="user()?._id"
         ></app-booking-cancellation-details>
       }
       @if (booking.status === bookingStatus.REFUNDED && booking.refund) {
@@ -24,7 +26,7 @@
         <app-section-card title="Tour">
           <app-info-card
             [title]="booking.tour.name"
-            [subtitle]="`ID: ${booking.tour._id}`"
+            [subtitle]="booking.tour.description"
             buttonLabel="View tour ↗"
             [link]="[flowRoutes.TOURS, booking.tour.slug]"
           />

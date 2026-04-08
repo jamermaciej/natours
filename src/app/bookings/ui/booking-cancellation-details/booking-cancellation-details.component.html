@@ -9,9 +9,7 @@
     <div class="booking-cancellation__item">
       <p class="small">Cancelled by</p>
       <p class="small">
-        <strong
-          >{{ cancellation().cancelledBy.name }} ({{ cancellation().cancelledBy.email }})</strong
-        >
+        <strong>{{ cancelledByLabel() }}</strong>
       </p>
     </div>
     @if (cancellation().reason) {

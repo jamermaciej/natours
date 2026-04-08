@@ -9,6 +9,7 @@ import { FlowRoutes } from '../../shared/enums/flow-routes';
 import { Router } from '@angular/router';
 import { BookingsStore } from '../../admin/data-access/bookings-store';
 import { CancellationModalComponent } from '../features/cancellation-modal/cancellation-modal.component';
+import { BOOKING_CANCEL_STORE, BookingCancelStore } from '../interfaces/booking-cancel-store';
 
 @Injectable({
   providedIn: 'root',
@@ -42,13 +43,14 @@ export class BookingActionsService {
     return dialogRef;
   }
 
-  openCancelModal(booking: Booking) {
+  openCancelModal(booking: Booking, store: BookingCancelStore, isAdminView = false) {
     return this.#dialog.open<Booking>(CancellationModalComponent, {
-      data: booking,
+      data: { booking, isAdminView },
       disableClose: false,
       hasBackdrop: true,
       autoFocus: false,
       backdropClass: 'cdk-overlay-backdrop',
+      providers: [{ provide: BOOKING_CANCEL_STORE, useValue: store }],
     });
   }
 }

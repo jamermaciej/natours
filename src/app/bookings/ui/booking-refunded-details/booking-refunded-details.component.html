@@ -9,11 +9,7 @@
     <div class="booking-refunded__item">
       <p class="small">Refunded by</p>
       <p class="small">
-        @if (refund().refundedBy) {
-          <strong>{{ refund().refundedBy.name }} ({{ refund().refundedBy.email }})</strong>
-        } @else {
-          <strong>Via Stripe</strong>
-        }
+        <strong>{{ refundedByLabel() }}</strong>
       </p>
     </div>
     <div class="booking-refunded__item">

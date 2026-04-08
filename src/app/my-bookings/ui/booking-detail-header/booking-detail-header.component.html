@@ -6,7 +6,7 @@
   <div class="d-flex align-items-center align-self-start">
     <app-status-badge [status]="status()" />
 
-    @if (status() !== bookingStatus.CANCELLED && status() !== bookingStatus.REFUNDED) {
+    @if (canCancel()) {
       <button class="btn btn--small btn--outline-red" (click)="onCancelBooking()">
         Cancel booking
       </button>

@@ -19,10 +19,14 @@
       @if (booking.status === bookingStatus.CANCELLED && booking.cancellation) {
         <app-booking-cancellation-details
           [cancellation]="booking.cancellation"
+          [isAdminView]="true"
         ></app-booking-cancellation-details>
       }
       @if (booking.status === bookingStatus.REFUNDED && booking.refund) {
-        <app-booking-refunded-details [refund]="booking.refund"></app-booking-refunded-details>
+        <app-booking-refunded-details
+          [refund]="booking.refund"
+          [isAdminView]="true"
+        ></app-booking-refunded-details>
       }
       <div class="cards-grid">
         <app-section-card title="Client">
@@ -31,6 +35,7 @@
             [title]="booking.user.name"
             [subtitle]="booking.user.email"
             buttonLabel="Go to profile ↗"
+            btnClass="w-100"
             [link]="[flowRoutes.USERS, booking.user._id!]"
             [queryParams]="{ returnUrl: `${flowRoutes.BOOKINGS}/${booking._id}` }"
           />
@@ -40,6 +45,7 @@
             [title]="booking.tour.name"
             [subtitle]="`ID: ${booking.tour._id}`"
             buttonLabel="Go to tour ↗"
+            btnClass="w-100"
             [link]="[flowRoutes.TOURS, booking.tour.slug]"
           />
         </app-section-card>

@@ -12,8 +12,8 @@ export class BookingDetailHeaderComponent {
   readonly reservationNumber = input.required<string>();
   readonly status = input.required<BookingStatus>();
   readonly paid = input.required<boolean>();
+  readonly canCancel = input.required<boolean>();
   protected readonly bookingCancelled = output<void>();
-  protected readonly bookingStatus = BookingStatus;
 
   onCancelBooking() {
     this.bookingCancelled.emit();

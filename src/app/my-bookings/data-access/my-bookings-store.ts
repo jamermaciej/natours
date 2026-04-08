@@ -11,6 +11,7 @@ import { lastValueFrom } from 'rxjs';
 import { withDevtools } from '@angular-architects/ngrx-toolkit';
 import { Booking } from '../../bookings/interfaces/booking';
 import { BookingService } from '../../bookings/data-access/booking.service';
+import { CancelBookingRequest } from '../../bookings/enums/cancel-booking-request';
 
 export interface BookingState {
   bookings: Booking[];
@@ -47,6 +48,15 @@ export const MyBookingsStore = signalStore(
       if (existing) return existing;
 
       return (await lastValueFrom(bookingService.getBooking(id))).data.data;
+    },
+    async cancelBooking(id: string, data: CancelBookingRequest) {
+      const response = await lastValueFrom(bookingService.cancelBooking(id, data));
+
+      patchState(store, {
+        bookings: store.bookings().map(b => (b._id === id ? response.data.data : b)),
+      });
+
+      return response.data.data;
     },
     clearState() {
       patchState(store, initialState);

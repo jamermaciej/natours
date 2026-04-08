@@ -2,7 +2,7 @@
   heading="Cancel booking"
   [subheading]="
     'Are you sure you want to cancel booking <strong>' +
-    booking.reservationNumber +
+    data.booking.reservationNumber +
     '</strong>? Please select a cancellation reason (required) and optionally add a note with additional details.'
   "
   cancelText="back"
@@ -24,7 +24,7 @@
         required
         #reasonSelect="ngModel"
       >
-        @for (reason of cancellationReason; track reason) {
+        @for (reason of cancellationReason(); track reason) {
           <mat-option [value]="reason">
             {{ reason | enumLabel: cancellationReasonLabel }}
           </mat-option>

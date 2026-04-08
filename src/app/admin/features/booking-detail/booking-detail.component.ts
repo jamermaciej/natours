@@ -101,9 +101,11 @@ export class BookingDetailComponent {
   }
 
   cancelBooking(booking: Booking) {
-    this.bookingActionsService.openCancelModal(booking).closed.subscribe(booking => {
-      if (booking) this.booking.set(booking);
-    });
+    this.bookingActionsService
+      .openCancelModal(booking, this.bookingsStore, true)
+      .closed.subscribe(booking => {
+        if (booking) this.booking.set(booking);
+      });
   }
 
   async openCancelModal(booking: Booking) {
