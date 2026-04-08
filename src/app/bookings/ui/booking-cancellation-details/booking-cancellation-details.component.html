@@ -8,8 +8,15 @@
     </div>
     <div class="booking-cancellation__item">
       <p class="small">Cancelled by</p>
-      <p class="small">
-        <strong>{{ cancelledByLabel() }}</strong>
+      <p class="small booking-cancellation__cancelled-by">
+        @if (isAdminView()) {
+          <strong
+            >{{ cancellation().cancelledBy.name }} ({{ cancellation().cancelledBy.email }})
+          </strong>
+          <app-role-badge [role]="cancellation().cancelledBy.role" />
+        } @else {
+          <strong>{{ cancelledByLabel() }}</strong>
+        }
       </p>
     </div>
     @if (cancellation().reason) {

@@ -28,7 +28,7 @@
             }
           </td>
           <td>{{ user.email }}</td>
-          <td>{{ user.role }}</td>
+          <td class="text-center"><app-role-badge [role]="user.role" /></td>
         </tr>
       }
     </tbody>

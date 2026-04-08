@@ -6,15 +6,15 @@
     (change)="onSelectionChange($event)"
   >
     @for (option of options(); track $index) {
-      <option [value]="option">{{ option }}</option>
+      <option [value]="option">{{ roleLabels[option] }}</option>
     }
   </select>
 } @else {
   <select class="form-select" aria-label="Roles select" (change)="onSelectionChange($event)">
     <option value="" disabled selected hidden>Select role</option>
-    <option [ngValue]="null">all</option>
+    <option [ngValue]="null">All</option>
     @for (option of options(); track $index) {
-      <option [value]="option">{{ option }}</option>
+      <option [value]="option">{{ roleLabels[option] }}</option>
     }
   </select>
 }

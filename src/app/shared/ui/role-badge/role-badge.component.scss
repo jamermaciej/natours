@@ -5,14 +5,21 @@
   border-radius: toRem(5);
   font-size: toRem(10);
   font-weight: 700;
+  color: var(--color-white);
 
   &.lead-guide {
-    background-color: #483a0f;
-    color: #d1a041;
+    background: #0f766e;
   }
 
   &.guide {
-    background-color: #262624;
-    color: #c2c0b6;
+    background: #15803d;
+  }
+
+  &.user {
+    background: #6b7280;
+  }
+
+  &.admin {
+    background: #b91c1c;
   }
 }

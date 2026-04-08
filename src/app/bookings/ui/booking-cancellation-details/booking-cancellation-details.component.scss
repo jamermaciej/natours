@@ -4,4 +4,10 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: toRem(20);
+
+  &__cancelled-by {
+    display: flex;
+    align-items: center;
+    column-gap: toRem(5);
+  }
 }

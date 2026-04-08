@@ -11,7 +11,7 @@
       <a class="nav__el" [routerLink]="flowRoutes.PROFILE">
         <app-user-img [photo]="user()?.photo!" [name]="user()?.name!"></app-user-img>
         <span>{{ user()?.name }}</span
-        >&nbsp;({{ user()?.role }})
+        >&nbsp;({{ roleLabels[user()?.role!] }})
       </a>
     } @else {
       <a class="nav__el" [routerLink]="flowRoutes.LOGIN">Log in</a>

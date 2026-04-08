@@ -8,6 +8,7 @@ import { User } from '../../../shared/interfaces/user';
 import { authActions } from '../../../shared/data-access/auth/store/auth.actions';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { UserImgComponent } from '../../../shared/ui/user-img/user-img.component';
+import { ROLE_LABELS } from '../../../tours/enums/role-labels';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +22,7 @@ export class HeaderComponent {
     initialValue: null,
   });
   readonly flowRoutes = FlowRoutes;
+  protected readonly roleLabels = ROLE_LABELS;
 
   logout() {
     this.#store.dispatch(authActions.logout({ message: 'Logged out successfully!' }));

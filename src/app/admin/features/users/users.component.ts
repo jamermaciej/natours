@@ -15,6 +15,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 import { authFeature } from '../../../shared/data-access/auth/store/auth.state';
 import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/content-wrapper.component';
+import { Role } from '../../../tours/enums/role';
 
 @Component({
   selector: 'app-users',
@@ -41,7 +42,7 @@ export class UsersComponent implements OnInit {
     initialValue: null,
   });
 
-  options: string[] = ['admin', 'lead-guide', 'guide', 'user'];
+  options = Object.values(Role);
   selectedRole = signal<string>('');
 
   searchControl = new FormControl('');

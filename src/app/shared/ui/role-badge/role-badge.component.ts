@@ -1,4 +1,6 @@
 import { Component, input } from '@angular/core';
+import { ROLE_LABELS } from '../../../tours/enums/role-labels';
+import { Role } from '../../../tours/enums/role';
 
 @Component({
   selector: 'app-role-badge',
@@ -7,5 +9,6 @@ import { Component, input } from '@angular/core';
   styleUrl: './role-badge.component.scss',
 })
 export class RoleBadgeComponent {
-  role = input.required<string>();
+  readonly role = input.required<Role>();
+  protected readonly roleLabels = ROLE_LABELS;
 }

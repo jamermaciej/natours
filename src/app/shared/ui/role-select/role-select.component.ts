@@ -1,5 +1,7 @@
 import { Component, input, model } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ROLE_LABELS } from '../../../tours/enums/role-labels';
+import { Role } from '../../../tours/enums/role';
 
 @Component({
   selector: 'app-role-select',
@@ -9,8 +11,9 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class RoleSelectComponent {
   selectedOption = model<string>('');
-  options = input.required<string[]>();
+  options = input.required<Role[]>();
   control = input<FormControl>();
+  protected readonly roleLabels = ROLE_LABELS;
 
   onSelectionChange(event: Event) {
     const value = (event.target as HTMLSelectElement).value;
