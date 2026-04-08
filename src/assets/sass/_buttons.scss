@@ -61,6 +61,17 @@ button {
         color: var(--color-gray-1);
       }
     }
+
+    &-green {
+      background-color: var(--color-green);
+      border: 1px solid var(--color-green);
+      color: var(--color-white);
+
+      &:hover {
+        background-color: var(--color-white);
+        color: var(--color-green);
+      }
+    }
   }
 
   &--medium {
@@ -79,7 +90,7 @@ button {
 
   &:hover:not(.disabled):not(:disabled):not(.btn--outline):not(.btn--outline-red):not(
       .btn--delete
-    ) {
+    ):not(.btn--outline-green) {
     transform: translateY(-3px);
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   }

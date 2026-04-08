@@ -10,6 +10,7 @@
         [reservationNumber]="booking.reservationNumber"
         [status]="booking.status"
         [paid]="booking.paid"
+        [tourSlug]="booking.tour.slug"
         [canCancel]="canCancel()"
         (bookingCancelled)="cancelBooking(booking)"
       />
