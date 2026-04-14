@@ -8,5 +8,6 @@ export const toursActions = createActionGroup({
     'Load Tours': emptyProps(),
     'Load Tours Success': props<{ tours: Tour[] }>(),
     'Load Tours Failure': props<{ error: string }>(),
+    'Decrement Participants': props<{ tourId: string; startDate: Date }>(),
   },
 });

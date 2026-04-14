@@ -3,6 +3,7 @@ import { toursActions } from './tours.actions';
 import { Tour } from '../../../interfaces/tour';
 import { selectRouteParams } from '../../../../shared/data-access/router/store/router.selectors';
 import { LoadStatus } from '../../../enums/load-status';
+import dayjs from 'dayjs';
 
 export interface State {
   tours: Tour[];
@@ -29,6 +30,25 @@ const reducer = createReducer(
     ...state,
     error,
     loadStatus: LoadStatus.NOT_LOADED,
+  })),
+  on(toursActions.decrementParticipants, (state, { tourId, startDate }) => ({
+    ...state,
+    tours: state.tours.map(tour =>
+      tour._id === tourId
+        ? {
+            ...tour,
+            startDates: tour.startDates.map(d =>
+              dayjs(d.date).isSame(dayjs(startDate))
+                ? {
+                    ...d,
+                    participants: d.participants - 1,
+                    soldOut: false,
+                  }
+                : d,
+            ),
+          }
+        : tour,
+    ),
   })),
 );
 
