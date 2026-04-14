@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ReviewsStore } from '../../data-access/reviews.store';
 import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
 import { ReviewListComponent } from '../../ui/review-list/review-list.component';
@@ -21,13 +21,9 @@ import { FlowRoutes } from '../../../shared/enums/flow-routes';
     }
   `,
 })
-export class MyReviewsComponent implements OnInit {
+export class MyReviewsComponent {
   readonly reviewsStore = inject(ReviewsStore);
   #store = inject(Store);
-
-  ngOnInit() {
-    this.reviewsStore.loadReviews();
-  }
 
   edit(id: string) {
     this.#store.dispatch(routerActions.go({ path: [`${FlowRoutes.MY_REVIEWS}/${id}`] }));

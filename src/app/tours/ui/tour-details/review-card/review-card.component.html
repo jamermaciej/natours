@@ -1,0 +1,14 @@
+<div class="review">
+  <div class="review__avatar">
+    <img
+      class="review__avatar-img w-auto"
+      [src]="apiHostUrl + '/img/users/' + review().user.photo"
+      [alt]="review().user.name"
+    />
+    <h6 class="review__user">{{ review().user.name }}</h6>
+  </div>
+  <p class="review__text">{{ review().review }}</p>
+  <div class="review__rating">
+    <app-rating [rating]="review().rating" />
+  </div>
+</div>

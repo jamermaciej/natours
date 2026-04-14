@@ -1,0 +1,29 @@
+@use 'functions' as *;
+
+.review {
+  display: grid;
+  row-gap: toRem(14);
+  justify-self: flex-start;
+  min-width: 50%;
+  padding: toRem(15) toRem(15) toRem(30);
+  border-radius: toRem(10);
+  background: #f0faf4;
+
+  &__user {
+    display: flex;
+    align-items: center;
+  }
+
+  &__name {
+    font-size: toRem(15);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-left: toRem(15);
+  }
+
+  &__text {
+    font-size: toRem(19);
+    line-height: toRem(24);
+    font-weight: 400;
+  }
+}

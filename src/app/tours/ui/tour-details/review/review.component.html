@@ -1,0 +1,13 @@
+<div class="review">
+  <div class="review__user">
+    <app-user-img
+      [photo]="review().user.photo"
+      [name]="review().user.name"
+      [width]="4.5"
+      [height]="4.5"
+    />
+    <p class="review__name">{{ review().user.name }}</p>
+  </div>
+  <app-rating [rating]="review().rating" />
+  <p class="review__text">"{{ review().review }}"</p>
+</div>

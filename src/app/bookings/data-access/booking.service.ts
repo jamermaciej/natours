@@ -5,8 +5,8 @@ import { RefundBookingData } from '../../admin/interfaces/refund-booking-data';
 import { apiEndpoint } from '../../shared/constants/constants';
 import { ApiResponse } from '../../shared/interfaces/api-response';
 import { Booking } from '../interfaces/booking';
-import { BookingStatus } from '../../tours/enums/booking-status';
 import { CancelBookingRequest } from '../enums/cancel-booking-request';
+import { TourBookingInfo } from '../../my-bookings/interfaces/tour-booking-info';
 
 @Injectable({
   providedIn: 'root',
@@ -36,8 +36,8 @@ export class BookingService {
     });
   }
 
-  checkTourBookingStatus(tourId: string) {
-    return this.#http.get<ApiResponse<{ status: BookingStatus | null }>>(
+  getTourBookingInfo(tourId: string) {
+    return this.#http.get<ApiResponse<TourBookingInfo>>(
       `${apiEndpoint.BookingEndpoint.baseBooking}/tour/${tourId}/status`,
       {
         withCredentials: true,

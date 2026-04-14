@@ -17,7 +17,12 @@
     }
   }
 
-  a {
-    text-transform: none;
+  &__actions {
+    display: flex;
+    column-gap: toRem(5);
+
+    a {
+      text-transform: none;
+    }
   }
 }

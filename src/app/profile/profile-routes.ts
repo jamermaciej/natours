@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { authGuard } from '../shared/guards/auth.guard';
+import { bookingDetailResolver } from '../my-bookings/resolvers/booking-detail.resolver';
+import { bookingsGuard } from '../my-bookings/guards/bookings.guard';
 
 export const routes: Routes = [
   {
@@ -15,18 +17,28 @@ export const routes: Routes = [
       },
       {
         path: 'bookings',
-        loadComponent: () =>
-          import('../my-bookings/feature/bookings/bookings.component').then(
-            m => m.BookingsComponent,
-          ),
-      },
-      {
-        path: 'bookings/:bookingId',
-        loadComponent: () =>
-          import('../my-bookings/feature/booking-detail/booking-detail.component').then(
-            m => m.BookingDetailComponent,
-          ),
-        title: 'Booking Details',
+        canActivate: [bookingsGuard],
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('../my-bookings/feature/bookings/bookings.component').then(
+                m => m.BookingsComponent,
+              ),
+            title: 'My Bookings',
+          },
+          {
+            path: ':bookingId',
+            loadComponent: () =>
+              import('../my-bookings/feature/booking-detail/booking-detail.component').then(
+                m => m.BookingDetailComponent,
+              ),
+            resolve: {
+              booking: bookingDetailResolver,
+            },
+            title: 'Booking Details',
+          },
+        ],
       },
       {
         path: 'reviews',

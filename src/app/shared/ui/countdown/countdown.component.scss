@@ -1,0 +1,28 @@
+@use 'functions' as *;
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: toRem(10);
+}
+
+.countdown__item {
+  background: #f0faf4;
+  padding: toRem(12) toRem(24);
+  border-radius: toRem(10);
+  text-align: center;
+}
+
+.countdown__value {
+  font-size: toRem(24);
+  line-height: toRem(28);
+  font-weight: 700;
+  color: var(--color-brand);
+}
+
+.countdown__label {
+  font-size: toRem(11);
+  text-transform: uppercase;
+  letter-spacing: toRem(1);
+  color: #52b788;
+}

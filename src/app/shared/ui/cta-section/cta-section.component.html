@@ -13,8 +13,8 @@
       }
     }
     <div class="cta__content">
-      <h2 class="heading-secondary">{{ header() }}</h2>
-      <p class="cta__text">{{ description() }}</p>
+      <h2 class="heading-secondary align-self-end">{{ header() }}</h2>
+      <p class="cta__text" [innerHTML]="description()"></p>
       <ng-content></ng-content>
     </div>
   </div>

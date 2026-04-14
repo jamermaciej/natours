@@ -1,0 +1,8 @@
+@use 'functions' as *;
+
+.load-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: toRem(15);
+}

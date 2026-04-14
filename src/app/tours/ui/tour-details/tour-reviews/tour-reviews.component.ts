@@ -1,21 +1,17 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Review, ReviewResponse } from '../../../interfaces/review';
-import { environment } from '../../../../../environments/environment';
-
+import { ReviewResponse } from '../../../interfaces/review';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { RatingComponent } from '../../../../shared/ui/rating/rating.component';
+import { ReviewCardComponent } from '../review-card/review-card.component';
 
 @Component({
   selector: 'app-tour-reviews',
-  imports: [CarouselModule, RatingComponent],
+  imports: [CarouselModule, ReviewCardComponent, ReviewCardComponent],
   templateUrl: './tour-reviews.component.html',
   styleUrl: './tour-reviews.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TourReviewsComponent {
   @Input({ required: true }) reviews!: ReviewResponse[];
-
-  readonly apiHostUrl = environment.apiHostUrl;
 
   reviewSliderOptions: OwlOptions = {
     loop: true,

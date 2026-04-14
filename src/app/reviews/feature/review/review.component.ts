@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { ReviewFormComponent } from '../../ui/review-form/review-form.component';
 import { ReviewsStore } from '../../data-access/reviews.store';
 import { ReviewBody } from '../../../tours/interfaces/review';
@@ -10,17 +10,13 @@ import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/cont
   templateUrl: './review.component.html',
   styleUrl: './review.component.scss',
 })
-export class ReviewComponent implements OnInit {
+export class ReviewComponent {
   readonly reviewsStore = inject(ReviewsStore);
   id = input.required<string>();
   mode = input<string>();
 
   tour = input<string>();
   user = input<string>();
-
-  ngOnInit() {
-    this.reviewsStore.loadReviews();
-  }
 
   onSave(review: ReviewBody) {
     if (this.mode() === 'edit') {

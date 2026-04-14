@@ -3,20 +3,7 @@
     <owl-carousel-o [options]="reviewSliderOptions" class="reviews-carousel">
       @for (review of reviews; track review.id) {
         <ng-template carouselSlide [id]="review.id">
-          <div class="reviews__card">
-            <div class="reviews__avatar">
-              <img
-                class="reviews__avatar-img"
-                [src]="apiHostUrl + '/img/users/' + review.user.photo"
-                [alt]="review.user.name"
-              />
-              <h6 class="reviews__user">{{ review.user.name }}</h6>
-            </div>
-            <p class="reviews__text">{{ review.review }}</p>
-            <div class="reviews__rating">
-              <app-rating [rating]="review.rating" />
-            </div>
-          </div>
+          <app-review-card [review]="review" />
         </ng-template>
       }
     </owl-carousel-o>

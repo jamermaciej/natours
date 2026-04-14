@@ -18,7 +18,23 @@
         @for (booking of bookings(); track booking._id; let i = $index) {
           <tr>
             <th scope="row">{{ booking.reservationNumber }}</th>
-            <td>{{ booking.tour.name }}</td>
+            <td>
+              <div class="d-flex align-items-center gap-2">
+                {{ booking.tour.name }}
+                @if (booking.isReviewable || booking.hasReview) {
+                  <app-review-icon
+                    [isReviewable]="booking.isReviewable!"
+                    [hasReview]="booking.hasReview!"
+                    (action)="
+                      reviewAction.emit({
+                        isReviewable: booking.isReviewable!,
+                        tourId: booking.tour._id,
+                      })
+                    "
+                  />
+                }
+              </div>
+            </td>
             <td class="text-center">{{ booking.startDate | date: 'dd.MM.yyyy' }}</td>
             <td class="text-center">{{ booking.price | currency: 'PLN' : 'symbol' : '1.0-2' }}</td>
             <td class="text-center">

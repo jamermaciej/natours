@@ -1,29 +1,33 @@
 <app-content-wrapper>
-  @if (isLoading()) {
+  @if (error()) {
+    <app-load-error [message]="error()!" (retry)="retry()" />
+  } @else if (isLoading()) {
     <app-loader />
-  } @else {
-    @if (!bookings().length) {
+  } @else if (upcomingBookings().length || pastBookings().length) {
+    <app-bookings-list [bookings]="upcomingBookings()" heading="Upcoming bookings">
       <app-empty-state
-        title="You don't have bookings yet."
-        description="You haven't booked any tours yet. Start exploring and plan your next adventure."
+        title="No upcoming trips"
+        description="You have no upcoming tours scheduled. Ready for your next adventure?"
         ctaLabel="Browse tours"
         [ctaLink]="flowRoutes.TOURS"
       />
-    } @else {
-      <app-bookings-list [bookings]="upcomingBookings()" heading="Upcoming bookings">
-        <app-empty-state
-          title="No upcoming trips"
-          description="You have no upcoming tours scheduled. Ready for your next adventure?"
-          ctaLabel="Browse tours"
-          [ctaLink]="flowRoutes.TOURS"
-        />
-      </app-bookings-list>
-      <app-bookings-list [bookings]="pastBookings()" heading="Past bookings">
-        <app-empty-state
-          title="No past trips yet"
-          description="Your completed tours will appear here."
-        />
-      </app-bookings-list>
-    }
+    </app-bookings-list>
+    <app-bookings-list
+      [bookings]="pastBookings()"
+      heading="Past bookings"
+      (reviewAction)="onReviewAction($event)"
+    >
+      <app-empty-state
+        title="No past trips yet"
+        description="Your completed tours will appear here."
+      />
+    </app-bookings-list>
+  } @else {
+    <app-empty-state
+      title="You don't have bookings yet."
+      description="You haven't booked any tours yet. Start exploring and plan your next adventure."
+      ctaLabel="Browse tours"
+      [ctaLink]="flowRoutes.TOURS"
+    />
   }
 </app-content-wrapper>

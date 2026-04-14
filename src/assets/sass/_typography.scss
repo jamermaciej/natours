@@ -48,6 +48,8 @@ p {
   }
 
   &.medium {
+    font-size: toRem(19);
+    line-height: toRem(27);
   }
 
   &.large {

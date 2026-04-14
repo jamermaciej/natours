@@ -1,0 +1,25 @@
+@use 'functions' as *;
+
+.review-icon {
+  border: 1px solid #f59e0b;
+  color: #f59e0b;
+  border-radius: toRem(8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: toRem(28);
+  height: toRem(28);
+
+  &.reviewed {
+    background-color: #fefce8;
+
+    svg {
+      fill: #f59e0b;
+    }
+  }
+
+  svg {
+    width: toRem(14);
+    height: toRem(14);
+  }
+}

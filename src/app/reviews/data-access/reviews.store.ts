@@ -1,5 +1,5 @@
 import { patchState, signalState } from '@ngrx/signals';
-import { ReviewBody, Review, ReviewResponse } from '../../tours/interfaces/review';
+import { ReviewBody, ReviewResponse } from '../../tours/interfaces/review';
 import { Injectable, inject } from '@angular/core';
 import { exhaustMap, filter, pipe, tap } from 'rxjs';
 import { ReviewsService } from './reviews.service';
@@ -101,8 +101,12 @@ export class ReviewsStore {
     ),
   );
 
-  readonly isTourReviewed = (slug: string) => {
-    return !!this.reviews().filter(review => review.tour.slug === slug).length;
+  readonly getTourReview = (tourId: string) => {
+    return this.reviews().find(review => review.tour._id === tourId);
+  };
+
+  readonly hasReview = (tourId: string) => {
+    return this.reviews().some(r => r.tour._id === tourId);
   };
 
   readonly clearStore = () => {

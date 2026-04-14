@@ -12,7 +12,7 @@ export class SnackbarService {
   #snackBar = inject(MatSnackBar);
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
-  defaultDuration: number = 3000;
+  defaultDuration = 3000;
 
   success(message: string, duration?: number) {
     this.#snackBar.open(message, undefined, {

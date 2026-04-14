@@ -6,7 +6,7 @@ export interface ReviewResponse {
   rating: number;
   user: ReviewUser;
   tour: ReviewTour;
-  cratedAt: string;
+  createdAt: string;
 }
 
 export interface Review {
