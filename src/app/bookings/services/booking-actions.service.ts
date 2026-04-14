@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { BookingsStore } from '../../admin/data-access/bookings-store';
 import { CancellationModalComponent } from '../features/cancellation-modal/cancellation-modal.component';
 import { BOOKING_CANCEL_STORE, BookingCancelStore } from '../interfaces/booking-cancel-store';
+import { patchState } from '@ngrx/signals';
 
 @Injectable({
   providedIn: 'root',
@@ -44,7 +45,7 @@ export class BookingActionsService {
   }
 
   openCancelModal(booking: Booking, store: BookingCancelStore, isAdminView = false) {
-    return this.#dialog.open<Booking>(CancellationModalComponent, {
+    const ref = this.#dialog.open<Booking>(CancellationModalComponent, {
       data: { booking, isAdminView },
       disableClose: false,
       hasBackdrop: true,
@@ -52,5 +53,16 @@ export class BookingActionsService {
       backdropClass: 'cdk-overlay-backdrop',
       providers: [{ provide: BOOKING_CANCEL_STORE, useValue: store }],
     });
+
+    if (!isAdminView) {
+      ref.closed.subscribe(booking => {
+        if (!booking) return;
+        patchState(this.#bookingsStore, state => ({
+          bookings: state.bookings.map(b => (b._id === booking._id ? booking : b)),
+        }));
+      });
+    }
+
+    return ref;
   }
 }
