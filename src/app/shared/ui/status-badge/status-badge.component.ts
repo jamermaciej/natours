@@ -1,4 +1,6 @@
 import { Component, input } from '@angular/core';
+import { BOOKING_STATUS_LABELS } from '../../../tours/enums/booking-status-labels';
+import { BookingStatus } from '../../../tours/enums/booking-status';
 
 @Component({
   selector: 'app-status-badge',
@@ -7,5 +9,6 @@ import { Component, input } from '@angular/core';
   styleUrl: './status-badge.component.scss',
 })
 export class StatusBadgeComponent {
-  status = input.required<string>();
+  readonly status = input.required<BookingStatus>();
+  protected readonly bookingStatusLabels = BOOKING_STATUS_LABELS;
 }

@@ -7,6 +7,9 @@ import { Booking } from '../../bookings/interfaces/booking';
 import { BookingService } from '../../bookings/data-access/booking.service';
 import { CancelBookingRequest } from '../../bookings/enums/cancel-booking-request';
 import { MyBookingsStore } from '../../my-bookings/data-access/my-bookings-store';
+import { Store } from '@ngrx/store';
+import { toursActions } from '../../tours/data-access/store/tours/tours.actions';
+import { BookingStatus } from '../../tours/enums/booking-status';
 
 export interface BookingsState {
   bookings: Booking[];
@@ -27,6 +30,7 @@ export const BookingsStore = signalStore(
       store,
       bookingService = inject(BookingService),
       myBookingsStore = inject(MyBookingsStore),
+      s = inject(Store),
     ) => ({
       async load() {
         if (!store.bookings().length) {
@@ -79,12 +83,29 @@ export const BookingsStore = signalStore(
         }
         return response.data.data;
       },
-      async refundPayment(id: string, data: RefundBookingData) {
+      async refundPayment(id: string, status: BookingStatus, data: RefundBookingData) {
         const response = await lastValueFrom(bookingService.refundPayment(id, data));
+        const updatedBooking = response.data.data;
 
         patchState(store, {
-          bookings: store.bookings().map(b => (b._id === id ? response.data.data : b)),
+          bookings: store.bookings().map(b => (b._id === id ? updatedBooking : b)),
         });
+
+        patchState(myBookingsStore, state => ({
+          bookings: state.bookings.map(b => (b._id === id ? updatedBooking : b)),
+        }));
+
+        if (
+          updatedBooking.status === BookingStatus.REFUNDED &&
+          status !== BookingStatus.CANCELLED
+        ) {
+          s.dispatch(
+            toursActions.decrementParticipants({
+              tourId: updatedBooking.tour._id,
+              startDate: updatedBooking.startDate,
+            }),
+          );
+        }
 
         return response.data.data;
       },

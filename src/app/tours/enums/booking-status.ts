@@ -3,4 +3,5 @@ export enum BookingStatus {
   ACTIVE = 'active',
   CANCELLED = 'cancelled',
   REFUNDED = 'refunded',
+  PARTIAL_REFUND = 'partial_refund',
 }

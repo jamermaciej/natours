@@ -1,7 +1,9 @@
 import { RefundReason } from '../../admin/enums/refund-reason';
 import { User } from '../../shared/interfaces/user';
 
-export interface BookingRefunded {
+export interface BookingRefund {
+  _id: string;
+  stripeRefundId: string;
   refundedAt: Date;
   amount: number;
   reason: RefundReason;

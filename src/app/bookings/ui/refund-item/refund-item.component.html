@@ -1,0 +1,36 @@
+<div class="refund-item">
+  <div class="refund-item__col">
+    <p class="small">Refunded at</p>
+    <p class="small">
+      <strong>{{ refund().refundedAt | date: 'dd.MM.yyyy HH:mm' }}</strong>
+    </p>
+  </div>
+  <div class="refund-item__col">
+    <p class="small">Refunded by</p>
+    <p class="small">
+      <strong>{{ refundedByLabel() }}</strong>
+    </p>
+  </div>
+  <div class="refund-item__col">
+    <p class="small">Amount</p>
+    <p class="small">
+      <strong>{{ refund().amount | currency: 'PLN' }}</strong>
+    </p>
+  </div>
+  @if (refund().reason) {
+    <div class="refund-item__col">
+      <p class="small">Reason</p>
+      <p class="small">
+        <strong>{{ refund().reason! | enumLabel: refundReasonLabel }}</strong>
+      </p>
+    </div>
+  }
+  @if (refund().note) {
+    <div class="refund-item__col refund-item__col--full">
+      <p class="small">Note</p>
+      <p class="small">
+        <strong>{{ refund().note }}</strong>
+      </p>
+    </div>
+  }
+</div>

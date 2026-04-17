@@ -2,7 +2,7 @@ import { User } from '../../shared/interfaces/user';
 import { BookingStatus } from '../../tours/enums/booking-status';
 import { Tour } from '../../tours/interfaces/tour';
 import { BookingCancellation } from './booking-cancellation';
-import { BookingRefunded } from './booking-refunded';
+import { BookingRefund } from './booking-refund';
 
 export interface Booking {
   _id: string;
@@ -17,5 +17,5 @@ export interface Booking {
   stripePaymentIntentId?: string;
   stripeSessionId?: string;
   cancellation?: BookingCancellation;
-  refund?: BookingRefunded;
+  refunds?: BookingRefund[];
 }

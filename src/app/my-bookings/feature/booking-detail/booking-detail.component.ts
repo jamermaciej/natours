@@ -61,12 +61,16 @@ export class BookingDetailComponent {
 
   protected readonly canCancel = computed(() => {
     const b = this.booking();
-    return b?.status === BookingStatus.ACTIVE && dayjs(b?.startDate).diff(dayjs(), 'hour') >= 168;
+    return (
+      (b?.status === BookingStatus.ACTIVE || b?.status === BookingStatus.PARTIAL_REFUND) &&
+      dayjs(b?.startDate).diff(dayjs(), 'hour') >= 168
+    );
   });
 
   protected readonly canBookAgain = computed(() => {
     return (
       this.booking()?.status !== this.bookingStatus.ACTIVE &&
+      this.booking()?.status !== this.bookingStatus.PARTIAL_REFUND &&
       !this.myBookingsStore
         .bookings()
         .some(b => b.tour._id === this.booking()?.tour._id && b.status === BookingStatus.ACTIVE)

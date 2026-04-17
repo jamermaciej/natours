@@ -16,15 +16,15 @@
         (refunded)="openRefundModal(booking)"
         (bookingDeleted)="deleteBooking(booking)"
       />
-      @if (booking.status === bookingStatus.CANCELLED && booking.cancellation) {
+      @if (booking.cancellation) {
         <app-booking-cancellation-details
           [cancellation]="booking.cancellation"
           [isAdminView]="true"
         ></app-booking-cancellation-details>
       }
-      @if (booking.status === bookingStatus.REFUNDED && booking.refund) {
+      @if (booking.refunds?.length) {
         <app-booking-refunded-details
-          [refund]="booking.refund"
+          [refunds]="booking.refunds!"
           [isAdminView]="true"
         ></app-booking-refunded-details>
       }
@@ -64,7 +64,11 @@
           <app-payment-toggle
             [paid]="paid()"
             [isUpdating]="isUpdating()"
-            [disabled]="isUpdating() || booking.status === bookingStatus.REFUNDED"
+            [disabled]="
+              isUpdating() ||
+              booking.status === bookingStatus.REFUNDED ||
+              booking.status === bookingStatus.PARTIAL_REFUND
+            "
             (paidChanged)="updateBooking(booking._id, $event)"
           ></app-payment-toggle>
         </app-info-box>

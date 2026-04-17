@@ -13,6 +13,7 @@ import { BOOKING_CANCEL_STORE, BookingCancelStore } from '../interfaces/booking-
 import { patchState } from '@ngrx/signals';
 import { Store } from '@ngrx/store';
 import { toursActions } from '../../tours/data-access/store/tours/tours.actions';
+import { BookingStatus } from '../../tours/enums/booking-status';
 
 @Injectable({
   providedIn: 'root',
@@ -53,7 +54,12 @@ export class BookingActionsService {
       backdropClass: 'cdk-overlay-backdrop',
     });
 
-    dialogRef.closed.subscribe(() => this.decrementTourParticipants(booking));
+    if (
+      booking.status === BookingStatus.ACTIVE ||
+      booking.status === BookingStatus.PARTIAL_REFUND
+    ) {
+      dialogRef.closed.subscribe(() => this.decrementTourParticipants(booking));
+    }
 
     return dialogRef;
   }

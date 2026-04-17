@@ -5,10 +5,15 @@
   </div>
   <div class="d-flex align-items-center align-self-start">
     <app-status-badge [status]="status()" />
-    @if (status() === bookingStatus.ACTIVE) {
+    @if (status() === bookingStatus.ACTIVE || status() === bookingStatus.PARTIAL_REFUND) {
       <button class="btn btn--small btn--outline" (click)="onChangeDate()">Change date</button>
     }
-    @if ((status() === bookingStatus.ACTIVE || status() === bookingStatus.CANCELLED) && paid()) {
+    @if (
+      (status() === bookingStatus.ACTIVE ||
+        status() === bookingStatus.CANCELLED ||
+        status() === bookingStatus.PARTIAL_REFUND) &&
+      paid()
+    ) {
       <button class="btn btn--small btn--outline justify-content-evenly" (click)="onRefund()">
         <svg
           aria-hidden="true"

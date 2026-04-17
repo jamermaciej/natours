@@ -29,8 +29,20 @@
     </mat-form-field>
     <div class="form__group">
       <label class="form__label" for="amount">Refund amount</label>
-      <input class="form__input" id="amount" type="number" [formField]="refundForm.amount" />
-      <div class="form__hint">Maximum refund: {{ booking.price | currency: 'PLN' }}</div>
+      <input
+        class="form__input"
+        id="amount"
+        type="number"
+        placeholder="Amount"
+        [formField]="refundForm.amount"
+      />
+      @for (error of refundForm.amount().errors(); track $index) {
+        @if (error.message) {
+          <div class="error">{{ error.message }}</div>
+        } @else {
+          <div class="form__hint">Maximum refund: {{ maxRefund() | currency: 'PLN' }}</div>
+        }
+      }
     </div>
     <div class="form__group">
       <label class="form__label" for="note">Note (optional)</label>

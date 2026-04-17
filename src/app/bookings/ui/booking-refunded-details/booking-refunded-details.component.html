@@ -1,38 +1,18 @@
 <app-section-card [title]="'Refunded details'" variant="refunded">
-  <div class="booking-refunded">
-    <div class="booking-refunded__item">
-      <p class="small">Cancelled at</p>
-      <p class="small">
-        <strong>{{ refund().refundedAt | date: 'dd.MM.yyyy HH:mm' }}</strong>
-      </p>
-    </div>
-    <div class="booking-refunded__item">
-      <p class="small">Refunded by</p>
-      <p class="small">
-        <strong>{{ refundedByLabel() }}</strong>
-      </p>
-    </div>
-    <div class="booking-refunded__item">
-      <p class="small">Amount</p>
-      <p class="small">
-        <strong>{{ refund().amount | currency: 'PLN' }}</strong>
-      </p>
-    </div>
-    @if (refund().reason) {
-      <div class="booking-refunded__item">
-        <p class="small">Reason</p>
-        <p class="small">
-          <strong>{{ refund().reason! | enumLabel: refundReasonLabel }}</strong>
-        </p>
-      </div>
-    }
-    @if (refund().note) {
-      <div class="booking-refunded__item">
-        <p class="small">Note</p>
-        <p class="small">
-          <strong>{{ refund().note }}</strong>
-        </p>
-      </div>
-    }
+  <div class="total-refund">
+    <p class="small fw-bolder">Total refunded</p>
+    <p class="small fw-bolder">{{ totalRefund() | currency: 'PLN' }}</p>
   </div>
+  <ul class="refund-list">
+    @for (refund of visibleRefunds(); track refund._id; let i = $index) {
+      <li class="refund-list__item">
+        <app-refund-item [refund]="refund" [isAdminView]="isAdminView()" />
+      </li>
+    }
+    @if (refunds().length > INITIAL_LIMIT) {
+      <button class="btn btn--small btn--outline w-100" (click)="toggleList()">
+        {{ isExpanded() ? 'Show less' : `Show more (${remainingCount()} remaining)` }}
+      </button>
+    }
+  </ul>
 </app-section-card>

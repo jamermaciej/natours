@@ -10,9 +10,13 @@
 }
 
 .modal {
-  &__body {
-    padding: toRem(15) 0;
+  &__header {
+    margin-bottom: toRem(20);
   }
+
+  // &__body {
+  //   padding: toRem(15) 0;
+  // }
 
   &__footer {
     display: flex;
