@@ -36,7 +36,7 @@
               </div>
             </td>
             <td class="text-center">{{ booking.startDate | date: 'dd.MM.yyyy' }}</td>
-            <td class="text-center">{{ booking.price | currency: 'PLN' : 'symbol' : '1.0-2' }}</td>
+            <td class="text-center">{{ booking.price | appCurrency: '1.0-2' }}</td>
             <td class="text-center">
               <app-status-badge [status]="booking.status"></app-status-badge>
             </td>

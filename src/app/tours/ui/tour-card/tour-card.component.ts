@@ -5,10 +5,11 @@ import { RouterModule } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { AvailableDatePipe } from '../../pipes/available-date.pipe';
+import { AppCurrencyPipe } from '../../../shared/pipes/app-currency.pipe';
 
 @Component({
   selector: 'app-tour-card',
-  imports: [CommonModule, RouterModule, NgOptimizedImage, AvailableDatePipe],
+  imports: [CommonModule, RouterModule, NgOptimizedImage, AvailableDatePipe, AppCurrencyPipe],
   providers: [provideImgixLoader(environment.imgixUrl)],
   templateUrl: './tour-card.component.html',
   styleUrl: './tour-card.component.scss',

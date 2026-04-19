@@ -4,7 +4,7 @@
       <div class="booking-refund__total">
         <p class="small">Total refunded</p>
         <p class="small fw-bolder">
-          {{ totalRefund() | currency: 'PLN' }}
+          {{ totalRefund() | appCurrency }}
           @if (!isFullRefund()) {
             <span class="refund-percentage">({{ refundPercentage() }}%)</span>
           }
@@ -15,7 +15,7 @@
           <span class="badge-refunded">Full refund</span>
         } @else {
           <p class="small">Remaining</p>
-          <p class="small fw-bolder">{{ remaining() | currency: 'PLN' }}</p>
+          <p class="small fw-bolder">{{ remaining() | appCurrency }}</p>
         }
       </div>
     </div>
@@ -23,8 +23,8 @@
       <div class="booking-refund__progress">
         <app-progress-bar [value]="refundPercentage()" />
         <div class="booking-refund__progress-labels">
-          <p class="label-refunded">{{ totalRefund() | currency: 'PLN' }} refunded</p>
-          <p>{{ price() | currency: 'PLN' }} total</p>
+          <p class="label-refunded">{{ totalRefund() | appCurrency }} refunded</p>
+          <p>{{ price() | appCurrency }} total</p>
         </div>
       </div>
     }

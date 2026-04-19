@@ -2,12 +2,12 @@ import { Component, computed, input, signal } from '@angular/core';
 import { SectionCardComponent } from '../../../shared/ui/section-card/section-card.component';
 import { BookingRefund } from '../../interfaces/booking-refund';
 import { RefundItemComponent } from '../refund-item/refund-item.component';
-import { CurrencyPipe } from '@angular/common';
 import { ProgressBarComponent } from '../../../shared/progress-bar/progress-bar.component';
+import { AppCurrencyPipe } from '../../../shared/pipes/app-currency.pipe';
 
 @Component({
   selector: 'app-booking-refunded-details',
-  imports: [SectionCardComponent, RefundItemComponent, CurrencyPipe, ProgressBarComponent],
+  imports: [SectionCardComponent, RefundItemComponent, AppCurrencyPipe, ProgressBarComponent],
   templateUrl: './booking-refunded-details.component.html',
   styleUrl: './booking-refunded-details.component.scss',
 })

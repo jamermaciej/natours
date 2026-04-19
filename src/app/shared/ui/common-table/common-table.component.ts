@@ -3,11 +3,12 @@ import { TableColumn } from '../../interfaces/table-column';
 import { nestedProperty } from '../../pipes/nested-property';
 import { TableConfig } from '../../interfaces/table-config';
 import { TableColumnType } from '../../enums/table-column-type';
-import { CurrencyPipe, DatePipe, NgTemplateOutlet } from '@angular/common';
+import { DatePipe, NgTemplateOutlet } from '@angular/common';
+import { AppCurrencyPipe } from '../../pipes/app-currency.pipe';
 
 @Component({
   selector: 'app-common-table',
-  imports: [nestedProperty, NgTemplateOutlet, DatePipe, CurrencyPipe],
+  imports: [nestedProperty, NgTemplateOutlet, DatePipe, AppCurrencyPipe],
   templateUrl: './common-table.component.html',
   styleUrl: './common-table.component.scss',
 })

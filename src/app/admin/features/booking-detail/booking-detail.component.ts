@@ -8,7 +8,7 @@ import { SectionCardComponent } from '../../../shared/ui/section-card/section-ca
 import { InfoCardComponent } from '../../../shared/ui/info-card/info-card.component';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
 import { InfoBoxComponent } from '../../../shared/ui/info-box/info-box.component';
-import { CurrencyPipe, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { GuidesListComponent } from '../../../bookings/ui/guides-list/guides-list.component';
 import { PaymentToggleComponent } from '../../ui/payment-toggle/payment-toggle.component';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
@@ -22,6 +22,7 @@ import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/cont
 import { Booking } from '../../../bookings/interfaces/booking';
 import { BookingCancellationDetailsComponent } from '../../../bookings/ui/booking-cancellation-details/booking-cancellation-details.component';
 import { BookingActionsService } from '../../../bookings/services/booking-actions.service';
+import { AppCurrencyPipe } from '../../../shared/pipes/app-currency.pipe';
 
 @Component({
   selector: 'app-booking-detail',
@@ -32,7 +33,7 @@ import { BookingActionsService } from '../../../bookings/services/booking-action
     SectionCardComponent,
     InfoCardComponent,
     InfoBoxComponent,
-    CurrencyPipe,
+    AppCurrencyPipe,
     DatePipe,
     GuidesListComponent,
     PaymentToggleComponent,

@@ -23,11 +23,7 @@
                   {{ item | nestedProperty: column.key! | date: column.format ?? 'dd.MM.yyyy' }}
                 }
                 @case (TableColumnType.CURRENCY) {
-                  {{
-                    item
-                      | nestedProperty: column.key!
-                      | currency: column.currency ?? 'PLN' : 'symbol' : '1.0-2'
-                  }}
+                  {{ item | nestedProperty: column.key! | appCurrency: column.digitsInfo }}
                 }
                 @default {
                   {{ item | nestedProperty: column.key! }}

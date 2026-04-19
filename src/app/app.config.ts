@@ -1,4 +1,4 @@
-import { ApplicationConfig, isDevMode, LOCALE_ID } from '@angular/core';
+import { ApplicationConfig, DEFAULT_CURRENCY_CODE, isDevMode, LOCALE_ID } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -31,6 +31,10 @@ export const appConfig: ApplicationConfig = {
     {
       provide: LOCALE_ID,
       useValue: 'pl-PL',
+    },
+    {
+      provide: DEFAULT_CURRENCY_CODE,
+      useValue: 'PLN',
     },
   ],
 };

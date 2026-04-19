@@ -56,7 +56,13 @@ export class BookingsComponent implements OnInit {
       cssClass: 'text-center',
       format: 'dd.MM.yyyy',
     },
-    { key: 'price', header: 'Price', type: TableColumnType.CURRENCY, cssClass: 'text-center' },
+    {
+      key: 'price',
+      header: 'Price',
+      type: TableColumnType.CURRENCY,
+      cssClass: 'text-center',
+      digitsInfo: '1.0-2',
+    },
     {
       key: 'status',
       header: 'Status',

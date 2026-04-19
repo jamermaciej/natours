@@ -7,7 +7,7 @@ import { GuidesListComponent } from '../../../bookings/ui/guides-list/guides-lis
 import { InfoBoxComponent } from '../../../shared/ui/info-box/info-box.component';
 import { InfoCardComponent } from '../../../shared/ui/info-card/info-card.component';
 import { FlowRoutes } from '../../../shared/enums/flow-routes';
-import { CurrencyPipe, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { BookingRefundedDetailsComponent } from '../../../bookings/ui/booking-refunded-details/booking-refunded-details.component';
 import { BookingStatus } from '../../../tours/enums/booking-status';
 import { BookingDetailHeaderComponent } from '../../ui/booking-detail-header/booking-detail-header.component';
@@ -20,6 +20,7 @@ import { User } from '../../../shared/interfaces/user';
 import { Store } from '@ngrx/store';
 import { ReviewsStore } from '../../../reviews/data-access/reviews.store';
 import { RouterLink } from '@angular/router';
+import { AppCurrencyPipe } from '../../../shared/pipes/app-currency.pipe';
 
 @Component({
   selector: 'app-booking-detail',
@@ -29,7 +30,7 @@ import { RouterLink } from '@angular/router';
     GuidesListComponent,
     InfoBoxComponent,
     InfoCardComponent,
-    CurrencyPipe,
+    AppCurrencyPipe,
     DatePipe,
     BookingDetailHeaderComponent,
     BookingRefundedDetailsComponent,

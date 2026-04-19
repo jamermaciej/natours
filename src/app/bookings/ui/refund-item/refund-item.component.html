@@ -14,7 +14,7 @@
   <div class="refund-item__col">
     <p class="small">Amount</p>
     <p class="small">
-      <strong>{{ refund().amount | currency: 'PLN' }}</strong>
+      <strong>{{ refund().amount | appCurrency }}</strong>
     </p>
   </div>
   @if (refund().reason) {

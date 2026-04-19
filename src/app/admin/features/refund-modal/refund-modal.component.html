@@ -40,7 +40,7 @@
         @if (error.message) {
           <div class="error">{{ error.message }}</div>
         } @else {
-          <div class="form__hint">Maximum refund: {{ maxRefund() | currency: 'PLN' }}</div>
+          <div class="form__hint">Maximum refund: {{ maxRefund() | appCurrency }}</div>
         }
       }
     </div>

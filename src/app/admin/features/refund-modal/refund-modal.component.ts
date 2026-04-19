@@ -17,9 +17,9 @@ import { BookingsStore } from '../../data-access/bookings-store';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
 import { form, FormField, max, min, required } from '@angular/forms/signals';
 import { RefundBookingData } from '../../interfaces/refund-booking-data';
-import { CurrencyPipe } from '@angular/common';
 import { Booking } from '../../../bookings/interfaces/booking';
 import { REFUND_REASON_LABELS } from '../../enums/refund-reason-labels';
+import { AppCurrencyPipe } from '../../../shared/pipes/app-currency.pipe';
 
 @Component({
   selector: 'app-refund-modal',
@@ -34,9 +34,9 @@ import { REFUND_REASON_LABELS } from '../../enums/refund-reason-labels';
     ReactiveFormsModule,
     MatSelectModule,
     FormField,
-    CurrencyPipe,
+    AppCurrencyPipe,
   ],
-  providers: [CurrencyPipe],
+  providers: [AppCurrencyPipe],
   templateUrl: './refund-modal.component.html',
   styleUrl: './refund-modal.component.scss',
 })
@@ -45,7 +45,7 @@ export class RefundModalComponent {
   private readonly snackbarService = inject(SnackbarService);
   protected dialogRef = inject(DialogRef<Booking>);
   protected readonly booking = inject<Booking>(DIALOG_DATA);
-  private readonly currencyPipe = inject(CurrencyPipe);
+  private readonly appCurrencyPipe = inject(AppCurrencyPipe);
 
   readonly isLoading = signal(false);
   readonly error = signal<string | null>(null);
@@ -68,10 +68,10 @@ export class RefundModalComponent {
     required(path.reason);
     required(path.amount);
     min(path.amount, 0.01, {
-      message: `Refund cannot be ${this.currencyPipe.transform(0, 'PLN')}.`,
+      message: `Refund cannot be ${this.appCurrencyPipe.transform(0)}.`,
     });
     max(path.amount, this.maxRefund(), {
-      message: `Refund cannot be more than ${this.currencyPipe.transform(this.maxRefund(), 'PLN')}.`,
+      message: `Refund cannot be more than ${this.appCurrencyPipe.transform(this.maxRefund())}.`,
     });
   });
 

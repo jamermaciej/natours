@@ -42,7 +42,7 @@
     </div>
     <div class="box-grid">
       <app-info-box label="Price">
-        {{ booking().price | currency: 'PLN' }}
+        {{ booking().price | appCurrency }}
       </app-info-box>
       <app-info-box label="Booked date">
         {{ booking().createdAt | date }}

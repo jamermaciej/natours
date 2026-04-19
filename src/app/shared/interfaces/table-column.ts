@@ -8,5 +8,5 @@ export interface TableColumn {
   cssClass?: string;
   templateRef?: TemplateRef<any>;
   format?: string;
-  currency?: string;
+  digitsInfo?: string;
 }
