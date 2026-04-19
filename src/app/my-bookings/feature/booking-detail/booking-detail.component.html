@@ -16,7 +16,10 @@
       ></app-booking-cancellation-details>
     }
     @if (booking().refunds?.length) {
-      <app-booking-refunded-details [refunds]="booking().refunds!"></app-booking-refunded-details>
+      <app-booking-refunded-details
+        [refunds]="booking().refunds!"
+        [price]="booking().price"
+      ></app-booking-refunded-details>
     }
     <div class="cards-grid">
       <app-section-card title="Tour">

@@ -3,19 +3,26 @@ import { SectionCardComponent } from '../../../shared/ui/section-card/section-ca
 import { BookingRefund } from '../../interfaces/booking-refund';
 import { RefundItemComponent } from '../refund-item/refund-item.component';
 import { CurrencyPipe } from '@angular/common';
+import { ProgressBarComponent } from '../../../shared/progress-bar/progress-bar.component';
 
 @Component({
   selector: 'app-booking-refunded-details',
-  imports: [SectionCardComponent, RefundItemComponent, CurrencyPipe],
+  imports: [SectionCardComponent, RefundItemComponent, CurrencyPipe, ProgressBarComponent],
   templateUrl: './booking-refunded-details.component.html',
   styleUrl: './booking-refunded-details.component.scss',
 })
 export class BookingRefundedDetailsComponent {
   readonly refunds = input.required<BookingRefund[]>();
+  readonly price = input.required<number>();
   readonly isAdminView = input<boolean>(false);
   protected readonly totalRefund = computed(() =>
     this.refunds().reduce((total, r) => total + r.amount, 0),
   );
+  protected readonly refundPercentage = computed(() =>
+    Math.round((this.totalRefund() / this.price()) * 100),
+  );
+  protected readonly isFullRefund = computed(() => this.totalRefund() >= this.price());
+  protected readonly remaining = computed(() => this.price() - this.totalRefund());
   protected readonly INITIAL_LIMIT = 2;
   private readonly displayLimit = signal(this.INITIAL_LIMIT);
   protected readonly visibleRefunds = computed(() => this.refunds().slice(0, this.displayLimit()));

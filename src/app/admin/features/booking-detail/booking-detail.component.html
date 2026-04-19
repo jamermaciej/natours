@@ -25,6 +25,7 @@
       @if (booking.refunds?.length) {
         <app-booking-refunded-details
           [refunds]="booking.refunds!"
+          [price]="booking.price"
           [isAdminView]="true"
         ></app-booking-refunded-details>
       }

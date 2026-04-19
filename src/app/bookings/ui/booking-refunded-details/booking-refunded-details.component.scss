@@ -1,23 +1,62 @@
 @use 'functions' as *;
 
-.total-refund {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: toRem(20);
-  color: var(--color-orange);
-  padding: toRem(12);
-  background-color: light-dark(rgba(246, 238, 223, 1), rgba(72, 58, 15, 1));
-  border-radius: toRem(8);
-  margin-bottom: toRem(12);
-}
+.booking-refund {
+  &__summary {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: toRem(20);
+    padding: toRem(12);
+    background-color: light-dark(rgba(246, 238, 223, 1), rgba(72, 58, 15, 1));
+    border-radius: toRem(8);
+  }
 
-.refund-list {
+  &__total {
+    color: var(--color-orange);
+
+    .refund-percentage {
+      font-size: toRem(12);
+    }
+  }
+
+  &__remaining {
+    .badge-refunded {
+      font-size: toRem(12);
+      color: var(--color-green);
+      font-weight: 400;
+      background-color: var(--color-white);
+      padding: toRem(4) toRem(12);
+      border-radius: toRem(8);
+    }
+  }
+
+  &__progress {
+    margin: toRem(10) 0;
+
+    &-labels {
+      display: flex;
+      justify-content: space-between;
+
+      p {
+        font-size: toRem(12);
+        font-weight: 400;
+
+        &.label-refunded {
+          color: var(--color-orange);
+        }
+      }
+    }
+  }
+
   &__item {
-    margin-bottom: toRem(10);
-
     &:not(:last-of-type) {
       padding-bottom: toRem(10);
+      margin-bottom: toRem(10);
       border-bottom: 1px solid #e0e0e0;
     }
+  }
+
+  &__toggle {
+    margin-top: toRem(10);
   }
 }
