@@ -10,15 +10,18 @@ import { MyBookingsStore } from '../../my-bookings/data-access/my-bookings-store
 import { Store } from '@ngrx/store';
 import { toursActions } from '../../tours/data-access/store/tours/tours.actions';
 import { BookingStatus } from '../../tours/enums/booking-status';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export interface BookingsState {
   bookings: Booking[];
   isLoading: boolean;
+  error: string | null;
 }
 
 const initialState: BookingsState = {
   bookings: [],
   isLoading: false,
+  error: null,
 };
 
 export const BookingsStore = signalStore(
@@ -31,102 +34,114 @@ export const BookingsStore = signalStore(
       bookingService = inject(BookingService),
       myBookingsStore = inject(MyBookingsStore),
       s = inject(Store),
-    ) => ({
-      async load() {
-        if (!store.bookings().length) {
+    ) => {
+      async function loadData() {
+        try {
           patchState(store, { isLoading: true });
           const response = await lastValueFrom(bookingService.getAllBookings());
           patchState(store, { bookings: response.data.data, isLoading: false });
+        } catch (err) {
+          const errorMessage =
+            err instanceof HttpErrorResponse
+              ? 'Failed to load bookings. Please try again.'
+              : 'Something went wrong. Please try again.';
+          patchState(store, { isLoading: false, error: errorMessage });
+          throw err;
         }
-      },
-      async removeBooking(id: string) {
-        const booking = store.bookings().find(b => b._id === id);
+      }
 
-        await lastValueFrom(bookingService.removeBooking(id));
+      return {
+        async load() {
+          if (store.bookings().length) return;
+          await loadData();
+        },
+        async reload() {
+          patchState(store, { error: null });
+          await loadData();
+        },
+        async removeBooking(id: string) {
+          const booking = store.bookings().find(b => b._id === id);
 
-        patchState(store, {
-          bookings: store
-            .bookings()
-            .filter(booking => booking._id !== id)
-            .map(b => {
-              if (b.tour._id !== booking?.tour._id) return b;
-              return {
-                ...b,
-                tour: {
-                  ...b.tour,
-                  startDates: b.tour.startDates.map(d =>
-                    d.date === booking?.startDate
-                      ? { ...d, participants: d.participants - 1, soldOut: false }
-                      : d,
-                  ),
-                },
-              };
-            }),
-        });
+          await lastValueFrom(bookingService.removeBooking(id));
 
-        patchState(myBookingsStore, state => ({
-          bookings: state.bookings.filter(b => b._id !== id),
-        }));
-      },
-      async loadBookingDetail(id: string) {
-        const existing = store.bookings().find(b => b._id === id);
-        if (existing) return existing;
-
-        return (await lastValueFrom(bookingService.getBooking(id))).data.data;
-      },
-      async updateBooking(id: string, data: Partial<Booking>) {
-        const response = await lastValueFrom(bookingService.updateBooking(id, data));
-        if (store.bookings().length) {
           patchState(store, {
-            bookings: store.bookings().map(b => (b._id === id ? response.data.data : b)),
+            bookings: store
+              .bookings()
+              .filter(booking => booking._id !== id)
+              .map(b => {
+                if (b.tour._id !== booking?.tour._id) return b;
+                return {
+                  ...b,
+                  tour: {
+                    ...b.tour,
+                    startDates: b.tour.startDates.map(d =>
+                      d.date === booking?.startDate
+                        ? { ...d, participants: d.participants - 1, soldOut: false }
+                        : d,
+                    ),
+                  },
+                };
+              }),
           });
-        }
-        return response.data.data;
-      },
-      async refundPayment(id: string, status: BookingStatus, data: RefundBookingData) {
-        const response = await lastValueFrom(bookingService.refundPayment(id, data));
-        const updatedBooking = response.data.data;
 
-        patchState(store, {
-          bookings: store.bookings().map(b => (b._id === id ? updatedBooking : b)),
-        });
+          patchState(myBookingsStore, state => ({
+            bookings: state.bookings.filter(b => b._id !== id),
+          }));
+        },
+        async updateBooking(id: string, data: Partial<Booking>) {
+          const response = await lastValueFrom(bookingService.updateBooking(id, data));
+          if (store.bookings().length) {
+            patchState(store, {
+              bookings: store.bookings().map(b => (b._id === id ? response.data.data : b)),
+            });
+          }
+          return response.data.data;
+        },
+        async refundPayment(id: string, status: BookingStatus, data: RefundBookingData) {
+          const response = await lastValueFrom(bookingService.refundPayment(id, data));
+          const updatedBooking = response.data.data;
 
-        patchState(myBookingsStore, state => ({
-          bookings: state.bookings.map(b => (b._id === id ? updatedBooking : b)),
-        }));
+          patchState(store, {
+            bookings: store.bookings().map(b => (b._id === id ? updatedBooking : b)),
+          });
 
-        if (
-          updatedBooking.status === BookingStatus.REFUNDED &&
-          status !== BookingStatus.CANCELLED
-        ) {
-          s.dispatch(
-            toursActions.decrementParticipants({
-              tourId: updatedBooking.tour._id,
-              startDate: updatedBooking.startDate,
-            }),
-          );
-        }
+          patchState(myBookingsStore, state => ({
+            bookings: state.bookings.map(b => (b._id === id ? updatedBooking : b)),
+          }));
 
-        return response.data.data;
-      },
-      async cancelBooking(id: string, data: CancelBookingRequest) {
-        const response = await lastValueFrom(bookingService.cancelBooking(id, data));
-        const updatedBooking = response.data.data;
+          if (
+            updatedBooking.status === BookingStatus.REFUNDED &&
+            status !== BookingStatus.CANCELLED
+          ) {
+            s.dispatch(
+              toursActions.decrementParticipants({
+                tourId: updatedBooking.tour._id,
+                startDate: updatedBooking.startDate,
+              }),
+            );
+          }
 
-        patchState(store, {
-          bookings: store.bookings().map(b => (b._id === id ? updatedBooking : b)),
-        });
+          return response.data.data;
+        },
+        async cancelBooking(id: string, data: CancelBookingRequest) {
+          const response = await lastValueFrom(bookingService.cancelBooking(id, data));
+          const updatedBooking = response.data.data;
 
-        patchState(myBookingsStore, state => ({
-          bookings: state.bookings.map(b => (b._id === id ? updatedBooking : b)),
-        }));
+          patchState(store, {
+            bookings: store.bookings().map(b => (b._id === id ? updatedBooking : b)),
+          });
 
-        return updatedBooking;
-      },
-      clearState() {
-        patchState(store, initialState);
-      },
-    }),
+          patchState(myBookingsStore, state => ({
+            bookings: state.bookings.map(b => (b._id === id ? updatedBooking : b)),
+          }));
+
+          return updatedBooking;
+        },
+        clearState() {
+          patchState(store, initialState);
+        },
+      };
+    },
   ),
   withHooks({
     onDestroy(store) {

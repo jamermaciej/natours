@@ -1,6 +1,4 @@
-import { Component, computed, inject, input, linkedSignal, resource, signal } from '@angular/core';
-import { LoaderComponent } from '../../../shared/ui/loader/loader.component';
-import { ErrorMessageComponent } from '../../../shared/ui/error-message/error-message.component';
+import { Component, inject, input, linkedSignal, signal } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { BookingsStore } from '../../data-access/bookings-store';
 import { BookingDetailHeaderComponent } from '../../ui/booking-detail-header/booking-detail-header.component';
@@ -27,8 +25,6 @@ import { AppCurrencyPipe } from '../../../shared/pipes/app-currency.pipe';
 @Component({
   selector: 'app-booking-detail',
   imports: [
-    LoaderComponent,
-    ErrorMessageComponent,
     BookingDetailHeaderComponent,
     SectionCardComponent,
     InfoCardComponent,
@@ -49,21 +45,12 @@ export class BookingDetailComponent {
   private readonly snackbarService = inject(SnackbarService);
   private readonly bookingActionsService = inject(BookingActionsService);
   private dialog = inject(Dialog);
-  readonly bookingId = input.required<string>();
+  readonly booking = input.required<Booking>();
   readonly flowRoutes = FlowRoutes;
   readonly bookingStatus = BookingStatus;
 
-  protected readonly booking = resource<Booking, string>({
-    params: () => this.bookingId(),
-    loader: ({ params: id }) => this.bookingsStore.loadBookingDetail(id),
-  });
-
-  protected readonly errorMessage = computed(() => {
-    const error = this.booking.error() as HttpErrorResponse;
-    return error?.error?.message || 'Error';
-  });
-
-  protected readonly paid = linkedSignal(() => this.booking.value()?.paid ?? false);
+  protected readonly paid = linkedSignal(() => this.booking()?.paid ?? false);
+  protected readonly bookingData = linkedSignal(() => this.booking());
   protected readonly isUpdating = signal(false);
 
   protected async updateBooking(id: string, paid: boolean) {
@@ -73,7 +60,7 @@ export class BookingDetailComponent {
 
     try {
       const response = await this.bookingsStore.updateBooking(id, { paid: this.paid() });
-      this.booking.set(response);
+      this.bookingData.set(response);
     } catch (err) {
       this.paid.set(previous);
 
@@ -97,7 +84,7 @@ export class BookingDetailComponent {
     });
 
     dialogRef.closed.subscribe(booking => {
-      if (booking) this.booking.set(booking);
+      if (booking) this.bookingData.set(booking);
     });
   }
 
@@ -105,7 +92,7 @@ export class BookingDetailComponent {
     this.bookingActionsService
       .openCancelModal(booking, this.bookingsStore, true)
       .closed.subscribe(booking => {
-        if (booking) this.booking.set(booking);
+        if (booking) this.bookingData.set(booking);
       });
   }
 
@@ -119,7 +106,7 @@ export class BookingDetailComponent {
     });
 
     dialogRef.closed.subscribe(booking => {
-      if (booking) this.booking.set(booking);
+      if (booking) this.bookingData.set(booking);
     });
   }
 
@@ -133,7 +120,7 @@ export class BookingDetailComponent {
     });
 
     dialogRef.closed.subscribe(booking => {
-      if (booking) this.booking.set(booking);
+      if (booking) this.bookingData.set(booking);
     });
   }
 

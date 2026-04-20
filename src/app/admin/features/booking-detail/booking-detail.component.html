@@ -1,82 +1,74 @@
 <app-content-wrapper>
   <div class="booking-detail">
-    @if (booking.error(); as error) {
-      <app-error-message [message]="errorMessage()" />
+    <app-booking-detail-header
+      [reservationNumber]="bookingData().reservationNumber"
+      [status]="bookingData().status"
+      [paid]="bookingData().paid"
+      (dateChanged)="openDateModal(bookingData())"
+      (bookingCancelled)="cancelBooking(bookingData())"
+      (refunded)="openRefundModal(bookingData())"
+      (bookingDeleted)="deleteBooking(bookingData())"
+    />
+    @if (bookingData().cancellation) {
+      <app-booking-cancellation-details
+        [cancellation]="bookingData().cancellation!"
+        [isAdminView]="true"
+      ></app-booking-cancellation-details>
     }
-
-    @if (booking.isLoading()) {
-      <app-loader />
-    } @else if (booking.value(); as booking) {
-      <app-booking-detail-header
-        [reservationNumber]="booking.reservationNumber"
-        [status]="booking.status"
-        [paid]="booking.paid"
-        (dateChanged)="openDateModal(booking)"
-        (bookingCancelled)="cancelBooking(booking)"
-        (refunded)="openRefundModal(booking)"
-        (bookingDeleted)="deleteBooking(booking)"
-      />
-      @if (booking.cancellation) {
-        <app-booking-cancellation-details
-          [cancellation]="booking.cancellation"
-          [isAdminView]="true"
-        ></app-booking-cancellation-details>
-      }
-      @if (booking.refunds?.length) {
-        <app-booking-refunded-details
-          [refunds]="booking.refunds!"
-          [price]="booking.price"
-          [isAdminView]="true"
-        ></app-booking-refunded-details>
-      }
-      <div class="cards-grid">
-        <app-section-card title="Client">
-          <app-info-card
-            [photo]="booking.user.photo"
-            [title]="booking.user.name"
-            [subtitle]="booking.user.email"
-            buttonLabel="Go to profile ↗"
-            btnClass="w-100"
-            [link]="[flowRoutes.USERS, booking.user._id!]"
-            [queryParams]="{ returnUrl: `${flowRoutes.BOOKINGS}/${booking._id}` }"
-          />
-        </app-section-card>
-        <app-section-card title="Tour">
-          <app-info-card
-            [title]="booking.tour.name"
-            [subtitle]="`ID: ${booking.tour._id}`"
-            buttonLabel="Go to tour ↗"
-            btnClass="w-100"
-            [link]="[flowRoutes.TOURS, booking.tour.slug]"
-          />
-        </app-section-card>
-      </div>
-      <div class="box-grid">
-        <app-info-box label="Price">
-          {{ booking.price | appCurrency }}
-        </app-info-box>
-        <app-info-box label="Booked date">
-          {{ booking.createdAt | date }}
-        </app-info-box>
-        <app-info-box label="Start date">
-          {{ booking.startDate | date }}
-        </app-info-box>
-        <app-info-box label="Payment status">
-          <app-payment-toggle
-            [paid]="paid()"
-            [isUpdating]="isUpdating()"
-            [disabled]="
-              isUpdating() ||
-              booking.status === bookingStatus.REFUNDED ||
-              booking.status === bookingStatus.PARTIAL_REFUND
-            "
-            (paidChanged)="updateBooking(booking._id, $event)"
-          ></app-payment-toggle>
-        </app-info-box>
-      </div>
-      <app-section-card title="Guides">
-        <app-guides-list [guides]="booking.tour.guides"></app-guides-list>
+    @if (bookingData().refunds?.length) {
+      <app-booking-refunded-details
+        [refunds]="bookingData().refunds!"
+        [price]="bookingData().price"
+        [isAdminView]="true"
+      ></app-booking-refunded-details>
+    }
+    <div class="cards-grid">
+      <app-section-card title="Client">
+        <app-info-card
+          [photo]="bookingData().user.photo"
+          [title]="bookingData().user.name"
+          [subtitle]="bookingData().user.email"
+          buttonLabel="Go to profile ↗"
+          btnClass="w-100"
+          [link]="[flowRoutes.USERS, bookingData().user._id!]"
+          [queryParams]="{ returnUrl: `${flowRoutes.BOOKINGS}/${bookingData()._id}` }"
+        />
       </app-section-card>
-    }
+      <app-section-card title="Tour">
+        <app-info-card
+          [title]="bookingData().tour.name"
+          [subtitle]="`ID: ${bookingData().tour._id}`"
+          buttonLabel="Go to tour ↗"
+          btnClass="w-100"
+          [link]="[flowRoutes.TOURS, bookingData().tour.slug]"
+        />
+      </app-section-card>
+    </div>
+    <div class="box-grid">
+      <app-info-box label="Price">
+        {{ bookingData().price | appCurrency }}
+      </app-info-box>
+      <app-info-box label="Booked date">
+        {{ bookingData().createdAt | date }}
+      </app-info-box>
+      <app-info-box label="Start date">
+        {{ bookingData().startDate | date }}
+      </app-info-box>
+      <app-info-box label="Payment status">
+        <app-payment-toggle
+          [paid]="paid()"
+          [isUpdating]="isUpdating()"
+          [disabled]="
+            isUpdating() ||
+            bookingData().status === bookingStatus.REFUNDED ||
+            bookingData().status === bookingStatus.PARTIAL_REFUND
+          "
+          (paidChanged)="updateBooking(bookingData()._id, $event)"
+        ></app-payment-toggle>
+      </app-info-box>
+    </div>
+    <app-section-card title="Guides">
+      <app-guides-list [guides]="bookingData().tour.guides"></app-guides-list>
+    </app-section-card>
   </div>
 </app-content-wrapper>

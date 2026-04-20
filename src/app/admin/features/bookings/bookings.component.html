@@ -1,8 +1,10 @@
 <app-content-wrapper>
-  <div class="bookings">
-    @if (isLoading()) {
-      <app-loader />
-    } @else {
+  @if (error()) {
+    <app-load-error [message]="error()!" (retry)="retry()" />
+  } @else if (isLoading()) {
+    <app-loader />
+  } @else {
+    <div class="bookings">
       <app-page-header title="Bookings" />
       <app-common-table [columns]="columns()" [data]="bookings()"></app-common-table>
       <ng-template #bookigStatusTemplate let-booking>
@@ -21,6 +23,6 @@
           </button>
         </div>
       </ng-template>
-    }
-  </div>
+    </div>
+  }
 </app-content-wrapper>

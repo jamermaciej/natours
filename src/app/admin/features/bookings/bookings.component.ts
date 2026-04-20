@@ -12,6 +12,7 @@ import { StatusBadgeComponent } from '../../../shared/ui/status-badge/status-bad
 import { ContentWrapperComponent } from '../../../shared/ui/content-wrapper/content-wrapper.component';
 import { Booking } from '../../../bookings/interfaces/booking';
 import { BookingActionsService } from '../../../bookings/services/booking-actions.service';
+import { LoadErrorComponent } from '../../../shared/ui/load-error/load-error.component';
 
 @Component({
   selector: 'app-bookings',
@@ -22,6 +23,7 @@ import { BookingActionsService } from '../../../bookings/services/booking-action
     RouterLink,
     StatusBadgeComponent,
     ContentWrapperComponent,
+    LoadErrorComponent,
   ],
   templateUrl: './bookings.component.html',
   styleUrl: './bookings.component.scss',
@@ -35,6 +37,7 @@ export class BookingsComponent implements OnInit {
   readonly #bookingActionsService = inject(BookingActionsService);
   protected readonly bookings = this.#bookingsStore.bookings;
   protected readonly isLoading = this.#bookingsStore.isLoading;
+  protected readonly error = this.#bookingsStore.error;
 
   protected readonly tableConfig: TableConfig = {
     showRowNumbers: true,
@@ -88,5 +91,9 @@ export class BookingsComponent implements OnInit {
 
   async deleteBooking(booking: Booking) {
     this.#bookingActionsService.openDeleteModal(booking);
+  }
+
+  retry() {
+    this.#bookingsStore.reload();
   }
 }

@@ -3,6 +3,7 @@ import { authGuard } from '../shared/guards/auth.guard';
 import { cannotEditSelfGuard } from '../shared/guards/cannot-edit-self.guard';
 import { Role } from '../tours/enums/role';
 import { roleGuard } from '../shared/guards/role.guard';
+import { bookingDetailResolver } from './resolvers/booking-detail.resolver';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,9 @@ export const routes: Routes = [
       },
       {
         path: 'bookings/:bookingId',
+        resolve: {
+          booking: bookingDetailResolver,
+        },
         loadComponent: () =>
           import('./features/booking-detail/booking-detail.component').then(
             m => m.BookingDetailComponent,
