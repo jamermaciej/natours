@@ -6,6 +6,15 @@
     vertical-align: middle;
     padding-top: toRem(10);
     padding-bottom: toRem(10);
+
+    &.sortable {
+      cursor: pointer;
+
+      .sort-icon {
+        display: inline-flex;
+        min-width: toRem(16);
+      }
+    }
   }
 
   &__empty {

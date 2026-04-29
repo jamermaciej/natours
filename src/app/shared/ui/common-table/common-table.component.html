@@ -5,7 +5,29 @@
         <th scope="col">{{ config()?.rowNumberHeader || '#' }}</th>
       }
       @for (column of columns(); track column) {
-        <th scope="col">{{ column.header }}</th>
+        <th
+          scope="col"
+          class="text-nowrap"
+          [class.sortable]="column.sortable"
+          (click)="sort(column)"
+        >
+          {{ column.header }}
+          <span class="sort-icon">
+            @if (column.sortable) {
+              @switch (getSortDirection(column)) {
+                @case ('asc') {
+                  ↑
+                }
+                @case ('desc') {
+                  ↓
+                }
+                @default {
+                  ↓↑
+                }
+              }
+            }
+          </span>
+        </th>
       }
     </tr>
   </thead>
@@ -20,13 +42,13 @@
             @if (!column.templateRef) {
               @switch (column.type) {
                 @case (TableColumnType.DATE) {
-                  {{ item | nestedProperty: column.key! | date: column.format ?? 'dd.MM.yyyy' }}
+                  {{ item | cellProperty: column | date: column.format ?? 'dd.MM.yyyy' }}
                 }
                 @case (TableColumnType.CURRENCY) {
-                  {{ item | nestedProperty: column.key! | appCurrency: column.digitsInfo }}
+                  {{ item | cellProperty: column | appCurrency: column.digitsInfo }}
                 }
                 @default {
-                  {{ item | nestedProperty: column.key! }}
+                  {{ item | cellProperty: column }}
                 }
               }
             } @else if (column.templateRef) {
@@ -38,7 +60,7 @@
       </tr>
     } @empty {
       <tr>
-        <td class="table__empty" [colSpan]="columns().length">No data yet.</td>
+        <td class="table__empty" [colSpan]="columns().length">{{ emptyMessage() }}</td>
       </tr>
     }
   </tbody>

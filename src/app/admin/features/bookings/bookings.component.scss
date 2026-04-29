@@ -1,6 +1,30 @@
 @use 'functions' as *;
 
 .bookings {
+  &__form {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: center;
+    gap: toRem(10);
+
+    .search-field {
+      grid-column: span 2;
+    }
+
+    .slider-wrapper {
+      grid-column: span 2;
+
+      display: flex;
+      align-items: center;
+      gap: toRem(5);
+
+      span {
+        font-size: 14px;
+        white-space: nowrap;
+      }
+    }
+  }
+
   &__actions {
     display: flex;
     align-items: center;

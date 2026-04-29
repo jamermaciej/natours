@@ -6,7 +6,97 @@
   } @else {
     <div class="bookings">
       <app-page-header title="Bookings" />
-      <app-common-table [columns]="columns()" [data]="bookings()"></app-common-table>
+      <app-filters
+        [activeFilters]="activeFilters()"
+        [resultsLabel]="bookingsStore.filtered().length + ' bookings'"
+        (removeFilter)="removeFilter($event)"
+        (clearFilters)="clearFilters()"
+      >
+        <form class="bookings__form">
+          <mat-form-field class="search-field">
+            <input
+              matInput
+              type="text"
+              placeholder="Search reservation, user, tour..."
+              [formField]="bookingFiltersForm.search"
+            />
+            @if (bookingFiltersForm.search().value()) {
+              <button matSuffix matIconButton aria-label="Clear" (click)="removeFilter('search')">
+                <mat-icon>close</mat-icon>
+              </button>
+            }
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              [matDatepicker]="dateFrom"
+              placeholder="Select date from"
+              [formField]="bookingFiltersForm.dateFrom"
+              [matDatepickerFilter]="dateFromFilter"
+            />
+            <mat-datepicker-toggle matIconSuffix [for]="dateFrom"></mat-datepicker-toggle>
+            <mat-datepicker #dateFrom></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              [matDatepicker]="dateTo"
+              placeholder="Select date to"
+              [formField]="bookingFiltersForm.dateTo"
+              [matDatepickerFilter]="dateToFilter"
+            />
+            <mat-datepicker-toggle matIconSuffix [for]="dateTo"></mat-datepicker-toggle>
+            <mat-datepicker #dateTo></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="All statuses" [formField]="bookingFiltersForm.status">
+              <mat-option [value]="null">All statuses</mat-option>
+              @for (status of bookingStatuses; track status) {
+                <mat-option [value]="status">
+                  {{ bookingStatusLabels[status] }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="All payments" [formField]="bookingFiltersForm.paid">
+              <mat-option [value]="null">All payments</mat-option>
+              <mat-option [value]="true">Paid</mat-option>
+              <mat-option [value]="false">Unpaid</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="slider-wrapper">
+            <span>Price:</span>
+            <mat-slider [min]="bookingsStore.minPrice()" [max]="bookingsStore.maxPrice()" discrete>
+              <input
+                matSliderStartThumb
+                [value]="bookingFiltersForm.priceMin().value()"
+                (valueChange)="bookingFiltersForm.priceMin().value.set($event)"
+              />
+              <input
+                matSliderEndThumb
+                [value]="bookingFiltersForm.priceMax().value()"
+                (valueChange)="bookingFiltersForm.priceMax().value.set($event)"
+              />
+            </mat-slider>
+            <span>
+              {{ bookingFiltersForm.priceMin().value() ?? bookingsStore.minPrice() }} —
+              {{ bookingFiltersForm.priceMax().value() ?? bookingsStore.maxPrice() }} PLN
+            </span>
+          </div>
+        </form>
+      </app-filters>
+      <app-common-table
+        [columns]="columns()"
+        [data]="bookings()"
+        [sortConfig]="sortConfig()"
+        (triggerSort)="sort($event)"
+        [emptyMessage]="
+          !bookingsStore.filtered().length && bookingsStore.bookings().length
+            ? 'No bookings match the filters.'
+            : 'No bookings yet'
+        "
+      ></app-common-table>
       <ng-template #bookigStatusTemplate let-booking>
         <app-status-badge [status]="booking.status" />
       </ng-template>
@@ -23,6 +113,15 @@
           </button>
         </div>
       </ng-template>
+      @if (totalPages() > 1) {
+        <app-pagination
+          [currentPage]="pagination.page()"
+          [totalPages]="totalPages()"
+          (triggerPageChange)="pageChange($event)"
+          (triggerPrevPage)="prevPage()"
+          (triggerNextPage)="nextPage()"
+        />
+      }
     </div>
   }
 </app-content-wrapper>

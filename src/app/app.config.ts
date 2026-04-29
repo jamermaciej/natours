@@ -13,8 +13,15 @@ import * as authEffects from './shared/data-access/auth/store/auth.effects';
 import { errorInterceptor } from './shared/interceptors/error.interceptor';
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import isBetween from 'dayjs/plugin/isBetween';
 
 registerLocaleData(localePl);
+
+dayjs.extend(customParseFormat);
+dayjs.extend(isBetween);
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -35,6 +42,12 @@ export const appConfig: ApplicationConfig = {
     {
       provide: DEFAULT_CURRENCY_CODE,
       useValue: 'PLN',
+    },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: {
+        subscriptSizing: 'dynamic',
+      },
     },
   ],
 };

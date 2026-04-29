@@ -29,6 +29,15 @@ abstract class GlobalFunctions {
 
     return formData;
   }
+
+  public static getValueByPath(obj: any, path: string): any {
+    return path.split('.').reduce((acc, key) => acc && acc[key], obj);
+  }
+
+  public static shallowEqual<T extends object>(a: T, b: T): boolean {
+    const keysA = Object.keys(a) as (keyof T)[];
+    return keysA.every(key => a[key] === b[key]);
+  }
 }
 
 export default GlobalFunctions;

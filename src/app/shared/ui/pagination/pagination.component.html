@@ -1,9 +1,9 @@
 <nav aria-label="Pagination">
   <ul class="pagination">
-    <li class="page-item" [class.disabled]="currentPage() < totalPages() - 1">
+    <li class="page-item" [class.disabled]="currentPage() <= 1">
       <a class="page-link" (click)="prevPage()">Previous</a>
     </li>
-    @for (page of pages; track $index) {
+    @for (page of pages(); track $index) {
       <li class="page-item" [class.active]="page === currentPage()">
         <a class="page-link" (click)="changePage(page)">{{ page }}</a>
       </li>

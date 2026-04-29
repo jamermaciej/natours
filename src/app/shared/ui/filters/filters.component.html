@@ -1,0 +1,23 @@
+<div class="filters">
+  <div class="filters__form">
+    <ng-content></ng-content>
+  </div>
+  <div class="filters__results">
+    @if (activeFilters()) {
+      <div class="filters__active">
+        @for (filter of activeFilters(); track filter.key) {
+          <span class="chip">
+            {{ filter.label }}
+            <button class="chip-remove" (click)="removeFilter.emit(filter.key)">×</button>
+          </span>
+        }
+      </div>
+    }
+    <div class="filters__summary">
+      <p class="small fw-bolder">
+        {{ resultsLabel() }}
+      </p>
+      <button class="btn btn--small btn--outline" (click)="clearFilters.emit()">Clear all</button>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { ApiResponse } from '../../shared/interfaces/api-response';
 import { Booking } from '../interfaces/booking';
 import { CancelBookingRequest } from '../enums/cancel-booking-request';
 import { TourBookingInfo } from '../../my-bookings/interfaces/tour-booking-info';
+import { BookingListItem } from '../interfaces/booking-list-item';
 
 @Injectable({
   providedIn: 'root',
@@ -45,8 +46,8 @@ export class BookingService {
     );
   }
 
-  getAllBookings(): Observable<ApiResponse<Booking[]>> {
-    return this.#http.get<ApiResponse<Booking[]>>(apiEndpoint.BookingEndpoint.baseBooking, {
+  getAllBookings(): Observable<ApiResponse<BookingListItem[]>> {
+    return this.#http.get<ApiResponse<BookingListItem[]>>(apiEndpoint.BookingEndpoint.baseBooking, {
       withCredentials: true,
     });
   }
